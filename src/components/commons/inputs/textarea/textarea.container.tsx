@@ -1,5 +1,8 @@
-export default function Button(){
+export default function TextArea(props :any){
     return (
-        <button></button>
+        <>
+            <label>{props.label}</label>
+            <textarea></textarea>
+        </>
     )
 }

@@ -1,5 +1,5 @@
-export default function Button({props}:any){
+export default function Button(props:any){
     return (
-        <button>{props.buttonName}</button>
+        <button>{props.btnvalue}</button>
     )
 }

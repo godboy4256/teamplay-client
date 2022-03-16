@@ -1,9 +1,6 @@
 import { css } from "@emotion/react";
 
 export const globalStyles = css`
-  * {
-  }
-
   html,
   body,
   div,
@@ -92,8 +89,6 @@ export const globalStyles = css`
     font: inherit;
     vertical-align: baseline;
   }
-
-  /* HTML5 display-role reset for older browsers */
   article,
   aside,
   details,
@@ -129,5 +124,8 @@ export const globalStyles = css`
   table {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+  textarea{
+    resize: none;
   }
 `;
