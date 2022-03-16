@@ -1,6 +1,17 @@
 import { css } from "@emotion/react";
 
 export const globalStyles = css`
+ @font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  *{
+    font-family: 'GmarketSansLight';
+  }
+
   html,
   body,
   div,
@@ -88,6 +99,8 @@ export const globalStyles = css`
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    line-height: 1;
+    box-sizing: border-box;
   }
   article,
   aside,
@@ -127,5 +140,20 @@ export const globalStyles = css`
   }
   textarea{
     resize: none;
+    box-sizing: border-box;
+    outline: none; 
+  }
+  input,
+  select,
+  button
+  {
+    border:none;
+    outline: none;
+    box-sizing: border-box;
+  }
+  button{
+    background:none;
+    cursor: pointer;
+    padding: 0;
   }
 `;
