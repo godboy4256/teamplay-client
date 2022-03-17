@@ -14,6 +14,16 @@ export const globalStyles = css`
   *{
     font-family: 'GmarketSansLight';
   }
+  @font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff%27') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  *{
+    font-family: 'GmarketSansLight';
+  }
 
   html,
   body,
