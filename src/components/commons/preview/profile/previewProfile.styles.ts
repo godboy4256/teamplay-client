@@ -15,6 +15,5 @@ export const Wrapper = styled.div`
 
 export const UserInfoWrapper = styled.div`
     width: 100%;
-    
-    /* background-color: red; */
+
 `
