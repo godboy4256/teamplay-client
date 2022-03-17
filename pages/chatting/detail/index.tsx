@@ -2,5 +2,5 @@ import ChattingDetail from "../../../src/components/units/chatting/detail/chatti
 import ChattingDetailPropose from "../../../src/components/units/chatting/detail/detailPropose/chattingDetailPropose.container";
 
 export default function ChattingDetailPage(){
-    return <ChattingDetailPropose/>
+    return <ChattingDetail/>
 }

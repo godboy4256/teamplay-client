@@ -18,8 +18,14 @@ export const Arrow = styled.img``
 export const InfoBox = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
 `
-export const Avatar = styled.img``
+export const Avatar = styled.img`
+    width: 100px;
+    margin-bottom: 15px;
+`
 export const Name = styled.div``
 
 export const Setting = styled.img``
@@ -79,7 +85,6 @@ export const VectorImgBox = styled.div`
     top: 5px;
     left: 50px;
 `
-// export const SendButtonImgBox = styled.div``
 export const InputImg = styled.img``
 export const CamerImg = styled.img``
 export const VectorImg = styled.img``
