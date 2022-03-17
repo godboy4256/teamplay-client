@@ -1,18 +1,21 @@
-import * as C from "./chattingDetail.styles"
+import * as C from "./chattingDetailPropose.styles"
 
-export default function ChattingDetailUI(){
+export default function ChattingDetailProposeUI(){
 
     return(
         <C.Wrapper>
             <C.Header>
                 <C.Arrow src="../img/chatting/Arrow.svg"/>
-                <C.InfoBox>
-                    <C.Avatar src="../img/chatting/Profile.svg"/>
-                    <C.Name>제이든</C.Name>
-                </C.InfoBox>
                 <C.Setting src="../img/chatting/Setting.svg"/>
             </C.Header>
+            <C.InfoBox>
+                <C.Avatar src="../img/chatting/Profile.svg"/>
+                <C.Name>제이든</C.Name>
+            </C.InfoBox>
             <C.ContentsBox>
+                <C.Propose>
+                    <span></span>
+                </C.Propose>
                 <C.Contents>
                     <C.Receive>
                         <span>안녕하세요! 개발자 제이든입니다.</span>

@@ -18,8 +18,15 @@ export const Arrow = styled.img``
 export const InfoBox = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    font-size: 23px;
+    padding: 0px 20px 0px 20px;
 `
-export const Avatar = styled.img``
+export const Avatar = styled.img`
+    width: 100px;
+`
 export const Name = styled.div``
 
 export const Setting = styled.img``
@@ -30,6 +37,18 @@ export const ContentsBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+`
+export const Propose = styled.div`
+    width: auto;
+    border-radius: 0px 24px 24px 24px;
+    padding: 10px 10px;
+    background-color: #999999;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    span {
+        font-size: 14px;
+    }
 `
 export const Contents = styled.div`
     width: auto;
