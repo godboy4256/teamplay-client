@@ -43,7 +43,7 @@ export default function ImageUpload(props: any) {
             <ImageBox>
                 <img src="" />
                 <div>
-                    <img src="../images/image_upload.svg" alt="preview image upload" />
+                    <img src="../img/image_upload.svg" alt="preview image upload" />
                     <div>프로젝트를 대표할 이미지를 첨부해주세요.</div>
                 </div>
             </ImageBox>

@@ -9,7 +9,7 @@ const DateStyle = styled.input`
     padding: 13px 9px;
     border-radius: 5px;
     &::-webkit-calendar-picker-indicator {
-        background-image: url("../images/date.svg");
+        background-image: url("../img/date.svg");
     }   
     cursor: pointer;
 `

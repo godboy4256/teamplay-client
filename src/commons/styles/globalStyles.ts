@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 export const globalStyles = css`
+
  @font-face {
     font-family: 'GmarketSansLight';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
@@ -95,9 +96,8 @@ export const globalStyles = css`
   video {
     margin: 0;
     padding: 0;
-    border: 0;
+    border: 0; 
     font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
     line-height: 1;
     box-sizing: border-box;

@@ -1,5 +1,5 @@
 import { Wrapper } from "../../../../commons/styles/commonStyls";
-import ContentsButton from "../../../commons/inputs/button/button.container";
+import ContentsButton from "../../../commons/inputs/component/button/button.container";
 import Date from "../../../commons/inputs/component/date/date.container";
 import ImageUpload from "../../../commons/inputs/component/imageUpload/imageUpload.container";
 import Select from "../../../commons/inputs/component/select/select.container";
@@ -17,7 +17,7 @@ export default function ProjectUi() {
             <ProjectTop>
                 <h2>새로운 프로젝트를 생성합니다!</h2>
                 <button>
-                    <img src="../images/close.svg" alt="detail close" />
+                    <img src="../img/close.svg" alt="detail close" />
                 </button>
             </ProjectTop>
             <Wrapper paddingTop="20px">
@@ -52,6 +52,7 @@ export default function ProjectUi() {
                     <Select
                         label="모집 인원"
                         optionList={selectListDummy.selectList.recruitment}
+                        isAddLength={true}
                     />
                     <Buttonbox>
                         <ContentsButton
