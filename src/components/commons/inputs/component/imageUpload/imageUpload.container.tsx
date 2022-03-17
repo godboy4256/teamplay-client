@@ -12,9 +12,9 @@ const FileInput = styled.input`
 `
 
 const FileUpload = styled.button`
-    border: 1px solid #C4C4C4;
+    border: 1px solid #c4c4c4;
     padding: 6px 11px;
-    color: #C4C4C4;
+    color: #c4c4c4;
     border-radius:20px;
     font-size: 14px;
     margin-top: 4px;
