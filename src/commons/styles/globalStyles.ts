@@ -2,12 +2,14 @@ import { css } from "@emotion/react";
 
 export const globalStyles = css`
 
+
 @font-face {
     font-family: 'GmarketSansLight';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
+  }
+
 
   *{
     font-family: 'GmarketSansLight';
@@ -96,13 +98,13 @@ export const globalStyles = css`
   video {
     margin: 0;
     padding: 0;
-    border: 0;
+    border: 0; 
     font-size: 100%;
     font-family: 'GmarketSansLight';
     vertical-align: baseline;
+    line-height: 1;
+    box-sizing: border-box;
   }
-
-  /* HTML5 display-role reset for older browsers */
   article,
   aside,
   details,
@@ -138,5 +140,23 @@ export const globalStyles = css`
   table {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+  textarea{
+    resize: none;
+    box-sizing: border-box;
+    outline: none; 
+  }
+  input,
+  select,
+  button
+  {
+    border:none;
+    outline: none;
+    box-sizing: border-box;
+  }
+  button{
+    background:none;
+    cursor: pointer;
+    padding: 0;
   }
 `;
