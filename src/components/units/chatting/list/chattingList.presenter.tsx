@@ -11,7 +11,7 @@ export default function ChattingListUI(){
             </C.Header>
             <C.ListBox>
                 <C.List>
-                    <C.Avatar src="/images/chatting/avatar.png"/>
+                    <C.Avatar src="/img/chatting/avatar.png"/>
                     <C.InfoBox>
                         <C.InfoHeader>
                             <C.InfoUser>제이든</C.InfoUser>
@@ -22,7 +22,7 @@ export default function ChattingListUI(){
                 </C.List>
                 <C.Line></C.Line>
                 <C.List>
-                    <C.Avatar src="/images/chatting/avatar.png"/>
+                    <C.Avatar src="/img/chatting/avatar.png"/>
                     <C.InfoBox>
                         <C.InfoHeader>
                             <C.InfoUser>제이든</C.InfoUser>
