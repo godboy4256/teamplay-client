@@ -16,7 +16,7 @@ export default function ChattingDetailUI() {
         <ChattingDetailPropose />
         <C.Contents>
           <C.Receive>
-            <span>안녕하세요! 개발자 제이든입니다.</span>
+            <span>안녕하세요! 개발자 제이든입니다!</span>
           </C.Receive>
         </C.Contents>
         <C.SendContents>
