@@ -14,8 +14,6 @@ const DateStyle = styled.input`
     cursor: pointer;
 `
 
-
-
 export default function Date(props: any) {
     return (
         <>

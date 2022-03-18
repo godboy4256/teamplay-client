@@ -14,13 +14,10 @@ interface IPropsWrapper {
 }
 
 const Wrapper = styled.div`
-    display: inline;
-
     background: ${(props: IPropsWrapper) => `${props.color}`};
     border-radius: 12px;
-
-    padding: 2px 10px;
-    margin-right: 10px;
+    padding: 4px 10px;
+    display:inline-block;
 `
 
 const Contents = styled.span`
