@@ -17,6 +17,7 @@ const Wrapper = styled.div`
     background: ${(props: IPropsWrapper) => `${props.color}`};
     border-radius: 12px;
     padding: 4px 10px;
+    display:inline-block;
 `
 
 const Contents = styled.span`

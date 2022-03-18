@@ -3,16 +3,20 @@ import styled from "@emotion/styled";
 const ButtonStyle = styled.button`
     width: 100%;
     padding: 13px 0;
-    background-color:#a7a7a7;
-    color: #dedede;
+    background-color:#3894FF;;
+    color: #FFFFFF;
     border-radius:26px;
-    font-size: 28px;
+    font-size: 24px;
     margin:40px 0 15px;
     margin-right:8px;
     font-family: normal;
 `
 
-export default function SubmitButton(props: any) {
+interface IPropsSubmitButton {
+    btnvalue: string;
+}
+
+export default function SubmitButton(props: IPropsSubmitButton) {
     return (
         <ButtonStyle>
             {props.btnvalue}
