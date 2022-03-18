@@ -21,7 +21,7 @@ export default function ChattingDetailUI() {
         </C.Contents>
         <C.SendContents>
           <C.Send>
-            <span>네 안녕하세요!</span>
+            <span>네. 안녕하세요!</span>
           </C.Send>
         </C.SendContents>
         <C.SendContents>
