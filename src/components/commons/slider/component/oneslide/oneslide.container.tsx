@@ -42,7 +42,7 @@ export default function OneSlide(props: any) {
                                         <h2>{el.mainTitle}</h2>
                                         <h3>{el.subTitle}</h3>
                                     </div>
-                                    <img src={el.images} alt={el.mainTitle} />
+                                    {/* <img src={el.images} alt={el.mainTitle} /> */}
                                 </S.OneSlideContents>
                             </S.OneSlideBox>
                         })

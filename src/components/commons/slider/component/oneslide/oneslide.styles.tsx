@@ -32,6 +32,7 @@ export const OneSlideContents = styled.div`
         position: absolute;
         z-index: 1;
     }
+    background: url("img/contents03.jpg") no-repeat center/cover;
 `
 
 export const OneSlideTopic = styled.div`

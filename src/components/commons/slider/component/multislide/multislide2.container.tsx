@@ -11,7 +11,7 @@ export default function MultiSlide2(props: any) {
         infinite: true,
         speed: 500,
         slidesToShow: 2,
-        slidesToScroll: 2
+        slidesToScroll: 1
     };
     return (
         <>

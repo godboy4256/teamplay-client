@@ -7,6 +7,9 @@ export const MultiSlideBox = styled.div`
     }
     overflow-x: hidden;
     transform: translateX(20px);
+    & .slick-slide{
+        
+    }
 `
 
 export const MultiSlideItem = styled.div`
@@ -82,7 +85,7 @@ export const ImgBox = styled.div`
 export const Like = styled.div`
     position: absolute;
     top:20px;
-    right:20px
+    right:20px;
 `
 
 export const MultiSlideBottom = styled.div`
@@ -98,12 +101,11 @@ export const MultiSlideBottom = styled.div`
 export const MultiSlideBottom2 = styled.div`
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-around;
     padding-top: 10px;
     padding-bottom: 20px;
     margin-bottom: 40px;
 `
-
 
 export const MemberCount = styled.div`
     display: flex;
