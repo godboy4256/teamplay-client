@@ -58,6 +58,10 @@ export const EyeImg = styled.div`
   img {
     height: 60%;
   }
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const TextBox = styled.div`
