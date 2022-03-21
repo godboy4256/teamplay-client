@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 interface IWrapperProps {
-    paddingTop: string;
+    paddingTop: string | number;
 }
 
 export const Wrapper = styled.div`

@@ -1,3 +1,5 @@
+import ProjectManage from "../../../src/components/units/project/management/projectManage.container";
+
 export default function ProjectDetailPage() {
-  return <div></div>;
+  return <ProjectManage />
 }

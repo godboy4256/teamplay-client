@@ -51,6 +51,7 @@ export default function MultiSlide2(props: any) {
                                                     size={8}
                                                     name={it.style}
                                                     color={it.color}
+                                                    margin="0"
                                                 />
                                             })
                                         }

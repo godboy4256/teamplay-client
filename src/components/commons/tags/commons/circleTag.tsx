@@ -4,6 +4,7 @@ interface IPropsCircleTag {
     name: string;
     size: number;
     color: string;
+    margin: string | null | undefined
 }
 interface IPropsContents {
     size: number;
@@ -11,12 +12,16 @@ interface IPropsContents {
 
 interface IPropsWrapper {
     color: string;
+    margin: string | null | undefined;
 }
 
-const Wrapper = styled.div`
+
+const CircleWrapper = styled.div`
+    display: inline-block;
     background: ${(props: IPropsWrapper) => `${props.color}`};
     border-radius: 12px;
     padding: 4px 10px;
+    margin: ${(props: IPropsWrapper) => `${props.margin}`};
 `
 
 const Contents = styled.span`
@@ -25,10 +30,9 @@ const Contents = styled.span`
 `
 
 export default function CircleTag(props: IPropsCircleTag) {
-
     return (
-        <Wrapper color={props.color}>
+        <CircleWrapper color={props.color} margin={props.margin}>
             <Contents size={props.size}>{props.name}</Contents>
-        </Wrapper>
+        </CircleWrapper>
     )
 }
