@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IPropsSignUpStyles, IPropsValidBtn } from "./signup.types";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -40,15 +41,6 @@ export const Input = styled.input`
 `;
 
 export const Auth = styled.div`
-  button {
-    background-color: #e5e5e5;
-    padding: 13px 8px;
-    font-weight: 500;
-    font-size: 14px;
-
-    color: #c4c4c4;
-  }
-
   input {
     width: calc(100% - 107px);
     padding: 12px 8px;
@@ -65,7 +57,62 @@ export const Auth = styled.div`
   }
 `;
 
-export const ErrorMsg = styled.div`
+export const AuthBtn = styled.button`
+  background-color: ${(props: IPropsSignUpStyles) =>
+    props.isEmail ? "#c4c4c4" : "#E5E5E5"};
+  padding: 13px 8px;
+  font-weight: 500;
+  font-size: 14px;
+
+  color: ${(props: IPropsSignUpStyles) =>
+    props.isEmail ? "#ffffff" : "#c4c4c4"};
+
+  :hover {
+    cursor: ${(props: IPropsSignUpStyles) =>
+      props.isEmail ? "pointer" : "auto"};
+  }
+`;
+
+export const AuthInputBox = styled.div`
+  display: flex;
+  border: 1px solid #cacaca;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: ${(props: IPropsValidBtn) => props.isAuth && "4px"};
+  }
+`;
+
+export const ValidBtn = styled.button`
+  display: ${(props: IPropsValidBtn) => (props.isAuth ? "inline" : "none")};
+  padding: 6px 8px;
+  border: 1px solid #cacaca;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #c4c4c4;
+`;
+
+export const AuthInput = styled.input`
+  width: ${(props: IPropsValidBtn) =>
+    props.isAuth ? "calc(100% - 50px)" : "100%"};
+  padding: 12px 8px;
+  background-color: ${(props: IPropsValidBtn) =>
+    props.isAuth ? "#FFFFFF" : "#E5E5E5"};
+
+  font-weight: 500;
+  font-size: 14px;
+
+  ::placeholder {
+    color: #c4c4c4;
+  }
+`;
+
+export const Message = styled.div`
   margin-top: 5px;
   font-weight: 500;
   font-size: 12px;
@@ -92,8 +139,4 @@ export const CheckBox = styled.div`
 
     border-radius: 5px;
   }
-`;
-
-export const PhoneAuth = styled.div`
-  display: none;
 `;
