@@ -163,6 +163,7 @@ export const globalStyles = css`
     border:none;
     outline: none;
     box-sizing: border-box;
+    background: none;
   }
   button{
     background:none;

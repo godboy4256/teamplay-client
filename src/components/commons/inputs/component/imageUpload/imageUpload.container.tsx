@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { LegacyRef, useRef } from "react";
+import { useRef } from "react";
 import { Label } from "../../commons/styles";
 
 const FileStyle = styled.div`
@@ -33,9 +33,10 @@ const ImageBox = styled.div`
 `
 
 export default function ImageUpload(props: any) {
-    const refFile = useRef<LegacyRef<HTMLInputElement>>()
+    const refFile = useRef<HTMLInputElement>(null)
     const onFileUpload = () => {
-        refFile.current.click()
+        const refCurret = refFile.current;
+        if (refCurret) refCurret.click()
     }
     return (
         <>

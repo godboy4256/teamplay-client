@@ -63,6 +63,5 @@ export const SliderStyle = styled.div`
     }
     & .slick-dots li.slick-active button{
         background-color: #595959;
-    }
-    
+    } 
 `

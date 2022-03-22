@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 
 interface IWrapperProps {
-    paddingTop: string;
+    paddingTop: string | number;
 }
 
 export const Wrapper = styled.div`
+    width: 100%;
     padding: 0 20px;
     padding-top: ${(props: IWrapperProps) => props.paddingTop};
 `
