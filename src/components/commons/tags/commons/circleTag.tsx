@@ -6,6 +6,7 @@ interface IPropsCircleTag {
     color: string;
     margin: string | null | undefined
 }
+
 interface IPropsContents {
     size: number;
 }

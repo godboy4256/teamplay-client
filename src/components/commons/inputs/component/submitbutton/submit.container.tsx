@@ -12,7 +12,11 @@ const ButtonStyle = styled.button`
     font-family: normal;
 `
 
-export default function SubmitButton(props: any) {
+interface IPropsSubmitButton {
+    btnvalue: string;
+}
+
+export default function SubmitButton(props: IPropsSubmitButton) {
     return (
         <ButtonStyle>
             {props.btnvalue}
