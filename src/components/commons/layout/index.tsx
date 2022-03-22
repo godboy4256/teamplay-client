@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import Header from "./header/header.container";
 
@@ -6,9 +7,12 @@ interface ILayoutProps {
 }
 
 export default function Layout(props: ILayoutProps) {
+  const router = useRouter()
   return (
     <>
-      <Header />
+      {
+        !router.asPath.includes("/project/list/") && <Header />
+      }
       <div>{props.children}</div>
     </>
   );

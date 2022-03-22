@@ -1,92 +1,100 @@
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { Wrapper } from "../../../../commons/styles/commonStyls";
+import MultiSlide2 from "../../../commons/slider/component/multislide/multislide2.container";
+import CircleTag from "../../../commons/tags/commons/circleTag";
+import * as S from "./projectManage.styles";
+import ProjectTeamBoard from "./teamBoard/projectTeamBoard.container";
+import TodoAdd from "./todo-add/todoAdd.container";
+import TodoDone from "./todo-done/todoDone.container";
+import TodoProgress from "./todo-progress/todoProgress.container";
 
-export default function ProjectManageUI() {
+interface IProsManage{
+    onClickonAdd:(() => void) | undefined
+}
+
+export default function ProjectManageUI(props : IProsManage) {
+    const [toDoTab,setToDoTab] = useState("To do")
+    const onClickChangeTab = () => {
+        setToDoTab((prev) => prev === "To do" ? "Done" : "To do")
+    }
     return (
-        <div>
-            <div>
-                <img src="../img/pageback.svg" alt="page back location" />
-                <img src="../img/contentsmenu.svg" alt="contents menu button" />
-            </div>
-            <div>
-                <h3>자율주행자동차 어플</h3>
-                <h4>long established fact that a reader will be distract</h4>
-                <ul>
-                    <li>태그</li>
-                    <li>태그</li>
-                    <li>태그</li>
-                </ul>
-                <ul>
-                    <li>
-                        <div>팀</div>
-                        <div>코드 캠프 TOP</div>
-                    </li>
-                    <li>
-                        <div>밋업 장소</div>
-                        <div>코드 캠프 패스트파이브</div>
-                    </li>
-                    <li>
-                        <div>진행 단계</div>
-                        <div>
-                            <div></div>
-                            <div>23%</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <div>
-                    <h3>팀 프로필</h3>
-                </div>
-                <div>
-                    <h3>팀 게시판</h3>
-                    <img src="../img/plusicon.svg" alt="contents plus icon" />
-                </div>
-                <ul>
+        <S.ProjectManageStyle>
+            <S.ProjectManageImg>
+                <img src="/img/pageback.svg" alt="page back location" />
+                <img src="/img/contentsmenu.svg" alt="contents menu button" />
+            </S.ProjectManageImg>
+            <Wrapper paddingTop="30px">
+                <S.ProjectManageTop>
+                    <h3>자율주행자동차 어플</h3>
+                    <h4>long established fact that a reader will be distract</h4>
+                    <ul>
+                        {
+                            new Array(3).fill(1).map(_ => {
+                                return <li key={uuidv4()}>
+                                    <CircleTag
+                                        color="#CCC"
+                                        name="태그"
+                                        size={12}
+                                        margin={"0 8px 10px 0"}
+                                    />
+                                </li>
+                            })
+                        }
+                    </ul>
+                    <S.ProjectListInfo>
+                        <li>
+                            <S.ProjectInfoKey>팀</S.ProjectInfoKey>
+                            <S.ProjectInfoValue>코드 캠프 TOP</S.ProjectInfoValue>
+                        </li>
+                        <li>
+                            <S.ProjectInfoKey>밋업 장소</S.ProjectInfoKey>
+                            <S.ProjectInfoValue>코드 캠프 패스트파이브</S.ProjectInfoValue>
+                        </li>
+                        <li>
+                            <S.ProjectInfoKey>진행 단계</S.ProjectInfoKey>
+                            <S.ProjectInfoValue>
+                                <S.ProjectStatusBox>
+                                    <S.ProjectStatus>23%</S.ProjectStatus>
+                                </S.ProjectStatusBox>
+                            </S.ProjectInfoValue>
+                        </li>
+                    </S.ProjectListInfo>
+                </S.ProjectManageTop>
+            </Wrapper>
+            <Wrapper paddingTop="0">
+                    <S.ProjectManageContentsTop>
+                        <h3>팀 프로필</h3>
+                    </S.ProjectManageContentsTop>
+                    <MultiSlide2 />
+                    <S.ProjectManageContentsTop>
+                        <h3>팀 게시판</h3>
+                        <button>
+                            <img src="/img/plusicon.svg" alt="contents plus icon" />
+                        </button>
+                    </S.ProjectManageContentsTop>
+                    <S.ProjectManaBoard>
+                        {
+                            new Array(3).fill(1).map((_) => {
+                                return <ProjectTeamBoard key={uuidv4()}/>
+                            })
+                        }
+                    </S.ProjectManaBoard>
+                    <S.ProjectManageContentsTop>
+                        <h3>To Do List</h3>
+                        <button onClick={props.onClickonAdd}>
+                            <img src="/img/plusicon.svg" alt="contents plus icon" />
+                        </button>
+                    </S.ProjectManageContentsTop>
+                    <S.ProjectTodoNavTab>
+                        <li onClick={onClickChangeTab}>To do</li>
+                        <li onClick={onClickChangeTab}>Done</li>
+                    </S.ProjectTodoNavTab>
                     {
-                        new Array(3).fill(1).map((_) => {
-                            return <li key={uuidv4()}>
-                                <div>
-                                    <time>2022.3.15</time>
-                                    <h4>내일 7시에 회의합니다!</h4>
-                                </div>
-                                <button></button>
-                            </li>
-                        })
-                    }
-                </ul>
-            </div>
-            <div>
-                <div>
-                    <h3>To Do List</h3>
-                    <img src="../img/plusicon.svg" alt="contents plus icon" />
-                </div>
-                <ul>
-                    <li>
-                        <span>웹 기획하기</span>
-                        <input type="checkbox" />
-                    </li>
-                    <li>
-                        <span>웹 디자인하기</span>
-                        <input type="checkbox" />
-                    </li>
-                    <li>
-                        <span>웹 퍼블리싱하기</span>
-                        <input type="checkbox" />
-                    </li>
-                    <li>
-                        <span>웹 개발하기</span>
-                        <input type="checkbox" />
-                    </li>
-                    <li>
-                        <span>웹 기획하기</span>
-                        <input type="checkbox" />
-                    </li>
-                    <li>
-                        <span>최종점검</span>
-                        <input type="checkbox" />
-                    </li>
-                </ul>
-            </div>
-        </div>
+                        toDoTab === "To do" ? <TodoProgress /> : <TodoDone />
+                    }   
+                </Wrapper>
+                <TodoAdd/>
+        </S.ProjectManageStyle>
     )
 }

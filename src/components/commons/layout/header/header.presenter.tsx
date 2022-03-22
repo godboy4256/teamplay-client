@@ -1,6 +1,6 @@
 import * as S from "./header.styles";
 
-export default function HeaderUi() {
+export default function HeaderUI() {
   return <S.HeaderStyle>
     <S.HeaderTop>
       <h1>
@@ -8,10 +8,10 @@ export default function HeaderUi() {
       </h1>
       <S.Setting>
         <button>
-          <img src="../img/alam.svg" />
+          <img src="/img/alam.svg" />
         </button>
         <button>
-          <img src="../img/btn.svg" />
+          <img src="/img/btn.svg" />
         </button>
       </S.Setting>
     </S.HeaderTop>
@@ -23,6 +23,5 @@ export default function HeaderUi() {
         <li>커뮤니티</li>
       </ul>
     </S.HeaderNav>
-    {/* 네비게이션은 있는 곳도 있고 없는 곳도 있어서 asPath로 추후에 작업해줘야 함 */}
   </S.HeaderStyle>;
 }

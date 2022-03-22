@@ -1,5 +1,5 @@
-import HeaderUi from "./header.presenter";
+import HeaderUI from "./header.presenter";
 
 export default function Header() {
-  return <HeaderUi />;
+  return <HeaderUI />;
 }

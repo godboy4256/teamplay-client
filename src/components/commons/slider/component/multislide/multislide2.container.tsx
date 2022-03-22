@@ -35,7 +35,7 @@ export default function MultiSlide2(props: any) {
                                 <S.MultiSlideItem>
                                     <S.MultiSlideTop2>
                                         <S.Like>
-                                            <img src="../img/like2.svg" alt="like icon" />
+                                            <img src="/img/like2.svg" alt="like icon" />
                                         </S.Like>
                                         <S.ImgBox>
                                             <img src={el.profile} alt={el.name} />
