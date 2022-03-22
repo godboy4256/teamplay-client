@@ -26,6 +26,7 @@ interface IPropsSubmitButton {
   backgroundcolor: string;
   border: boolean;
   color: string;
+  onClick: (() => void) | undefined;
 }
 
 export default function SubmitBtn(props: IPropsSubmitButton) {
@@ -36,6 +37,7 @@ export default function SubmitBtn(props: IPropsSubmitButton) {
       backgroundcolor={props.backgroundcolor}
       border={props.border}
       color={props.color}
+      onClick={props.onClick}
     >
       {props.name}
     </Button>

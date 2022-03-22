@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 interface IPropsDiv {
   marginBottom: number;
+  backgroundColor: string;
 }
 
 const Div = styled.div`
@@ -13,7 +14,7 @@ const Div = styled.div`
 
   border-radius: 20px;
   border: 1px solid #c4c4c4;
-  background-color: #ffffff;
+  background-color: ${(props: IPropsDiv) => `${props.backgroundColor}`};
 
   font-weight: 400;
   font-size: 14px;
@@ -27,8 +28,18 @@ const Div = styled.div`
 interface IPropsClickTag {
   name: string;
   marginBottom: number;
+  backgroundColor: string;
+  onClick: ((name: string) => () => void) | undefined;
 }
 
 export default function ClickTag(props: IPropsClickTag) {
-  return <Div marginBottom={props.marginBottom}>{props.name}</Div>;
+  return (
+    <Div
+      marginBottom={props.marginBottom}
+      backgroundColor={props.backgroundColor}
+      onClick={props.onClick && props.onClick(props.name)}
+    >
+      {props.name}
+    </Div>
+  );
 }

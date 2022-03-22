@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
+import { IPropsOnBoardingUIWrapper } from "./onboarding.types";
 
 export const Wrapper = styled.div`
+  height: 100vh;
   display: flex;
   position: fixed;
-  left: -500vw;
+  left: ${(props: IPropsOnBoardingUIWrapper) => `${props.left}vw`};
   z-index: 1;
   transition: all 0.35s;
 `;

@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { OnBoardingContext } from "./onboarding.container";
 import * as S from "./onboarding.styles";
 import OnBoardingFifthPage from "./pages/fifth";
 import OnBoardingFirstPage from "./pages/first";
@@ -7,8 +9,9 @@ import OnBoardingSixthPage from "./pages/sixth";
 import OnBoardingThirdPage from "./pages/third";
 
 export default function OnBoardingUI() {
+  const { left } = useContext(OnBoardingContext);
   return (
-    <S.Wrapper>
+    <S.Wrapper left={left}>
       <S.First>
         <OnBoardingFirstPage />
       </S.First>
