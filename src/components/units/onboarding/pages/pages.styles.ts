@@ -2,7 +2,11 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
+  height: 80vh;
   padding: 17px 20px 26px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const BackArrow = styled.div`
@@ -42,8 +46,7 @@ export const Notice = styled.div`
 `;
 
 export const Looking = styled.div`
-  display: flex;
-  justify-content: center;
+  text-align: center;
 
   font-weight: 400;
   font-size: 14px;
@@ -116,3 +119,16 @@ export const Position = styled.div`
 `;
 
 export const Tags = styled.div``;
+
+export const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const BtnBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+`;
