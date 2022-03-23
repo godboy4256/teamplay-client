@@ -56,6 +56,7 @@ export default function TodoAdd() {
         onAddref?.classList.remove("onClick")
         modalref?.classList.remove("onClick")
     }
+    
     return (
         <>
          <ModalBackground id="modalBackground"></ModalBackground>
