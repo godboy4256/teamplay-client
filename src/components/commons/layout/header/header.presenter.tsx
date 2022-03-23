@@ -4,7 +4,9 @@ export default function HeaderUI() {
   return <S.HeaderStyle>
     <S.HeaderTop>
       <h1>
-        <S.Logo>TEAMPLAY</S.Logo>
+        <S.Logo>
+          <img src="/img/commons/logo.svg" alt="logo" />
+        </S.Logo>
       </h1>
       <S.Setting>
         <button>

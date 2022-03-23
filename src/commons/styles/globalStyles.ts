@@ -4,27 +4,31 @@ export const globalStyles = css`
 
 
 @font-face {
-    font-family: 'GmarketSansLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-family: 'GBold';
+    src: url('/fonts/GmarketSansTTFBold.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
 
-
-  *{
-    font-family: 'GmarketSansLight';
-  }
   @font-face {
-    font-family: 'GmarketSansLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff%27') format('woff');
+    font-family: 'GLigth';
+    src: url('/fonts/GmarketSansTTFLight.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'GMedium';
+    src: url('/fonts/GmarketSansTTFMedium.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
 
   *{
-    font-family: 'GmarketSansLight';
+    font-family: 'GMedium';
+    color: #0D223A;
   }
-
+ 
   html,
   body,
   div,
@@ -110,9 +114,7 @@ export const globalStyles = css`
     padding: 0;
     border: 0; 
     font-size: 100%;
-    font-family: 'GmarketSansLight';
-    vertical-align: baseline;
-    line-height: 1;
+    vertical-align: bottom;
     box-sizing: border-box;
   }
   article,
