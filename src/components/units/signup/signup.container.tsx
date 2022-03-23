@@ -37,13 +37,19 @@ export default function SignUp() {
 
     if (key === "password" && !valid.password.test(value)) {
       setPassMsg(
-        "8글자 이상, 최소 1개이상의 특수문자와 숫자가 포함되어야합니다."
+        "8글자 이상, 최소 1개 이상의 특수문자, 숫자가 포함되어야합니다."
       );
-    } else setPassMsg("");
+    }
+    if (key === "password" && valid.password.test(value)) {
+      setPassMsg("");
+    }
 
     if (key === "chkPassword" && input.password !== value) {
       setCheckMsg("비밀번호가 일치하지 않습니다.");
-    } else setCheckMsg("");
+    }
+    if (key === "chkPassword" && input.password === value) {
+      setCheckMsg("");
+    }
   };
 
   const onClickSubmit = () => {

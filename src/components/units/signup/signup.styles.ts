@@ -13,18 +13,21 @@ export const TitleBox = styled.div`
   position: relative;
   margin-bottom: 60px;
 
-  font-weight: 500;
-  font-size: 20px;
-  color: #9d9d9d;
+  span {
+    font-weight: 400;
+    font-size: 1.429rem;
+    line-height: 23px;
+
+    color: #0d223a;
+  }
 `;
 
 export const Name = styled.div`
   margin-bottom: 5px;
 
-  font-weight: 500;
-  font-size: 16px;
-
-  color: #9d9d9d;
+  font-weight: 400;
+  font-size: 1.143rem;
+  line-height: 18px;
 `;
 
 export const Input = styled.input`
@@ -33,9 +36,12 @@ export const Input = styled.input`
   border: 1px solid #cacaca;
 
   font-weight: 500;
-  font-size: 14px;
+  font-size: 1rem;
 
   ::placeholder {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 16px;
     color: #c4c4c4;
   }
 `;
@@ -49,7 +55,7 @@ export const Auth = styled.div`
     border: 1px solid #cacaca;
 
     font-weight: 500;
-    font-size: 14px;
+    font-size: 1rem;
 
     ::placeholder {
       color: #c4c4c4;
@@ -62,7 +68,7 @@ export const AuthBtn = styled.button`
     props.isEmail ? "#c4c4c4" : "#E5E5E5"};
   padding: 13px 8px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 1rem;
 
   color: ${(props: IPropsSignUpStyles) =>
     props.isEmail ? "#ffffff" : "#c4c4c4"};
@@ -91,7 +97,7 @@ export const ValidBtn = styled.button`
   border: 1px solid #cacaca;
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 0.857rem;
   line-height: 14px;
 
   color: #c4c4c4;
@@ -105,7 +111,7 @@ export const AuthInput = styled.input`
     props.isAuth ? "#FFFFFF" : "#E5E5E5"};
 
   font-weight: 500;
-  font-size: 14px;
+  font-size: 1rem;
 
   ::placeholder {
     color: #c4c4c4;
@@ -115,8 +121,8 @@ export const AuthInput = styled.input`
 export const Message = styled.div`
   margin-top: 5px;
   font-weight: 500;
-  font-size: 12px;
-
+  font-size: 0.857rem;
+  line-height: 14px;
   color: #9b9898;
 `;
 
@@ -127,9 +133,8 @@ export const CheckBox = styled.div`
 
   span {
     font-weight: 500;
-    font-size: 14px;
-
-    color: #9d9d9d;
+    font-size: 1rem;
+    line-height: 16px;
   }
 
   input {
