@@ -1,3 +1,5 @@
+import ProfileUserInfo from "../../src/components/commons/preview/profile/userInfo/profileUserInfo";
+
 export default function ProfilePage() {
-  return <div>팀원 리스트</div>;
+  return <ProfileUserInfo/>;
 }
