@@ -26,6 +26,7 @@ export const globalStyles = css`
 
   *{
     font-family: 'GMedium';
+    color: #0D223A;
   }
  
   html,
