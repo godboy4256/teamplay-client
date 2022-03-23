@@ -3,32 +3,51 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   width: 100%;
 
-  padding: 40px 20px;
+  padding: 20px 20px 40px 20px;
+`;
+export const XmarkBox = styled.div`
+  position: relative;
+  margin-bottom: 72px;
 `;
 
 export const LogoBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 15px;
+`;
 
-  padding: 70px 54px 125px 54px;
+export const Subscript = styled.div`
+  margin-bottom: 80px;
+  span {
+    display: block;
 
-  font-weight: 700;
-  font-size: 36px;
-
-  color: #c1c1c1;
+    font-family: GLight;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 20px;
+    text-align: center;
+    color: #999999;
+  }
 `;
 
 export const EmailInput = styled.input`
   width: 100%;
-  height: 5vh;
 
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-bottom: 1px solid #c4c4c4;
+  padding: 13px 0px;
 
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1.143rem;
   line-height: 18px;
+
+  ::placeholder {
+    font-weight: 500;
+    font-size: 1.143rem;
+    line-height: 18px;
+    color: #999999;
+  }
 `;
 
 export const PassBox = styled.div`
@@ -36,17 +55,25 @@ export const PassBox = styled.div`
 
   display: flex;
   border-bottom: 1px solid #c4c4c4;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 
   input {
     width: 100%;
     height: 100%;
 
+    padding: 13px 0px;
     padding-right: 20px;
 
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1.143rem;
     line-height: 18px;
+
+    ::placeholder {
+      font-weight: 500;
+      font-size: 1.143rem;
+      line-height: 18px;
+      color: #999999;
+    }
   }
 `;
 
@@ -56,7 +83,7 @@ export const EyeImg = styled.div`
   align-items: center;
 
   img {
-    height: 60%;
+    height: 30%;
   }
 
   :hover {
@@ -69,13 +96,12 @@ export const TextBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  padding: 50px 152px;
+  margin: 36px 0px;
 
   font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
-
-  color: #9d9d9d;
+  font-size: 1rem;
+  line-height: 16px;
+  color: #999999;
 `;
 
 export const SocialText = styled.div`
@@ -85,26 +111,34 @@ export const SocialText = styled.div`
   margin-bottom: 16px;
 
   font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
-
-  color: #9d9d9d;
+  font-size: 14px;
+  line-height: 16px;
+  color: #999999;
 `;
 
 export const SocialImgBox = styled.div`
-  display: flex;
-  justify-content: center;
+  padding: 0px 95px;
   margin-bottom: 127px;
 
   div {
-    width: 30%;
-
     display: flex;
     justify-content: space-between;
-    align-items: center;
   }
 
   img {
     height: 36px;
   }
+`;
+
+export const Cancel = styled.button`
+  width: 100%;
+  padding: 12px 0px;
+  border: 1px solid #e9e9e9;
+  border-radius: 20px;
+  background-color: #fff;
+
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 16px;
+  color: #999999;
 `;

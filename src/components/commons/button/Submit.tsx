@@ -2,41 +2,31 @@ import styled from "@emotion/styled";
 
 interface IPropsButton {
   fontSize: number;
-  radius: number;
   backgroundcolor: string;
-  border: boolean;
-  color: string;
 }
 
 const Button = styled.button`
   width: 100%;
-  padding: 12px 111px;
+  padding: 12px 0px;
   background-color: ${(props: IPropsButton) => `${props.backgroundcolor}`};
-  border: ${(props: IPropsButton) =>
-    props.border ? "1px solid #c4c4c4" : "none"};
-  color: ${(props: IPropsButton) => `${props.color}`};
-  border-radius: ${(props: IPropsButton) => `${props.radius}px`};
-  font-size: ${(props: IPropsButton) => `${props.fontSize}px`};
+  color: #fff;
+  border-radius: 20px;
+  font-size: ${(props: IPropsButton) => `${props.fontSize}rem`};
 `;
 
 interface IPropsSubmitButton {
   name: string;
-  radius: number;
   fontSize: number;
   backgroundcolor: string;
-  border: boolean;
-  color: string;
   onClick: (() => void) | undefined;
 }
 
 export default function SubmitBtn(props: IPropsSubmitButton) {
   return (
     <Button
-      radius={props.radius}
+      // disabled={true}
       fontSize={props.fontSize}
       backgroundcolor={props.backgroundcolor}
-      border={props.border}
-      color={props.color}
       onClick={props.onClick}
     >
       {props.name}
