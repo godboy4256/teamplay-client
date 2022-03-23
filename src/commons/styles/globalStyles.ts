@@ -1,34 +1,33 @@
 import { css } from "@emotion/react";
 
 export const globalStyles = css`
-
-
-@font-face {
-    font-family: 'GBold';
-    src: url('/fonts/GmarketSansTTFBold.ttf') format('truetype');
+  @font-face {
+    font-family: "GBold";
+    src: url("/fonts/GmarketSansTTFBold.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
   }
 
   @font-face {
-    font-family: 'GLigth';
-    src: url('/fonts/GmarketSansTTFLight.ttf') format('truetype');
+    font-family: "GLight";
+    src: url("/fonts/GmarketSansTTFLight.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
   }
 
   @font-face {
-    font-family: 'GMedium';
-    src: url('/fonts/GmarketSansTTFMedium.ttf') format('truetype');
+    font-family: "GMedium";
+    src: url("/fonts/GmarketSansTTFMedium.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
   }
 
-  *{
-    font-family: 'GMedium';
-    color: #0D223A;
+  * {
+    font-family: "GMedium";
+    font-size: 14px;
+    color: #0d223a;
   }
- 
+
   html,
   body,
   div,
@@ -112,8 +111,7 @@ export const globalStyles = css`
   video {
     margin: 0;
     padding: 0;
-    border: 0; 
-    font-size: 100%;
+    border: 0;
     vertical-align: bottom;
     box-sizing: border-box;
   }
@@ -153,22 +151,21 @@ export const globalStyles = css`
     border-collapse: collapse;
     border-spacing: 0;
   }
-  textarea{
+  textarea {
     resize: none;
     box-sizing: border-box;
-    outline: none; 
+    outline: none;
   }
   input,
   select,
-  button
-  {
-    border:none;
+  button {
+    border: none;
     outline: none;
     box-sizing: border-box;
     background: none;
   }
-  button{
-    background:none;
+  button {
+    background: none;
     cursor: pointer;
     padding: 0;
   }
