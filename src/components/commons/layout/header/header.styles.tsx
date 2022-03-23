@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 export const HeaderStyle = styled.header`
     padding: 0 20px;
+    border-bottom: 1px solid #ccc;
 `
 
 export const HeaderTop = styled.div`
@@ -19,9 +20,22 @@ export const HeaderNav = styled.nav`
    & ul>li{
         margin-right: 39px;
         cursor: pointer;
+        position: relative;
+        padding: 12px 0;
+   }
+   & ul>li.nav__list.active__page{
+       ::after{
+        display:block;
+        content: " ";
+        width: 100%;
+        height: 1px;
+        background-color: #3894FF;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+       }
    }
    color: #9D9D9D;
-   padding: 12px 0;
 `
 
 

@@ -1,6 +1,6 @@
 import * as S from "./header.styles";
 
-export default function HeaderUI() {
+export default function HeaderUI(props) {
   return <S.HeaderStyle>
     <S.HeaderTop>
       <h1>
@@ -19,10 +19,10 @@ export default function HeaderUI() {
     </S.HeaderTop>
     <S.HeaderNav>
       <ul>
-        <li>홈</li>
-        <li>프로젝트</li>
-        <li>팀원</li>
-        <li>커뮤니티</li>
+        <li onClick={props.onClickRouting} id="/main" className="nav__list">홈</li>
+        <li onClick={props.onClickRouting} id="/project/list" className="nav__list">프로젝트</li>
+        <li onClick={props.onClickRouting} id="/profile" className="nav__list">팀원</li>
+        <li onClick={props.onClickRouting} id="community/list" className="nav__list">커뮤니티</li>
       </ul>
     </S.HeaderNav>
   </S.HeaderStyle>;

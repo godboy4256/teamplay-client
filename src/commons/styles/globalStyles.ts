@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 export const globalStyles = css`
+
   @font-face {
     font-family: "GBold";
     src: url("/fonts/GmarketSansTTFBold.ttf") format("truetype");
