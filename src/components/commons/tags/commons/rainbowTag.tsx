@@ -1,26 +1,24 @@
 import styled from "@emotion/styled";
 
 interface IPropsDiv {
+  backgroundColor: string;
   marginBottom: number;
-  isClick: boolean | string | undefined;
 }
 
 const Div = styled.div`
   display: inline-block;
 
-  padding: 10px 20px;
+  padding: 10px 15px;
   margin-right: 12px;
   margin-bottom: ${(props: IPropsDiv) => `${props.marginBottom}px`};
 
   border-radius: 20px;
-  border: ${(props: IPropsDiv) =>
-    `${props.isClick ? "none" : "1px solid #999"}`};
-  background-color: ${(props: IPropsDiv) =>
-    `${props.isClick ? "#3894FF" : "#fff"}`};
+  background-color: ${(props: IPropsDiv) => `${props.backgroundColor}`};
 
   font-weight: 400;
   font-size: 1rem;
-  color: ${(props: IPropsDiv) => `${props.isClick ? "#fff" : "#999"}`};
+  line-height: 16px;
+  color: #fff;
 
   :hover {
     cursor: pointer;
@@ -30,14 +28,14 @@ const Div = styled.div`
 interface IPropsClickTag {
   name: string;
   marginBottom: number;
-  isClick: boolean | string | undefined;
+  backgroundColor: string;
   onClick: ((name: string) => () => void) | undefined;
 }
 
-export default function ClickTag(props: IPropsClickTag) {
+export default function RainbowTag(props: IPropsClickTag) {
   return (
     <Div
-      isClick={props.isClick}
+      backgroundColor={props.backgroundColor}
       marginBottom={props.marginBottom}
       onClick={props.onClick && props.onClick(props.name)}
     >
