@@ -45,7 +45,7 @@ export default function SignUpUI(props: IPropsSignUpUI) {
         onChange={onChageInput && onChageInput("chkPassword")}
       />
       <S.Message>{props.checkMsg}</S.Message>
-      <Blank width={0} height={129} />
+      <Blank width={0} height={90} />
       <S.CheckBox>
         <input type="checkbox" />
         <span>개인정보 수집에 동의합니다.</span>
@@ -58,11 +58,8 @@ export default function SignUpUI(props: IPropsSignUpUI) {
       <SubmitBtn
         onClick={props.onClickSubmit}
         name="계정 만들기"
-        radius={12}
-        fontSize={16}
-        backgroundcolor="#c4c4c4"
-        border={false}
-        color="#FFFFFF"
+        fontSize={1.143}
+        backgroundcolor="#3894FF"
       />
     </S.Wrapper>
   );
