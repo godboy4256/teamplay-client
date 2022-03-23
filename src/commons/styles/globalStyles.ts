@@ -2,21 +2,6 @@ import { css } from "@emotion/react";
 
 export const globalStyles = css`
 
-
-@font-face {
-    font-family: 'GBold';
-    src: url('/fonts/GmarketSansTTFBold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'GLigth';
-    src: url('/fonts/GmarketSansTTFLight.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-
   @font-face {
     font-family: 'GMedium';
     src: url('/fonts/GmarketSansTTFMedium.ttf') format('truetype');
@@ -26,6 +11,7 @@ export const globalStyles = css`
 
   *{
     font-family: 'GMedium';
+    font-size: 14px;
     color: #0D223A;
   }
  
@@ -113,7 +99,6 @@ export const globalStyles = css`
     margin: 0;
     padding: 0;
     border: 0; 
-    font-size: 100%;
     vertical-align: bottom;
     box-sizing: border-box;
   }
