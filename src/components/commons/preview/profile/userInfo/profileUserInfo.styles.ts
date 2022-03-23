@@ -66,13 +66,17 @@ export const LineBox = styled.div`
 export const Detail = styled.div`
   width: 100%;
   display: flex;
-  padding: 10px 0;
+  padding: 15px 0px 15px 0px;
   span {
     font-size: 16px;
     color: #bbbbbb;
     display: block;
     width: 50%;
     text-align: center;
+    :hover{
+      cursor: pointer;
+      color: #0D223A;
+    }
   }
 `;
 export const WrapperDetail = styled.div``;
