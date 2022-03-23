@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
+import { IPropsTag } from "../onboarding.types";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   padding: 17px 20px 26px 20px;
   display: flex;
   flex-direction: column;
@@ -25,32 +26,32 @@ export const BackArrow = styled.div`
 `;
 
 export const Title = styled.div`
-  margin-bottom: 12px;
-
-  font-weight: 400;
-  font-size: 18px;
-  color: #bababa;
+  font-weight: 500;
+  font-size: 1.286rem;
+  line-height: 21px;
 `;
 
 export const Subscript = styled.div`
-  margin-bottom: 10px;
   font-weight: 400;
-  font-size: 12px;
-  color: #bababa;
+  font-size: 0.857rem;
+  line-height: 14px;
+  color: #999999;
 `;
 
 export const Notice = styled.div`
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.857rem;
   color: #989898;
 `;
 
 export const Looking = styled.div`
+  margin-bottom: 31px;
   text-align: center;
 
-  font-weight: 400;
-  font-size: 14px;
-  color: #d2d2d2;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 160%;
+  color: #999999;
 `;
 
 export const TagArea = styled.div`
@@ -61,69 +62,106 @@ export const TagArea = styled.div`
 export const AddTag = styled.div`
   display: inline-block;
   padding: 10px 15px;
-  border: 1px dashed #eaeaea;
+  margin-bottom: 24px;
+  border: 1px dashed #999999;
   border-radius: 20px;
 
   font-weight: 400;
-  font-size: 14px;
-  color: #eaeaea;
+  font-size: 1rem;
+  line-height: 16px;
+  color: #999999;
 `;
 
-export const ProfileBox = styled.div`
+export const Tag = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
-export const PictureBox = styled.div`
-  width: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 10px 15px;
+  margin-right: 12px;
+  margin-bottom: 15px;
 
-  border-radius: 12px 12px 0px 0px;
-  padding: 20px 50px;
-  background-color: #c4c4c4;
+  border-radius: 20px;
+  background-color: ${(props: IPropsTag) => `${props.bgColor}`};
 
-  img {
-    width: 195px;
-    height: 195px;
+  span {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 16px;
+    color: #fff;
+  }
 
+  div {
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    margin-left: 8px;
     border-radius: 50%;
+    background-color: #999;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  :hover {
+    cursor: pointer;
   }
 `;
 
-export const InfoBox = styled.div`
-  width: 250px;
-  padding: 20px 50px;
-  background-color: #eaeaea;
-  border-radius: 0px 0px 12px 12px;
+export const TagInput = styled.input`
+  width: 100%;
+
+  margin-bottom: 24px;
+  border-bottom: 1px solid #c4c4c4;
+  padding: 13px 0px;
+
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 18px;
+
+  ::placeholder {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 18px;
+    color: #999999;
+  }
 `;
 
-export const Name = styled.div`
+export const PositionCarcBox = styled.div`
   display: flex;
-  justify-content: center;
-  margin-bottom: 7px;
-  font-weight: 400;
-  font-size: 24px;
-  color: #9d9d9d;
+  justify-content: space-between;
+  margin-bottom: 48px;
 `;
 
-export const Position = styled.div`
+export const PositionCard = styled.div`
+  width: 104px;
+  height: 110px;
+  padding: 25px 25px;
+
+  background: #f3f9ff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-bottom: 8px;
-  font-weight: 400;
-  font-size: 14px;
-  color: #9d9d9d;
-`;
+  align-items: center;
 
-export const Tags = styled.div``;
+  img {
+    display: block;
+    width: 36px;
+    margin-bottom: 12px;
+  }
+
+  span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #000000;
+  }
+`;
 
 export const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -131,4 +169,14 @@ export const BtnBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const CardBox = styled.div`
+  width: 250px;
+  height: 390px;
 `;

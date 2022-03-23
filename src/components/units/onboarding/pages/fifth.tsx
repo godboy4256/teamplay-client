@@ -32,6 +32,7 @@ export default function OnBoardingFiftPage() {
           <img src="/img/commons/leftArrow1.svg" />
         </S.BackArrow>
         <S.Title>관심있는 분야를 선택해주세요.</S.Title>
+        <Blank height={12} width={0} />
         <S.Subscript>팀원님이 관심있는 분야를 3개 골라주세요.</S.Subscript>
         <Blank height={38} width={0} />
         <S.TagArea>
@@ -40,9 +41,7 @@ export default function OnBoardingFiftPage() {
               <ClickTag
                 name={name}
                 marginBottom={16}
-                backgroundColor={
-                  interest && interest.includes(name) ? "#eaeaea" : "#ffffff"
-                }
+                isClick={interest && interest.includes(name) && true}
                 onClick={onClickPushTag}
               />
             </Fragment>
@@ -52,12 +51,9 @@ export default function OnBoardingFiftPage() {
       <S.BtnBox>
         <SubmitBtn
           name="다음으로"
-          radius={12}
-          backgroundcolor="#c4c4c4"
-          fontSize={16}
-          color="#FFFFFF"
-          border={true}
           onClick={onClickMoveToNext}
+          backgroundcolor="#3894FF"
+          fontSize={1.143}
         />
       </S.BtnBox>
     </S.Wrapper>

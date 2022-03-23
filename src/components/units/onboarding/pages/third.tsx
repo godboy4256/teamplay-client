@@ -1,30 +1,25 @@
 import { Fragment, useContext } from "react";
 import Blank from "../../../commons/blank/blank";
-import ClickTag from "../../../commons/tags/commons/clickTag";
 import { v4 as uuidv4 } from "uuid";
 import * as S from "./pages.styles";
 import SubmitBtn from "../../../commons/button/Submit";
 import { OnBoardingContext } from "../onboarding.container";
+import RainbowTag from "../../../commons/tags/commons/rainbowTag";
+import dump from "../../../../commons/json/tendency.json";
 
 export default function OnBoardingThirdPage() {
-  const { onClickMoveToNext, onClickMoveToPrev, onClickPushTag, tendency } =
-    useContext(OnBoardingContext);
-  const list = [
-    "꼼꼼한",
-    "냉정한",
-    "친절한",
-    "논리적인",
-    "상냥한",
-    "열정적인",
-    "끈기있는",
-    "감성적인",
-    "여유있는",
-    "모험적인",
-    "완벽주의",
-    "능동적인",
-    "신중한",
-    "분석적인",
-  ];
+  const {
+    tendency,
+    isAdd,
+    tagInputRef,
+    onClickMoveToNext,
+    onClickMoveToPrev,
+    onClickPushTag,
+    onClickDeleteTag,
+    onClickChageInput,
+    onChangeTagInput,
+    onKeyPressEnter,
+  } = useContext(OnBoardingContext);
 
   return (
     <S.Wrapper>
@@ -33,36 +28,64 @@ export default function OnBoardingThirdPage() {
           <img src="/img/commons/leftArrow1.svg" />
         </S.BackArrow>
         <S.Title>작업할 때 어떤 성향이신가요?</S.Title>
+        <Blank height={12} width={0} />
         <S.Subscript>
           팀원님을 가장 잘 나타내는 단어를 3개 골라주세요.
         </S.Subscript>
         <Blank height={38} width={0} />
         <S.TagArea>
-          {list.map((name) => (
+          {dump.tendency.name.map((name, index) => (
             <Fragment key={uuidv4()}>
-              {console.log(tendency)}
-              <ClickTag
+              <RainbowTag
                 name={name}
-                marginBottom={16}
-                backgroundColor={
-                  tendency && tendency.includes(name) ? "#eaeaea" : "#ffffff"
-                }
+                marginBottom={12}
+                backgroundColor={dump.tendency.color[index]}
                 onClick={onClickPushTag}
               />
             </Fragment>
           ))}
         </S.TagArea>
-        <S.AddTag>+직접 추가하기</S.AddTag>
+        <Blank height={24} width={0} />
+        {isAdd ? (
+          <S.TagInput
+            ref={tagInputRef}
+            type="text"
+            placeholder="원하는 태그를 입력하세요."
+            onChange={onChangeTagInput}
+            onKeyPress={onKeyPressEnter}
+          />
+        ) : (
+          <S.AddTag onClick={onClickChageInput}>+직접 추가하기</S.AddTag>
+        )}
+        <S.TagArea>
+          {tendency?.length ? (
+            <>
+              {tendency.map((name) => (
+                <S.Tag
+                  bgColor={
+                    dump.tendency.name.indexOf(name) > 0
+                      ? dump.tendency.color[dump.tendency.name.indexOf(name)]
+                      : "#0D223A"
+                  }
+                  key={uuidv4()}
+                  onClick={onClickDeleteTag && onClickDeleteTag(name)}
+                >
+                  <span>{name}</span>
+                  <div>x</div>
+                </S.Tag>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+        </S.TagArea>
       </div>
       <S.BtnBox>
         <SubmitBtn
-          onClick={onClickMoveToNext}
           name="다음으로"
-          radius={12}
-          backgroundcolor="#c4c4c4"
-          fontSize={16}
-          color="#FFFFFF"
-          border={true}
+          onClick={onClickMoveToNext}
+          backgroundcolor="#3894FF"
+          fontSize={1.143}
         />
       </S.BtnBox>
     </S.Wrapper>
