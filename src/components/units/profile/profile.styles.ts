@@ -6,27 +6,41 @@ export const Wrapper = styled.div`
 export const WrapperHeader = styled.div`
   width: 100%;
   display: flex;
-  margin-bottom: 36px;
+  flex-direction: column;
 `;
+
+export const HeaderLine = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    span{
+        font-size: 20px;
+    }
+`
+export const HeaderContents = styled.div`
+    width: 100%;
+    display: flex;
+    padding: 20px 0px 0px 0px;
+`
+
 export const ImgBox = styled.div`
   width: 35%;
   height: 30vw;
   margin-left: 20px;
   img {
     width: 85%;
-    height: 100%;
+    height: 80%;
     border-radius: 50%;
   }
 `;
 
 export const InfoBox = styled.div`
   width: 65%;
-  /* border: 1px solid black; */
-  margin-top: 2px;
-  margin-right: 20px;
+  margin: 0px 20px 30px 0px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;;
 `;
 
 export const Name = styled.div`
@@ -53,7 +67,7 @@ export const Position = styled.div`
 export const Tag = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 export const LineBox = styled.div`
@@ -80,4 +94,6 @@ export const Detail = styled.div`
     }
   }
 `;
-export const WrapperDetail = styled.div``;
+export const WrapperDetail = styled.div`
+    /* display: ${(props) => props.isVisible === true ? "block" : ""}; */
+`;

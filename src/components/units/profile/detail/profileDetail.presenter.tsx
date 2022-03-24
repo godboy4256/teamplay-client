@@ -1,9 +1,11 @@
 import ClickTag from "../../../commons/tags/commons/clickTag";
 import * as S from  "./profileDetail.styles";
 
-export default function ProfileDetailUI(){
+export default function ProfileDetailUI(props){
 
     return(
+        <>
+        {props.isVisible === "About me" ? 
         <S.Wrapper>
             <S.Top>
                 <S.TopHeader>
@@ -34,6 +36,9 @@ export default function ProfileDetailUI(){
                 </S.BottomHeader>
                 <S.BottomInnerBox>후기란</S.BottomInnerBox>
             </S.Bottom>
-        </S.Wrapper>
+        </S.Wrapper> 
+        : props.isVisible === "Project" && <div>프로젝트</div>
+        }
+        </>
     )
 }
