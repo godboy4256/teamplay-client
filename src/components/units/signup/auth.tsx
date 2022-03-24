@@ -16,7 +16,7 @@ export default function Auth(props: IPropsAuth) {
           onChange={onChageInput && onChageInput("email")}
         />
         <S.AuthBtn
-          onClick={props.request}
+          onClick={props.onClickSendToken}
           disabled={!isEmail}
           isEmail={isEmail}
         >
@@ -31,7 +31,9 @@ export default function Auth(props: IPropsAuth) {
           disabled={!isAuth}
         />
         <div>
-          <S.ValidBtn isAuth={isAuth}>확인</S.ValidBtn>
+          <S.ValidBtn isAuth={isAuth} onClick={props.onClickCheckToken}>
+            확인
+          </S.ValidBtn>
         </div>
       </S.AuthInputBox>
       {isAuth ? (

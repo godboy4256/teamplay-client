@@ -21,7 +21,8 @@ export default function SignUpUI(props: IPropsSignUpUI) {
       <Auth
         name="이메일 주소"
         placeHolder="이메일 주소를 입력해주세요."
-        request={props.onClickRequestEmailAuth}
+        onClickSendToken={props.onClickSendEmailToken}
+        onClickCheckToken={props.onClickCheckEmailToken}
       />
       {/* <Blank width={0} height={40} />
       <Auth
