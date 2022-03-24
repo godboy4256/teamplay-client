@@ -21,7 +21,7 @@ export const TopTagBox = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    padding: 20px;
+    padding: 10px;
     
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
