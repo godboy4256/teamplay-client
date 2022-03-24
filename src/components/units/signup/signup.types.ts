@@ -14,14 +14,16 @@ export interface IPropsSignUpUI {
   isEmail: boolean;
   onClickSubmit: () => void;
   onChageInput: (key: string) => (e: ChangeEvent<HTMLInputElement>) => void;
-  onClickRequestEmailAuth: () => void;
   onClickRequestPhoneAuth: () => void;
+  onClickSendEmailToken: () => void;
+  onClickCheckEmailToken: () => void;
 }
 
 export interface IPropsAuth {
   name: string;
   placeHolder: string;
-  request: () => void;
+  onClickSendToken: () => void;
+  onClickCheckToken: () => void;
 }
 
 export interface IPropsSignUpStyles {

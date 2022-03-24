@@ -51,18 +51,13 @@ export const EmailInput = styled.input`
 `;
 
 export const PassBox = styled.div`
-  height: 5vh;
-
   display: flex;
   border-bottom: 1px solid #c4c4c4;
   margin-bottom: 12px;
 
   input {
     width: 100%;
-    height: 100%;
-
     padding: 13px 0px;
-    padding-right: 20px;
 
     font-weight: 500;
     font-size: 1.143rem;
@@ -83,7 +78,7 @@ export const EyeImg = styled.div`
   align-items: center;
 
   img {
-    height: 30%;
+    height: 25%;
   }
 
   :hover {
