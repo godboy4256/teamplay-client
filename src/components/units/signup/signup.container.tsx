@@ -90,7 +90,7 @@ export default function SignUp() {
           },
         },
       });
-      alert("어서오세요");
+      alert("어서오세요.");
     } catch (error) {
       if (error instanceof Error) alert("이메일을 다시 확인해주세요.");
     }
