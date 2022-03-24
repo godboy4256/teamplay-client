@@ -6,7 +6,7 @@ export default function Profile(){
     const [isVisible, setIsvisible] = useState<string | null>("About me")
 
     const onClickProfileDetail = (e:MouseEvent<HTMLSpanElement>) => { 
-        setIsvisible(e?.currentTarget?.textContent)
+        setIsvisible(e.currentTarget.textContent)
     }
 
     return (

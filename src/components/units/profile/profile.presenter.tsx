@@ -1,8 +1,8 @@
+import { MouseEventHandler } from "react";
 import CircleTag from "../../commons/tags/commons/circleTag";
-import ProfileDetail from "./detail/profileDetail.container";
 import * as S from  "./profile.styles";
 
-export default function ProfileUI(props){
+export default function ProfileUI(props: { onClickProfileDetail: MouseEventHandler<HTMLSpanElement> | undefined; }){
 
     return(
         <S.Wrapper>

@@ -1,11 +1,11 @@
 import ClickTag from "../../../commons/tags/commons/clickTag";
 import * as S from  "./profileDetail.styles";
 
-export default function ProfileDetailUI(props){
+export default function ProfileDetailUI(props: { isVisible: string; }){
 
     return(
         <>
-        {props.isVisible === "About me" ? 
+    {props.isVisible === "About me" ? 
         <S.Wrapper>
             <S.Top>
                 <S.TopHeader>
@@ -37,8 +37,25 @@ export default function ProfileDetailUI(props){
                 <S.BottomInnerBox>후기란</S.BottomInnerBox>
             </S.Bottom>
         </S.Wrapper> 
-        : props.isVisible === "Project" && <div>프로젝트</div>
-        }
+    : props.isVisible === "Project" && 
+        <S.ProjectWrapper>
+            <S.Header>
+                <img src="/img/profile/progressDone.svg"/>
+            </S.Header>
+            <S.ProjectBox>
+                <S.LeftProject>
+                    <img src="/img/contents01.jpg"/>
+                    <img src="/img/contents02.jpg"/>
+                    <img src="/img/contents03.jpg"/>
+                </S.LeftProject>
+                <S.RightProject>
+                    <img src="/img/contents04.jpg"/>
+                    <img src="/img/contents05.png"/>
+                    <img src="/img/contents06.png"/>
+                </S.RightProject>
+            </S.ProjectBox>
+        </S.ProjectWrapper> 
+    }
         </>
     )
 }

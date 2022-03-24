@@ -67,3 +67,44 @@ export const BottomInnerBox = styled.div`
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
 `
+
+export const ProjectWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px 20px 20px;
+    /* background-color: yellowgreen; */
+`
+export const Header = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    img {
+        margin-right: 8px;
+    }
+`
+export const ProjectBox = styled.div`
+    display: flex;
+    text-align: center;
+`
+
+export const LeftProject = styled.div`
+    width: 50%;
+    height: 30vh;
+    img {
+        width: 90%;
+        height: 80%;
+        border-radius: 15px;
+        margin-bottom: 12px;
+    }
+`
+export const RightProject = styled.div`
+    width: 50%;
+    height: 30vh;
+    img {
+        width: 90%;
+        height: 80%;
+        border-radius: 15px;
+        margin-bottom: 12px;
+    }
+`
