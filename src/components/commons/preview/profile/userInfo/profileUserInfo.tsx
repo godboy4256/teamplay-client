@@ -1,4 +1,3 @@
-import ProfileDetail from "../../../../units/profile/previewProfile.container";
 import CircleTag from "../../../tags/commons/circleTag";
 import * as S from "./profileUserInfo.styles";
 
@@ -18,22 +17,13 @@ export default function ProfileUserInfo() {
             <img src="/img/location.svg" />
             <span>경기도 하남</span>
           </S.Position>
-          {/* <S.Tag>
+          <S.Tag>
             <CircleTag name="태그" size={15} color="#CCC" />
             <CircleTag name="태그" size={15} color="#CCC" />
             <CircleTag name="태그" size={15} color="#CCC" />
-          </S.Tag> */}
+          </S.Tag>
         </S.InfoBox>
       </S.WrapperHeader>
-      <S.LineBox>
-        <S.Detail>
-          <span>About me</span>
-          <span>Project</span>
-        </S.Detail>
-      </S.LineBox>
-      <S.WrapperDetail>
-        <ProfileDetail/>
-      </S.WrapperDetail>
     </S.Wrapper>
   );
 }

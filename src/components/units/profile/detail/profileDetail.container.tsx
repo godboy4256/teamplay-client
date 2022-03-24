@@ -1,4 +1,4 @@
-import ProfileDetailUI from "./previewProfile.presenter";
+import ProfileDetailUI from "./profileDetail.presenter";
 
 export default function ProfileDetail(){
     return <ProfileDetailUI/>

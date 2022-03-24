@@ -1,5 +1,5 @@
-import ClickTag from "../../commons/tags/commons/clickTag";
-import * as S from  "./previewProfile.styles";
+import ClickTag from "../../../commons/tags/commons/clickTag";
+import * as S from  "./profileDetail.styles";
 
 export default function ProfileDetailUI(){
 

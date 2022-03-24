@@ -1,5 +1,5 @@
-import ProfileUserInfo from "../../src/components/commons/preview/profile/userInfo/profileUserInfo";
+import Profile from "../../src/components/units/profile/profile.container";
 
 export default function ProfilePage() {
-  return <ProfileUserInfo/>;
+  return <Profile/>;
 }

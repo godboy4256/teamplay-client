@@ -21,7 +21,7 @@ export const ImgBox = styled.div`
 
 export const InfoBox = styled.div`
   width: 65%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin-top: 2px;
   margin-right: 20px;
   display: flex;
@@ -49,8 +49,35 @@ export const Position = styled.div`
     margin-right: 8px;
   }
 `;
+
 export const Tag = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
 `;
+
+export const LineBox = styled.div`
+  width: 100%;
+  display: flex;
+  border-top: 0.75px solid #ededed;
+  border-bottom: 0.75px solid #ededed;
+  transform: rotate(0.05deg);
+`;
+
+export const Detail = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 15px 0px 15px 0px;
+  span {
+    font-size: 16px;
+    color: #bbbbbb;
+    display: block;
+    width: 50%;
+    text-align: center;
+    :hover{
+      cursor: pointer;
+      color: #0D223A;
+    }
+  }
+`;
+export const WrapperDetail = styled.div``;
