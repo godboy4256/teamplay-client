@@ -27,6 +27,7 @@ export default function Auth(props: IPropsAuth) {
         <S.AuthInput
           type="text"
           placeholder="인증번호를 입력해주세요."
+          onChange={onChageInput && onChageInput("token")}
           isAuth={isAuth}
           disabled={!isAuth}
         />
