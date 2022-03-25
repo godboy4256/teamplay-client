@@ -1,8 +1,29 @@
+import { createContext, useState } from "react";
 import ChattingDetailUI from "./chattingDetail.presenter";
+import { IChattingDetailContext } from "./chattingDetail.types";
 
-export default function ChattingDetail(){
+export const ChattingDetailContext = createContext<IChattingDetailContext>({});
 
-    return(
-        <ChattingDetailUI/>
-    )
+export default function ChattingDetail() {
+  const [position, setPosition] = useState(-100);
+  const [isToggle, setIsToggle] = useState(false);
+  const onClickSetPosition = () => {
+    if (position === -100) {
+      setPosition(0);
+      setIsToggle(true);
+    } else {
+      setPosition(-30);
+      setIsToggle(false);
+    }
+  };
+  const value = {
+    isToggle,
+    position,
+    onClickSetPosition,
+  };
+  return (
+    <ChattingDetailContext.Provider value={value}>
+      <ChattingDetailUI />
+    </ChattingDetailContext.Provider>
+  );
 }
