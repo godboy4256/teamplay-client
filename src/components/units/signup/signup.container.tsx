@@ -114,6 +114,7 @@ export default function SignUp() {
 
   const onClickCheckEmailToken = async () => {
     try {
+      console.log(email, token);
       await checkTokenToEmail({
         variables: {
           email,
