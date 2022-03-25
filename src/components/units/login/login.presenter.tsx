@@ -2,11 +2,12 @@ import SubmitBtn from "../../commons/button/Submit";
 import Xmark from "../../commons/button/Xmark";
 import * as S from "./login.styles";
 import { IPropsLoginUI } from "./login.types";
+import Link from "next/link";
 
 export default function LoginUI(props: IPropsLoginUI) {
   return (
     <S.Wrapper>
-      <S.XmarkBox>
+      <S.XmarkBox onClick={props.onClickLogout}>
         <Xmark width={16} height={16} />
       </S.XmarkBox>
       <S.LogoBox>
@@ -16,9 +17,17 @@ export default function LoginUI(props: IPropsLoginUI) {
         <span>학생과 주니어들을 위한 사이드 프로젝트</span>
         <span>지금 팀플레이에서 시작하세요</span>
       </S.Subscript>
-      <S.EmailInput type="text" placeholder="이메일" />
+      <S.EmailInput
+        type="text"
+        placeholder="이메일"
+        onChange={props.onChangeLoginInput("email")}
+      />
       <S.PassBox>
-        <input type={props.type} placeholder="비밀번호" />
+        <input
+          type={props.type}
+          placeholder="비밀번호"
+          onChange={props.onChangeLoginInput("password")}
+        />
         <S.EyeImg>
           {props.isView ? (
             <img
@@ -31,7 +40,7 @@ export default function LoginUI(props: IPropsLoginUI) {
         </S.EyeImg>
       </S.PassBox>
       <SubmitBtn
-        onClick={props.onClickSetIsView}
+        onClick={props.onClickSubmitLogin}
         name="이메일로 로그인"
         fontSize={1.143}
         backgroundcolor="#3894FF"
@@ -40,9 +49,15 @@ export default function LoginUI(props: IPropsLoginUI) {
       <S.SocialText>SNS계정으로 로그인하기</S.SocialText>
       <S.SocialImgBox>
         <div>
-          <img src="/img/login/kakao.png" />
-          <img src="/img/login/naver.png" />
-          <img src="/img/login/google.png" />
+          <Link href="https://backend.ljh305.shop/login/kakao">
+            <img src="/img/login/kakao.png" />
+          </Link>
+          <Link href="https://backend.ljh305.shop/login/naver">
+            <img src="/img/login/naver.png" />
+          </Link>
+          <Link href="https://backend.ljh305.shop/login/google">
+            <img src="/img/login/google.png" />
+          </Link>
         </div>
       </S.SocialImgBox>
       <S.Cancel>계정이 없으신가요? 간편하게 가입하기</S.Cancel>
