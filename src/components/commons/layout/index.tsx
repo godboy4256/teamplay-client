@@ -10,8 +10,11 @@ export default function Layout(props: ILayoutProps) {
   const router = useRouter();
 
   const isHiddenHeader = [
+    "/project/new",
     "/login",
-    "/project/list/",
+    "/onboarding",
+    "/chatting/detail",
+    "/chatting/list",
   ];
 
   return (

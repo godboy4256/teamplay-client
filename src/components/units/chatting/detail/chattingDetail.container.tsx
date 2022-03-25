@@ -9,10 +9,10 @@ export default function ChattingDetail() {
   const [isToggle, setIsToggle] = useState(false);
   const onClickSetPosition = () => {
     if (position === -100) {
-      setPosition(0);
+      setPosition(-30);
       setIsToggle(true);
     } else {
-      setPosition(-30);
+      setPosition(-100);
       setIsToggle(false);
     }
   };
