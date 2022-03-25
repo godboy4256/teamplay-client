@@ -18,17 +18,16 @@ export default function OnBoardingSecondPage() {
           <img src="/img/commons/leftArrow1.svg" />
         </S.BackArrow>
         <S.Title>몇년차 개발자/디자이너이신가요?</S.Title>
+        <Blank height={12} width={0} />
         <S.Subscript>저희 어플은 주니어 팀원위주의 플렛폼입니다.</S.Subscript>
-        <Blank height={38} width={0} />
+        <Blank height={24} width={0} />
         <S.TagArea>
           {list.map((name) => (
             <Fragment key={uuidv4()}>
               <ClickTag
                 name={name}
                 marginBottom={16}
-                backgroundColor={
-                  career && career === name ? "#eaeaea" : "#ffffff"
-                }
+                isClick={career && career === name && true}
                 onClick={onClickPushTag}
               />
             </Fragment>
@@ -37,13 +36,10 @@ export default function OnBoardingSecondPage() {
       </div>
       <S.BtnBox>
         <SubmitBtn
-          onClick={onClickMoveToNext}
           name="다음으로"
-          radius={12}
-          backgroundcolor="#c4c4c4"
-          fontSize={16}
-          color="#FFFFFF"
-          border={true}
+          onClick={onClickMoveToNext}
+          backgroundcolor="#3894FF"
+          fontSize={1.143}
         />
       </S.BtnBox>
     </S.Wrapper>

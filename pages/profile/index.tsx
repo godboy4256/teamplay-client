@@ -1,3 +1,5 @@
+import Profile from "../../src/components/units/profile/profile.container";
+
 export default function ProfilePage() {
-  return <div>팀원 리스트</div>;
+  return <Profile/>;
 }

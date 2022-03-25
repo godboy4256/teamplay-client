@@ -1,39 +1,36 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 interface IPropsCircleTag {
-    name: string;
-    size: number;
-    color: string;
-    margin: string | null | undefined
-}
-
-interface IPropsContents {
-    size: number;
+  name: string;
+  size: number;
+  bgColor: string;
+  margin: number;
 }
 
 interface IPropsWrapper {
-    color: string;
-    margin: string | null | undefined;
+  bgColor: string;
+  margin: number;
+  size: number;
 }
 
-
 const CircleWrapper = styled.div`
-    display: inline-block;
-    background: ${(props: IPropsWrapper) => `${props.color}`};
-    border-radius: 12px;
-    padding: 4px 10px;
-    margin: ${(props: IPropsWrapper) => `${props.margin}`};
-`
-
-const Contents = styled.span`
-   font-size: ${(props: IPropsContents) => `${props.size}px`};
-   color: #FFFFFF;
-`
+  display: inline-block;
+  background: ${(props: IPropsWrapper) => `${props.bgColor}`};
+  border-radius: 12px;
+  padding: 5px 8px;
+  margin-right: ${(props: IPropsWrapper) => `${props.margin}px`};
+  font-size: ${(props: IPropsWrapper) => `${props.size}rem`};
+  color: #ffffff;
+`;
 
 export default function CircleTag(props: IPropsCircleTag) {
-    return (
-        <CircleWrapper color={props.color} margin={props.margin}>
-            <Contents size={props.size}>{props.name}</Contents>
-        </CircleWrapper>
-    )
+  return (
+    <CircleWrapper
+      bgColor={props.bgColor}
+      margin={props.margin}
+      size={props.size}
+    >
+      {props.name}
+    </CircleWrapper>
+  );
 }

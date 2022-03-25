@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 interface IPropsDiv {
   marginBottom: number;
-  backgroundColor: string;
+  isClick: boolean | string | undefined;
 }
 
 const Div = styled.div`
@@ -13,12 +13,14 @@ const Div = styled.div`
   margin-bottom: ${(props: IPropsDiv) => `${props.marginBottom}px`};
 
   border-radius: 20px;
-  border: 1px solid #c4c4c4;
-  background-color: ${(props: IPropsDiv) => `${props.backgroundColor}`};
+  border: ${(props: IPropsDiv) =>
+    `${props.isClick ? "none" : "1px solid #999"}`};
+  background-color: ${(props: IPropsDiv) =>
+    `${props.isClick ? "#3894FF" : "#fff"}`};
 
   font-weight: 400;
-  font-size: 14px;
-  color: #c4c4c4;
+  font-size: 1rem;
+  color: ${(props: IPropsDiv) => `${props.isClick ? "#fff" : "#999"}`};
 
   :hover {
     cursor: pointer;
@@ -28,15 +30,15 @@ const Div = styled.div`
 interface IPropsClickTag {
   name: string;
   marginBottom: number;
-  backgroundColor: string;
+  isClick: boolean | string | undefined;
   onClick: ((name: string) => () => void) | undefined;
 }
 
 export default function ClickTag(props: IPropsClickTag) {
   return (
     <Div
+      isClick={props.isClick}
       marginBottom={props.marginBottom}
-      backgroundColor={props.backgroundColor}
       onClick={props.onClick && props.onClick(props.name)}
     >
       {props.name}

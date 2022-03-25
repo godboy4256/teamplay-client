@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { SignUpContext } from "../../units/signup/signup.container";
+import * as S from "./signup.styles";
 
 export default function Timer() {
   const { setIsEmail, setIsAuth } = useContext(SignUpContext);
@@ -25,5 +26,5 @@ export default function Timer() {
     return () => clearInterval(timer);
   }, [sec]);
 
-  return <div>{`유효시간 ${min} : ${sec}`}</div>;
+  return <S.Message>{`유효시간 ${min} : ${sec}`}</S.Message>;
 }
