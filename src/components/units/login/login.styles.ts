@@ -122,6 +122,10 @@ export const SocialImgBox = styled.div`
 
   img {
     height: 36px;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 
