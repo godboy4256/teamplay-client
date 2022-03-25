@@ -26,7 +26,6 @@ export const BackArrow = styled.div`
 
 export const Title = styled.div`
   margin-bottom: 12px;
-
   font-weight: 400;
   font-size: 18px;
   color: #bababa;

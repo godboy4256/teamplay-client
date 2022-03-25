@@ -2,8 +2,7 @@ import styled from "@emotion/styled";
 import { Label } from "../../commons/styles";
 
 const TextAreaStyle = styled.textarea`
-    border: 1px solid #C4C4C4;
-
+    border: 1px solid #999;
     width:100%;
     height:210px;
     border-radius: 12px;

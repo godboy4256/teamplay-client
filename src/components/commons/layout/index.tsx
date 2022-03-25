@@ -7,13 +7,23 @@ interface ILayoutProps {
 }
 
 export default function Layout(props: ILayoutProps) {
-  const router = useRouter()
+  const router = useRouter();
+
+  const isHiddenHeader = [
+    "/login",
+    "/project/list/",
+  ];
+
   return (
     <>
-      {
-        !router.asPath.includes("/project/list/") && <Header />
-      }
-      <div>{props.children}</div>
+      {isHiddenHeader.includes(router.asPath) ? (
+        <div>{props.children}</div>
+      ) : (
+        <>
+          <Header />
+          <div>{props.children}</div>
+        </>
+      )}
     </>
   );
 }
