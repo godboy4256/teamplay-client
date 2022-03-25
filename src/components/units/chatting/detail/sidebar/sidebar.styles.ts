@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
 export const Opacity = styled.div`
   display: ${(props: ISideIsToggle) => (props.isToggle ? "block" : "none")};
   position: absolute;
+  top: 0;
   left: 0;
   width: 30vw;
   height: 100vh;
