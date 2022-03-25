@@ -10,12 +10,13 @@ export default function Layout(props: ILayoutProps) {
   const router = useRouter();
 
   const isHiddenHeader = [
-    router.asPath.includes("/login"),
-    router.asPath.includes("/project/list/"),
+    "/login",
+    "/project/list/",
   ];
+
   return (
     <>
-      {isHiddenHeader ? (
+      {isHiddenHeader.includes(router.asPath) ? (
         <div>{props.children}</div>
       ) : (
         <>

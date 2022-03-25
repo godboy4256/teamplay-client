@@ -1,6 +1,6 @@
 import * as S from "./header.styles";
 
-export default function HeaderUI(props) {
+export default function HeaderUI(props:any) {
   return <S.HeaderStyle>
     <S.HeaderTop>
       <h1>
@@ -17,13 +17,17 @@ export default function HeaderUI(props) {
         </button>
       </S.Setting>
     </S.HeaderTop>
-    <S.HeaderNav>
-      <ul>
-        <li onClick={props.onClickRouting} id="/main" className="nav__list">홈</li>
-        <li onClick={props.onClickRouting} id="/project/list" className="nav__list">프로젝트</li>
-        <li onClick={props.onClickRouting} id="/profile" className="nav__list">팀원</li>
-        <li onClick={props.onClickRouting} id="community/list" className="nav__list">커뮤니티</li>
-      </ul>
-    </S.HeaderNav>
+    {
+      !props.isHiddenNav &&
+         <S.HeaderNav>
+         <ul>
+           <li onClick={props.onClickRouting} id="/main" className="nav__list">홈</li>
+           <li onClick={props.onClickRouting} id="/project/list" className="nav__list">프로젝트</li>
+           <li onClick={props.onClickRouting} id="/profile" className="nav__list">팀원</li>
+           <li onClick={props.onClickRouting} id="community/list" className="nav__list">커뮤니티</li>
+         </ul>
+       </S.HeaderNav>
+    }
+
   </S.HeaderStyle>;
 }

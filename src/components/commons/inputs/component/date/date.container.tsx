@@ -2,8 +2,8 @@ import { Label } from "../../commons/styles";
 import styled from "@emotion/styled";
 
 const DateStyle = styled.input`
-    border:1px solid #C4C4C4;
-    color:#c4c4c4;
+    border:1px solid #999;
+    color:#999;
     font-size: 13px;
     padding: 13px 9px;
     border-radius: 5px;

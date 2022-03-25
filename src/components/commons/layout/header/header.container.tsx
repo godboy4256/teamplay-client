@@ -4,6 +4,9 @@ import HeaderUI from "./header.presenter";
 
 export default function Header() {
   const router = useRouter()
+  const isHiddenNav = [
+    "/project/new",
+  ];
 
   const onClickRouting = (e: MouseEvent<HTMLLIElement>) => {
     const navList = document.querySelectorAll('.nav__list')
@@ -15,6 +18,7 @@ export default function Header() {
   }
 
   return <HeaderUI
+    isHiddenNav={isHiddenNav.includes(router.asPath)}
     onClickRouting={onClickRouting}
   />
 }
