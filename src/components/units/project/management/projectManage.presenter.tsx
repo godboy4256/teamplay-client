@@ -33,10 +33,10 @@ export default function ProjectManageUI(props : IProsManage) {
                             new Array(3).fill(1).map(_ => {
                                 return <li key={uuidv4()}>
                                     <CircleTag
-                                        color="#CCC"
+                                        bgColor="#ccc"
                                         name="태그"
                                         size={12}
-                                        margin={"0 8px 10px 0"}
+                                        margin={0}
                                     />
                                 </li>
                             })

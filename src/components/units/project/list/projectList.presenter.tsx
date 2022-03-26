@@ -29,8 +29,8 @@ export default function ProjectListUI() {
                                                 key={uuidv4()}
                                                 size={8}
                                                 name="태그"
-                                                color="#CCC"
-                                                margin="0 10px 0 0"
+                                                bgColor="#CCC"
+                                                margin={0}
                                             />
                                         })
                                     }

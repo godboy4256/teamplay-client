@@ -13,7 +13,11 @@ const DateStyle = styled.input`
     cursor: pointer;
 `
 
-export default function Date(props: any) {
+interface IPropsDate{
+    label:string
+}
+
+export default function Date(props: IPropsDate) {
     return (
         <div>
             <Label>{props.label}</Label>

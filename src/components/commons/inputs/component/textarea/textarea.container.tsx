@@ -8,8 +8,11 @@ const TextAreaStyle = styled.textarea`
     border-radius: 12px;
     padding:10px;
 `
+interface IPropsTextArea{
+    label:string
+}
 
-export default function TextArea(props: any) {
+export default function TextArea(props: IPropsTextArea) {
     return (
         <>
             <Label>{props.label}</Label>
