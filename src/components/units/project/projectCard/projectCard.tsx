@@ -3,10 +3,10 @@ import CircleTag from "../../../commons/tags/commons/circleTag";
 import { v4 as uuidv4 } from "uuid";
 
 interface IPropsProjectCard{
-    imgUrl:string,
-    name:string,
-    member:string,
-    types:string,
+    imgUrl:string
+    name:string
+    member:string
+    types:string
     redruitDate:string
 }
 
