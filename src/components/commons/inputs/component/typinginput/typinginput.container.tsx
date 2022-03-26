@@ -16,7 +16,13 @@ const TextInput = styled.input`
     }
 `
 
-export default function TypingInput(props: any) {
+interface IPropsTypingInput{
+    label:string
+    type:string
+    placeholder:string
+}
+
+export default function TypingInput(props: IPropsTypingInput) {
     return (
         <TypingInputStyle>
             <Label>{props.label}</Label>
