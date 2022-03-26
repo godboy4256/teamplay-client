@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
-export const OneSlideBox = styled.div`
+export const MainSlideBox = styled.div`
     position: relative;
     height: 220px;
 `
 
-export const OneSlideContents = styled.div`
+export const MainSlideContents = styled.div`
     width: 100%;
     height: 100%;
     position: relative;
@@ -18,9 +18,20 @@ export const OneSlideContents = styled.div`
         font-size: 20px;
         padding-bottom: 15px;
         font-weight: 800;
+        color:#fff
     }
     & h3{
-        font-size: 14px;
+        color:#fff;
+    }
+    & span{
+        color:#fff;
+        display: block;
+        font-size: 8px;
+        padding:3px 15px;
+        border:1px solid #c4c4c4;
+        display: inline-block;
+        border-radius: 4px;
+        margin-bottom: 14px;
     }
     & img{
         width: 100%;
@@ -35,17 +46,7 @@ export const OneSlideContents = styled.div`
     background: url("img/contents03.jpg") no-repeat center/cover;
 `
 
-export const OneSlideTopic = styled.div`
-    font-size: 8px;
-    padding:3px 15px;
-    border:1px solid #c4c4c4;
-    display: inline-block;
-    border-radius: 4px;
-    margin-bottom: 14px;
-`
-
-
-export const SliderStyle = styled.div`
+export const MainSliderStyle = styled.div`
     width: 100%;
     position: relative;
     & .slick-dots{
@@ -56,12 +57,12 @@ export const SliderStyle = styled.div`
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background-color: #fff;
+        background-color: #595959;
         &::before{
             display: none;
         }
     }
     & .slick-dots li.slick-active button{
-        background-color: #595959;
+        background-color: #fff;
     } 
 `

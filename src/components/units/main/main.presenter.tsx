@@ -1,14 +1,14 @@
 import MultiSlide from "../../commons/slider/component/multislide/multislide.container";
 import MultiSlide2 from "../../commons/slider/component/multislide/multislide2.container";
-import OneSlide from "../../commons/slider/component/oneslide/oneslide.container";
+import MainSlide from "../../commons/slider/component/mainslide/mainslide";
 import * as S from "./main.styles";
+import { Wrapper } from "../../../commons/styles/commonStyls";
 
 export default function MainPage() {
     return (
         <S.MainBox>
-            <OneSlide
-                slideToShow={1}
-            />
+            <MainSlide />
+            <Wrapper paddingTop={0}>
             <S.MainTop>
                 <S.ContentsHeader>
                     <h3>
@@ -29,6 +29,7 @@ export default function MainPage() {
                 </S.ContentsHeader>
                 <MultiSlide2 />
             </S.MainBottom>
+            </Wrapper>
         </S.MainBox>
     );
 }

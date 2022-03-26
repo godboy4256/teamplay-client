@@ -6,7 +6,8 @@ export const MultiSlideBox = styled.div`
         line-height: 1;
     }
     overflow-x: hidden;
-    /* transform: translateX(20px); */
+    margin: 0 -20px;
+    transform: translateX(20px)
 `
 
 export const MultiSlideItem = styled.div`
