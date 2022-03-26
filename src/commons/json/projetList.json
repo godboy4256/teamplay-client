@@ -1,0 +1,183 @@
+{
+    "projectList" : [
+        {
+         "name":"자율주행자동차 어플",
+         "teamname":"코드캠프 TOP",
+         "types":"기타",
+         "location":"서울 강남구",
+         "method":"",
+         "redruitDate":"D-4",
+         "description":"long established fact that a reader will be distract",
+         "leader":"제이든",
+         "isComplete":"false",
+         "imgUrl":"/img/contents02.jpg",
+         "readMe":"readme",
+         "uPoint":3000,
+         "skill":[
+             "next.js","nest.js","grapn-ql"
+         ],
+         "member":"1/3"
+        },
+        {
+            "name":"가상 화폐 거래 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"금융",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-3",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents04.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ],
+            "member":"1/3"
+        },
+        {
+            "name":"자율주행자동차 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"기타",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-4",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents02.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ],
+            "member":"1/3"
+        },
+        {
+            "name":"가상 화폐 거래 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"금융",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-4",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents04.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ],
+            "member":"1/3"
+        },
+        {
+            "name":"자율주행자동차 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"기타",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-4",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents02.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ],
+            "member":"1/3"
+        },
+        {
+            "name":"가상 화폐 거래 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"금융",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-4",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents04.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ],
+            "member":"1/3"
+        },
+        {
+            "name":"자율주행자동차 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"금융",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-4",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents02.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ],
+            "member":"1/3"
+        },
+        {
+            "name":"가상 화폐 거래 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"금융",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-4",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents04.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ]
+        },
+        {
+            "name":"자율주행자동차 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"기타",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-4",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents02.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ],
+            "member":"1/3"
+        },
+        {
+            "name":"가상 화폐 거래 어플",
+            "teamname":"코드캠프 TOP",
+            "types":"금융",
+            "location":"서울 강남구",
+            "method":"",
+            "redruitDate":"D-4",
+            "description":"long established fact that a reader will be distract",
+            "leader":"제이든",
+            "isComplete":"false",
+            "imgUrl":"/img/contents04.jpg",
+            "readMe":"readme",
+            "uPoint":3000,
+            "skill":[
+                "next.js","nest.js","grapn-ql"
+            ],
+            "member":"1/3"
+        }
+    ]   
+}
