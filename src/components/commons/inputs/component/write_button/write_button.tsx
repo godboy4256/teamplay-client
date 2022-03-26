@@ -5,7 +5,7 @@ const WriteGoButtonStyle = styled.div`
     width:54px;
     height:54px;
     border-radius: 50%;
-    background-color:#D8D7D7;
+    background-color:#3894FF;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,6 +13,7 @@ const WriteGoButtonStyle = styled.div`
     right: 20px;
     bottom: 20px;
     cursor: pointer;
+    z-index: 10;
 `
 
 export default function WriteGoButton(){
