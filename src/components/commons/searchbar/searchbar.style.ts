@@ -9,6 +9,10 @@ export const SearchBarTop = styled.div`
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
+    margin-bottom: 10px;
+    @media (min-width: 1200px) {
+        border-bottom: 1px solid #ccc;
+    }
 `
 
 export const SearchBarBottom = styled.div`
