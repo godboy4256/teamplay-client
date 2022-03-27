@@ -15,6 +15,8 @@ export default function Layout(props: ILayoutProps) {
     "/onboarding",
     "/chatting/detail",
     "/chatting/list",
+    "/profile",
+    "/profile/edit"
   ];
 
   return (

@@ -94,6 +94,3 @@ export const Detail = styled.div`
     }
   }
 `;
-export const WrapperDetail = styled.div`
-    /* display: ${(props) => props.isVisible === true ? "block" : ""}; */
-`;
