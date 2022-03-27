@@ -50,6 +50,7 @@ export default function OnBoardingFiftPage() {
       </div>
       <S.BtnBox>
         <SubmitBtn
+          isActive={false}
           name="다음으로"
           onClick={onClickMoveToNext}
           backgroundcolor="#3894FF"

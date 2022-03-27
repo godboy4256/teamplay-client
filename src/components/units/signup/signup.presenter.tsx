@@ -2,65 +2,103 @@ import { useContext } from "react";
 import Blank from "../../commons/blank/blank";
 import SubmitBtn from "../../commons/button/Submit";
 import Xmark from "../../commons/button/Xmark";
+import useFetchUser from "../../commons/hooks/useFetchUser";
 import Auth from "./auth";
 import { SignUpContext } from "./signup.container";
 import * as S from "./signup.styles";
 import { IPropsSignUpUI } from "./signup.types";
 
 export default function SignUpUI(props: IPropsSignUpUI) {
-  const { onChageInput } = useContext(SignUpContext);
+  const { onChangeInput, isEdit } = useContext(SignUpContext);
+  const { data } = useFetchUser();
+  const user = data?.fetchUser;
   return (
     <S.Wrapper>
       <S.TitleBox>
-        <span>회원가입</span>
+        <span>{isEdit ? "기본정보 수정" : "회원가입"}</span>
         <Xmark width={16} height={16} />
       </S.TitleBox>
       <S.Name>이름</S.Name>
-      <S.Input type="text" placeholder="이름을 입력해주세요." maxLength={5} />
-      <Blank width={0} height={40} />
-      <Auth
-        name="이메일 주소"
-        placeHolder="이메일 주소를 입력해주세요."
-        onClickSendToken={props.onClickSendEmailToken}
-        onClickCheckToken={props.onClickCheckEmailToken}
+      <S.Input
+        disabled={isEdit}
+        type="text"
+        placeholder={isEdit ? user?.name : "이름을 입력해주세요."}
+        maxLength={5}
+        onChange={onChangeInput && onChangeInput("name")}
       />
-      {/* <Blank width={0} height={40} />
-      <Auth
-        name="휴대폰번호 인증"
-        placeHolder="휴대폰번호를 입력해주세요."
-        request={props.onClickRequestEmailAuth}
-      /> */}
-      <Blank width={0} height={40} />
-      <S.Name>비밀번호</S.Name>
+      <Blank width={0} height={isEdit ? 20 : 40} />
+      {isEdit ? (
+        <>
+          <S.Name>이메일 주소</S.Name>
+          <S.Auth>
+            <input type="text" placeholder={user?.email} disabled />
+            <S.AuthBtn disabled={false} isEmail={true}>
+              인증된 이메일
+            </S.AuthBtn>
+          </S.Auth>
+          <Blank width={0} height={20} />
+          <Auth
+            name="휴대폰번호 인증"
+            placeHolder="휴대폰번호를 입력해주세요."
+            onClickSendToken={props.onClickSendEmailToken}
+            onClickCheckToken={props.onClickCheckEmailToken}
+          />
+        </>
+      ) : (
+        <Auth
+          name="이메일 주소"
+          placeHolder="이메일 주소를 입력해주세요."
+          onClickSendToken={props.onClickSendEmailToken}
+          onClickCheckToken={props.onClickCheckEmailToken}
+        />
+      )}
+      <Blank width={0} height={isEdit ? 20 : 40} />
+      {isEdit ? (
+        <>
+          <S.Name>현재 비밀번호</S.Name>
+          <S.Input
+            type="password"
+            placeholder="현재 비밀번호를 입력해주세요."
+            onChange={onChangeInput && onChangeInput("password")}
+          />
+          <Blank width={0} height={20} />
+        </>
+      ) : (
+        <></>
+      )}
+      <S.Name>{isEdit ? "변경할 비밀번호" : "비밀번호"}</S.Name>
       <S.Input
         type="password"
-        placeholder="비밀번호를 입력해주세요."
-        onChange={onChageInput && onChageInput("password")}
+        placeholder={isEdit ? "변경할 비밀번호" : "비밀번호를 입력해주세요."}
+        onChange={onChangeInput && onChangeInput("password")}
       />
       <S.Message>{props.passMsg}</S.Message>
       <Blank width={0} height={20} />
-      <S.Name>비밀번호 확인</S.Name>
+      <S.Name>{isEdit ? "비밀번호 확인" : "비밀번호"}</S.Name>
       <S.Input
         type="password"
-        placeholder="비밀번호를 다시 한 번 입력해주세요."
-        onChange={onChageInput && onChageInput("chkPassword")}
+        placeholder={
+          isEdit ? "현재 비밀번호" : "비밀번호를 다시 한 번 입력해주세요."
+        }
+        onChange={onChangeInput && onChangeInput("chkPassword")}
       />
       <S.Message>{props.checkMsg}</S.Message>
-      <Blank width={0} height={90} />
+      <Blank width={0} height={isEdit ? 20 : 90} />
       <S.CheckBox>
-        <input type="checkbox" />
+        <input type="checkbox" onChange={props.onChageCheckBox("privite")} />
         <span>개인정보 수집에 동의합니다.</span>
       </S.CheckBox>
       <S.CheckBox>
-        <input type="checkbox" />
+        <input type="checkbox" onChange={props.onChageCheckBox("policy")} />
         <span>이용약관에 동의합니다.</span>
       </S.CheckBox>
       <Blank width={0} height={10} />
       <SubmitBtn
+        isActive={!props.isSubmit}
         onClick={props.onClickSubmit}
         name="계정 만들기"
         fontSize={1.143}
-        backgroundcolor="#3894FF"
+        backgroundcolor={props.isSubmit ? "#3894FF" : "#cacaca"}
       />
     </S.Wrapper>
   );

@@ -9,6 +9,8 @@ export default function Header() {
     "/onboarding",
     "/chatting/detail",
     "/chatting/list",
+    "/signup",
+    "/signup/edit",
   ];
 
   return <HeaderUI isHiddenNav={isHiddenNav.includes(router.asPath)} />;

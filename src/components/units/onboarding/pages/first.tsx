@@ -6,7 +6,7 @@ import { OnBoardingContext } from "../onboarding.container";
 import * as S from "./pages.styles";
 
 export default function OnBoardingFirstPage() {
-  const { moveToHome } = useMoveToPage();
+  const { moveToMain } = useMoveToPage();
   const { onClickMoveToNext } = useContext(OnBoardingContext);
 
   return (
@@ -25,13 +25,14 @@ export default function OnBoardingFirstPage() {
       </div>
       <S.ButtonBox>
         <SubmitBtn
+          isActive={false}
           name="좋아요"
           backgroundcolor="#3894FF"
           fontSize={1.143}
           onClick={onClickMoveToNext}
         />
         <Blank height={24} width={0} />
-        <S.Looking onClick={moveToHome}>먼저 둘러볼게요</S.Looking>
+        <S.Looking onClick={moveToMain}>먼저 둘러볼게요</S.Looking>
       </S.ButtonBox>
     </S.Wrapper>
   );

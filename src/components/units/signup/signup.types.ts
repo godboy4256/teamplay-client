@@ -3,20 +3,26 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 export interface ISignUpContext {
   isAuth?: boolean;
   isEmail?: boolean;
+  isEdit?: boolean;
   setIsAuth?: Dispatch<SetStateAction<boolean>>;
   setIsEmail?: Dispatch<SetStateAction<boolean>>;
-  onChageInput?: (key: string) => (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeInput?: (key: string) => (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface IPropsSignUp {
+  isEdit: boolean;
 }
 
 export interface IPropsSignUpUI {
   passMsg: string;
   checkMsg: string;
   isEmail: boolean;
+  isSubmit: boolean;
   onClickSubmit: () => void;
-  onChageInput: (key: string) => (e: ChangeEvent<HTMLInputElement>) => void;
   onClickRequestPhoneAuth: () => void;
   onClickSendEmailToken: () => void;
   onClickCheckEmailToken: () => void;
+  onChageCheckBox: (name: string) => () => void;
 }
 
 export interface IPropsAuth {

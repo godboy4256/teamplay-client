@@ -1,23 +1,23 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../../../pages/_app";
 import {
   IMutation,
   IMutationLoginArgs,
-  IQuery,
 } from "../../../commons/types/generated/types";
+import useMoveToPage from "../../commons/hooks/useMoveToPage";
 import LoginUI from "./login.presenter";
-import { FETCH_USER, LOGIN, LOGOUT } from "./login.queries";
+import { LOGIN, LOGOUT } from "./login.queries";
 
 export default function Login() {
-  const { setAccessToken } = useContext(GlobalContext);
+  const { setAccessToken, setIsLogin } = useContext(GlobalContext);
+  const { moveToMain } = useMoveToPage();
   const [isView, setIsView] = useState(false);
   const [type, setType] = useState("password");
   const [loginInput, setLoginInput] = useState({
     email: "",
     password: "",
   });
-  const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
 
   const [login] = useMutation<Pick<IMutation, "login">, IMutationLoginArgs>(
     LOGIN
@@ -28,8 +28,6 @@ export default function Login() {
     if (isView) setType("text");
     else setType("password");
   }, [isView]);
-
-  console.log(data);
 
   const onClickSetIsView = () => {
     setIsView((prev) => !prev);
@@ -44,7 +42,7 @@ export default function Login() {
     };
 
   const onClickSubmitLogin = async () => {
-    if (!setAccessToken) return;
+    if (!setAccessToken || !setIsLogin) return;
 
     try {
       const result = await login({
@@ -52,8 +50,9 @@ export default function Login() {
           ...loginInput,
         },
       });
+      setIsLogin(true);
       setAccessToken(result.data?.login.accessToken || "");
-      console.log(result);
+      moveToMain();
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

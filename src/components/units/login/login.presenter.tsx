@@ -40,6 +40,7 @@ export default function LoginUI(props: IPropsLoginUI) {
         </S.EyeImg>
       </S.PassBox>
       <SubmitBtn
+        isActive={false}
         onClick={props.onClickSubmitLogin}
         name="이메일로 로그인"
         fontSize={1.143}

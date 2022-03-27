@@ -18,13 +18,14 @@ interface IPropsSubmitButton {
   name: string;
   fontSize: number;
   backgroundcolor: string;
+  isActive: boolean;
   onClick: (() => void) | undefined;
 }
 
 export default function SubmitBtn(props: IPropsSubmitButton) {
   return (
     <Button
-      // disabled={true}
+      disabled={props.isActive}
       fontSize={props.fontSize}
       backgroundcolor={props.backgroundcolor}
       onClick={props.onClick}
