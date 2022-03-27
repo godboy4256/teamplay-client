@@ -35,7 +35,7 @@ export type IMutation = {
   createUser: IUser;
   login: IToken;
   logout: Scalars['String'];
-  restoreAccessToken: Scalars['String'];
+  restoreAccessToken: IToken;
   sendTokenToEmail: Scalars['String'];
   updateUserByOnboard: IUser;
 };
@@ -117,7 +117,7 @@ export type IType = {
 };
 
 export type IUpdateUserOnboardInput = {
-  career: ICareer_Enum;
+  career?: InputMaybe<ICareer_Enum>;
   positionId: Scalars['String'];
   tendencyId: Array<Scalars['String']>;
   typeId: Array<Scalars['String']>;
@@ -125,12 +125,13 @@ export type IUpdateUserOnboardInput = {
 
 export type IUser = {
   __typename?: 'User';
-  career: ICareer_Enum;
+  career?: Maybe<ICareer_Enum>;
   createdAt: Scalars['DateTime'];
   deletedAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
+  point: Scalars['Int'];
   position?: Maybe<IPosition>;
   tendencys?: Maybe<Array<ITendency>>;
   types?: Maybe<Array<IType>>;

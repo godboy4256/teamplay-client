@@ -4,8 +4,8 @@ import { MouseEvent } from "react";
 export default function useMoveToPage() {
   const router = useRouter();
 
-  const moveToHome = () => {
-    router.push("/home");
+  const moveToMain = () => {
+    router.push("/main");
   };
 
   const onClickHeaderRouting = (e: MouseEvent<HTMLLIElement>) => {
@@ -17,5 +17,5 @@ export default function useMoveToPage() {
     e.currentTarget && e.currentTarget.classList.add("active__page");
   };
 
-  return { moveToHome, onClickHeaderRouting };
+  return { moveToMain, onClickHeaderRouting };
 }

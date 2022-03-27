@@ -30,6 +30,7 @@ export default function OnBoardingSixthPage() {
       </div>
       <S.BtnBox>
         <SubmitBtn
+          isActive={false}
           name="다음으로"
           backgroundcolor="#3894FF"
           fontSize={1.143}

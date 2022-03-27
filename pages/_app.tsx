@@ -19,6 +19,11 @@ import {
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../src/commons/library/getAccessToken";
 import { useRouter } from "next/router";
+import {
+  IPosition,
+  ITendency,
+  IType,
+} from "../src/commons/types/generated/types";
 
 export interface IGlobalContext {
   accessToken?: string;
@@ -29,16 +34,22 @@ export interface IGlobalContext {
     _id: string;
     email: string;
     name: string;
-    picture: string;
-    userPoint: string;
+    point: number;
+    career: string;
+    tendencys: ITendency[];
+    position: IPosition | string;
+    types: string[];
   };
   setLoggedInfo?: Dispatch<
     SetStateAction<{
       _id: string;
       email: string;
       name: string;
-      picture: string;
-      userPoint: string;
+      point: number;
+      career: string;
+      tendencys: ITendency[];
+      position: IPosition | string;
+      types: IType[];
     }>
   >;
 }
@@ -49,18 +60,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const [accessToken, setAccessToken] = useState("");
-  const [loggedInfo, setLoggedInfo] = useState({
-    _id: "",
-    email: "",
-    name: "",
-    picture: "",
-    userPoint: "",
-  });
+
   const value = {
     accessToken,
     setAccessToken,
-    loggedInfo,
-    setLoggedInfo,
     isLogin,
     setIsLogin,
   };
