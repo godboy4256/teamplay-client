@@ -4,6 +4,10 @@ interface IPropsTodoWorker{
     align : string
 }
 
+interface IPropsProjectManageImg{
+    bgImages : string
+}
+
 
 export const ProjectManageStyle = styled.div`
   
@@ -28,15 +32,13 @@ export const TodoInfos = styled.div`
 `
 
 export const TodoLimitDescription = styled.div`
-    background-color: #ccc;
-    font-size: 10px;
-    padding: 10px;
+    font-size: 1.143rem;
+    padding: 5px 0;
     margin-bottom: 10px;
-    color:#fff;
 `
 
 export const TodoLimitTime = styled.div`
-    font-size: 8px;
+    font-size: 0.714rem;
     color: #ccc;
     margin-bottom: 10px;
 `
@@ -52,8 +54,9 @@ export const TodoList = styled.div`
 
 export const ProjectDetail = styled.div`
     padding-top: 30px;
-    color:#fff;
-    font-size: 10px;
+    font-size: 14px;
+    color: #999;
+    line-height: 1.4;
 `
 
 export const ProjectTodoNavTab = styled.ul`
@@ -65,7 +68,7 @@ export const ProjectTodoNavTab = styled.ul`
         font-family:normal;
         cursor: pointer;
         padding: 10px 0;
-        font-size: 10px;
+        font-size: 1.286rem;
         &:first-child{
             border-right:1px solid #ccc;
         }
@@ -78,19 +81,23 @@ export const TodoWorker = styled.ul`
     & > li{
         margin: ${(props:IPropsTodoWorker) => props.align === "left" ? "0 10px 0 0" : "0 0 0 10px"};
         font-size: 8px;
+        background-color: #fff;
         width: 30px;
         height: 30px;
         color:#fff;
         display: flex;
-        background-color: #ccc;
         border-radius: 50%;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
+        & img{
+            width: 100%;
+        }
     }
 `
 
 export const Todo = styled.div`
-    border:1px solid #ccc;
+    background-color: #F3F9FF;
     border-radius: 20px;
     margin-bottom: 20px;
     padding: 15px;
@@ -98,15 +105,17 @@ export const Todo = styled.div`
 
 export const ProjectManageTop = styled.div`
     border-bottom:1px solid #ccc;
-      & > h3{
-        font-size: 25px;
+      & h3{
+        font-size: 1.714rem;
         padding-bottom: 20px;
     }
-    & > h4{
-        font-size: 12px;
+    & h4{
+        font-size: 0.929rem;
+        line-height: 1.4rem;
         padding-bottom: 20px;
+        color: #999;
     }
-    & > ul{
+    & ul{
        display: flex;
     }
 `
@@ -114,17 +123,21 @@ export const ProjectManageTop = styled.div`
 export const ProjectManageContentsTop = styled.div`
     display: flex;
     justify-content: space-between;
-    padding:20px 0;
+    align-items: center;
+    padding:30px 0;
+    & h3{
+        font-size: 1.286rem;
+    }
 `
 
 
 export const ProjectManaBoard = styled.ul`
     & > li{
         display: flex;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
         flex-direction: column;
-        background-color:#ccc;
         border-radius: 12px;
-        padding:15px 13px;
+        padding:20px 13px;
         margin-bottom: 15px;
         font-size:12px;
         cursor: pointer;
@@ -139,11 +152,8 @@ export const ProjectManaBoard = styled.ul`
             justify-content: space-between;
             & time{
                 display: block;
-                color: #fff;
+                color: #999;
                 margin-right: 10px;
-            }
-            & h4{
-                color: #777;
             }
         }
 
@@ -156,7 +166,7 @@ export const ProjectManaBoard = styled.ul`
 
 
 export const ProjectListInfo = styled.div`
-    padding-bottom: 30px;
+    padding: 15px 0;
     & > li{
         display: flex;
         width: 100%;
@@ -171,12 +181,13 @@ export const ProjectListInfo = styled.div`
 
 export const ProjectStatusBox = styled.div`
     width: 100%;
-    background-color: #ccc;
+    background-color: #e9e9e9;
     border-radius: 30px;
 `
 
 export const ProjectStatus = styled.div`
-    background-color: #777;
+    background-color: #3894FF;
+    color: #fff;
     border-radius: 30px;
     font-size: 8px;
     width: 23%;
@@ -186,16 +197,18 @@ export const ProjectStatus = styled.div`
 export const ProjectInfoKey = styled.div`
     width: 30%;
     font-weight: 900;
-    color: #000;
 `
 
 export const ProjectInfoValue = styled.div`
     width: 70%;
-    color: #ccc;
+    color: #999;
 `
 
 export const ProjectManageImg = styled.div`
-    background-color: #ccc;
+    background: ${
+        (props : IPropsProjectManageImg) => 
+       `url(${props.bgImages}) no-repeat center/cover`
+    };
     padding:60px 20px 250px;
     display: flex;
     justify-content: space-between;

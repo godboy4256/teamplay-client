@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 const ButtonStyle = styled.button`
     width: 100%;
     padding: 10px 0;
-    background-color:#a7a7a7;
-    color: #dedede;
+    background-color:#3894FF;
+    color: #fff;
     border-radius:26px;
     font-size: 20px;
     margin:40px 0 15px;

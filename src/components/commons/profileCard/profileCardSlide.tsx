@@ -8,9 +8,11 @@ export const ProfileBox = styled.div`
 
   position: relative;
   background: #ffffff;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); */
+  /* background-color: #F3F9FF; */
+  border:1px solid #c4c4c4;
   border-radius: 12px;
-  padding-top: 28px;
+  padding: 28px 0;
 
   display: flex;
   flex-direction: column;

@@ -1,13 +1,9 @@
 import { Wrapper } from "../../../../../commons/styles/commonStyls";
-import { Label } from "../../../../commons/inputs/commons/styles";
-import Date from "../../../../commons/inputs/component/date/date.container";
 import SubmitButton from "../../../../commons/inputs/component/submitbutton/submit.container";
 import TypingInput from "../../../../commons/inputs/component/typinginput/typinginput.container";
-import { TodoWorker } from "../projectManage.styles";
-import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 
-const TodoAddStyle = styled.div`
+const BoardAddStyle = styled.div`
     width: 100%;
     background-color: #fff;
     flex-direction: column;
@@ -50,9 +46,10 @@ const ModalBackground = styled.div`
 `
 
 
-export default function TodoAdd() {
+export default function BoardAdd() {
+
     const onClickoffAdd = () => {
-        const onAddref = document.getElementById('onTodoAdd')
+        const onAddref = document.getElementById('onBoardAdd')
         const modalref = document.getElementById('modalBackground')
         onAddref?.classList.remove("onClick")
         modalref?.classList.remove("onClick")
@@ -61,34 +58,22 @@ export default function TodoAdd() {
     return (
         <>
          <ModalBackground id="modalBackground"></ModalBackground>
-         <TodoAddStyle id="onTodoAdd">
+         <BoardAddStyle id="onBoardAdd">
             <DragBar onClick={onClickoffAdd}></DragBar>
             <Wrapper paddingTop="5px">
                     <TypingInput
-                        label="업무 내용"
+                        label="제목"
                         type="text"
-                        placeholder="업무 내용을 입력해주세요."
-                        />
-                    <Date 
-                        label="마감 기한"
-                        />
-                    <div>
-                        <Label>담당 팀원</Label>
-                        <TodoWorker align="left">
-                        {
-                            new Array(3).fill(1).map((_) => {
-                                return <li key={uuidv4()}>
-                                    <button>
-                                        <img src="/img/user01.png" alt="user img"/>
-                                    </button>
-                                </li>
-                            })
-                        }
-                        </TodoWorker>
-                    </div>
-                <SubmitButton btnvalue="업무 추가하기"/>
+                        placeholder="제목을 입력해주세요."
+                    />
+                   <TypingInput
+                        label="내용"
+                        type="text"
+                        placeholder="내용을 입력해주세요."
+                    />
+                <SubmitButton btnvalue="게시글 올리기"/>
             </Wrapper>
-        </TodoAddStyle>
+        </BoardAddStyle>
         </>
        
     )
