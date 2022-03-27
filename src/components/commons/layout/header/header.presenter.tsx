@@ -6,22 +6,14 @@ export default function HeaderUI(props: IPropsHeaderUI) {
   const { onClickHeaderRouting } = useMoveToPage();
   return (
     <S.HeaderStyle>
+      <div>
       <S.HeaderTop>
         <h1>
           <S.Logo>
             <img src="/img/commons/logo.svg" alt="logo" />
           </S.Logo>
         </h1>
-        <S.Setting>
-          <button>
-            <img src="/img/alam.svg" />
-          </button>
-          <button>
-            <img src="/img/btn.svg" />
-          </button>
-        </S.Setting>
-      </S.HeaderTop>
-      {!props.isHiddenNav && (
+        {!props.isHiddenNav && (
         <S.HeaderNav>
           <ul>
             <li onClick={onClickHeaderRouting} id="/main" className="nav__list">
@@ -43,7 +35,7 @@ export default function HeaderUI(props: IPropsHeaderUI) {
             </li>
             <li
               onClick={onClickHeaderRouting}
-              id="community/list"
+              id="/community/list"
               className="nav__list"
             >
               커뮤니티
@@ -51,6 +43,21 @@ export default function HeaderUI(props: IPropsHeaderUI) {
           </ul>
         </S.HeaderNav>
       )}
+      </S.HeaderTop>
+        <S.Setting>
+          <button className="login-signup">
+            로그인 / 회원가입
+          </button>
+          <div className="user-arvata">
+          </div>
+          <button className="alam">
+            <img src="/img/alam.svg" />
+          </button>
+          <button>
+            <img src="/img/btn.svg" />
+          </button>
+        </S.Setting>
+        </div>
     </S.HeaderStyle>
   );
 }
