@@ -14,7 +14,9 @@ export default function ProjectTeamBoard() {
                         <time>2022.3.15</time>
                         <h4>내일 7시에 회의합니다!</h4>
                     </div>
-                    <button>버튼</button>
+                    <button>
+                        <img src="/img/contents_menu.svg" alt="contents menu"/>
+                    </button>
                 </div>
                 {   
                     detail &&
@@ -23,7 +25,6 @@ export default function ProjectTeamBoard() {
                     </S.ProjectDetail>
                 }
             </li>
-            
         </>
        
     )
