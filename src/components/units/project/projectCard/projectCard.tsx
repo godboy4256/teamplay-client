@@ -2,14 +2,18 @@ import CircleTag from "../../../commons/tags/commons/circleTag";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 
-const ProjectListItem = styled.li`
-    border-radius: 15px;
-    margin-bottom: 25px;
-    overflow:hidden;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
-`
-const ProjectListStyle = styled.div`
-
+const ProjectListItem = styled.div`
+    @media (min-width: 1200px) {
+            width: 25%;
+            float: left;
+            padding: 5px 10px;
+        & > div{
+            border-radius: 12px;
+            margin-bottom: 25px;
+            overflow:hidden;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        }
+    }
 `
 
 const ProjectListItemTop = styled.div`
@@ -69,8 +73,8 @@ interface IPropsProjectCard{
 
 export default function ProjectCard(props:IPropsProjectCard) {
     return (
-            <ProjectListStyle>
                 <ProjectListItem>
+                    <div>
                     <ProjectListItemTop>
                         <div>
                             <span>{props.redruitDate}</span>
@@ -92,7 +96,7 @@ export default function ProjectCard(props:IPropsProjectCard) {
                             <span>{props.member}</span>
                         </ProjectMembers>
                     </ProjectListItemBottom>
+                    </div>
                 </ProjectListItem>
-            </ProjectListStyle>
     );
 }
