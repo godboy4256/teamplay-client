@@ -1,29 +1,21 @@
 import styled from "@emotion/styled";
-import { ISidebarWrapper, ISideIsToggle } from "../chattingDetail.types";
+import { ISidebarWrapper } from "../chattingDetail.types";
 
 export const Wrapper = styled.div`
-  width: 100vw;
+  padding: 15px 10px;
+  width: 262.5px;
   height: 100vh;
-  display: flex;
+  background-color: #fff;
   position: absolute;
   top: 0;
-  right: ${(props: ISidebarWrapper) => `${props.position}vw`};
+  right: ${(props: ISidebarWrapper) => `${props.position}px`};
   transition: all 0.25s;
   z-index: 2;
 `;
 
-export const Opacity = styled.div`
-  display: ${(props: ISideIsToggle) => (props.isToggle ? "block" : "none")};
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-`;
 export const MainBox = styled.div`
   padding: 15px 10px;
-  width: 70vw;
+  width: 262.5px;
   height: 100vh;
   background-color: #fff;
 `;
@@ -33,7 +25,7 @@ export const TitleBox = styled.div`
   justify-content: space-between;
   position: relative;
   align-items: center;
-  padding: 0px 20px;
+  padding: 0px 20px 0px 0px;
   margin-bottom: 30px;
 `;
 
@@ -43,9 +35,9 @@ export const RightBox = styled.div`
 `;
 
 export const ProjectName = styled.span`
-  margin: 0px 10px 0px;
+  margin-right: 10px;
   font-weight: 400;
-  font-size: 1.143rem;
+  font-size: 16px;
 `;
 
 export const Tag = styled.div`
@@ -55,7 +47,7 @@ export const Tag = styled.div`
   background-color: #c4c4c4;
   border-radius: 20px;
   font-weight: 500;
-  font-size: 0.4rem;
+  font-size: 5.6px;
   line-height: 18px;
   color: #fff;
 
@@ -67,7 +59,7 @@ export const Tag = styled.div`
 
 export const Count = styled.span`
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 18px;
   color: #a4a4a4;
 `;
@@ -91,7 +83,7 @@ export const SubTitleBox = styled.div`
 `;
 
 export const SubTitle = styled.div`
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 400;
   line-height: 14px;
 `;
@@ -127,7 +119,7 @@ export const NameBox = styled.div`
 
 export const Name = styled.div`
   padding: 4px;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 400;
   line-height: 14px;
 `;
@@ -140,8 +132,8 @@ export const SelectCircle = styled.div`
 
   input[type="checkbox"] + label {
     display: inline-block;
-    width: 5vw;
-    height: 5vw;
+    width: 15px;
+    height: 15px;
     border: 2px solid #707070;
     border-radius: 50%;
     position: relative;
@@ -152,17 +144,14 @@ export const SelectCircle = styled.div`
   }
 
   input:checked + label::after {
-    content: "";
-    background-color: #68a4ff;
-    border: 1px solid #707070;
-    border-radius: 50%;
-    width: 3.5vw;
-    height: 3.5vw;
+    content: "✔";
+    font-size: 18px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
     position: absolute;
-    right: 0px;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
+    left: 1px;
+    bottom: 1px;
 
     :hover {
       cursor: pointer;

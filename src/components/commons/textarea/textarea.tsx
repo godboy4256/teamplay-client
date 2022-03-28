@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useCallback, useRef } from "react";
 
 const Textarea = styled.textarea`
+  width: 100%;
   height: 30px;
   max-height: 15vh;
   padding-top: 7px;

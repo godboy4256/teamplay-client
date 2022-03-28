@@ -18,35 +18,33 @@ export default function Sidebar() {
   ];
   return (
     <S.Wrapper position={position}>
-      <S.MainBox>
-        <S.TitleBox>
-          <S.RightBox>
-            <S.ProjectName>프로젝트 단톡방</S.ProjectName>
-            <S.Count>5</S.Count>
-          </S.RightBox>
-          <S.Xmark src="/img/preview/Xmark.svg" onClick={onClickSetPosition} />
-        </S.TitleBox>
-        <S.SubTitleBox>
-          <S.SubTitle>대화 상대</S.SubTitle>
-          <S.Tag>프로젝트 시작</S.Tag>
-        </S.SubTitleBox>
-        {testList.map((name, idx) => (
-          <S.UserProfileBox key={uuidv4()}>
-            <S.ProfileImg>
-              <S.Profile>
-                <img src="/img/임시사진.png" />
-              </S.Profile>
-            </S.ProfileImg>
-            <S.NameBox>
-              <S.Name>{name}</S.Name>
-              <S.SelectCircle>
-                <input type="checkbox" id={String(idx)} />
-                <label htmlFor={String(idx)} />
-              </S.SelectCircle>
-            </S.NameBox>
-          </S.UserProfileBox>
-        ))}
-      </S.MainBox>
+      <S.TitleBox>
+        <S.RightBox>
+          <S.ProjectName>프로젝트 단톡방</S.ProjectName>
+          <S.Count>5</S.Count>
+        </S.RightBox>
+        <S.Xmark src="/img/preview/Xmark.svg" onClick={onClickSetPosition} />
+      </S.TitleBox>
+      <S.SubTitleBox>
+        <S.SubTitle>대화 상대</S.SubTitle>
+        <S.Tag>프로젝트 시작</S.Tag>
+      </S.SubTitleBox>
+      {testList.map((name, idx) => (
+        <S.UserProfileBox key={uuidv4()}>
+          <S.ProfileImg>
+            <S.Profile>
+              <img src="/img/임시사진.png" />
+            </S.Profile>
+          </S.ProfileImg>
+          <S.NameBox>
+            <S.Name>{name}</S.Name>
+            <S.SelectCircle>
+              <input type="checkbox" id={String(idx)} />
+              <label htmlFor={String(idx)} />
+            </S.SelectCircle>
+          </S.NameBox>
+        </S.UserProfileBox>
+      ))}
     </S.Wrapper>
   );
 }

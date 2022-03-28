@@ -5,17 +5,18 @@ import { IChattingDetailContext } from "./chattingDetail.types";
 export const ChattingDetailContext = createContext<IChattingDetailContext>({});
 
 export default function ChattingDetail() {
-  const [position, setPosition] = useState(-100);
+  const [position, setPosition] = useState(-262.5);
   const [isToggle, setIsToggle] = useState(false);
   const onClickSetPosition = () => {
-    if (position === -100) {
-      setPosition(-30);
+    if (position === -262.5) {
+      setPosition(0);
       setIsToggle(true);
     } else {
-      setPosition(-100);
+      setPosition(-262.5);
       setIsToggle(false);
     }
   };
+
   const value = {
     isToggle,
     position,
