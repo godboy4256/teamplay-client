@@ -8,6 +8,15 @@ export default function useMoveToPage() {
     router.push("/main");
   };
 
+  const moveToProfileEdit = () => {
+    router.push(`/profile/edit`);
+  };
+
+  const moveToProfile = () => {
+    router.push("/profile");
+  };
+
+
   const onClickHeaderRouting = (e: MouseEvent<HTMLLIElement>) => {
     const navList = document.querySelectorAll(".nav__list");
     for (let i = 0; i < navList.length; i++) {
@@ -16,6 +25,5 @@ export default function useMoveToPage() {
     router.push(e.currentTarget.id);
     e.currentTarget && e.currentTarget.classList.add("active__page");
   };
-
-  return { moveToMain, onClickHeaderRouting };
+  return { moveToHome, moveToProfileEdit, moveToProfile, onClickHeaderRouting };
 }

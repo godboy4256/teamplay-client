@@ -1,8 +1,10 @@
 import { MouseEventHandler } from "react";
+import useMoveToPage from "../../commons/hooks/useMoveToPage";
 import CircleTag from "../../commons/tags/commons/circleTag";
 import * as S from  "./profile.styles";
 
 export default function ProfileUI(props: { onClickProfileDetail: MouseEventHandler<HTMLSpanElement> | undefined; }){
+    const { moveToProfileEdit } = useMoveToPage();
 
     return(
         <S.Wrapper>
@@ -10,7 +12,7 @@ export default function ProfileUI(props: { onClickProfileDetail: MouseEventHandl
                <S.HeaderLine>
                    <img src="/img/commons/leftArrow1.svg"/>
                    <span>상세프로필</span>
-                   <img src="/img/commons/settingGear.svg"/>
+                   <img onClick={moveToProfileEdit} src="/img/commons/settingGear.svg"/>
                </S.HeaderLine>
                <S.HeaderContents>
                 <S.ImgBox>
@@ -39,9 +41,6 @@ export default function ProfileUI(props: { onClickProfileDetail: MouseEventHandl
                     <span onClick={props.onClickProfileDetail}>Project</span>
                 </S.Detail>
             </S.LineBox>
-            <S.WrapperDetail>
-                {/* <ProfileDetail/> */}
-            </S.WrapperDetail>
         </S.Wrapper>
     )
 }

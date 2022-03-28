@@ -15,9 +15,10 @@ export default function Layout(props: ILayoutProps) {
   const isHiddenHeader = [
     "/login",
     "/onboarding",
-    "/chatting",
-    "/signup",
-    "/signup/edit",
+    "/chatting/detail",
+    "/chatting/list",
+    "/profile",
+    "/profile/edit"
   ];
 
   return (
