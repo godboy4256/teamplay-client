@@ -12,27 +12,22 @@ export default function Layout(props: ILayoutProps) {
   const isHiddenHeader = [
     "/login",
     "/onboarding",
-    "/chatting/detail",
-    "/chatting/list",
+    "/chatting",
     "/signup",
     "/signup/edit",
   ];
 
-
   return (
     <>
-      {
-        router.asPath.includes('/project/list/') ||
-        isHiddenHeader.includes(router.asPath) ?
-        (
+      {router.asPath.includes("/project/list/") ||
+      isHiddenHeader.includes(router.asPath) ? (
+        <div>{props.children}</div>
+      ) : (
+        <>
+          <Header />
           <div>{props.children}</div>
-        ) : (
-          <>
-            <Header />
-            <div>{props.children}</div>
-          </>
-        )
-      }
+        </>
+      )}
     </>
   );
 }
