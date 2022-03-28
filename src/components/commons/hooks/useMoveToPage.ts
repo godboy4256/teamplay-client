@@ -16,6 +16,7 @@ export default function useMoveToPage() {
     router.push("/profile");
   };
 
+
   const onClickHeaderRouting = (e: MouseEvent<HTMLLIElement>) => {
     const navList = document.querySelectorAll(".nav__list");
     for (let i = 0; i < navList.length; i++) {
