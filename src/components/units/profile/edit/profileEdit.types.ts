@@ -2,11 +2,15 @@ import { RefObject } from "react";
 
 export interface IPropsProfileEditContext{
     tendency?: string[];
+    position?: string;
+    interest?: string[];
+    technic?: string[];
     isAdd?: boolean;
-    isVisible?: boolean
-    isVisibleTwo?: boolean
-    isVisibleThree?: boolean
-    isVisibleFour?: boolean
+    isOk?: boolean
+    isTendency?: boolean
+    isPosition?: boolean
+    isInterest?: boolean
+    isTechnic?: boolean
     area?: number
     tagInputRef?: RefObject<HTMLInputElement>;
     onClickChangeInput?: () => void;
@@ -17,11 +21,17 @@ export interface IPropsProfileEditContext{
     onClickEditTechnic?: () => void
     onClickBasicInfoEdit?: () => void
     // onClickEditTag?: () => void
-    onClickDeleteTag?: (name: string) => () => void
+    onClickDeleteTendencyTag?: (name: string) => () => void
+    onClickDeletePositionTag?: () => void
+    onClickDeleteInterestTag?: (name: string) => () => void
+    onClickDeleteTechnicTag?: (name: string) => () => void
+    onClickEditButton?: () => void
+    onClickChangeTagButton?: () => void;
 }
 
 export interface IPropsTag {
-    bgColor: string
+    bgColor: string;
+    // color: string[];
 }
 
 export interface ISidebarWrapper {

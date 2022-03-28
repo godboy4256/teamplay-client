@@ -96,3 +96,40 @@ export const Tag = styled.div`
   }
 `;
 
+export const NormalTag = styled.div`
+  display: flex;
+
+  padding: 10px 15px;
+  margin-right: 12px;
+  margin-bottom: 15px;
+
+  border-radius: 20px;
+
+  span {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 16px;
+    color: #fff;
+  }
+
+  div {
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    margin-left: 8px;
+    border-radius: 50%;
+    background-color: #999;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+export const BtnBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+

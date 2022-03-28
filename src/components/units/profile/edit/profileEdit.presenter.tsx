@@ -1,27 +1,29 @@
 import Blank from "../../../commons/blank/blank";
 import useMoveToPage from "../../../commons/hooks/useMoveToPage";
-import { v4 as uuidv4 } from "uuid";
 import * as S from "./profileEdit.styles";
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import RainbowTag from "../../../commons/tags/commons/rainbowTag";
 import { ProfileEditContext } from "./profileEdit.container";
-import dump from "../../../../commons/json/tendency.json";
 import SubmitBtn from "../../../commons/button/Submit";
 import ProfileEditTendency from "./sidebar/tendency";
+import ProfileEditPosition from "./sidebar/position";
+import ProfileEditInterest from "./sidebar/interest";
+import ProfileEditTechnic from "./sidebar/technic";
 
 export default function ProfileEditUI(){
     const {moveToProfile} = useMoveToPage()
     const { 
-        isVisible,
-        isVisibleTwo,
-        isVisibleThree,
-        isVisibleFour,
-        tagInputRef, 
-        onClickPushTag, 
+        isTendency,
+        isPosition,
+        isInterest,
+        isTechnic,
+        // tagInputRef, 
+        // onClickPushTag, 
         onClickEditTendency,
         onClickEditPosition,
         onClickEditInterest,
         onClickEditTechnic,
+        onClickEditButton,
         onClickBasicInfoEdit
     } = useContext(ProfileEditContext)
 
@@ -49,8 +51,8 @@ export default function ProfileEditUI(){
                     <RainbowTag name="주도적인" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined} />
                     <RainbowTag name="논리적인" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined}/>
                     <RainbowTag name="톡톡튀는" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined}/>
-                    <ProfileEditTendency/>
-                    <S.EditTag onClick={onClickEditTendency}>+</S.EditTag>
+                        {isTendency && <ProfileEditTendency/>}
+                        <S.EditTag onClick={onClickEditTendency}>+</S.EditTag>
                 </S.TagArea>
                 <Blank height={24} width={0}/>
                 <S.Position>
@@ -59,15 +61,8 @@ export default function ProfileEditUI(){
                 <Blank height={12} width={0}/>
                 <S.TagArea>
                     <RainbowTag name="개발자" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined} />
-                    {isVisibleTwo ? (
-                        <input
-                            ref={tagInputRef}
-                            type="text"
-                            placeholder="수정"
-                        />
-                    ) : (
+                        {isPosition && <ProfileEditPosition/>}
                         <S.EditTag onClick={onClickEditPosition}>+</S.EditTag>
-                    )}
                 </S.TagArea>
                 <Blank height={24} width={0}/>
                 <S.Interest>
@@ -77,15 +72,9 @@ export default function ProfileEditUI(){
                 <S.TagArea>
                     <RainbowTag name="공유서비스" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined} />
                     <RainbowTag name="소셜네트워크" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined} />
-                    {isVisibleThree ? (
-                        <input
-                            ref={tagInputRef}
-                            type="text"
-                            placeholder="수정"
-                        />
-                    ) : (
+                        {isInterest && <ProfileEditInterest/>}
                         <S.EditTag onClick={onClickEditInterest}>+</S.EditTag>
-                    )}
+
                 </S.TagArea>
                 <Blank height={24} width={0}/>
                 <S.Technic>
@@ -93,17 +82,11 @@ export default function ProfileEditUI(){
                 </S.Technic>
                 <Blank height={12} width={0}/>
                 <S.TagArea>
-                    <RainbowTag name="javascript" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined} />
-                    <RainbowTag name="CSS" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined} />
-                    {isVisibleFour ? (
-                        <input
-                            ref={tagInputRef}
-                            type="text"
-                            placeholder="수정"
-                        />
-                    ) : (
+                    <RainbowTag name="Javascript" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined} />
+                    <RainbowTag name="Java" marginBottom={0} backgroundColor={"#ccc"} onClick={undefined} />
+                        {isTechnic && <ProfileEditTechnic/>}
                         <S.EditTag onClick={onClickEditTechnic}>+</S.EditTag>
-                    )}
+                
                 </S.TagArea>
             </div>
                 <S.BtnBox>
@@ -111,7 +94,7 @@ export default function ProfileEditUI(){
                         name="프로필 수정하기" 
                         fontSize={1.143} 
                         backgroundcolor="#3894FF" 
-                        onClick={undefined}                
+                        onClick={onClickEditButton}                
                     />
                     <Blank height={12} width={0}/>
                     <S.InfoEdit>

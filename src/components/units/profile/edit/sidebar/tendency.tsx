@@ -5,6 +5,7 @@ import { ProfileEditContext } from "../profileEdit.container"
 import * as S from "./sidebar.styles"
 import dump from "../../../../../commons/json/tendency.json";
 import RainbowTag from "../../../../commons/tags/commons/rainbowTag";
+import SubmitBtn from "../../../../commons/button/Submit";
 
 export default function ProfileEditTendency(){
     const {
@@ -12,10 +13,8 @@ export default function ProfileEditTendency(){
         area,
         onClickPushTag, 
         onClickEditTendency,
-        // onClickEditPosition,
-        // onClickEditInterest,
-        // onClickEditTechnic
-        onClickDeleteTag
+        onClickDeleteTendencyTag,
+        onClickChangeTagButton
     } = useContext(ProfileEditContext)
 
     return(
@@ -46,27 +45,38 @@ export default function ProfileEditTendency(){
                     ))}
                 </S.TagArea>
                 <S.TagArea>
-                    {tendency?.length? (
+                    {tendency?.length ? (
                         <>
-                            {tendency.map((name)=>(
-                                <S.Tag
-                                    bgColor={
-                                        dump.tendency.name.indexOf(name) > 0
-                                        ? dump.tendency.color[dump.tendency.name.indexOf(name)]
-                                        : "#0D223A"
-                                    }
-                                    key={uuidv4()}
-                                    onClick={onClickDeleteTag && onClickDeleteTag(name)}
-                                >
-                                    <span>{name}</span>
-                                    <div>x</div>
-                                </S.Tag>
-                            ))}
+                            {tendency.map((name)=>{
+                                console.log(name)
+                                return (
+                                    <S.Tag
+                                        bgColor={
+                                            dump.tendency.name.indexOf(name) > 0
+                                            ? dump.tendency.color[dump.tendency.name.indexOf(name)]
+                                            : "#0D223A"
+                                        }
+                                        key={uuidv4()}
+                                        onClick={onClickDeleteTendencyTag && onClickDeleteTendencyTag(name)}
+                                    >
+                                        <span>{name}</span>
+                                        <div>x</div>
+                                    </S.Tag>
+                                )
+                            })}
                         </>
                     ) : (
                         <></>
                     )}
                 </S.TagArea>
+                <S.BtnBox>
+                    <SubmitBtn 
+                        name="확인" 
+                        fontSize={1.143} 
+                        backgroundcolor="#3894FF" 
+                        onClick={onClickChangeTagButton}
+                    />
+                </S.BtnBox>
             </S.MainBox>
         </S.Wrapper>
     )
