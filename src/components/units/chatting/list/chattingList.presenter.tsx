@@ -1,8 +1,11 @@
+import { useContext } from "react";
+import { ChattingContext } from "../chatting.container";
 import * as S from "./chattingList.styles";
 
 export default function ChattingListUI() {
+  const { onClickChangePosition } = useContext(ChattingContext);
   return (
-    <S.Wrapper>
+    <S.Wrapper onClick={onClickChangePosition}>
       <S.TitleBox>
         <S.LeftArrowImg src="/img/commons/leftArrow1.svg" />
         <S.Title>메세지</S.Title>

@@ -1,28 +1,31 @@
 import { useContext } from "react";
 import { TextArea } from "../../../commons/textarea/textarea";
 import { ChattingDetailContext } from "./chattingDetail.container";
-import * as T from "./sidebar/sidebar.styles";
 import * as S from "./chattingDetail.styles";
 import Sidebar from "./sidebar/sidebar";
+import { ChattingContext } from "../chatting.container";
 
 export default function ChattingDetailUI() {
   const { onClickSetPosition, isToggle } = useContext(ChattingDetailContext);
+  const { onClickChangePosition } = useContext(ChattingContext);
   return (
     <S.Wrapper>
-      <T.Opacity isToggle={isToggle}></T.Opacity>
+      <S.Opacity isToggle={isToggle} onClick={onClickSetPosition} />
       <Sidebar />
       <div>
         <S.TitleBox>
           <S.RightBox>
-            <S.LeftArrowImg src="/img/commons/leftArrow1.svg" />
+            <S.LeftArrowImg
+              src="/img/commons/leftArrow1.svg"
+              onClick={onClickChangePosition}
+            />
             <S.Tag>Project</S.Tag>
             <S.ProjectName>프로젝트 단톡방</S.ProjectName>
             <S.Count>5</S.Count>
           </S.RightBox>
-          <S.DotToggleImg
-            src="/img/commons/dotToggle.svg"
-            onClick={onClickSetPosition}
-          />
+          <S.DotImgBox onClick={onClickSetPosition}>
+            <S.DotToggleImg src="/img/commons/dotToggle.svg" />
+          </S.DotImgBox>
         </S.TitleBox>
         {/* <S.TitleBox> 1:1
         <S.RightBox>
@@ -41,7 +44,7 @@ export default function ChattingDetailUI() {
             <S.Name>냥냥</S.Name>
             <S.ReceiveFirstMessage>냥냥냥냥냥</S.ReceiveFirstMessage>
           </S.MessageBox>
-          <S.Time>1:12pm</S.Time>
+          <S.Time>1:12 pm</S.Time>
         </S.ProfileMsgBox>
         <S.Alert>냥냥님이 참여하였습니다.</S.Alert>
         <S.ProfileMsgBox>
@@ -56,22 +59,22 @@ export default function ChattingDetailUI() {
               뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽
             </S.ReceiveFirstMessage>
           </S.MessageBox>
-          <S.Time>1:13pm</S.Time>
+          <S.Time>1:13 pm</S.Time>
         </S.ProfileMsgBox>
         <S.ReceiveBox>
           <S.ReceiveMessage>
             뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽
           </S.ReceiveMessage>
-          <S.Time>1:12pm</S.Time>
+          <S.Time>1:12 pm</S.Time>
         </S.ReceiveBox>
         <S.SendFirstBox>
-          <S.Time>1:13pm</S.Time>
+          <S.Time>1:13 pm</S.Time>
           <S.SendFirstMessage>
             ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
           </S.SendFirstMessage>
         </S.SendFirstBox>
         <S.SendBox>
-          <S.Time>1:13pm</S.Time>
+          <S.Time>1:13 pm</S.Time>
           <S.SendMessage>ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</S.SendMessage>
         </S.SendBox>
       </div>
