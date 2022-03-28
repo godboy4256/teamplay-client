@@ -13,7 +13,7 @@ import { IPropsOnBoardingContext } from "./onboarding.types";
 export const OnBoardingContext = createContext<IPropsOnBoardingContext>({});
 
 export default function OnBoarding() {
-  const { moveToHome } = useMoveToPage();
+  const { moveToMain } = useMoveToPage();
   const [left, setLeft] = useState(0);
   const [career, setCareer] = useState("");
   const [tendency, setTendency] = useState<string[]>([]);
@@ -116,7 +116,7 @@ export default function OnBoarding() {
   };
 
   const onClickSubmit = () => {
-    moveToHome();
+    moveToMain();
   };
 
   const value = {

@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Slider from "react-slick";
-import SquareTag from "../../../tags/commons/squareTag";
 import { v4 as uuidv4 } from "uuid";
-import slides from "../../../../../commons/json/slideList.json"
 import * as S from "./multislide.styles";
+import projectListDummy from '../../../../../commons/json/projetList.json'
+import ProjectCard from "../../../../units/project/projectCard/projectCard";
 
 export default function MultiSlide(props: any) {
     const settings = {
@@ -30,34 +30,16 @@ export default function MultiSlide(props: any) {
             <S.MultiSlideBox>
                 <Slider {...settings}>
                     {
-                        slides.multiList.map(el => {
+                        projectListDummy.projectList.map(el => {
                             return <S.MultiSlideWrapper key={uuidv4()}>
                                 <S.MultiSlideItem >
-                                    <S.MultiSlideTop>
-                                        <img src={el.image} alt={el.projectTitle} />
-                                        <div>
-                                            <div>{el.dDay}</div>
-                                            <img src="../img/like.svg" alt="like icon" />
-                                        </div>
-                                    </S.MultiSlideTop>
-                                    <S.MultiSlideBottom>
-                                        <h3>{el.projectTitle}</h3>
-                                        <S.MultiTagBox>
-                                            {
-                                                el.topics.map(it => {
-                                                    return <SquareTag
-                                                        key={uuidv4()}
-                                                        size={8}
-                                                        name={it}
-                                                    />
-                                                })
-                                            }
-                                        </S.MultiTagBox>
-                                        <S.MemberCount>
-                                            <img src="../img/members.svg" alt="members count iocn" />
-                                            <span>{el.members}</span>
-                                        </S.MemberCount>
-                                    </S.MultiSlideBottom>
+                                  <ProjectCard 
+                                    imgUrl={el.imgUrl}
+                                    name={el.name}
+                                    types={el.types}
+                                    redruitDate={el.redruitDate}
+                                    member={el.member}
+                                  /> 
                                 </S.MultiSlideItem>
                             </S.MultiSlideWrapper>
                         })

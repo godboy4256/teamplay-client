@@ -44,7 +44,11 @@ const ImageBox = styled.div`
     }
 `
 
-export default function ImageUpload(props: any) {
+interface IPropsImageUpload{
+    label:string
+}
+
+export default function ImageUpload(props: IPropsImageUpload) {
     const refFile = useRef<HTMLInputElement>(null)
     const refImage = useRef<HTMLImageElement>(null)
 

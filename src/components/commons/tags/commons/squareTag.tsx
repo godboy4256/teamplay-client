@@ -3,27 +3,28 @@ import styled from "@emotion/styled";
 interface IPropsSquareTag {
     name: string;
     size: number;
+    bgColor: string
 }
-interface IPropsContents {
+
+interface IPropsWrapper {
+    bgColor: string;
     size: number;
 }
 
 const Wrapper = styled.div`
-    padding: 2px 10px;
-    margin: 0px 10px 5px 0px;
+    display: inline-block;
+    padding: 5px 10px;
     border-radius: 5px;
-    background-color: #c4c4c4;
-`
-const Contents = styled.span`
-   font-size: ${(props: IPropsContents) => `${props.size}px`};
-   color: #FFFFFF;
+    background-color:${(props:IPropsWrapper) => props.bgColor};
+    font-size: ${(props: IPropsWrapper) => `${props.size}rem`};
+    color: #fff;
 `
 
 export default function SquareTag(props: IPropsSquareTag) {
 
     return (
-        <Wrapper>
-            <Contents size={props.size}>{props.name}</Contents>
+        <Wrapper bgColor={props.bgColor} size={props.size}>
+            {props.name}
         </Wrapper>
     )
 }

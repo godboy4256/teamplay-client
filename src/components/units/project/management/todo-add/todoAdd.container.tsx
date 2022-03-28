@@ -4,11 +4,12 @@ import Date from "../../../../commons/inputs/component/date/date.container";
 import SubmitButton from "../../../../commons/inputs/component/submitbutton/submit.container";
 import TypingInput from "../../../../commons/inputs/component/typinginput/typinginput.container";
 import { TodoWorker } from "../projectManage.styles";
+import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 
 const TodoAddStyle = styled.div`
     width: 100%;
-    background-color: #ddd;
+    background-color: #fff;
     flex-direction: column;
     border-radius:20px 20px 0 0;
     display: flex;
@@ -29,7 +30,7 @@ const DragBar = styled.div`
     width: 80px;
     height: 3px;
     border-radius: 2px;
-    background-color: #fff;
+    background-color: #C0C1C2;
     margin: 5px 0 30px;
     cursor: pointer;
 `
@@ -51,7 +52,7 @@ const ModalBackground = styled.div`
 
 export default function TodoAdd() {
     const onClickoffAdd = () => {
-        const onAddref = document.getElementById('onAdd')
+        const onAddref = document.getElementById('onTodoAdd')
         const modalref = document.getElementById('modalBackground')
         onAddref?.classList.remove("onClick")
         modalref?.classList.remove("onClick")
@@ -60,7 +61,7 @@ export default function TodoAdd() {
     return (
         <>
          <ModalBackground id="modalBackground"></ModalBackground>
-         <TodoAddStyle id="onAdd">
+         <TodoAddStyle id="onTodoAdd">
             <DragBar onClick={onClickoffAdd}></DragBar>
             <Wrapper paddingTop="5px">
                     <TypingInput
@@ -74,9 +75,15 @@ export default function TodoAdd() {
                     <div>
                         <Label>담당 팀원</Label>
                         <TodoWorker align="left">
-                            <li>지호</li>
-                            <li>제이든</li>
-                            <li>기창</li>
+                        {
+                            new Array(3).fill(1).map((_) => {
+                                return <li key={uuidv4()}>
+                                    <button>
+                                        <img src="/img/user01.png" alt="user img"/>
+                                    </button>
+                                </li>
+                            })
+                        }
                         </TodoWorker>
                     </div>
                 <SubmitButton btnvalue="업무 추가하기"/>

@@ -1,47 +1,17 @@
 import styled from "@emotion/styled";
 
-export const ProjectListStyle = styled.div`
-
-`
-
 export const ProjectListBox = styled.ul`
-
-`
-
-export const ProjectListItem = styled.li`
-    border-radius: 15px;
-    margin-bottom: 25px;
-    overflow:hidden;
-    background-color: #EAEAEA;
-    color: #777;
-`
-
-export const ProjectListItemTop = styled.div`
-    width:100%;
-    background-color: #c4c4c4;
-    display: flex;
-    justify-content: space-between;
-    align-items :center;
-    padding:15px 13px 100px;
-    color: #fff;
-    & span{
-        display: inline-block;
-        background-color:#777;
-        padding:5px 4px;
+    @media (min-width: 1200px) {
+        margin: 0 -10px;
     }
 `
 
-export const ProjectListItemBottom = styled.div`
-    padding:15px 13px;
-    & > h3{
-        padding-bottom:5px;
+export const ProjectListTitle = styled.h4`
+    display: none;
+    font-size: 28px;
+    padding:50px 0 20px;
+    @media (min-width: 1200px) {
+        display: block;
     }
-`
-
-export const ProjectMembers = styled.div`
-    padding:10px 0 0;
-    display: flex;
-    align-items: center;
-    font-size: 13px;
 `
 

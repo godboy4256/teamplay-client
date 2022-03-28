@@ -1,17 +1,20 @@
 import Head from "next/head";
 import Slider from "react-slick";
 import { v4 as uuidv4 } from "uuid";
-import slides from "../../../../../commons/json/slideList.json"
-import * as S from "./oneslide.styles";
+import slides from "../../../../../commons/json/mainslideList.json"
+import * as S from "./mainslide.styl";
 
-export default function OneSlide(props: any) {
+
+export default function MainSlide() {
+    
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: props.slideToShow,
+        slidesToShow: 1,
         slidesToScroll: 1
     };
+
     return (
         <>
             <Head>
@@ -26,29 +29,23 @@ export default function OneSlide(props: any) {
                     href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
                 />
             </Head>
-            <S.SliderStyle>
+            <S.MainSliderStyle>
                 <Slider {...settings}>
-                    {
+                   {
                         slides.slideList.map((el: any) => {
-                            console.log(el)
-                            return <S.OneSlideBox key={uuidv4()}>
-                                <S.OneSlideContents>
+                            return <S.MainSlideBox key={uuidv4()}>
+                                <S.MainSlideContents>
                                     <div>
-                                        {
-                                            el.topics.map((it: any) => {
-                                                return <S.OneSlideTopic key={uuidv4()}>{it}</S.OneSlideTopic>
-                                            })
-                                        }
+                                        <span>{el.topics}</span>
                                         <h2>{el.mainTitle}</h2>
                                         <h3>{el.subTitle}</h3>
                                     </div>
-                                    {/* <img src={el.images} alt={el.mainTitle} /> */}
-                                </S.OneSlideContents>
-                            </S.OneSlideBox>
+                                </S.MainSlideContents>
+                            </S.MainSlideBox>
                         })
                     }
                 </Slider>
-            </S.SliderStyle>
+            </S.MainSliderStyle>
         </>
     );
 }

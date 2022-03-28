@@ -5,7 +5,7 @@ import { IPropsAuth } from "./signup.types";
 import Timer from "./timer";
 
 export default function Auth(props: IPropsAuth) {
-  const { isAuth, isEmail, onChageInput } = useContext(SignUpContext);
+  const { isAuth, isEmail, onChangeInput } = useContext(SignUpContext);
   return (
     <div>
       <S.Name>{props.name}</S.Name>
@@ -13,7 +13,7 @@ export default function Auth(props: IPropsAuth) {
         <input
           type="text"
           placeholder={props.placeHolder}
-          onChange={onChageInput && onChageInput("email")}
+          onChange={onChangeInput && onChangeInput("email")}
         />
         <S.AuthBtn
           onClick={props.onClickSendToken}
@@ -27,7 +27,7 @@ export default function Auth(props: IPropsAuth) {
         <S.AuthInput
           type="text"
           placeholder="인증번호를 입력해주세요."
-          onChange={onChageInput && onChageInput("token")}
+          onChange={onChangeInput && onChangeInput("token")}
           isAuth={isAuth}
           disabled={!isAuth}
         />

@@ -14,7 +14,7 @@ const Div = styled.div`
 
   border-radius: 20px;
   border: ${(props: IPropsDiv) =>
-    `${props.isClick ? "none" : "1px solid #999"}`};
+    `${props.isClick ? "1px solid #fff" : "1px solid #999"}`};
   background-color: ${(props: IPropsDiv) =>
     `${props.isClick ? "#3894FF" : "#fff"}`};
 

@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { ChangeEvent, createContext, useState } from "react";
+import { ChangeEvent, createContext, useEffect, useState } from "react";
 import {
   IMutation,
   IMutationCheckTokenToEmailArgs,
@@ -12,7 +12,7 @@ import {
   CREATE_USER,
   SEND_TOKEN_TO_EMAIL,
 } from "./signup.queries";
-import { ISignUpContext } from "./signup.types";
+import { IPropsSignUp, ISignUpContext } from "./signup.types";
 
 export const SignUpContext = createContext<ISignUpContext>({});
 
@@ -21,9 +21,10 @@ const valid = {
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
   password:
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&()])[A-Za-z\d$@$!%*#?&()]{8,}$/,
+  phone: /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/,
 };
 
-export default function SignUp() {
+export default function SignUp(props: IPropsSignUp) {
   const [isAuth, setIsAuth] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
   const [passMsg, setPassMsg] = useState("");
@@ -35,7 +36,11 @@ export default function SignUp() {
     password: "",
     chkPassword: "",
   });
-  const { name, email, token, password } = input;
+  const [isPrivite, setIsPrivite] = useState(false);
+  const [isPolicy, setIsPolicy] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const { name, email, token, password, chkPassword } = input;
+  const isEdit = props.isEdit;
 
   const [sendTokenToEmail] = useMutation<
     Pick<IMutation, "sendTokenToEmail">,
@@ -50,7 +55,16 @@ export default function SignUp() {
     IMutationCreateUserArgs
   >(CREATE_USER);
 
-  const onChageInput = (key: string) => (e: ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    if (isEdit) {
+      if (password === chkPassword && isPolicy && isPrivite) setIsSubmit(true);
+    } else {
+      if (email && name && password === chkPassword && isPolicy && isPrivite)
+        setIsSubmit(true);
+    }
+  }, [input, isPolicy, isPrivite]);
+
+  const onChangeInput = (key: string) => (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     setInput({
@@ -58,10 +72,9 @@ export default function SignUp() {
       [key]: value,
     });
 
-    if (key === "email" && valid.email.test(value)) {
-      setIsEmail(true);
-    }
+    if (key === "email" && valid.email.test(value)) setIsEmail(true);
 
+    if (key === "email" && valid.phone.test(value)) setIsEmail(true);
     if (key === "password" && !valid.password.test(value)) {
       setPassMsg(
         "8글자 이상, 최소 1개 이상의 특수문자, 숫자가 포함되어야합니다."
@@ -77,6 +90,11 @@ export default function SignUp() {
     if (key === "chkPassword" && input.password === value) {
       setCheckMsg("");
     }
+  };
+
+  const onChageCheckBox = (name: string) => () => {
+    if (name === "privite") setIsPrivite((prev) => !prev);
+    if (name === "policy") setIsPolicy((prev) => !prev);
   };
 
   const onClickSubmit = async () => {
@@ -99,6 +117,7 @@ export default function SignUp() {
   const onClickSendEmailToken = async () => {
     setIsEmail(false);
     setIsAuth(true);
+
     try {
       await sendTokenToEmail({
         variables: {
@@ -114,7 +133,6 @@ export default function SignUp() {
 
   const onClickCheckEmailToken = async () => {
     try {
-      console.log(email, token);
       await checkTokenToEmail({
         variables: {
           email,
@@ -135,22 +153,24 @@ export default function SignUp() {
   const value = {
     isAuth,
     isEmail,
+    isEdit,
     setIsAuth,
     setIsEmail,
-    onChageInput,
+    onChangeInput,
   };
 
   return (
     <SignUpContext.Provider value={value}>
       <SignUpUI
-        onClickSendEmailToken={onClickSendEmailToken}
-        onClickCheckEmailToken={onClickCheckEmailToken}
         passMsg={passMsg}
         checkMsg={checkMsg}
         isEmail={isEmail}
+        isSubmit={isSubmit}
+        onClickSendEmailToken={onClickSendEmailToken}
+        onClickCheckEmailToken={onClickCheckEmailToken}
         onClickSubmit={onClickSubmit}
-        onChageInput={onChageInput}
         onClickRequestPhoneAuth={onClickRequestPhoneAuth}
+        onChageCheckBox={onChageCheckBox}
       />
     </SignUpContext.Provider>
   );

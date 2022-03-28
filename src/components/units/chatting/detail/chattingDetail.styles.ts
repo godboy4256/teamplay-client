@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
+import { ISideIsToggle } from "./chattingDetail.types";
 
 export const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   padding: 15px 10px 30px 10px;
   overflow: hidden;
   position: relative;
@@ -10,6 +12,16 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`;
+
+export const Opacity = styled.div`
+  display: ${(props: ISideIsToggle) => (props.isToggle ? "block" : "none")};
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 262.5px);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
 `;
 
 export const Alert = styled.div`
@@ -28,6 +40,14 @@ export const TitleBox = styled.div`
   align-items: center;
   padding: 0px 5px 0px 20px;
   margin-bottom: 30px;
+
+  @media ${breakPoints.tablet} {
+    padding: 0px 5px 0px 0px;
+  }
+
+  @media ${breakPoints.web} {
+    padding: 0px 5px 0px 0px;
+  }
 `;
 
 export const RightBox = styled.div`
@@ -39,6 +59,14 @@ export const LeftArrowImg = styled.img`
   width: 12px;
   height: 16px;
   margin-right: 20px;
+
+  @media ${breakPoints.tablet} {
+    display: none;
+  }
+
+  @media ${breakPoints.web} {
+    display: none;
+  }
 `;
 
 export const ProjectName = styled.span`
@@ -66,13 +94,22 @@ export const Count = styled.span`
   color: #a4a4a4;
 `;
 
-export const DotToggleImg = styled.img`
-  width: 2px;
-  height: 13px;
+export const DotImgBox = styled.div`
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   :hover {
     cursor: pointer;
   }
+`;
+
+export const DotToggleImg = styled.img`
+  width: 2px;
+  height: 13px;
 `;
 
 export const ProfileMsgBox = styled.div`
@@ -197,8 +234,7 @@ export const Time = styled.div`
 
 export const FunctionBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  position: relative;
+  justify-content: space-evenly;
 `;
 
 export const InputBox = styled.div`
@@ -208,13 +244,11 @@ export const InputBox = styled.div`
   border: 1px solid #999999;
   border-radius: 22px;
 `;
+
 export const SendButton = styled.div`
   padding: 10px 13px;
   border-radius: 50%;
   background: #3894ff;
-  position: absolute;
-  right: 0;
-  bottom: 0;
 
   img {
     width: 22px;
@@ -223,7 +257,7 @@ export const SendButton = styled.div`
 `;
 
 export const UploadImgBtn = styled.div`
-  width: 16%;
+  width: 40px;
 
   display: flex;
   justify-content: center;
@@ -237,6 +271,6 @@ export const UploadImgBtn = styled.div`
 `;
 
 export const MsgInput = styled.div`
-  width: 84%;
+  width: calc(100% - 40px);
   padding: 0px 10px;
 `;

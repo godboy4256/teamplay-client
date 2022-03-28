@@ -3,12 +3,12 @@ import Date from "../../../commons/inputs/component/date/date.container";
 import ImageUpload from "../../../commons/inputs/component/imageUpload/imageUpload.container";
 import Select from "./select/select.container";
 import SubmitButton from "../../../commons/inputs/component/submitbutton/submit.container";
-import TagCheckBox from "../../../commons/inputs/component/tagcheck/tagcheck.container";
 import TextArea from "../../../commons/inputs/component/textarea/textarea.container";
 import TypingInput from "../../../commons/inputs/component/typinginput/typinginput.container";
 import * as S from "./projectNew.styles";
 import tagListDummy from '../../../../commons/json/tagList.json'
 import selectListDummy from '../../../../commons/json/selectList.json'
+import TagBox from "./tagbox/TagBox";
 
 export default function ProjectUI() {
     return (
@@ -35,19 +35,19 @@ export default function ProjectUI() {
                     type="text"
                     placeholder="프로젝트를 간단하게 소개해주세요."
                 />
-                <TagCheckBox
+                <TagBox 
                     label="분야"
-                    tagList={tagListDummy.tagList.field}
-                    duplicate="중복 불가"
+                    list={tagListDummy.tagList.field}
+                    checkBox={false}
                 />
                 <Select
                     label="활동 지역"
                     optionList={selectListDummy.selectList.area}
                 />
-                <TagCheckBox
+                <TagBox 
                     label="진행 방식"
-                    tagList={tagListDummy.tagList.proceeding}
-                    duplicate="중복 불가"
+                    list={tagListDummy.tagList.proceeding}
+                    checkBox={false}
                 />
                 <Select
                     label="모집 인원"
@@ -55,10 +55,10 @@ export default function ProjectUI() {
                 />
                 <Date label="모집 기간" />
                 <ImageUpload label="대표 이미지" />
-                <TagCheckBox
+                <TagBox 
                     label="출시 플랫폼"
-                    tagList={tagListDummy.tagList.platform}
-                    duplicate="중복 가능"
+                    list={tagListDummy.tagList.platform}
+                    checkBox={true}
                 />
                 <TypingInput
                     label="기술/언어"
