@@ -25,5 +25,5 @@ export default function useMoveToPage() {
     router.push(e.currentTarget.id);
     e.currentTarget && e.currentTarget.classList.add("active__page");
   };
-  return { moveToHome, moveToProfileEdit, moveToProfile, onClickHeaderRouting };
+  return { moveToMain, moveToProfileEdit, moveToProfile, onClickHeaderRouting };
 }

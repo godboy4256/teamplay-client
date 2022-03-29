@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -73,7 +74,6 @@ export const ProjectWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 5px 20px 20px 20px;
-    /* background-color: yellowgreen; */
 `
 export const Header = styled.div`
     width: 100%;
@@ -84,27 +84,32 @@ export const Header = styled.div`
     }
 `
 export const ProjectBox = styled.div`
-    display: flex;
-    text-align: center;
-`
+    width: 100%;
+    margin: 0 auto;
+    column-count: 2;
+    column-gap: 20px;
 
-export const LeftProject = styled.div`
-    width: 50%;
-    height: 30vh;
-    img {
-        width: 90%;
-        height: 80%;
-        border-radius: 15px;
-        margin-bottom: 12px;
+    @media ${breakPoints.tablet} {
+        column-count: 3;
+        column-gap: 20px;
+    }
+
+    @media ${breakPoints.web} {
+        column-count: 4;
+        column-gap: 20px
     }
 `
-export const RightProject = styled.div`
-    width: 50%;
-    height: 30vh;
+
+export const ProjectImgItem = styled.div`
+    margin: 0 0 20px 0;
+    line-height: 0;    
+
     img {
-        width: 90%;
+        width: 100%;
         height: 80%;
         border-radius: 15px;
         margin-bottom: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px -15px #000;
     }
 `

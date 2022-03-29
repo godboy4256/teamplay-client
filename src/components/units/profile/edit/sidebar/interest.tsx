@@ -59,10 +59,11 @@ export default function ProfileEditInterest() {
                 </S.TagArea>
                 <S.BtnBox>
                     <SubmitBtn 
-                        name="확인" 
-                        fontSize={1.143} 
-                        backgroundcolor="#3894FF" 
-                        onClick={onClickChangeTagButton}
+                        name="확인"
+                        fontSize={1.143}
+                        backgroundcolor="#3894FF"
+                        onClick={onClickChangeTagButton} 
+                        isActive={false}
                     />
                 </S.BtnBox>
             </S.MainBox>
