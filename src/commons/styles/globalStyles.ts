@@ -170,4 +170,5 @@ export const globalStyles = css`
     cursor: pointer;
     padding: 0;
   }
+
 `;

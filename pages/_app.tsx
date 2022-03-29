@@ -2,7 +2,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  ApolloLink,
+  ApolloLink
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import { AppProps } from "next/dist/shared/lib/router/router";
@@ -101,7 +101,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache()
   });
 
   return (
