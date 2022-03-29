@@ -147,6 +147,7 @@ export default function OnBoarding() {
     let positionId = "";
     const tendencyId: string[] = [];
     const typeId: string[] = [];
+
     tendency.forEach((name) => {
       let index = 0;
       tendencyData?.fetchTendencys.forEach((el, idx) => {
@@ -154,6 +155,7 @@ export default function OnBoarding() {
       });
       tendencyId.push(String(tendencyData?.fetchTendencys[index].id));
     });
+
     interest.forEach((name) => {
       let index = 0;
       typeData?.fetchTypes.forEach((el, idx) => {
@@ -161,6 +163,7 @@ export default function OnBoarding() {
       });
       typeId.push(String(typeData?.fetchTypes[index].id));
     });
+
     positionData?.fetchPositions.forEach((el) => {
       if (el.name === position) positionId = el.id;
     });
