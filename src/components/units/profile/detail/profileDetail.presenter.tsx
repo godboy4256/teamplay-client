@@ -1,8 +1,13 @@
+import { useRouter } from "next/router";
 import ClickTag from "../../../commons/tags/commons/clickTag";
 import * as S from  "./profileDetail.styles";
 
 export default function ProfileDetailUI(props: { isVisible: string; }){
+    const router = useRouter()
 
+    const onClickMoveToProjectList = () => {
+        router.push('/profile/list')
+    }
     return(
         <>
     {props.isVisible === "About me" ? 
@@ -40,7 +45,7 @@ export default function ProfileDetailUI(props: { isVisible: string; }){
     : props.isVisible === "Project" && 
         <S.ProjectWrapper>
             <S.Header>
-                <img src="/img/profile/progressDone.svg"/>
+                <img onClick={onClickMoveToProjectList} src="/img/profile/progressDone.svg"/>
             </S.Header>
             <S.ProjectBox>
                 <S.ProjectImgItem>

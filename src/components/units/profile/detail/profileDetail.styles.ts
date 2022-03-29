@@ -81,6 +81,9 @@ export const Header = styled.div`
     justify-content: flex-end;
     img {
         margin-right: 8px;
+        :hover{
+            cursor: pointer;
+        }
     }
 `
 export const ProjectBox = styled.div`

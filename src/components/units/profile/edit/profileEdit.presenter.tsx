@@ -91,10 +91,10 @@ export default function ProfileEditUI(){
             </div>
                 <S.BtnBox>
                     <SubmitBtn
-                        name="프로필 수정하기" 
-                        fontSize={1.143} 
-                        backgroundcolor="#3894FF" 
-                        onClick={onClickEditButton}                
+                        name="프로필 수정하기"
+                        fontSize={1.143}
+                        backgroundcolor="#3894FF"
+                        onClick={onClickEditButton} isActive={false}
                     />
                     <Blank height={12} width={0}/>
                     <S.InfoEdit>
