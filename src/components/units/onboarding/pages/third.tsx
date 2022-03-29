@@ -12,6 +12,7 @@ export default function OnBoardingThirdPage() {
     tendency,
     isAdd,
     tagInputRef,
+    tendencyData,
     onClickMoveToNext,
     onClickMoveToPrev,
     onClickPushTag,
@@ -35,10 +36,11 @@ export default function OnBoardingThirdPage() {
           </S.Subscript>
           <Blank height={38} width={0} />
           <S.TagArea>
-            {dump.tendency.name.map((name, index) => (
+            {tendencyData?.fetchTendencys.map((data, index) => (
               <Fragment key={uuidv4()}>
                 <RainbowTag
-                  name={name}
+                  name={data.name}
+                  id={data.id}
                   marginBottom={12}
                   backgroundColor={dump.tendency.color[index]}
                   onClick={onClickPushTag}

@@ -6,7 +6,7 @@ import { OnBoardingContext } from "../onboarding.container";
 import * as S from "./pages.styles";
 
 export default function OnBoardingSixthPage() {
-  const { onClickSubmit } = useContext(OnBoardingContext);
+  const { onClickSubmit, tendency } = useContext(OnBoardingContext);
   return (
     <S.Wrapper>
       <div>
@@ -23,6 +23,7 @@ export default function OnBoardingSixthPage() {
               img="/img/onboarding/userProfile.png"
               name="제이든"
               position="기획자"
+              tendency={tendency}
               fontSize={14}
             />
           </S.CardBox>

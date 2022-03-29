@@ -29,12 +29,14 @@ interface IPropsClickTag {
   name: string;
   marginBottom: number;
   backgroundColor: string;
+  id: string;
   onClick: ((name: string) => () => void) | undefined;
 }
 
 export default function RainbowTag(props: IPropsClickTag) {
   return (
     <Div
+      id={props.id}
       backgroundColor={props.backgroundColor}
       marginBottom={props.marginBottom}
       onClick={props.onClick && props.onClick(props.name)}
