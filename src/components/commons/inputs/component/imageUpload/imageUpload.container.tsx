@@ -1,5 +1,7 @@
+import { gql, useMutation } from "@apollo/client";
 import styled from "@emotion/styled";
-import { ChangeEvent, useRef, useState } from "react";
+import { Dispatch, SetStateAction,ChangeEvent, useRef, useState } from "react";
+import { IMutation, IMutationUploadFileArgs } from "../../../../../commons/types/generated/types";
 import { Label } from "../../commons/styles";
 
 const FileStyle = styled.div`
@@ -44,13 +46,21 @@ const ImageBox = styled.div`
     }
 `
 
-interface IPropsImageUpload{
-    label:string
+interface IPropsImageUpload {
+    label: string
+    setValues?:Dispatch<SetStateAction<string>>
 }
+
+const UPLOADE_FILE = gql`
+    mutation uploadFile($files:[Upload!]!){
+        uploadFile(files:$files)
+    }
+`
 
 export default function ImageUpload(props: IPropsImageUpload) {
     const refFile = useRef<HTMLInputElement>(null)
     const refImage = useRef<HTMLImageElement>(null)
+    const [uploadFile] = useMutation<Pick<IMutation,"uploadFile">,IMutationUploadFileArgs>(UPLOADE_FILE)
 
     const [imgSrc, setImgSrc] = useState("../img/image_upload.svg")
 
@@ -59,13 +69,23 @@ export default function ImageUpload(props: IPropsImageUpload) {
         if (refCurret) refCurret.click()
     }
 
-    const onChangeFileUpload = (input: ChangeEvent<HTMLInputElement>) => {
-        if (input.target.files?.[0]) {
+    const onChangeFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const files : any = e.target.files
             const reader = new FileReader();
-            reader.readAsDataURL(input.target.files?.[0]);
+            reader.readAsDataURL(e.target.files?.[0]);
             reader.onload = (e) => {
-                if (typeof e?.target?.result === "string")
+                    if (typeof e?.target?.result === "string")
                     setImgSrc(e?.target?.result)
+            }
+            try {
+                const result = await uploadFile({
+                    variables: { files }
+                })
+                result.data &&  
+                props.setValues && props.setValues(result && result.data.uploadFile[0])
+            } catch (error) {
+                console.log(error)
             }
         }
     };
@@ -89,7 +109,7 @@ export default function ImageUpload(props: IPropsImageUpload) {
                 }
             </ImageBox>
             <FileStyle>
-                <FileUpload onClick={onFileUpload}>이미지 업로드</FileUpload>
+                <FileUpload type="button" onClick={onFileUpload}>이미지 업로드</FileUpload>
                 <FileInput onChange={onChangeFileUpload} ref={refFile} type="file" />
             </FileStyle>
         </>

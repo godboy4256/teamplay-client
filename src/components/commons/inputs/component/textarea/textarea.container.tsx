@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Dispatch, SetStateAction } from "react";
 import { Label } from "../../commons/styles";
 
 const TextAreaStyle = styled.textarea`
@@ -8,15 +9,18 @@ const TextAreaStyle = styled.textarea`
     border-radius: 12px;
     padding:10px;
 `
-interface IPropsTextArea{
-    label:string
+interface IPropsTextArea {
+    label: string
+    setValues?: Dispatch<SetStateAction<string>>
 }
 
 export default function TextArea(props: IPropsTextArea) {
     return (
         <>
             <Label>{props.label}</Label>
-            <TextAreaStyle></TextAreaStyle>
+            <TextAreaStyle
+                onChange={(e) => props.setValues && props.setValues(e.target.value)}
+            />
         </>
     )
 }

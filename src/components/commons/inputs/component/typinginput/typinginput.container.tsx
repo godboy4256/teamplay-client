@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Dispatch, SetStateAction } from "react";
 import { Label } from "../../commons/styles";
 
 const TypingInputStyle = styled.div`
@@ -16,17 +17,22 @@ const TextInput = styled.input`
     }
 `
 
-interface IPropsTypingInput{
-    label:string
-    type:string
-    placeholder:string
+interface IPropsTypingInput {
+    label: string
+    type: string
+    placeholder: string
+    setValues?: Dispatch<SetStateAction<string>>
 }
 
 export default function TypingInput(props: IPropsTypingInput) {
     return (
         <TypingInputStyle>
             <Label>{props.label}</Label>
-            <TextInput type={props.type} placeholder={props.placeholder} />
+            <TextInput
+                onChange={(e) => props.setValues && props.setValues(e.target.value)}
+                type={props.type}
+                placeholder={props.placeholder}
+            />
         </TypingInputStyle>
     )
 }
