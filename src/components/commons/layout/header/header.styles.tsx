@@ -7,11 +7,13 @@ export const HeaderBox = styled.div`
     props.isHiddenHeader.includes(props.asPath) ? "none" : "block"};
 
   @media ${breakPoints.tablet} {
-    display: block;
+    display: ${(props: IPropsHeaderBox) =>
+      props.isHiddenHeaderWeb.includes(props.asPath) ? "none" : "block"};
   }
 
   @media ${breakPoints.web} {
-    display: block;
+    display: ${(props: IPropsHeaderBox) =>
+      props.isHiddenHeaderWeb.includes(props.asPath) ? "none" : "block"};
   }
 `;
 

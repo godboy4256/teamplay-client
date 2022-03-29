@@ -12,7 +12,7 @@ interface ILayoutProps {
 export default function Layout(props: ILayoutProps) {
   const router = useRouter();
 
-  const isHiddenHeader = [
+  const isHiddenHeaderMobile = [
     "/login",
     "/onboarding",
     "/chatting/detail",
@@ -20,7 +20,13 @@ export default function Layout(props: ILayoutProps) {
     "/profile",
     "/profile/edit",
     "/profile/list"
+    "/signup",
+    "/signup/edit",
   ];
+
+  const isHiddenHeaderWeb = ["/login", "/onboarding"];
+
+  const isHiddenFooterWeb = ["/login", "/onboarding"];
 
   return (
     <>
@@ -28,11 +34,18 @@ export default function Layout(props: ILayoutProps) {
         <div>{props.children}</div>
       ) : (
         <>
-          <S.HeaderBox isHiddenHeader={isHiddenHeader} asPath={router.asPath}>
+          <S.HeaderBox
+            isHiddenHeader={isHiddenHeaderMobile}
+            isHiddenHeaderWeb={isHiddenHeaderWeb}
+            asPath={router.asPath}
+          >
             <Header />
           </S.HeaderBox>
           <div>{props.children}</div>
-          <F.FooterBox>
+          <F.FooterBox
+            isHiddenFooterWeb={isHiddenFooterWeb}
+            asPath={router.asPath}
+          >
             <Footer />
           </F.FooterBox>
         </>

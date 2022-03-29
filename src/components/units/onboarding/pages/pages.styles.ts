@@ -1,13 +1,58 @@
 import styled from "@emotion/styled";
 import { IPropsTag } from "../onboarding.types";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 
 export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   padding: 17px 20px 26px 20px;
+
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+
+  @media ${breakPoints.tablet} {
+    height: 90vh;
+  }
+
+  @media ${breakPoints.web} {
+    height: 90vh;
+  }
+`;
+
+export const ResponseBox = styled.div`
+  width: 100%;
+  max-width: 1200px;
+
+  img {
+    display: none;
+  }
+
+  @media ${breakPoints.tablet} {
+    display: flex;
+    justify-content: space-between;
+    img {
+      display: inline;
+      border-radius: 20px;
+      width: 45%;
+    }
+  }
+
+  @media ${breakPoints.web} {
+    display: flex;
+    justify-content: space-between;
+    img {
+      display: inline;
+      border-radius: 20px;
+      width: 45%;
+    }
+  }
+`;
+
+export const ResponseBtnBox = styled.div`
+  width: 100%;
+  max-width: 1200px;
 `;
 
 export const BackArrow = styled.div`
@@ -22,6 +67,16 @@ export const BackArrow = styled.div`
     :hover {
       cursor: pointer;
     }
+  }
+
+  @media ${breakPoints.tablet} {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media ${breakPoints.web} {
+    width: 24px;
+    height: 24px;
   }
 `;
 

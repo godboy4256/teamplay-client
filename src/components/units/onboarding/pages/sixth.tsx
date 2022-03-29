@@ -28,15 +28,18 @@ export default function OnBoardingSixthPage() {
           </S.CardBox>
         </S.FlexBox>
       </div>
-      <S.BtnBox>
-        <SubmitBtn
-          isActive={false}
-          name="다음으로"
-          backgroundcolor="#3894FF"
-          fontSize={1.143}
-          onClick={onClickSubmit}
-        />
-      </S.BtnBox>
+
+      <S.ResponseBtnBox>
+        <S.BtnBox>
+          <SubmitBtn
+            isActive={false}
+            name="다음으로"
+            backgroundcolor="#3894FF"
+            fontSize={1.143}
+            onClick={onClickSubmit}
+          />
+        </S.BtnBox>
+      </S.ResponseBtnBox>
     </S.Wrapper>
   );
 }

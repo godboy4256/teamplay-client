@@ -13,36 +13,40 @@ export default function OnBoardingSecondPage() {
 
   return (
     <S.Wrapper>
-      <div>
-        <S.BackArrow onClick={onClickMoveToPrev}>
-          <img src="/img/commons/leftArrow1.svg" />
-        </S.BackArrow>
-        <S.Title>몇년차 개발자/디자이너이신가요?</S.Title>
-        <Blank height={12} width={0} />
-        <S.Subscript>저희 어플은 주니어 팀원위주의 플렛폼입니다.</S.Subscript>
-        <Blank height={24} width={0} />
-        <S.TagArea>
-          {list.map((name) => (
-            <Fragment key={uuidv4()}>
-              <ClickTag
-                name={name}
-                marginBottom={16}
-                isClick={career && career === name && true}
-                onClick={onClickPushTag}
-              />
-            </Fragment>
-          ))}
-        </S.TagArea>
-      </div>
-      <S.BtnBox>
-        <SubmitBtn
-          isActive={false}
-          name="다음으로"
-          onClick={onClickMoveToNext}
-          backgroundcolor="#3894FF"
-          fontSize={1.143}
-        />
-      </S.BtnBox>
+      <S.ResponseBox>
+        <div>
+          <S.BackArrow onClick={onClickMoveToPrev}>
+            <img src="/img/commons/leftArrow1.svg" />
+          </S.BackArrow>
+          <S.Title>몇년차 개발자/디자이너이신가요?</S.Title>
+          <Blank height={12} width={0} />
+          <S.Subscript>저희 어플은 주니어 팀원위주의 플렛폼입니다.</S.Subscript>
+          <Blank height={24} width={0} />
+          <S.TagArea>
+            {list.map((name) => (
+              <Fragment key={uuidv4()}>
+                <ClickTag
+                  name={name}
+                  marginBottom={16}
+                  isClick={career && career === name && true}
+                  onClick={onClickPushTag}
+                />
+              </Fragment>
+            ))}
+          </S.TagArea>
+        </div>
+      </S.ResponseBox>
+      <S.ResponseBtnBox>
+        <S.BtnBox>
+          <SubmitBtn
+            isActive={false}
+            name="다음으로"
+            onClick={onClickMoveToNext}
+            backgroundcolor="#3894FF"
+            fontSize={1.143}
+          />
+        </S.BtnBox>
+      </S.ResponseBtnBox>
     </S.Wrapper>
   );
 }

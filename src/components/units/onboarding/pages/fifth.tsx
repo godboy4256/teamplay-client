@@ -27,36 +27,40 @@ export default function OnBoardingFiftPage() {
   ];
   return (
     <S.Wrapper>
-      <div>
-        <S.BackArrow onClick={onClickMoveToPrev}>
-          <img src="/img/commons/leftArrow1.svg" />
-        </S.BackArrow>
-        <S.Title>관심있는 분야를 선택해주세요.</S.Title>
-        <Blank height={12} width={0} />
-        <S.Subscript>팀원님이 관심있는 분야를 3개 골라주세요.</S.Subscript>
-        <Blank height={38} width={0} />
-        <S.TagArea>
-          {list.map((name) => (
-            <Fragment key={uuidv4()}>
-              <ClickTag
-                name={name}
-                marginBottom={16}
-                isClick={interest && interest.includes(name) && true}
-                onClick={onClickPushTag}
-              />
-            </Fragment>
-          ))}
-        </S.TagArea>
-      </div>
-      <S.BtnBox>
-        <SubmitBtn
-          isActive={false}
-          name="다음으로"
-          onClick={onClickMoveToNext}
-          backgroundcolor="#3894FF"
-          fontSize={1.143}
-        />
-      </S.BtnBox>
+      <S.ResponseBox>
+        <div>
+          <S.BackArrow onClick={onClickMoveToPrev}>
+            <img src="/img/commons/leftArrow1.svg" />
+          </S.BackArrow>
+          <S.Title>관심있는 분야를 선택해주세요.</S.Title>
+          <Blank height={12} width={0} />
+          <S.Subscript>팀원님이 관심있는 분야를 3개 골라주세요.</S.Subscript>
+          <Blank height={38} width={0} />
+          <S.TagArea>
+            {list.map((name) => (
+              <Fragment key={uuidv4()}>
+                <ClickTag
+                  name={name}
+                  marginBottom={16}
+                  isClick={interest && interest.includes(name) && true}
+                  onClick={onClickPushTag}
+                />
+              </Fragment>
+            ))}
+          </S.TagArea>
+        </div>
+      </S.ResponseBox>
+      <S.ResponseBtnBox>
+        <S.BtnBox>
+          <SubmitBtn
+            isActive={false}
+            name="다음으로"
+            onClick={onClickMoveToNext}
+            backgroundcolor="#3894FF"
+            fontSize={1.143}
+          />
+        </S.BtnBox>
+      </S.ResponseBtnBox>
     </S.Wrapper>
   );
 }
