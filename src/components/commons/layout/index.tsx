@@ -18,7 +18,8 @@ export default function Layout(props: ILayoutProps) {
     "/chatting/detail",
     "/chatting/list",
     "/profile",
-    "/profile/edit"
+    "/profile/edit",
+    "/profile/list"
   ];
 
   return (

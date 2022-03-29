@@ -17,6 +17,11 @@ export const HeaderLine = styled.div`
     span{
         font-size: 20px;
     }
+    img{
+      :hover{
+        cursor: pointer;
+      }
+    }
 `
 export const HeaderContents = styled.div`
     width: 100%;
