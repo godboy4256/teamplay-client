@@ -1,15 +1,18 @@
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../../commons/styles/breakpoint";
+import { IPropsFooterBox } from "../header/header.types";
 
 export const FooterBox = styled.div`
   display: none;
 
   @media ${breakPoints.tablet} {
-    display: block;
+    display: ${(props: IPropsFooterBox) =>
+      props.isHiddenFooterWeb.includes(props.asPath) ? "none" : "block"};
   }
 
   @media ${breakPoints.web} {
-    display: block;
+    display: ${(props: IPropsFooterBox) =>
+      props.isHiddenFooterWeb.includes(props.asPath) ? "none" : "block"};
   }
 `;
 

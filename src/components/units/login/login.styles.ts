@@ -1,10 +1,66 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../commons/styles/breakpoint";
 
 export const Wrapper = styled.div`
-  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 930px) and (max-width: 1199px) {
+    padding: 100px;
+  }
+
+  @media ${breakPoints.web} {
+    padding: 100px;
+  }
+`;
+
+export const TabletBox = styled.div`
+  display: flex;
+  max-width: 799px;
+
+  @media (min-width: 930px) and (max-width: 1199px) {
+    max-width: 1200px;
+  }
+
+  @media ${breakPoints.web} {
+    max-width: 1200px;
+  }
+`;
+
+export const WebImgBox = styled.div`
+  display: none;
+
+  @media (min-width: 930px) and (max-width: 1199px) {
+    display: block;
+    margin-right: 65px;
+    width: 463.5px;
+    height: 777px;
+
+    img {
+      width: 100%;
+      border-radius: 20px;
+    }
+  }
+
+  @media ${breakPoints.web} {
+    display: block;
+    width: 463.5px;
+    height: 777px;
+    margin-right: 65px;
+
+    img {
+      width: 100%;
+      border-radius: 20px;
+    }
+  }
+`;
+
+export const LoginBox = styled.div`
+  width: 375px;
 
   padding: 20px 20px 40px 20px;
 `;
+
 export const XmarkBox = styled.div`
   position: relative;
   margin-bottom: 72px;
@@ -112,10 +168,13 @@ export const SocialText = styled.div`
 `;
 
 export const SocialImgBox = styled.div`
-  padding: 0px 95px;
+  /* padding: 0% 25%; */
   margin-bottom: 127px;
+  display: flex;
+  justify-content: center;
 
   div {
+    width: 168px;
     display: flex;
     justify-content: space-between;
   }
