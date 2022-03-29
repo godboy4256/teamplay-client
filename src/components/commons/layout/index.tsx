@@ -19,6 +19,8 @@ export default function Layout(props: ILayoutProps) {
     "/chatting/list",
     "/profile",
     "/profile/edit",
+    "/signup",
+    "/signup/edit",
   ];
 
   const isHiddenHeaderWeb = ["/login"];

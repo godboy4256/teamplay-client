@@ -39,3 +39,7 @@ export interface IPropsSignUpStyles {
 export interface IPropsValidBtn {
   isAuth: boolean | undefined;
 }
+
+export interface IPropsSignupName {
+  isEdit: boolean | undefined;
+}

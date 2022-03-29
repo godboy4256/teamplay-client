@@ -1,10 +1,52 @@
 import styled from "@emotion/styled";
-import { IPropsSignUpStyles, IPropsValidBtn } from "./signup.types";
+import {
+  IPropsSignupName,
+  IPropsSignUpStyles,
+  IPropsValidBtn,
+} from "./signup.types";
+import { breakPoints } from "../../../commons/styles/breakpoint";
 
 export const Wrapper = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 
-  padding: 18px 18px 40px 18px;
+export const ResponseBox = styled.div`
+  width: 100%;
+  max-width: 1160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StateAlert = styled.div`
+  display: none;
+  width: 100%;
+  padding: 11px 0px 11px 24px;
+  margin-bottom: 47px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: #ffffff;
+  background: #3894ff;
+
+  @media ${breakPoints.tablet} {
+    display: block;
+  }
+
+  @media ${breakPoints.web} {
+    display: block;
+  }
+`;
+
+export const MobileBox = styled.div`
+  width: 100%;
+  min-width: 375px;
+  max-width: 467px;
+
+  padding: 18px 18px 0px 18px;
 `;
 
 export const TitleBox = styled.div`
@@ -20,6 +62,26 @@ export const TitleBox = styled.div`
 
     color: #0d223a;
   }
+
+  @media ${breakPoints.tablet} {
+    display: ${(props: IPropsSignupName) => (props.isEdit ? "none" : "block")};
+  }
+
+  @media ${breakPoints.web} {
+    display: ${(props: IPropsSignupName) => (props.isEdit ? "none" : "block")};
+  }
+`;
+
+export const XmarkBox = styled.div`
+  display: block;
+
+  @media ${breakPoints.tablet} {
+    display: none;
+  }
+
+  @media ${breakPoints.web} {
+    display: none;
+  }
 `;
 
 export const Name = styled.div`
@@ -32,7 +94,7 @@ export const Name = styled.div`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 12px 8px;
+  padding: 8px 8px;
   border: 1px solid #cacaca;
 
   font-weight: 500;
@@ -49,7 +111,7 @@ export const Input = styled.input`
 export const Auth = styled.div`
   input {
     width: calc(100% - 107px);
-    padding: 12px 8px;
+    padding: 8px 8px;
     margin-right: 6px;
     margin-bottom: 4px;
     border: 1px solid #cacaca;
@@ -66,7 +128,7 @@ export const Auth = styled.div`
 export const AuthBtn = styled.button`
   background-color: ${(props: IPropsSignUpStyles) =>
     props.isEmail ? "#c4c4c4" : "#E5E5E5"};
-  padding: 13px 8px;
+  padding: 8px 8px;
   font-weight: 500;
   font-size: 1rem;
 
@@ -106,7 +168,7 @@ export const ValidBtn = styled.button`
 export const AuthInput = styled.input`
   width: ${(props: IPropsValidBtn) =>
     props.isAuth ? "calc(100% - 50px)" : "100%"};
-  padding: 12px 8px;
+  padding: 8px 8px;
   background-color: ${(props: IPropsValidBtn) =>
     props.isAuth ? "#FFFFFF" : "#E5E5E5"};
 
@@ -120,10 +182,12 @@ export const AuthInput = styled.input`
 
 export const Message = styled.div`
   margin-top: 5px;
-  font-weight: 500;
   font-size: 0.857rem;
   line-height: 14px;
-  color: #9b9898;
+  font-weight: 400;
+  font-size: 12px;
+
+  color: #3894ff;
 `;
 
 export const CheckBox = styled.div`
@@ -143,5 +207,55 @@ export const CheckBox = styled.div`
     margin-right: 5px;
 
     border-radius: 5px;
+  }
+`;
+
+export const DeleteUserBtn = styled.div`
+  display: inline-block;
+  padding: 3px 0px;
+  margin-top: 10px;
+  border-bottom: 1px solid #999;
+  font-weight: 500;
+  font-size: 1.143rem;
+  line-height: 18px;
+  color: #999999;
+`;
+
+export const TabletBtnBox = styled.div`
+  width: 100%;
+  max-width: 1160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media ${breakPoints.tablet} {
+    justify-content: flex-end;
+  }
+
+  @media ${breakPoints.web} {
+    justify-content: flex-end;
+  }
+`;
+
+export const BtnBox = styled.div`
+  width: 100%;
+  min-width: 375px;
+  max-width: 467px;
+  padding: 0px 18px 25px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media ${breakPoints.tablet} {
+    width: 425px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  @media ${breakPoints.web} {
+    width: 425px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
   }
 `;
