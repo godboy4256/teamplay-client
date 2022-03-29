@@ -31,6 +31,7 @@ interface IPropsClickTag {
   name: string;
   marginBottom: number;
   isClick: boolean | string | undefined;
+  id: string;
   onClick: ((name: string) => () => void) | undefined;
   id: string
 }

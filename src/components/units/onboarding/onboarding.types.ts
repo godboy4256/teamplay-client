@@ -1,4 +1,5 @@
 import { ChangeEvent, KeyboardEvent, RefObject } from "react";
+import { IQuery } from "../../../commons/types/generated/types";
 
 export interface IPropsOnBoardingContext {
   left?: number;
@@ -7,7 +8,11 @@ export interface IPropsOnBoardingContext {
   position?: string;
   interest?: string[];
   isAdd?: boolean;
+  colorIndex?: number[];
   tagInputRef?: RefObject<HTMLInputElement>;
+  tendencyData?: Pick<IQuery, "fetchTendencys"> | undefined;
+  positionData?: Pick<IQuery, "fetchPositions"> | undefined;
+  typeData?: Pick<IQuery, "fetchTypes"> | undefined;
   onClickChageInput?: () => void;
   onChangeTagInput?: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void;
@@ -24,4 +29,11 @@ export interface IPropsOnBoardingUIWrapper {
 
 export interface IPropsTag {
   bgColor: string;
+}
+
+export interface IUpdateUserOnboardInput {
+  career: string;
+  tendencyId: string[];
+  positionId: string[];
+  typeId: string[];
 }
