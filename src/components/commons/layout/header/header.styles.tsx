@@ -19,7 +19,7 @@ export const HeaderBox = styled.div`
 
 export const HeaderStyle = styled.header`
   background-color: #fff;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #ccc;
