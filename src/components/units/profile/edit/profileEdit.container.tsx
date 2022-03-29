@@ -140,7 +140,7 @@ export default function ProfileEdit(){
     }
 
     const onClickBasicInfoEdit = () => {
-        router.push('/signup')
+        router.push('/signup/edit')
     }
 
     const value = {

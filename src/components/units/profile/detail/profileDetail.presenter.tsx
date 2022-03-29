@@ -43,16 +43,24 @@ export default function ProfileDetailUI(props: { isVisible: string; }){
                 <img src="/img/profile/progressDone.svg"/>
             </S.Header>
             <S.ProjectBox>
-                <S.LeftProject>
+                <S.ProjectImgItem>
                     <img src="/img/contents01.jpg"/>
                     <img src="/img/contents02.jpg"/>
                     <img src="/img/contents03.jpg"/>
-                </S.LeftProject>
-                <S.RightProject>
                     <img src="/img/contents04.jpg"/>
                     <img src="/img/contents05.png"/>
                     <img src="/img/contents06.png"/>
-                </S.RightProject>
+                    <img src="/img/contents01.jpg"/>
+                    <img src="/img/contents02.jpg"/>
+                    <img src="/img/contents03.jpg"/>
+                    <img src="/img/contents04.jpg"/>
+                    <img src="/img/contents05.png"/>
+                    <img src="/img/contents06.png"/>
+                    <img src="/img/contents01.jpg"/>
+                    <img src="/img/contents02.jpg"/>
+                    <img src="/img/contents04.jpg"/>
+                    <img src="/img/contents05.png"/>
+                </S.ProjectImgItem>    
             </S.ProjectBox>
         </S.ProjectWrapper> 
     }
