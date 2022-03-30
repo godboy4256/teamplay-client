@@ -1,79 +1,114 @@
 import SquareTag from "../../tags/commons/squareTag";
-import { IPropsPreviewProjectUI } from "./previewProject.queries";
 import * as S from "./previewProject.styles";
-import { v4 as uuidv4 } from "uuid";
-import CircleTag from "../../tags/commons/circleTag";
 import SubmitButton from "../../inputs/component/submitbutton/submit.container";
+import { IQuery } from "../../../../commons/types/generated/types";
+import { Dispatch, SetStateAction } from "react";
+import {
+  ProjectInfoKey,
+  ProjectInfoValue,
+} from "../../../units/project/management/projectManage.styles";
+import { v4 as uuidv4 } from "uuid";
 
-export default function PreviewProjectUI(props: IPropsPreviewProjectUI) {
+interface PropsPreviewProject {
+  data?: Pick<IQuery, "fetchProject">;
+  setDetailModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function PreviewProjectUI(props: PropsPreviewProject) {
+  const xmasDay: Date | null = props.data?.fetchProject.recruitDate
+    ? new Date(props.data?.fetchProject.recruitDate)
+    : null;
+  const now: Date | null = new Date();
+  const gap = Number(xmasDay) - Number(now);
+  const day = Math.floor(gap / (1000 * 60 * 60 * 24));
+
   return (
-    <S.Wrapper>
+    <S.Wrapper id="detail__modal">
       <S.Modal>
         <S.ImgBox>
-          <S.Img src="/img/preview/ProjectDetail.png" />
-          <img src="/img/preview/Xmark.svg" className="Xmark" />
+          {props.data?.fetchProject.imgUrl &&
+          !props.data?.fetchProject.imgUrl.includes(
+            "cdn-cashy-static-assets.lucidchart.com/"
+          ) ? (
+            <S.Img
+              src={`https://storage.googleapis.com/${props.data?.fetchProject.imgUrl}`}
+              alt={props.data?.fetchProject.name}
+            />
+          ) : (
+            <S.Img src={props.data?.fetchProject.imgUrl} />
+          )}
+          <S.OffButton
+            onClick={() => {
+              props.setDetailModal(false);
+              document
+                .querySelector("#__next")
+                ?.classList.remove("projectdetalon");
+            }}
+          >
+            <S.Img
+              src="/img/down-arrow.svg"
+              className="Xmark"
+              alt="down-arrow"
+            />
+          </S.OffButton>
         </S.ImgBox>
         <S.TitleBox>
           <div>
-            <S.Dday>
-              <span>D-4</span>
-            </S.Dday>
+            <SquareTag
+              bgColor={day <= 0 ? "#ccc" : "#3894FF"}
+              size={1}
+              name={day <= 0 ? "마감" : `D-${day}`}
+            />
             <S.Func>
               <img src="/img/preview/Heart.svg" />
             </S.Func>
           </div>
           <S.Title>
-            <span>자율주행자동차 어플</span>
+            <span>{props.data?.fetchProject.name}</span>
           </S.Title>
           <S.Remarks>
-            <span>long established fact</span>
+            <span>{props.data?.fetchProject.intro}</span>
           </S.Remarks>
           <S.TagBox>
-            <SquareTag name="모빌리티" size={12} bgColor="#ccc" />
-            <SquareTag name="자율주행" size={12} bgColor="#ccc" />
+            <SquareTag name="금융" size={1} bgColor="#ccc" />
           </S.TagBox>
         </S.TitleBox>
-        <S.ProjectInfoBox>
-          {props.ProjectInfoList.map((el) => (
-            <S.InfoBox key={uuidv4()}>
-              <S.InfoName>{el.name}</S.InfoName>
-              <S.InfoContents>{el.value}</S.InfoContents>
-            </S.InfoBox>
-          ))}
-        </S.ProjectInfoBox>
+        <S.ProjectListInfo>
+          <li>
+            <ProjectInfoKey>팀장</ProjectInfoKey>
+            <ProjectInfoValue>제이든</ProjectInfoValue>
+          </li>
+          <li>
+            <ProjectInfoKey>팀원</ProjectInfoKey>
+            <ProjectInfoValue>지호, 마이클, 톰, 민수</ProjectInfoValue>
+          </li>
+          <li>
+            <ProjectInfoKey>활동 지역</ProjectInfoKey>
+            <ProjectInfoValue>서울 강남구</ProjectInfoValue>
+          </li>
+        </S.ProjectListInfo>
         <S.TeamInfoBox>
           <S.InfoName>2명 구인 중</S.InfoName>
           <S.WantedBox>
-            <S.ProfileBox>
-              <CircleTag size={1} name="디자인" bgColor="#a3a3a3" margin={0} />
-              <S.ProfileInfo>
-                <S.UserInfo>
-                  <S.UserPosition>UXUI디자이너</S.UserPosition>
-                  <S.UserCount>1명 모집중</S.UserCount>
-                </S.UserInfo>
-                <S.UserImg>
-                  <img src="/img/preview/user1.png" />
-                </S.UserImg>
-              </S.ProfileInfo>
-            </S.ProfileBox>
-            <S.ProfileBox>
-              <CircleTag size={1} name="디자인" bgColor="#a3a3a3" margin={0} />
-              <S.ProfileInfo>
-                <S.UserInfo>
-                  <S.UserPosition>ios 개발자</S.UserPosition>
-                  <S.UserCount>1명 모집중</S.UserCount>
-                </S.UserInfo>
-                <S.UserImg>
-                  <img src="/img/preview/user2.png" />
-                </S.UserImg>
-              </S.ProfileInfo>
-            </S.ProfileBox>
+            {new Array(2).fill(1).map((_) => {
+              return (
+                <S.ProfileBox key={uuidv4()}>
+                  <div>
+                    <img src="/img/preview/user1.png" />
+                    <div>UX 디자이너</div>
+                  </div>
+                  <div>
+                    <span>1</span>명 모집중
+                  </div>
+                </S.ProfileBox>
+              );
+            })}
           </S.WantedBox>
         </S.TeamInfoBox>
-        <S.ButtonBox>
-          <S.DetailBtn>상세 설명</S.DetailBtn>
-          <S.QnABtn>Q&A</S.QnABtn>
-        </S.ButtonBox>
+        <S.DescriptionBox>
+          <h3>상세 설명</h3>
+          <div>{props.data?.fetchProject.description}</div>
+        </S.DescriptionBox>
         <S.SubmitBox>
           <SubmitButton btnvalue="팀플 참여하기" />
         </S.SubmitBox>

@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
+import { MouseEvent, useCallback, useState } from "react";
 import ProjectListUI from "./projectList.presenter";
 
 const FETCH_PROJECTS = gql`
@@ -14,19 +14,23 @@ const FETCH_PROJECTS = gql`
 `;
 
 export default function ProjectList() {
-  const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_PROJECTS, {
     variables: {
       page: 1,
     },
   });
-  const onDetail = (e) => {
-    e.preventDefault();
-    router.push(`/project/list/${e.currentTarget.id}`);
-  };
+
+  const [detailModal, setDetailModal] = useState(false);
+  const [detailId, setDetailId] = useState("");
+
+  const onDetail = useCallback((e: MouseEvent<HTMLDivElement>) => {
+    setDetailId(e.currentTarget.id);
+    setDetailModal(true);
+    document.querySelector("#__next")?.classList.add("projectdetalon");
+  }, []);
+
   const onLoadMore = () => {
     if (!data) return;
-
     fetchMore({
       variables: { page: Math.ceil(data.fetchProjects.length / 12) + 1 },
       updateQuery: (prev, { fetchMoreResult }) => {
@@ -44,6 +48,13 @@ export default function ProjectList() {
   };
 
   return (
-    <ProjectListUI data={data} onLoadMore={onLoadMore} onDetail={onDetail} />
+    <ProjectListUI
+      data={data}
+      onLoadMore={onLoadMore}
+      onDetail={onDetail}
+      detailModal={detailModal}
+      setDetailModal={setDetailModal}
+      detailId={detailId}
+    />
   );
 }

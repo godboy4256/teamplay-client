@@ -5,31 +5,32 @@ import * as S from "./main.styles";
 import { Wrapper } from "../../../commons/styles/commonStyls";
 
 export default function MainPage() {
-    return (
-        <S.MainBox>
-            <MainSlide />
-            <Wrapper paddingTop={0}>
-            <S.MainTop>
-                <S.ContentsHeader>
-                    <h3>
-                        제이슨님,<br />
-                        이런 프로젝트는 어떠세요?💡
-                    </h3>
-                    <button>{"더보기 >"}</button>
-                </S.ContentsHeader>
-                <MultiSlide />
-            </S.MainTop>
-            <S.MainBottom>
-                <S.ContentsHeader>
-                    <h3>
-                        팀원을 구해요
-                        <img src="../img/req.svg" alt="req title" />
-                    </h3>
-                    <button>{"더보기 >"}</button>
-                </S.ContentsHeader>
-                <MultiSlide2 />
-            </S.MainBottom>
-            </Wrapper>
-        </S.MainBox>
-    );
+  return (
+    <S.MainBox>
+      <MainSlide />
+      <Wrapper paddingTop={0}>
+        <S.MainTop>
+          <S.ContentsHeader>
+            <h3>
+              제이슨님,
+              <br />
+              이런 프로젝트는 어떠세요?💡
+            </h3>
+            <button>{"더보기 >"}</button>
+          </S.ContentsHeader>
+          <MultiSlide />
+        </S.MainTop>
+        <S.MainBottom>
+          <S.ContentsHeader>
+            <h3>
+              팀원을 구해요
+              <img src="../img/req.svg" alt="req title" />
+            </h3>
+            <button>{"더보기 >"}</button>
+          </S.ContentsHeader>
+          <MultiSlide2 />
+        </S.MainBottom>
+      </Wrapper>
+    </S.MainBox>
+  );
 }
