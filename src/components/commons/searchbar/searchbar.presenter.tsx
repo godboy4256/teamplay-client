@@ -12,11 +12,7 @@ export default function SearchBarUI(props: IPropsSearchBarUI) {
       <S.SearchBarTop>
         <img src="../img/filter.svg" alt="search bar filter" />
         <div>
-          <S.SearchInput
-            onSearchbar={props.isSearchBar}
-            type="text"
-            placeholder="검색어를 입력해주세요."
-          />
+          <S.SearchInput type="text" placeholder="검색어를 입력해주세요." />
           <button onClick={props.onClickSearchOn}>
             <img src="../img/search.svg" alt="search icon" />
           </button>

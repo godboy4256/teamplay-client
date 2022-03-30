@@ -1,10 +1,24 @@
+import { memo, MouseEvent } from "react";
 import CircleTag from "../../../commons/tags/commons/circleTag";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import SquareTag from "../../../commons/tags/commons/squareTag";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 
 const ProjectListItem = styled.div`
   width: 100%;
+  cursor: pointer;
+  & > div {
+    border-radius: 12px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    transition: 0.4s ease-in-out;
+    &:hover {
+      border-color: #3894ff;
+      transform: scale(1.01);
+    }
+  }
   @media (min-width: 1200px) {
     width: 25%;
     padding: 5px 10px;
@@ -16,15 +30,19 @@ const ProjectListItem = styled.div`
       border: 1px solid #ccc;
     }
   }
+  @media ${breakPoints.tablet} {
+    width: 49%;
+  }
 `;
 
 const ProjectListItemTop = styled.div`
   width: 100%;
-  height: 7.813rem;
+  height: 2vw;
   padding: 15px 13px 100px;
   color: #fff;
   position: relative;
   overflow: hidden;
+
   & > img {
     width: 100%;
     position: absolute;
@@ -41,6 +59,9 @@ const ProjectListItemTop = styled.div`
     top: 0;
     left: 0;
     z-index: 1;
+  }
+  @media ${breakPoints.web} {
+    height: 1.765rem;
   }
 `;
 
@@ -62,11 +83,11 @@ interface IPropsProjectCard {
   id?: string;
   imgUrl?: string;
   name?: string | undefined;
-  types?: string;
-  recruitDate?: string;
+  recruitDate?: string | undefined;
+  onDetail: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function ProjectCard(props: IPropsProjectCard) {
+const ProjectCard = memo((props: IPropsProjectCard) => {
   const xmasDay: Date | null = props.recruitDate
     ? new Date(props.recruitDate)
     : null;
@@ -113,4 +134,6 @@ export default function ProjectCard(props: IPropsProjectCard) {
       </div>
     </ProjectListItem>
   );
-}
+});
+
+export default ProjectCard;
