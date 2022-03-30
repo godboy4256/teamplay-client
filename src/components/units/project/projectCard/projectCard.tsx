@@ -1,102 +1,116 @@
 import CircleTag from "../../../commons/tags/commons/circleTag";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
+import SquareTag from "../../../commons/tags/commons/squareTag";
 
 const ProjectListItem = styled.div`
-    @media (min-width: 1200px) {
-            width: 25%;
-            float: left;
-            padding: 5px 10px;
-        & > div{
-            border-radius: 12px;
-            margin-bottom: 25px;
-            overflow:hidden;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
-        }
+  width: 100%;
+  @media (min-width: 1200px) {
+    width: 25%;
+    padding: 5px 10px;
+    & > div {
+      border-radius: 12px;
+      margin-bottom: 25px;
+      overflow: hidden;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #ccc;
     }
-`
+  }
+`;
 
 const ProjectListItemTop = styled.div`
-    width:100%;
-    height: 7.813rem;
-    padding:15px 13px 100px;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    & >img{
-        width: 100%;
-        position: absolute;
-        top:50%;
-        left:50%;
-        transform: translate(-50%,-50%);
-    };
-    & >div{
-        padding:15px 13px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        position: absolute;
-        top:0;
-        left:0;
-        z-index:1;
-        & > span{
-            display: inline-block;
-            background-color: #595959;
-            border-radius: 0.75rem;
-            padding: 5px 10px;
-            color:#fff;
-        }
-    }
-`
+  width: 100%;
+  height: 7.813rem;
+  padding: 15px 13px 100px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  & > img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  & > div {
+    padding: 15px 13px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+`;
 
 const ProjectListItemBottom = styled.div`
-    padding:15px 13px;
-    & > h3{
-        padding-bottom:7px;
-    }
-`
+  padding: 15px 13px;
+  & > h3 {
+    padding-bottom: 7px;
+  }
+`;
 
 const ProjectMembers = styled.div`
-    margin-top: 7px;
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-`
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+`;
 
-interface IPropsProjectCard{
-    imgUrl:string
-    name:string | undefined
-    types:string
-    redruitDate:string
-    member?:string
+interface IPropsProjectCard {
+  id?: string;
+  imgUrl?: string;
+  name?: string | undefined;
+  types?: string;
+  recruitDate?: string;
 }
 
-export default function ProjectCard(props:IPropsProjectCard) {
-    return (
-                <ProjectListItem>
-                    <div>
-                    <ProjectListItemTop>
-                        <div>
-                            <span>{props.redruitDate}</span>
-                            <img src="../img/like.svg" alt="like icon" />
-                        </div>
-                        <img src={props.imgUrl} alt={props.name}/>
-                    </ProjectListItemTop>
-                    <ProjectListItemBottom>
-                        <h3>{props.name}</h3>
-                        <CircleTag
-                            key={uuidv4()}
-                            size={0.571}
-                            name={props.types}
-                            bgColor="#C4C4C4"
-                            margin={0}
-                        />
-                        <ProjectMembers>
-                            <img src="../img/big_member.svg" alt="members icon" />
-                            <span>{props.member}</span>
-                        </ProjectMembers>
-                    </ProjectListItemBottom>
-                    </div>
-                </ProjectListItem>
-    );
+export default function ProjectCard(props: IPropsProjectCard) {
+  const xmasDay: Date | null = props.recruitDate
+    ? new Date(props.recruitDate)
+    : null;
+  const now: Date | null = new Date();
+  const gap = Number(xmasDay) - Number(now);
+  const day = Math.floor(gap / (1000 * 60 * 60 * 24));
+
+  return (
+    <ProjectListItem id={props.id} onClick={props.onDetail}>
+      <div>
+        <ProjectListItemTop>
+          <div>
+            <SquareTag
+              bgColor={day <= 0 ? "#ccc" : "#3894FF"}
+              size={1}
+              name={day <= 0 ? "마감" : `D-${day}`}
+            />
+            {/* <img src="../img/like.svg" alt="like icon" /> */}
+          </div>
+          {props.imgUrl &&
+          !props.imgUrl.includes("cdn-cashy-static-assets.lucidchart.com/") ? (
+            <img
+              src={`https://storage.googleapis.com/${props.imgUrl}`}
+              alt={props.name}
+            />
+          ) : (
+            <img src={props.imgUrl} />
+          )}
+        </ProjectListItemTop>
+        <ProjectListItemBottom>
+          <h3>{props.name}</h3>
+          <CircleTag
+            key={uuidv4()}
+            size={0.571}
+            name={"기타"}
+            bgColor="#C4C4C4"
+            margin={0}
+          />
+          <ProjectMembers>
+            <img src="../img/big_member.svg" alt="members icon" />
+            <span>1/3</span>
+          </ProjectMembers>
+        </ProjectListItemBottom>
+      </div>
+    </ProjectListItem>
+  );
 }

@@ -1,5 +1,5 @@
 import { Wrapper } from "../../../../commons/styles/commonStyls";
-import Date from "../../../commons/inputs/component/date/date.container";
+import DateInput from "../../../commons/inputs/component/date/date.container";
 import ImageUpload from "../../../commons/inputs/component/imageUpload/imageUpload.container";
 import LocationSelect from "./select/locationselect.container";
 import SubmitButton from "../../../commons/inputs/component/submitbutton/submit.container";
@@ -81,7 +81,7 @@ export default function ProjectUI() {
                         optionList={positionList}
                         addBox={true}
                     />
-                    <Date
+                    <DateInput
                         label="모집 기간"
                         setValues={setRecruitDate}
                     />

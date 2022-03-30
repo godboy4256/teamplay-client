@@ -23,10 +23,6 @@ export const HeaderStyle = styled.header`
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #ccc;
-  /* position: fixed;
-    top:0;
-    left:0;
-    z-index: 100; */
   & > div {
     width: 100%;
     max-width: 1200px;

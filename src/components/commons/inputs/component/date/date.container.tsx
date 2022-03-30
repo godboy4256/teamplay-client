@@ -19,7 +19,7 @@ interface IPropsDate {
     setValues?: Dispatch<SetStateAction<string>>
 }
 
-export default function Date(props: IPropsDate) {
+export default function DateInput(props: IPropsDate) {
     return (
         <div>
             <Label>{props.label}</Label>
