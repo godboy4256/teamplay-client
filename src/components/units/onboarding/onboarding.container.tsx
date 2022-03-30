@@ -171,7 +171,7 @@ export default function OnBoarding() {
     if (career === "대학생") careerId = "STUDENT";
     if (career === "취준생") careerId = "JOBSEEKER";
     if (career === "신입~2년차") careerId = "NEWCOMER";
-
+    console.log(positionId);
     try {
       await updateUserByOnboard({
         variables: {
