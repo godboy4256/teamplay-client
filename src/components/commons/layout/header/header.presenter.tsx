@@ -38,7 +38,7 @@ export default function HeaderUI(props: IPropsHeaderUI) {
                 </li>
                 <li
                   onClick={onClickHeaderRouting}
-                  id="/profile"
+                  id="/recruit"
                   className="nav__list"
                 >
                   팀원
