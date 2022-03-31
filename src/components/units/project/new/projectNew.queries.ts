@@ -1,46 +1,36 @@
-import { gql } from '@apollo/client';
-
+import { gql } from "@apollo/client";
 
 export const CREARE_PROJECT = gql`
-    mutation createProject($createProjectInput:CreateProjectInput!){
-        createProject(createProjectInput:$createProjectInput){
-            id
-        }
+  mutation createProject($createProjectInput: CreateProjectInput!) {
+    createProject(createProjectInput: $createProjectInput) {
+      id
     }
-`
+  }
+`;
 
 export const FETCH_POSITIONS = gql`
-    query fetchPositions{
-        fetchPositions{
-            id
-            name
-        }
+  query fetchPositions {
+    fetchPositions {
+      id
+      name
     }
-`
+  }
+`;
 
 export const FETCH_TYPES = gql`
-    query fetchTypes{
-        fetchTypes{
-            id
-            name
-        }
+  query fetchTypes {
+    fetchTypes {
+      id
+      name
     }
-`
+  }
+`;
 
 export const FETCH_LOCATION = gql`
-    query fetchLocations{
-        fetchLocations{
-            id
-            name
-        }
+  query fetchLocations {
+    fetchLocations {
+      id
+      name
     }
-`
-
-export const FETCH_PLATFORMS = gql`
-    query fetchPlatforms{
-        fetchPlatforms{
-            id
-            name
-        }
-    }
-`
+  }
+`;

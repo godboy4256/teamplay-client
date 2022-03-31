@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 
 export const Label = styled.label`
-    display: block;
-    padding:40px 0 8px;
+  display: block;
+  padding: 40px 0 8px;
+  font-size: 1.143rem;
+  & > div {
     font-size: 1.143rem;
-`
+  }
+`;

@@ -7,23 +7,18 @@ import {
   FETCH_POSITIONS,
   FETCH_LOCATION,
   FETCH_TYPES,
-  FETCH_PLATFORMS,
   CREARE_PROJECT,
 } from "./projectNew.queries";
-// import { IProjectContext } from "./projectNew.types";
 
 export const ProjectContext = createContext<any>({});
 
 export default function Project() {
   const router = useRouter();
-
   const { data: positionData } =
     useQuery<Pick<IQuery, "fetchPositions">>(FETCH_POSITIONS);
   const { data: locationData } =
     useQuery<Pick<IQuery, "fetchLocations">>(FETCH_LOCATION);
   const { data: typesData } = useQuery<Pick<IQuery, "fetchTypes">>(FETCH_TYPES);
-  const { data: platformsData } =
-    useQuery<Pick<IQuery, "fetchPlatforms">>(FETCH_PLATFORMS);
 
   const methodList = [
     { name: "대면", id: "MEET" },
@@ -34,7 +29,6 @@ export default function Project() {
   const positionList = positionData?.fetchPositions;
   const locationList = locationData?.fetchLocations;
   const typeList = typesData?.fetchTypes;
-  const platformList = platformsData?.fetchPlatforms;
 
   const [createProject] = useMutation(CREARE_PROJECT);
   const [positionCount, setPositionCount] = useState(1);
@@ -48,43 +42,126 @@ export default function Project() {
   const [method, setMheod] = useState("");
   const [recruitDate, setRecruitDate] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [skill, setSkill] = useState("");
   const [description, setDescription] = useState("");
   const [numbers, setNumbers] = useState([0]);
   const [typeId, setTypeId] = useState("");
   const [locationId, setLocationId] = useState("");
   const [positionIds, setPositionIds] = useState([""]);
-  const [platformIds, setPlatformIds] = useState([""]);
+
+  const [validName, setValidName] = useState(false);
+  const [validTeamName, setValidTeamName] = useState(false);
+  const [validIntro, setValidIntro] = useState(false);
+  const [validMethod, setValidMethod] = useState(false);
+  const [validTypeId, setValidTypeId] = useState(false);
+  const [validLocationId, setValidLocationId] = useState(false);
+  const [validNumbers, setValidNumbers] = useState(false);
 
   const onSubmitProject = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const result = await createProject({
-        variables: {
-          createProjectInput: {
-            name,
-            teamname,
-            intro,
-            method,
-            recruitDate,
-            imgUrl,
-            skill,
-            description,
-            numbers,
-            typeId,
-            locationId,
-            positionIds,
-            platformIds,
-          },
-        },
-      });
-      console.log(result);
-      alert("프로젝트 추가 완료");
-      router.push("/project/list");
-    } catch (error) {
-      console.log(error);
+    if (window) {
+      const ui = Number(
+        document?.querySelector<HTMLInputElement>("[class='0position0']")?.value
+      );
+      const ux = Number(
+        document?.querySelector<HTMLInputElement>("[class='1position1']")?.value
+      );
+      const planner = Number(
+        document?.querySelector<HTMLInputElement>("[class='2position2']")?.value
+      );
+      const backend = Number(
+        document?.querySelector<HTMLInputElement>("[class='3position3']")?.value
+      );
+      const fullstack = Number(
+        document?.querySelector<HTMLInputElement>("[class='4position4']")?.value
+      );
+      const front = Number(
+        document?.querySelector<HTMLInputElement>("[class='5position5']")?.value
+      );
+
+      if (name === "") {
+        setValidName(true);
+      } else {
+        setValidName(false);
+      }
+
+      if (teamname === "") {
+        setValidTeamName(true);
+      } else {
+        setValidTeamName(false);
+      }
+
+      if (intro === "") {
+        setValidIntro(true);
+      } else {
+        setValidIntro(false);
+      }
+
+      if (method === "") {
+        setValidMethod(true);
+      } else {
+        setValidMethod(false);
+      }
+
+      if (typeId === "") {
+        setValidTypeId(true);
+      } else {
+        setValidTypeId(false);
+      }
+
+      if (locationId === "") {
+        setValidLocationId(true);
+      } else {
+        setValidLocationId(false);
+      }
+
+      if (ui + ux + planner + backend + fullstack + front === 0) {
+        setValidNumbers(true);
+      } else {
+        setValidNumbers(false);
+      }
+
+      if (
+        name !== "" &&
+        teamname !== "" &&
+        intro !== "" &&
+        method !== "" &&
+        typeId !== "" &&
+        locationId !== "" &&
+        ui + ux + planner + backend + fullstack + front > 0
+      ) {
+        try {
+          const result = await createProject({
+            variables: {
+              createProjectInput: {
+                name,
+                teamname,
+                intro,
+                method,
+                recruitDate,
+                imgUrl,
+                description,
+                numbers: [ui, ux, planner, backend, fullstack, front],
+                typeId,
+                skill: " ",
+                platformIds: [""],
+                locationId,
+                positionIds: [""],
+              },
+            },
+          });
+          console.log(result);
+          alert("프로젝트 추가 완료");
+          router.push("/project/list");
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        window && window.scrollTo(0, 0);
+      }
     }
   };
+
+  console.log(method, typeId);
 
   const positonMinus = () => {
     if (positionCount === 1) return;
@@ -133,23 +210,30 @@ export default function Project() {
     positionList,
     locationList,
     typeList,
-    platformList,
     methodList,
     setName,
     setTeamName,
     setIntro,
-    setSkill,
     setRecruitDate,
     setDescription,
     setTypeId,
     setMheod,
+    setPositionIds,
     setLocationId,
     handleSelect2,
     selected2,
     numbers,
-    setPlatformIds,
     setImgUrl,
     setNumbers,
+    positionIds,
+    name,
+    validName,
+    validTeamName,
+    validIntro,
+    validMethod,
+    validTypeId,
+    validLocationId,
+    validNumbers,
   };
 
   return (

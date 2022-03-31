@@ -85,6 +85,7 @@ interface IPropsProjectCard {
   name?: string | undefined;
   recruitDate?: string | undefined;
   onDetail: (e: MouseEvent<HTMLDivElement>) => void;
+  type?: string;
 }
 
 const ProjectCard = memo((props: IPropsProjectCard) => {
@@ -122,7 +123,7 @@ const ProjectCard = memo((props: IPropsProjectCard) => {
           <CircleTag
             key={uuidv4()}
             size={0.571}
-            name={"기타"}
+            name={props.type ? props.type : "기타"}
             bgColor="#C4C4C4"
             margin={0}
           />

@@ -5,109 +5,123 @@ import LocationSelect from "./select/locationselect.container";
 import SubmitButton from "../../../commons/inputs/component/submitbutton/submit.container";
 import TextArea from "../../../commons/inputs/component/textarea/textarea.container";
 import TypingInput from "../../../commons/inputs/component/typinginput/typinginput.container";
-import * as S from "./projectNew.styles";
 import TagBox from "./tagbox/TagBox";
 import { useContext } from "react";
 import { ProjectContext } from "./projectNew.container";
-import PositionSelect from "./select/positionselect.container";
-
+import RecuriteSetting from "./select/recruite.container";
+import { useRouter } from "next/router";
+import * as S from "./projectNew.styles";
 
 export default function ProjectUI() {
-    const {
-        onSubmitProject,
-        positionList,
-        locationList,
-        typeList,
-        platformList,
-        methodList,
-        setName,
-        setTeamName,
-        setIntro,
-        setSkill,
-        setTypeId,
-        setMheod,
-        setDescription,
-        setRecruitDate,
-        setPlatformIds,
-        setImgUrl
-    } = useContext(ProjectContext)
-    return (
-        <>
-            <S.ProjectTop>
-                <h2>새로운 프로젝트를 생성합니다!</h2>
-                <button>
-                    <img src="../img/close.svg" alt="detail close" />
-                </button>
-            </S.ProjectTop>
-            <Wrapper paddingTop="20px">
-                <form onSubmit={onSubmitProject}>
-                    <TypingInput
-                        label="프로젝트 이름"
-                        type="text"
-                        placeholder="프로젝트 이름을 입력해주세요."
-                        setValues={setName}
-                    />
-                    <TypingInput
-                        label="팀 이름"
-                        type="text"
-                        placeholder="프로젝트를 진행할 팀의 이름을 입력해주세요."
-                        setValues={setTeamName}
-                    />
-                    <TypingInput
-                        label="소개"
-                        type="text"
-                        placeholder="프로젝트를 간단하게 소개해주세요."
-                        setValues={setIntro}
-                    />
-                    <TagBox
-                        label="분야"
-                        list={typeList}
-                        checkBox={false}
-                        setValues={setTypeId}
-                    />
-                    <LocationSelect
-                        label="활동 지역"
-                        optionList={locationList}
-                        addBox={false}
-                    />
-                    <TagBox
-                        label="진행 방식"
-                        list={methodList}
-                        checkBox={false}
-                        setValues={setMheod}
-                    />
-                    <PositionSelect
-                        label="모집 인원"
-                        optionList={positionList}
-                        addBox={true}
-                    />
-                    <DateInput
-                        label="모집 기간"
-                        setValues={setRecruitDate}
-                    />
-                    <ImageUpload 
-                        label="대표 이미지" 
-                        setValues={setImgUrl}
-                    />
-                    <TagBox
-                        label="출시 플랫폼"
-                        list={platformList}
-                        checkBox={true}
-                        setValues={setPlatformIds}
-                    />
-                    <TypingInput
-                        label="기술/언어"
-                        type="text"
-                        placeholder="사용될 기술을 적어주세요."
-                        setValues={setSkill}
-                    />
-                    <TextArea
-                        label="프로젝트 설명"
-                        setValues={setDescription}
-                    />
-                    <SubmitButton btnvalue="작성 완료" />
-                </form>
-            </Wrapper>
-        </>
-    )
+  const {
+    onSubmitProject,
+    positionList,
+    locationList,
+    typeList,
+    methodList,
+    setName,
+    setTeamName,
+    setIntro,
+    setTypeId,
+    setMheod,
+    setDescription,
+    setRecruitDate,
+    setImgUrl,
+    validName,
+    validTeamName,
+    validIntro,
+    validMethod,
+    validTypeId,
+    validLocationId,
+    validNumbers,
+    onchangeValue,
+  } = useContext(ProjectContext);
+
+  const router = useRouter();
+
+  return (
+    <S.PiojectNewStyle>
+      <S.ProjectTop>
+        <Wrapper paddingTop={0}>
+          <h2>새로운 프로젝트를 생성합니다!</h2>
+        </Wrapper>
+      </S.ProjectTop>
+      <Wrapper paddingTop="20px">
+        <form onSubmit={onSubmitProject}>
+          <TypingInput
+            label="프로젝트 이름 *"
+            type="text"
+            placeholder="프로젝트 이름을 입력해주세요."
+            setValues={setName}
+            id="name"
+            valid={validName}
+            errorMessage="프로젝트 이름을 한 글자 이상 입력해야 합니다."
+          />
+          <TypingInput
+            label="팀 이름 *"
+            type="text"
+            placeholder="프로젝트를 진행할 팀의 이름을 입력해주세요."
+            setValues={setTeamName}
+            id="teamname"
+            valid={validTeamName}
+            errorMessage="팀 이름을 입력을 한 글자 이상 입력해야 합니다."
+          />
+          <TypingInput
+            label="소개 *"
+            type="text"
+            placeholder="프로젝트를 간단하게 소개해주세요."
+            setValues={setIntro}
+            id="intro"
+            valid={validIntro}
+            errorMessage="프로젝트 소개를 한 글자 이상 입력해야 합니다."
+          />
+          <TagBox
+            label="분야 *"
+            list={typeList}
+            checkBox={false}
+            setValues={setTypeId}
+            valid={validTypeId}
+            errorMessage="프로젝트 분야를 선택해야 합니다."
+          />
+          <LocationSelect
+            label="활동 지역 *"
+            optionList={locationList}
+            addBox={false}
+            valid={validLocationId}
+            errorMessage="활동지역을 선택해야 합니다."
+          />
+          <TagBox
+            label="진행 방식 *"
+            list={methodList}
+            checkBox={false}
+            setValues={setMheod}
+            valid={validMethod}
+            errorMessage="진행 방식을 선택해야 합니다."
+          />
+          <RecuriteSetting
+            label="모집 인원 *"
+            optionList={positionList}
+            addBox={true}
+            valid={validNumbers}
+            errorMessage="어떤 직군이든 한 명이상 모집해야 합니다."
+            onchangeValue={onchangeValue}
+          />
+          <DateInput label="모집 기간" setValues={setRecruitDate} />
+          <ImageUpload label="대표 이미지" setValues={setImgUrl} />
+          <TextArea label="프로젝트 설명" setValues={setDescription} />
+          <S.ProjectNewButtons>
+            <SubmitButton btnvalue="작성 완료" bgColor={"#3894FF"} />
+            <SubmitButton
+              type="button"
+              btnvalue="작성 취소"
+              bgColor="#ccc"
+              onClick={() => {
+                router.push("/project/list");
+              }}
+            />
+          </S.ProjectNewButtons>
+        </form>
+      </Wrapper>
+    </S.PiojectNewStyle>
+  );
 }

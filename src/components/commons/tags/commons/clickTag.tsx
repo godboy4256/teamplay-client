@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { MouseEvent } from "react";
 
 interface IPropsDiv {
   marginBottom: number;
@@ -7,7 +8,6 @@ interface IPropsDiv {
 
 const Div = styled.div`
   display: inline-block;
-
   padding: 10px 20px;
   margin-right: 12px;
   margin-bottom: ${(props: IPropsDiv) => `${props.marginBottom}px`};
@@ -31,8 +31,10 @@ interface IPropsClickTag {
   name: string;
   marginBottom: number;
   isClick: boolean | string | undefined;
-  id?: string;
-  onClick: ((name: string) => () => void) | undefined;
+  id?: string | undefined;
+  onClick:
+    | ((name: string) => (e: MouseEvent<HTMLDivElement>) => void)
+    | undefined;
 }
 
 export default function ClickTag(props: IPropsClickTag) {

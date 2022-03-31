@@ -40,6 +40,7 @@ export default function ProjectListUI(props: IPropsProjectListUI) {
                     name={el.name}
                     imgUrl={el.imgUrl}
                     recruitDate={el.recruitDate}
+                    type={el.type.name}
                     onDetail={props.onDetail}
                   />
                 );
