@@ -1,8 +1,26 @@
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { createContext, useState } from "react";
+import { IMutation } from "../../../../commons/types/generated/types";
+import useMoveToPage from "../../hooks/useMoveToPage";
 import HeaderUI from "./header.presenter";
+import { LOGOUT } from "./header.queries";
+import { IHeaderContext } from "./header.types";
+
+export const HeaderContext = createContext<IHeaderContext>({});
 
 export default function Header() {
+  const {
+    moveToLogin,
+    moveToSignup,
+    moveToProfile,
+    moveToMyProject,
+    moveToChatting,
+  } = useMoveToPage();
+  const [logout] = useMutation<Pick<IMutation, "logout">>(LOGOUT);
   const router = useRouter();
+  const [position, setPosition] = useState(-80);
+  const [isView, setIsView] = useState(false);
   const isHiddenNav = [
     "/project/new",
     "/login",
@@ -11,5 +29,42 @@ export default function Header() {
     "/chatting/list",
   ];
 
-  return <HeaderUI isHiddenNav={isHiddenNav.includes(router.asPath)} />;
+  const onClickMovetoPage = (name: string) => () => {
+    if (name === "login") moveToLogin();
+
+    if (name === "signup") moveToSignup();
+
+    if (name === "chatting") moveToChatting();
+
+    if (name === "profile") moveToProfile();
+
+    if (name === "myProject") moveToMyProject();
+
+    setPosition(-80);
+  };
+
+  const onClickLogout = () => {
+    logout();
+    location.reload();
+  };
+
+  const onCliclsetPosition = () => {
+    if (position === -80) setPosition(0);
+    if (position === 0) setPosition(-80);
+    setIsView((prev) => !prev);
+  };
+
+  const value = {
+    position,
+    isView,
+    onCliclsetPosition,
+    onClickLogout,
+    onClickMovetoPage,
+  };
+
+  return (
+    <HeaderContext.Provider value={value}>
+      <HeaderUI isHiddenNav={isHiddenNav.includes(router.asPath)} />
+    </HeaderContext.Provider>
+  );
 }

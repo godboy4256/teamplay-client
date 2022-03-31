@@ -7,7 +7,7 @@ import {
 } from "../../../commons/types/generated/types";
 import useMoveToPage from "../../commons/hooks/useMoveToPage";
 import LoginUI from "./login.presenter";
-import { LOGIN, LOGOUT } from "./login.queries";
+import { LOGIN } from "./login.queries";
 
 export default function Login() {
   const { setAccessToken, setIsLogin } = useContext(GlobalContext);
@@ -22,7 +22,6 @@ export default function Login() {
   const [login] = useMutation<Pick<IMutation, "login">, IMutationLoginArgs>(
     LOGIN
   );
-  const [logout] = useMutation<Pick<IMutation, "logout">>(LOGOUT);
 
   useEffect(() => {
     if (isView) setType("text");
@@ -58,10 +57,6 @@ export default function Login() {
     }
   };
 
-  const onClickLogout = () => {
-    logout();
-  };
-
   return (
     <LoginUI
       type={type}
@@ -69,7 +64,6 @@ export default function Login() {
       onClickSetIsView={onClickSetIsView}
       onChangeLoginInput={onChangeLoginInput}
       onClickSubmitLogin={onClickSubmitLogin}
-      onClickLogout={onClickLogout}
     />
   );
 }

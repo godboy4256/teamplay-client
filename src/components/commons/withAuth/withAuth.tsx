@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../../../pages/_app";
-import { getAccessToken } from "../../../commons/libraries/getAccessToken";
+import { getAccessToken } from "../../../commons/library/getAccessToken";
 
 // @ts-ignore
 export const withAuth = (Component) => (props) => {
