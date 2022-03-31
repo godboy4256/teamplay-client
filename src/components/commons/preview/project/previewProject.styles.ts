@@ -265,11 +265,9 @@ export const DetailBtn = styled.div`
 `;
 export const QnABtn = styled.div`
   padding: 0px 50px;
-
   font-weight: 400;
   font-size: 16px;
   line-height: 18px;
-
   color: #0d223a;
 `;
 

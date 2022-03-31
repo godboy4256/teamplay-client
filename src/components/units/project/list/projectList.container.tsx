@@ -9,6 +9,9 @@ const FETCH_PROJECTS = gql`
       name
       imgUrl
       recruitDate
+      type {
+        name
+      }
     }
   }
 `;

@@ -172,7 +172,7 @@ export const globalStyles = css`
   }
   #__next.projectdetalon {
     @media ${breakPoints.web} {
-      width: 70vw;
+      width: 70%;
       position: absolute;
       right: 0;
     }

@@ -70,7 +70,11 @@ export default function PreviewProjectUI(props: PropsPreviewProject) {
             <span>{props.data?.fetchProject.intro}</span>
           </S.Remarks>
           <S.TagBox>
-            <SquareTag name="금융" size={1} bgColor="#ccc" />
+            <SquareTag
+              name={props.data?.fetchProject?.type.name}
+              size={1}
+              bgColor="#ccc"
+            />
           </S.TagBox>
         </S.TitleBox>
         <S.ProjectListInfo>
@@ -110,7 +114,7 @@ export default function PreviewProjectUI(props: PropsPreviewProject) {
           <div>{props.data?.fetchProject.description}</div>
         </S.DescriptionBox>
         <S.SubmitBox>
-          <SubmitButton btnvalue="팀플 참여하기" />
+          <SubmitButton btnvalue="팀플 참여하기" bgColor="#3894ff" />
         </S.SubmitBox>
       </S.Modal>
     </S.Wrapper>

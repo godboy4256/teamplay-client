@@ -22,6 +22,9 @@ const FETCH_PROJECT = gql`
       imgUrl
       description
       method
+      type {
+        name
+      }
     }
   }
 `;
