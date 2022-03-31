@@ -3,12 +3,12 @@ import styled from "@emotion/styled";
 interface IPropsCircleTag {
   name: string;
   size: number;
-  bgColor: string;
+  bgColor: string | undefined;
   margin: number;
 }
 
 interface IPropsWrapper {
-  bgColor: string;
+  bgColor: string | undefined;
   margin: number;
   size: number;
 }

@@ -23,17 +23,14 @@ export const HeaderStyle = styled.header`
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #ccc;
-  /* position: fixed;
-    top:0;
-    left:0;
-    z-index: 100; */
-  & > div {
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-  }
+`;
+
+export const HeaderWrapper = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const HeaderTop = styled.div`
@@ -42,7 +39,7 @@ export const HeaderTop = styled.div`
   flex-direction: column;
   & h1 {
     padding: 12px 0;
-    @media (min-width: 1200px) {
+    @media ${breakPoints.web} {
       padding: 20px 0;
       margin-right: 50px;
     }
@@ -55,7 +52,7 @@ export const HeaderTop = styled.div`
       @media ${breakPoints.tablet} {
         width: 12.643rem;
       }
-      @media (min-width: 1200px) {
+      @media ${breakPoints.web} {
         width: 12.643rem;
       }
     }
@@ -81,18 +78,23 @@ export const HeaderNav = styled.nav`
     position: relative;
 
     padding: 12px 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 23px;
+    color: #999999;
 
     @media ${breakPoints.tablet} {
-      font-size: 15px;
+      font-size: 16px;
       padding: 23px 0;
     }
 
-    @media (min-width: 1200px) {
+    @media ${breakPoints.web} {
       font-size: 16px;
       padding: 23px 0;
     }
   }
   & ul > li.nav__list.active__page {
+    color: #0d223a;
     ::after {
       display: block;
       content: " ";
@@ -108,7 +110,7 @@ export const HeaderNav = styled.nav`
 `;
 
 export const Logo = styled.div`
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1;
 `;
@@ -118,24 +120,86 @@ export const Setting = styled.div`
   padding-top: 12px;
   display: flex;
   align-items: center;
+
   & button {
     line-height: 0;
     margin-left: 7px;
-  }
-  & .login-signup {
-    display: none;
     font-size: 14px;
+    font-weight: 500;
+    line-height: 23px;
+    color: #999999;
+  }
 
+  .toggle {
+    @media ${breakPoints.tablet} {
+      position: relative;
+    }
+
+    @media ${breakPoints.web} {
+      position: relative;
+    }
+  }
+
+  & .alam,
+  .toggle {
     @media ${breakPoints.tablet} {
       display: block;
     }
 
-    @media (min-width: 1200px) {
+    @media ${breakPoints.web} {
       display: block;
-      font-size: 15px;
     }
   }
-  @media (min-width: 1200px) {
+
+  & .login-signup {
+    display: none;
+
+    span {
+      font-size: 14px;
+      color: #999999;
+
+      @media ${breakPoints.tablet} {
+        font-size: 16px;
+      }
+
+      @media ${breakPoints.web} {
+        font-size: 16px;
+      }
+
+      :hover {
+        cursor: pointer;
+      }
+    }
+    @media ${breakPoints.tablet} {
+      display: block;
+    }
+
+    @media ${breakPoints.web} {
+      display: block;
+    }
+  }
+  @media ${breakPoints.web} {
     padding-top: 0;
+  }
+`;
+
+export const UserArvata = styled.div`
+  display: none;
+  width: 30px;
+  height: 30px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  @media ${breakPoints.tablet} {
+    display: block;
+  }
+
+  @media ${breakPoints.web} {
+    display: block;
   }
 `;

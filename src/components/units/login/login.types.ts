@@ -8,5 +8,4 @@ export interface IPropsLoginUI {
     name: string
   ) => (e: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmitLogin: () => void;
-  onClickLogout: () => void;
 }

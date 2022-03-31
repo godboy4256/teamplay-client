@@ -28,6 +28,7 @@ export default function OnBoardingSecondPage() {
                 <ClickTag
                   name={name}
                   marginBottom={16}
+                  id={""}
                   isClick={career && career === name && true}
                   onClick={onClickPushTag}
                 />

@@ -1,6 +1,40 @@
-import PreviewProjectUI from './previewProject.presenter'
+import { gql, useQuery } from "@apollo/client";
+import { Dispatch, SetStateAction } from "react";
+import {
+  IQuery,
+  IQueryFetchProjectArgs,
+} from "../../../../commons/types/generated/types";
+import PreviewProjectUI from "./previewProject.presenter";
 
-export default function PreviewProject() {
-    const ProjectInfoList = [{name: "팀장", value: "서울 강남구"}, {name: "팀장", value: "제이든"}, {name: "진행 단계", value: "23%"}, {name: "팀", value: "코드캠프 T.P.O."}];
-    return <PreviewProjectUI ProjectInfoList={ProjectInfoList}/>;
+interface PropsPreviewProject {
+  data?: Pick<IQuery, "fetchProject">;
+  setDetailModal: Dispatch<SetStateAction<boolean>>;
+  detailId: string;
+}
+
+const FETCH_PROJECT = gql`
+  query fetchProject($projectId: String!) {
+    fetchProject(projectId: $projectId) {
+      name
+      teamname
+      intro
+      recruitDate
+      imgUrl
+      description
+      method
+    }
+  }
+`;
+
+export default function PreviewProject(props: PropsPreviewProject) {
+  const { data } = useQuery<
+    Pick<IQuery, "fetchProject">,
+    IQueryFetchProjectArgs
+  >(FETCH_PROJECT, {
+    variables: {
+      projectId: props.detailId,
+    },
+  });
+
+  return <PreviewProjectUI data={data} setDetailModal={props.setDetailModal} />;
 }

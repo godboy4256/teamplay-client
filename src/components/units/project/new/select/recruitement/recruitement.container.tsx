@@ -3,15 +3,10 @@ import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ProjectContext } from "../../projectNew.container";
 
-interface IPropsEl {
-    name?: string
-    personnel?: number
-}
-
 interface IPropsRecruitmentList {
-    el: IPropsEl
+    el?: string
+    index: number
 }
-
 
 const RecruitmentList = styled.div`
     display: flex;
@@ -61,30 +56,30 @@ export default function Recruitment(props: IPropsRecruitmentList) {
         position,
         postionInclueds,
         setPosition,
-        setPostionInclueds
+        setPostionInclueds,
+        numbers
     } = useContext(ProjectContext)
 
 
-    const onClickDelete = (target: {}) => () => {
+    const onClickDelete = (target: string) => () => {
         if (setPosition && position && setPostionInclueds) {
-            setPosition(position.filter((el: IPropsEl) => {
-                return el.name !== target
-            }))
+            const a : any =position.filter((el: any) => {
+                return el !== target
+            })
+            setPosition(a)
             postionInclueds && setPostionInclueds(postionInclueds.filter((el: string) => {
                 return el !== target
             }))
         }
     }
-
-
     return (
         <RecruitmentList key={uuidv4()}>
-            <div>{props.el.name}</div>
+            <div>{props.el}</div>
             <div>
-                <Personnel><span>{props.el.personnel}</span> 명 모집</Personnel>
+                <Personnel><span>{numbers && numbers[props.index + 1]}</span> 명 모집</Personnel>
                 {
-                    props.el.name &&
-                    <button onClick={onClickDelete(props.el.name)}>취소</button>
+                    props.el &&
+                    <button onClick={onClickDelete(String(props.el))}>취소</button>
                 }
             </div>
         </RecruitmentList>

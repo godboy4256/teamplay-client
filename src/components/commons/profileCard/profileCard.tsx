@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 import CircleTag from "../tags/commons/circleTag";
+import { v4 as uuidv4 } from "uuid";
+import { useContext } from "react";
+import { OnBoardingContext } from "../../units/onboarding/onboarding.container";
+import dump from "../../../commons/json/tendency.json";
 
 interface IPropsInfoBox {
   fontSize: number;
@@ -77,10 +81,12 @@ interface IPropsProfileCard {
   img: string;
   name: string;
   position: string;
+  tendency: string[] | undefined;
   fontSize: number;
 }
 
 export default function PropsProfileCard(props: IPropsProfileCard) {
+  const { colorIndex } = useContext(OnBoardingContext);
   return (
     <ProfileBox>
       <HeartImg src="/img/commons/heart.svg" />
@@ -91,9 +97,16 @@ export default function PropsProfileCard(props: IPropsProfileCard) {
         <Name>{props.name}</Name>
         <Position>{props.position}</Position>
         <Tags>
-          <CircleTag name="주도적인" size={1} bgColor="#24BE74" margin={4} />
-          <CircleTag name="논리적인" size={1} bgColor="#00623B" margin={4} />
-          <CircleTag name="톡톡튀는" size={1} bgColor="#FF5252" margin={4} />
+          {props.tendency &&
+            props.tendency.map((el, i) => (
+              <CircleTag
+                name={el}
+                size={1}
+                bgColor={colorIndex && dump.tendency.color[colorIndex[i]]}
+                margin={4}
+                key={uuidv4()}
+              />
+            ))}
         </Tags>
       </InfoBox>
     </ProfileBox>

@@ -31,12 +31,14 @@ interface IPropsClickTag {
   name: string;
   marginBottom: number;
   isClick: boolean | string | undefined;
+  id?: string;
   onClick: ((name: string) => () => void) | undefined;
 }
 
 export default function ClickTag(props: IPropsClickTag) {
   return (
     <Div
+      id={props.id}
       isClick={props.isClick}
       marginBottom={props.marginBottom}
       onClick={props.onClick && props.onClick(props.name)}

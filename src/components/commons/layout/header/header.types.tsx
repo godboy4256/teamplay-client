@@ -12,3 +12,16 @@ export interface IPropsFooterBox {
   isHiddenFooterWeb: string[];
   asPath: string;
 }
+
+export interface IPropsHeaderToggleWrapper {
+  position: number | undefined;
+  isView: boolean | undefined;
+}
+
+export interface IHeaderContext {
+  position?: number;
+  isView?: boolean;
+  onCliclsetPosition?: () => void;
+  onClickLogout?: () => void;
+  onClickMovetoPage?: (name: string) => () => void;
+}

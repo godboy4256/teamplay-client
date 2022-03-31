@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
+import { breakPoints } from "./breakpoint";
 
 export const globalStyles = css`
-
   @font-face {
     font-family: "GBold";
     src: url("/fonts/GmarketSansTTFBold.ttf") format("truetype");
@@ -169,5 +169,12 @@ export const globalStyles = css`
     background: none;
     cursor: pointer;
     padding: 0;
+  }
+  #__next.projectdetalon {
+    @media ${breakPoints.web} {
+      width: 70vw;
+      position: absolute;
+      right: 0;
+    }
   }
 `;

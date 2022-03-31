@@ -1165,6 +1165,13 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
+"@types/react-infinite-scroller@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/react-infinite-scroller/-/react-infinite-scroller-1.2.2.tgz#ee00ea8f5a03d3b6bf30842bd559283f8a7fdec9"
+  integrity sha512-3Tu/wspMKAOH/YkGmTrXgfYizL9DnMb4opksrl+m5jiESxGkRN4tiKf6lr7SN0FUgoFyQyK9o+yMKn1bWMTVmA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-slick@^0.23.8":
   version "0.23.8"
   resolved "https://registry.npmjs.org/@types/react-slick/-/react-slick-0.23.8.tgz"
@@ -3746,7 +3753,7 @@ lodash.truncate@^4.4.2:
 
 lodash@^4.17.20, lodash@^4.17.21, lodash@~4.17.0:
   version "4.17.21"
-  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-symbols@^1.0.2:
@@ -4386,7 +4393,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.8, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -4431,6 +4438,13 @@ react-dom@17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-infinite-scroller@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/react-infinite-scroller/-/react-infinite-scroller-1.2.5.tgz#9c3d4ed24ad42b0be4ed7567fe03fcf60d1dc86a"
+  integrity sha512-2A+SFUliZhVcxr4R2kFBrW/naGSluNMLqT6wfgmXKCggN1u/H4AW7flBLWHcY/5n/KviVLnpQfaMfBb/pG/m7g==
+  dependencies:
+    prop-types "^15.5.8"
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

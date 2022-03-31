@@ -1,12 +1,18 @@
+import { useContext } from "react";
+import useFetchUser from "../../hooks/useFetchUser";
 import useMoveToPage from "../../hooks/useMoveToPage";
+import { HeaderContext } from "./header.container";
 import * as S from "./header.styles";
 import { IPropsHeaderUI } from "./header.types";
+import HeaderToggle from "./toggle/headerToggle";
 
 export default function HeaderUI(props: IPropsHeaderUI) {
   const { onClickHeaderRouting } = useMoveToPage();
+  const { onCliclsetPosition, onClickMovetoPage } = useContext(HeaderContext);
+  const { data } = useFetchUser();
   return (
     <S.HeaderStyle>
-      <div>
+      <S.HeaderWrapper>
         <S.HeaderTop>
           <h1>
             <S.Logo>
@@ -49,16 +55,30 @@ export default function HeaderUI(props: IPropsHeaderUI) {
           )}
         </S.HeaderTop>
         <S.Setting>
-          <button className="login-signup">로그인 / 회원가입</button>
-          <div className="user-arvata"></div>
+          {data ? (
+            <S.UserArvata>
+              <img src="/img/commons/defaultProfile.jpg" />
+            </S.UserArvata>
+          ) : (
+            <div className="login-signup">
+              <span onClick={onClickMovetoPage && onClickMovetoPage("login")}>
+                로그인
+              </span>{" "}
+              <span> / </span>{" "}
+              <span onClick={onClickMovetoPage && onClickMovetoPage("signup")}>
+                회원가입
+              </span>
+            </div>
+          )}
           <button className="alam">
             <img src="/img/alam.svg" />
           </button>
-          <button>
-            <img src="/img/btn.svg" />
-          </button>
+          <div className="toggle">
+            <HeaderToggle />
+            <img src="/img/btn.svg" onClick={onCliclsetPosition} />
+          </div>
         </S.Setting>
-      </div>
+      </S.HeaderWrapper>
     </S.HeaderStyle>
   );
 }

@@ -4,6 +4,14 @@ import { MouseEvent } from "react";
 export default function useMoveToPage() {
   const router = useRouter();
 
+  const moveToLogin = () => {
+    router.push("/login");
+  };
+
+  const moveToSignup = () => {
+    router.push("/signup");
+  };
+
   const moveToMain = () => {
     router.push("/main");
   };
@@ -16,6 +24,13 @@ export default function useMoveToPage() {
     router.push("/profile");
   };
 
+  const moveToMyProject = () => {
+    router.push("/profile/list");
+  };
+
+  const moveToChatting = () => {
+    router.push("/chatting");
+  };
 
   const onClickHeaderRouting = (e: MouseEvent<HTMLLIElement>) => {
     const navList = document.querySelectorAll(".nav__list");
@@ -25,5 +40,14 @@ export default function useMoveToPage() {
     router.push(e.currentTarget.id);
     e.currentTarget && e.currentTarget.classList.add("active__page");
   };
-  return { moveToMain, moveToProfileEdit, moveToProfile, onClickHeaderRouting };
+  return {
+    moveToChatting,
+    moveToMyProject,
+    moveToLogin,
+    moveToSignup,
+    moveToMain,
+    moveToProfileEdit,
+    moveToProfile,
+    onClickHeaderRouting,
+  };
 }

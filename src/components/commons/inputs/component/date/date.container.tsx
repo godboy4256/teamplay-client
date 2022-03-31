@@ -1,5 +1,6 @@
 import { Label } from "../../commons/styles";
 import styled from "@emotion/styled";
+import { Dispatch, SetStateAction } from "react";
 
 const DateStyle = styled.input`
     border:1px solid #999;
@@ -13,15 +14,16 @@ const DateStyle = styled.input`
     cursor: pointer;
 `
 
-interface IPropsDate{
-    label:string
+interface IPropsDate {
+    label: string
+    setValues?: Dispatch<SetStateAction<string>>
 }
 
-export default function Date(props: IPropsDate) {
+export default function DateInput(props: IPropsDate) {
     return (
         <div>
             <Label>{props.label}</Label>
-            <DateStyle type="date" />
+            <DateStyle onChange={(e) => { props.setValues && props.setValues(e.target.value) }} type="date" />
         </div>
     )
 }
