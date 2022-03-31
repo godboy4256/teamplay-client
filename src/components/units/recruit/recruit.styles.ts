@@ -1,13 +1,63 @@
 import styled from "@emotion/styled";
-// import { ISideHiddenSearchBar } from "./recruit.presenter";
+import { IPropsRecruitContext, IPropsTag } from "./recruit.types";
+
+export const Opacity = styled.div`
+  display: ${(props: IPropsRecruitContext) => (props.isVisible ? "block" : "none")};
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  width: calc(50% -240px);
+  height: 100vh;
+  background-color: white;
+`;
 
 export const SearchBarWrapper = styled.div`
     width: 100%;
     padding: 10px 0;
-    
-    /* z-index: 1;
-    position: relative; */
 `
+
+export const TagArea = styled.div`
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: blueviolet; */
+
+    padding: 0px 10px 0px;
+`;
+
+export const Tag = styled.div`
+  display: flex;
+
+  padding: 10px 15px;
+  margin-right: 12px;
+  margin-bottom: 15px;
+
+  border-radius: 20px;
+  background-color: ${(props: IPropsTag) => `${props.bgColor}`};
+
+  span {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 16px;
+    color: #fff;
+  }
+
+  div {
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    margin-left: 8px;
+    border-radius: 50%;
+    background-color: #999;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+`;
 
 export const SearchBar = styled.div`
     width: 100%;
@@ -16,6 +66,10 @@ export const SearchBar = styled.div`
     justify-content: space-between;
     padding-bottom: 10px;
 
+    img{
+        cursor: pointer;
+    }
+    
     @media (min-width: 1200px) {
         border-bottom: 1px solid #ccc;
     }
@@ -48,6 +102,7 @@ export const SearchInputBar = styled.div`
     display: flex;
     align-items: center;
     padding: 5px 0px 5px 15px;
+    margin-right: 10px;
     
 
     border: 1px solid #999999;
@@ -62,15 +117,6 @@ export const SearchInputBar = styled.div`
         padding-right: 10px;
     }
 `
-
-// export const HiddenSearchBar = styled.div`
-//     z-index: 2;
-//     position: absolute;
-//     left: 10px;
-
-//     right: ${(props:ISideHiddenSearchBar) => `${props.area}vw`};
-//     transition: all 0.3s;
-// `
 
 export const RecruitTop = styled.div`
     width: 100%;

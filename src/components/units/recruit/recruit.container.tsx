@@ -5,19 +5,169 @@ import { IPropsRecruitContext } from "./recruit.types";
 export const RecruitContext = createContext<IPropsRecruitContext>({})
 
 export default function Recruit() {
-    // const [area, setArea] = useState(0)
+    const [tendency, setTendency] = useState<string[]>([])
+    const [region, setRegion] = useState("")
+    const [position, setPosition] = useState("")
+    const [interest, setInterest] = useState<string[]>([])
+    
+    const [isVisible, setIsVisible] = useState(false)
+    const [isTendency, setIsTendency] = useState(false)
+    const [isRegion, setIsRegion] = useState(false)
+    const [isPosition, setIsPosition] = useState(false)
+    const [isInterest, setIsInterest] = useState(false)
+
     const [isSearchBar, setIsSearchBar] = useState(false)
+    const [locate, setLocate] = useState(-260)
+    const [tendencyLocate, setTendencyLocate] = useState(-10)
+    const [positionLocate, setPositionLocate] = useState(-10)
+    const [regionLocate, setRegionLocate] = useState(-10)
+    const [interestLocate, setInterestLocate] = useState(-10)
 
     const onClickSearchImg = () => {            
         setIsSearchBar((prev) => !prev)
     }
 
-    const onClickSearchfilter = () => {}
+    const onClickSearchfilter = () => {
+        if(locate === -260){
+            setLocate(-10)
+            setIsVisible(true)
+            setIsTendency(true)
+            setIsPosition(false)
+            setIsRegion(false)
+            setIsInterest(false)
+        } else {
+            setLocate(-260)
+            setIsVisible(false)
+        }
+    }
+
+    const onClickTendency = () => {
+        console.log("진짜 왜 ㅡㅡ")
+        if(tendencyLocate){
+            setTendencyLocate(-10)
+            setIsTendency(true)
+            setIsPosition(false)
+            setIsRegion(false)
+            setIsInterest(false)
+        }
+    }
+
+    const onClickRegion = () => {
+        console.log("넌또 왜문제야ㅡㅡ")
+        if(regionLocate){
+            setRegionLocate(-10)
+            setIsTendency(false)
+            setIsPosition(false)
+            setIsRegion(true)
+            setIsInterest(false)
+        }
+    }
+
+    const onClickPosition = () => {
+        console.log("넌또 왜문제야ㅡㅡ2")
+        if(positionLocate){
+            setPositionLocate(-10)
+            setIsTendency(false)
+            setIsPosition(true)
+            setIsRegion(false)
+            setIsInterest(false)
+        }
+    }
+
+    const onClickInterest = () => {
+        if(interestLocate){
+            setInterestLocate(-10)
+            setIsTendency(false)
+            setIsPosition(false)
+            setIsRegion(false)
+            setIsInterest(true)
+        }
+    }
+
+    const onClickPushTag = (name: string) => () => {
+        let temp: string[] = [];
+
+        if(tendency){
+            if(tendency.includes(name)){
+                console.log(name)
+                return;
+            } 
+            if (tendency.length === 3) {
+                const temp = tendency;
+                temp.shift();
+                setTendency([...temp, name]);
+            } else {
+                setTendency((prev) => [...prev, name]);
+            }
+            return
+        }
+
+        if(region){
+            if(region === name){
+                setRegion("")
+            } else {
+                setRegion(name)
+            }
+            return
+        }
+
+        if(position) {
+            if(position === name){
+                setPosition("")
+            } else {
+                setPosition(name)
+            }
+            return
+        }
+
+        if (interest.includes(name)) {
+            temp = interest.filter((el) => el !== name);
+            setInterest([...temp]);
+          } else {
+            if (interest.length === 3) {
+              temp = interest;
+              temp.shift();
+              setInterest([...temp, name]);
+            } else {
+              setInterest((prev) => [...prev, name]);
+            }
+          }
+    }
+
+    const onClickDeleteTendencyTag = (name: string) => () => {
+        const temp = tendency.filter((el) => el !== name);
+        setTendency([...temp]);
+    };
+
+    const onClickDeletePositionTag = (name: string) => {
+        setPosition(name);
+    };
 
     const value = {
+        tendency,
+        region,
+        position,
+        interest,
+        isVisible,
+        isTendency,
+        isRegion,
+        isPosition,
+        isInterest,
         isSearchBar,
+        // isSearchFilterBar,
+        locate,
+        tendencyLocate,
+        positionLocate,
+        interestLocate,
         onClickSearchImg,
-        onClickSearchfilter
+        onClickSearchfilter,
+        onClickTendency,
+        onClickPosition,
+        onClickRegion,
+        onClickPushTag,
+        onClickInterest,
+        onClickDeleteTendencyTag,
+        onClickDeletePositionTag
     }
 
     return (
