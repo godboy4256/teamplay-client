@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -12,6 +13,11 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media ${breakPoints.web}{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 `
 export const HeaderLine = styled.div`
   display: flex;
@@ -30,12 +36,17 @@ export const HeaderLine = styled.div`
   }
 
   div{}
+
+  @media ${breakPoints.web}{
+    img{
+      display: none;
+    }
+  }
 `;
 export const ProgressTitle = styled.div`
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px 24px;
+  /* padding: 0px 20px 24px; */
 
   span{
     font-size: 18px;
@@ -43,9 +54,26 @@ export const ProgressTitle = styled.div`
 `
 export const ProgressList = styled.div`
   margin-bottom: 20px;
+  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`
+export const WebLine = styled.div`
+  @media ${breakPoints.mobile}{
+    display: none;
+  }
+  @media ${breakPoints.tablet}{
+    display: none;
+  }
+  @media ${breakPoints.web}{
+    max-width: 1200px;
+    margin: 0 auto;
+    margin: 36px 0px 36px 0px;
+    border-bottom: 1px solid #E9E9E9;
+  }
 `
 export const ProgressBox = styled.div`
-  padding: 16px 20px;
+  padding: 16px 12px;
 
   background: #FFFFFF;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
