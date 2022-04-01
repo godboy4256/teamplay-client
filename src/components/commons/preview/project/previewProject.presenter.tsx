@@ -3,16 +3,26 @@ import * as S from "./previewProject.styles";
 import SubmitButton from "../../inputs/component/submitbutton/submit.container";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { Dispatch, SetStateAction } from "react";
+import { gql, useMutation } from "@apollo/client";
 import {
   ProjectInfoKey,
   ProjectInfoValue,
 } from "../../../units/project/management/projectManage.styles";
 import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/router";
 
 interface PropsPreviewProject {
   data?: Pick<IQuery, "fetchProject">;
   setDetailModal: Dispatch<SetStateAction<boolean>>;
 }
+
+const JOIN_CHATROOM = gql`
+  mutation joinChatRoom($projectId: String!) {
+    joinChatRoom(projectId: $projectId) {
+      id
+    }
+  }
+`;
 
 export default function PreviewProjectUI(props: PropsPreviewProject) {
   const xmasDay: Date | null = props.data?.fetchProject.recruitDate
@@ -21,6 +31,25 @@ export default function PreviewProjectUI(props: PropsPreviewProject) {
   const now: Date | null = new Date();
   const gap = Number(xmasDay) - Number(now);
   const day = Math.floor(gap / (1000 * 60 * 60 * 24));
+  const router = useRouter();
+  const [joinChatRoom] = useMutation(JOIN_CHATROOM);
+
+  const onClickChatStart = async () => {
+    try {
+      const result = await joinChatRoom({
+        variables: {
+          projectId: props.data?.fetchProject.id,
+        },
+      });
+      router.push({
+        pathname: "chatting/list",
+        query: result?.data?.joinChatRoom?.id,
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <S.Wrapper id="detail__modal">
@@ -113,7 +142,7 @@ export default function PreviewProjectUI(props: PropsPreviewProject) {
           <h3>상세 설명</h3>
           <div>{props.data?.fetchProject.description}</div>
         </S.DescriptionBox>
-        <S.SubmitBox>
+        <S.SubmitBox onClick={onClickChatStart}>
           <SubmitButton btnvalue="팀플 참여하기" bgColor="#3894ff" />
         </S.SubmitBox>
       </S.Modal>

@@ -33,7 +33,7 @@ interface IPropsTypingInput {
   setValues?: Dispatch<SetStateAction<string>>;
   id?: string;
   errorMessage?: string;
-  valid: boolean;
+  valid: boolean | string;
 }
 
 export default function TypingInput(props: IPropsTypingInput) {

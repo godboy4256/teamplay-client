@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import Paymentpoint from "../../../../units/paymentpoint/paymentpoint.container";
 import useFetchUser from "../../../hooks/useFetchUser";
 import { HeaderContext } from "../header.container";
 import * as S from "./headerToggle.styles";
@@ -11,6 +12,8 @@ export default function HeaderToggle() {
     onCliclsetPosition,
     onClickLogout,
     onClickMovetoPage,
+    onClicPointModal,
+    isPoint,
   } = useContext(HeaderContext);
 
   return (
@@ -42,7 +45,7 @@ export default function HeaderToggle() {
           </S.LoginBox>
         )}
       </S.ProfileBox>
-      <S.Option>포인트 충전</S.Option>
+      <S.Option onClick={onClicPointModal}>포인트 충전</S.Option>
       <S.Option onClick={onClickMovetoPage && onClickMovetoPage("chatting")}>
         메세지
       </S.Option>
@@ -53,6 +56,7 @@ export default function HeaderToggle() {
         나의 프로젝트
       </S.Option>
       {data ? <S.Option onClick={onClickLogout}>로그아웃</S.Option> : <></>}
+      {data && isPoint ? <Paymentpoint data={data} /> : <></>}
     </S.Wrapper>
   );
 }
