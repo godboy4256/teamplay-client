@@ -1,9 +1,34 @@
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../../commons/styles/breakpoint";
 
+export const TopEditText = styled.div`
+  @media ${breakPoints.web}{
+    /* height: 40px;
+    left: 18.75%;
+    right: 18.75%;
+    top: 81px; */
+    margin: 11px 0px 11px 24px;
+    background-color: #3894FF;
+
+    max-width: 1200px;
+    margin: 0 auto;
+
+    span{
+      height: 18px;
+      left: 20%;
+      right: 71.51%;
+      top: 92px;
+      font-size: 16px;
+      line-height: 18px;
+
+      color: white;
+    }
+  }
+`
+
 export const Wrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
     padding: 17px 20px 26px 20px;
     
     overflow: auto;
@@ -17,38 +42,15 @@ export const Wrapper = styled.div`
     @media ${breakPoints.web}{
       max-width: 1200px;
       margin: 0 auto;
-
-      /* background-color: blue; */
       
       & > div {
         display: flex;
-        /* justify-content: space-between; */
-      }
-      /* background-color: green; */
-
-      /* overflow: auto;
-      position: relative;
-      z-index: 1; */
       
-      /* & div {
-          background-color: red;
-          display: flex;
-          justify-content: space-between; */
-        /* & div {
-            
-            background-color: blue;
-          & div {
-            width: 100%;
-            background-color: yellow;
-            
-            flex-wrap: wrap;
-            flex-direction: column;
-          }
-        }
-      } */
+      }
     }
 `
 export const FirstDiv = styled.div`
+
 @media ${breakPoints.web} {
   display: none;
 }
@@ -57,7 +59,7 @@ export const FirstDiv = styled.div`
 export const SecondDiv = styled.div`
   background-color: green;
   @media ${breakPoints.web} {
-    margin-right: 10px;
+    margin: 90px 150px;
     img{
       background-color: red;
     }
@@ -169,21 +171,33 @@ export const BtnBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media ${breakPoints.web}{
+    /* background-color: purple; */
+    display: flex;
+    flex-direction: column-reverse;
+    flex-flow: row-reverse;
+    justify-content: flex-start;
+
+    .SubmitBtn{
+      width: 400px;
+      display: flex;
+      flex-direction: inherit;
+    }
+  }
 `;
 export const InfoEdit = styled.div`
   display: flex;
   justify-content: center;
-
-  /* :after {
-    display: block;
-    border-bottom: 1px solid gray;
-    width: 60px;
-  } */
 
   span{
     font-size: 16px;
     border-bottom: 1px solid gray;
     color: #999999;
     cursor: pointer
+  }
+
+  @media ${breakPoints.web}{
+    margin: 10px;
   }
 `

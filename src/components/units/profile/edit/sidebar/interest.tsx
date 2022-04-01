@@ -32,7 +32,7 @@ export default function ProfileEditInterest() {
       ];
 
     return(
-        <S.Wrapper area={area}>
+        <S.Wrapper area={area} className="InterestBlank">
             <S.MainBox>
                 <S.Header>
                     <S.RefreshBox>
@@ -41,11 +41,15 @@ export default function ProfileEditInterest() {
                     </S.RefreshBox>
                     <S.XMark src="/img/preview/Xmark.svg" onClick={onClickEditInterest}/>
                 </S.Header>
-                <Blank height={24} width={0}/>
+                <div className="NoneBlank">
+                    <Blank height={24} width={0}/>
+                </div>
                 <S.Title>
                     <span>관심있는 분야</span>
                 </S.Title>
-                <Blank height={36} width={0}/>
+                <div className="NoneBlank">
+                    <Blank height={36} width={0}/>
+                </div>
                 <S.TagArea>
                     {list.map((name) =>(
                         <Fragment key={uuidv4()}>

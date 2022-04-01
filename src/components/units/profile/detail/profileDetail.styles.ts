@@ -9,6 +9,11 @@ export const WrapperHeader = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  .webAboutMe{
+    max-width: 1200px;
+    display: none;
+  }
 `;
 export const HeaderLine = styled.div`
     width: 100%;
@@ -134,10 +139,8 @@ export const AboutMeWrapper = styled.div`
     padding: 24px 20px 20px 20px;
 
     @media ${breakPoints.web}{
-        /* width: 100%;
-        overflow: auto;
-        position: static; */
-        display: ${(props: IPropsProfileEditContext) => (props.isvisible ? "About me" : "")};
+        /* display: ${(props: IPropsProfileEditContext) => (props.isvisible ? "About me" : "")}; */
+      /* .WebAboutMe{} */
     }
 `
 export const Top = styled.div`

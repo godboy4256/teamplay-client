@@ -27,11 +27,15 @@ export default function ProfileEditTendency() {
           </S.RefreshBox>
           <S.XMark src="/img/preview/Xmark.svg" onClick={onClickEditTendency} />
         </S.Header>
-        <Blank height={24} width={0} />
+        <div className="NoneBlank">
+          <Blank height={24} width={0}/>
+        </div>
         <S.Title>
           <span>나의 성향</span>
         </S.Title>
-        <Blank height={36} width={0} />
+        <div className="NoneBlank">
+          <Blank height={36} width={0} />
+        </div>
         <S.TagArea>
           {dump.tendency.name.map((name, index) => (
             <Fragment key={uuidv4()}>
@@ -39,7 +43,7 @@ export default function ProfileEditTendency() {
                 name={name}
                 marginBottom={12}
                 backgroundColor={dump.tendency.color[index]}
-                onClick={onClickPushTag}
+                onClick={onClickPushTag} id={""}
               />
             </Fragment>
           ))}

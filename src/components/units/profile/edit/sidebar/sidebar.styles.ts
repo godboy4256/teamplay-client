@@ -21,9 +21,16 @@ export const Wrapper = styled.div`
     background: #FFFFFF;;
     @media ${breakPoints.web} {
       position: inherit;
-      height: 280px;
+      height: 19vw;
       filter: none;
+      &.PositionBlank{
+      height: 8vw;
+      }
+      &.InterestBlank{
+        height: 17vw;
+      }
     }
+    
 `
 export const MainBox = styled.div`
     /* display: flex; */
@@ -31,11 +38,18 @@ export const MainBox = styled.div`
     @media ${breakPoints.web} {
       width: auto;
       position: absolute;
+      .NoneBlank{
+        display: none;
+      }
     }
 `
 export const Header = styled.div`
     display: flex;
     justify-content: space-between;
+
+    @media ${breakPoints.web}{
+      display: none;
+    }
 `
 export const RefreshBox = styled.div`
     display: flex;
@@ -68,10 +82,20 @@ export const Title = styled.div`
         font-size: 16px;
         color: #6B6B6B;
     }
+
+    @media ${breakPoints.web}{
+      span{
+        display: none;
+      }
+    }
 `
+
 export const TagArea = styled.div`
   display: flex;
   flex-wrap: wrap;
+  @media ${breakPoints.web} {
+    
+  }
 `;
 export const Tag = styled.div`
   display: flex;
@@ -141,5 +165,9 @@ export const BtnBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media ${breakPoints.web} {
+    display: none;
+  }
 `;
 
