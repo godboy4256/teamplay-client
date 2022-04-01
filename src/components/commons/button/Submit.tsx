@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { breakPoints } from "../../../commons/styles/breakpoint";
 
 interface IPropsButton {
   fontSize: number;
@@ -13,14 +12,6 @@ const Button = styled.button`
   color: #fff;
   border-radius: 20px;
   font-size: ${(props: IPropsButton) => `${props.fontSize}rem`};
-
-  @media ${breakPoints.tablet} {
-    width: 50%;
-  }
-
-  @media ${breakPoints.web} {
-    width: 60%;
-  }
 `;
 
 interface IPropsSubmitButton {

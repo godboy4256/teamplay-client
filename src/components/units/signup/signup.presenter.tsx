@@ -15,7 +15,7 @@ export default function SignUpUI(props: IPropsSignUpUI) {
   return (
     <S.Wrapper>
       <S.ResponseBox>
-        <S.StateAlert>기본정보를 수정합니다.</S.StateAlert>
+        <S.StateAlert isEdit={isEdit}>기본정보를 수정합니다.</S.StateAlert>
         <S.MobileBox>
           <S.TitleBox isEdit={isEdit}>
             <span>{isEdit ? "기본정보 수정" : "회원가입"}</span>
@@ -122,8 +122,8 @@ export default function SignUpUI(props: IPropsSignUpUI) {
               fontSize={1.143}
               backgroundcolor={props.isSubmit ? "#3894FF" : "#cacaca"}
             />
-            <S.DeleteUserBtn>서비스 탈퇴하기</S.DeleteUserBtn>
           </S.BtnBox>
+          <S.DeleteUserBtn>서비스 탈퇴하기</S.DeleteUserBtn>
         </S.TabletBtnBox>
       </S.ResponseBox>
     </S.Wrapper>

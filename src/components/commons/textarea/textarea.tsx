@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useCallback, useRef } from "react";
+import { ChangeEvent, useCallback, useRef } from "react";
 
 const Textarea = styled.textarea`
   width: 100%;
@@ -14,7 +14,11 @@ const Textarea = styled.textarea`
   overflow: hidden;
 `;
 
-export function TextArea() {
+interface IProps {
+  onChange: ((e: ChangeEvent<HTMLTextAreaElement>) => void) | undefined;
+}
+
+export function TextArea(props: IProps) {
   const textRef = useRef<HTMLTextAreaElement>(null);
 
   const handleResizeHeight = useCallback(() => {
@@ -25,5 +29,11 @@ export function TextArea() {
     textArea.style.height = textArea.scrollHeight + "px";
   }, []);
 
-  return <Textarea ref={textRef} onInput={handleResizeHeight} />;
+  return (
+    <Textarea
+      ref={textRef}
+      onInput={handleResizeHeight}
+      onChange={props.onChange && props.onChange}
+    />
+  );
 }

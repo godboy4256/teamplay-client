@@ -2,20 +2,25 @@ import * as S from "./sidebar.styles";
 import { v4 as uuidv4 } from "uuid";
 import { useContext } from "react";
 import { ChattingDetailContext } from "../chattingDetail.container";
+import { useQuery } from "@apollo/client";
+import { FETCH_CHAT_ROOM_MEMBERS } from "../chattingDetail.queries";
+import {
+  IQuery,
+  IQueryFetchChatRoomMembersArgs,
+} from "../../../../../commons/types/generated/types";
+import { ChattingContext } from "../../chatting.container";
 export default function Sidebar() {
   const { position, onClickSetPosition } = useContext(ChattingDetailContext);
-  const testList = [
-    "냥1",
-    "냥2",
-    "냥3",
-    "냥4",
-    "냥5",
-    "냥6",
-    "냥7",
-    "냥8",
-    "냥9",
-    "냥10",
-  ];
+  const { chatRoomId } = useContext(ChattingContext);
+  const { data } = useQuery<
+    Pick<IQuery, "fetchChatRoomMembers">,
+    IQueryFetchChatRoomMembersArgs
+  >(FETCH_CHAT_ROOM_MEMBERS, {
+    variables: {
+      chatRoomId: chatRoomId || "",
+    },
+  });
+
   return (
     <S.Wrapper position={position}>
       <S.TitleBox>
@@ -29,7 +34,7 @@ export default function Sidebar() {
         <S.SubTitle>대화 상대</S.SubTitle>
         <S.Tag>프로젝트 시작</S.Tag>
       </S.SubTitleBox>
-      {testList.map((name, idx) => (
+      {data?.fetchChatRoomMembers.map((data, idx) => (
         <S.UserProfileBox key={uuidv4()}>
           <S.ProfileImg>
             <S.Profile>
@@ -37,7 +42,7 @@ export default function Sidebar() {
             </S.Profile>
           </S.ProfileImg>
           <S.NameBox>
-            <S.Name>{name}</S.Name>
+            <S.Name>{data.user.name}</S.Name>
             <S.SelectCircle>
               <input type="checkbox" id={String(idx)} />
               <label htmlFor={String(idx)} />

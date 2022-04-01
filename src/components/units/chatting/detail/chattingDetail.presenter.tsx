@@ -4,15 +4,25 @@ import { ChattingDetailContext } from "./chattingDetail.container";
 import * as S from "./chattingDetail.styles";
 import Sidebar from "./sidebar/sidebar";
 import { ChattingContext } from "../chatting.container";
+import { IPropsChattingDetailUI } from "./chattingDetail.types";
+import { v4 as uuidv4 } from "uuid";
+import useFetchUser from "../../../commons/hooks/useFetchUser";
 
-export default function ChattingDetailUI() {
-  const { onClickSetPosition, isToggle } = useContext(ChattingDetailContext);
+export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
+  const {
+    onClickSetPosition,
+    isToggle,
+    data,
+    onChangeChatInput,
+    onClickSendMessage,
+  } = useContext(ChattingDetailContext);
+  const { data: loginInfo } = useFetchUser();
   const { onClickChangePosition } = useContext(ChattingContext);
   return (
     <S.Wrapper>
       <S.Opacity isToggle={isToggle} onClick={onClickSetPosition} />
       <Sidebar />
-      <div>
+      <S.ChattingBox>
         <S.TitleBox>
           <S.RightBox>
             <S.LeftArrowImg
@@ -27,57 +37,62 @@ export default function ChattingDetailUI() {
             <S.DotToggleImg src="/img/commons/dotToggle.svg" />
           </S.DotImgBox>
         </S.TitleBox>
-        {/* <S.TitleBox> 1:1
-        <S.RightBox>
-          <S.LeftArrowImg src="/img/commons/leftArrow1.svg" />
-        </S.RightBox>
-        <S.ProjectName>프로젝트 단톡방</S.ProjectName>
-        <S.DotToggleImg src="/img/commons/dotToggle.svg" />
-      </S.TitleBox> */}
-        <S.ProfileMsgBox>
-          <S.ProfileImg>
-            <S.Profile>
-              <img src="/img/임시사진.png" />
-            </S.Profile>
-          </S.ProfileImg>
-          <S.MessageBox>
-            <S.Name>냥냥</S.Name>
-            <S.ReceiveFirstMessage>냥냥냥냥냥</S.ReceiveFirstMessage>
-          </S.MessageBox>
-          <S.Time>1:12 pm</S.Time>
-        </S.ProfileMsgBox>
-        <S.Alert>냥냥님이 참여하였습니다.</S.Alert>
-        <S.ProfileMsgBox>
-          <S.ProfileImg>
-            <S.Profile>
-              <img src="/img/임시사진.png" />
-            </S.Profile>
-          </S.ProfileImg>
-          <S.MessageBox>
-            <S.Name>뇽뇽</S.Name>
-            <S.ReceiveFirstMessage>
-              뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽
-            </S.ReceiveFirstMessage>
-          </S.MessageBox>
-          <S.Time>1:13 pm</S.Time>
-        </S.ProfileMsgBox>
-        <S.ReceiveBox>
-          <S.ReceiveMessage>
-            뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽뇽
-          </S.ReceiveMessage>
-          <S.Time>1:12 pm</S.Time>
-        </S.ReceiveBox>
-        <S.SendFirstBox>
-          <S.Time>1:13 pm</S.Time>
-          <S.SendFirstMessage>
-            ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-          </S.SendFirstMessage>
-        </S.SendFirstBox>
-        <S.SendBox>
-          <S.Time>1:13 pm</S.Time>
-          <S.SendMessage>ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</S.SendMessage>
-        </S.SendBox>
-      </div>
+        <S.ChattingContainer>
+          <S.ChattingList ref={props.ChattingBoxRef} className="chatting-list">
+            {data?.fetchChats.map((el) =>
+              el.user.name === loginInfo?.fetchUser.name ? (
+                <li className="sent" key={uuidv4()}>
+                  <span className="message">{el.content}</span>
+                  <span className="time">{el.createdAt}</span>
+                </li>
+              ) : (
+                <li className="received" key={uuidv4()}>
+                  <span className="profile">
+                    <img
+                      className="image"
+                      src="https://placeimg.com/50/50/any"
+                      alt="any"
+                    />
+                    <span className="user">
+                      <span className="name">{el.user.name}</span>
+                      <span className="message-box">
+                        <span className="message">{el.content}</span>
+                        <span className="time">{el.createdAt}</span>
+                      </span>
+                    </span>
+                  </span>
+                </li>
+              )
+            )}
+            <li className="received">
+              <span className="profile">
+                <img
+                  className="image"
+                  src="https://placeimg.com/50/50/any"
+                  alt="any"
+                />
+                <span className="user">
+                  <span className="name">유저1</span>
+                  <span className="message-box">
+                    <span className="message">
+                      테스트테스트테스트테스트테스트
+                    </span>
+                    <span className="time">1:00 pm</span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li className="received">
+              <span className="continue-message">연속 채팅 테스트</span>
+              <span className="time">1:00 pm</span>
+            </li>
+            <li className="sent">
+              <span className="message">테스트테스트테스트테스트테스트</span>
+              <span className="time">1:00 pm</span>
+            </li>
+          </S.ChattingList>
+        </S.ChattingContainer>
+      </S.ChattingBox>
       <div>
         <S.FunctionBox>
           <S.InputBox>
@@ -85,10 +100,10 @@ export default function ChattingDetailUI() {
               <img src="/img/chatting/camera.svg" />
             </S.UploadImgBtn>
             <S.MsgInput>
-              <TextArea />
+              <TextArea onChange={onChangeChatInput} />
             </S.MsgInput>
           </S.InputBox>
-          <S.SendButton>
+          <S.SendButton onClick={onClickSendMessage}>
             <img src="/img/chatting/send.svg" />
           </S.SendButton>
         </S.FunctionBox>

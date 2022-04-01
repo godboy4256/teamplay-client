@@ -6,6 +6,8 @@ export interface IPropsChattingUIWrapper {
 
 export interface IChattingContext {
   left?: number;
+  chatRoomId?: string;
   setLeft?: Dispatch<SetStateAction<number>>;
   onClickChangePosition?: () => void;
+  onClickSetRoomId?: (_id: string) => () => void;
 }
