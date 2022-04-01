@@ -18,6 +18,7 @@ export const FooterBox = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
+  height: 17vh;
   border-top: 1px solid #e9e9e9;
   display: flex;
   justify-content: center;

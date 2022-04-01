@@ -19,7 +19,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
   const { data: loginInfo } = useFetchUser();
   const { onClickChangePosition } = useContext(ChattingContext);
   return (
-    <S.Wrapper>
+    <S.Wrapper isToggle={isToggle}>
       <S.Opacity isToggle={isToggle} onClick={onClickSetPosition} />
       <Sidebar />
       <S.ChattingBox>
@@ -93,7 +93,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
           </S.ChattingList>
         </S.ChattingContainer>
       </S.ChattingBox>
-      <div>
+      <S.FunctionWrapper>
         <S.FunctionBox>
           <S.InputBox>
             <S.UploadImgBtn>
@@ -107,7 +107,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
             <img src="/img/chatting/send.svg" />
           </S.SendButton>
         </S.FunctionBox>
-      </div>
+      </S.FunctionWrapper>
     </S.Wrapper>
   );
 }

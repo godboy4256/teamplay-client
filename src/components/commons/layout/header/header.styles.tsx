@@ -19,10 +19,18 @@ export const HeaderBox = styled.div`
 
 export const HeaderStyle = styled.header`
   background-color: #fff;
-  /* width: 100%; */
+  height: 10vh;
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #ccc;
+
+  @media ${breakPoints.tablet} {
+    height: 7vh;
+  }
+
+  @media ${breakPoints.web} {
+    height: 7vh;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
@@ -62,7 +70,7 @@ export const HeaderTop = styled.div`
     align-items: center;
   }
 
-  @media (min-width: 1200px) {
+  @media ${breakPoints.web} {
     flex-direction: row;
     align-items: center;
   }
@@ -178,6 +186,10 @@ export const Setting = styled.div`
       display: block;
     }
   }
+  @media ${breakPoints.tablet} {
+    padding-top: 0;
+  }
+
   @media ${breakPoints.web} {
     padding-top: 0;
   }

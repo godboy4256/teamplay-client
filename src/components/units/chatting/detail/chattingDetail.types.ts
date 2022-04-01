@@ -24,6 +24,10 @@ export interface ISideIsToggle {
   isToggle: boolean | undefined;
 }
 
+export interface IPropsChattingDetailUIWrapper {
+  isToggle: boolean | undefined;
+}
+
 export interface IMessageData {
   chatRoom: string;
   content: string;
