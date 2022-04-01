@@ -20,6 +20,7 @@ export default function Header() {
   const [logout] = useMutation<Pick<IMutation, "logout">>(LOGOUT);
   const router = useRouter();
   const [position, setPosition] = useState(-80);
+  const [isPoint, setIsPoint] = useState(false);
   const [isView, setIsView] = useState(false);
   const isHiddenNav = [
     "/project/new",
@@ -54,12 +55,18 @@ export default function Header() {
     setIsView((prev) => !prev);
   };
 
+  const onClicPointModal = () => {
+    setIsPoint(true);
+  };
+
   const value = {
     position,
     isView,
+    isPoint,
     onCliclsetPosition,
     onClickLogout,
     onClickMovetoPage,
+    onClicPointModal,
   };
 
   return (

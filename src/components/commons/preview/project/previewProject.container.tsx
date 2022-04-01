@@ -15,6 +15,7 @@ interface PropsPreviewProject {
 const FETCH_PROJECT = gql`
   query fetchProject($projectId: String!) {
     fetchProject(projectId: $projectId) {
+      id
       name
       teamname
       intro

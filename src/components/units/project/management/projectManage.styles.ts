@@ -1,11 +1,8 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 
 interface IPropsTodoWorker {
   align: string;
-}
-
-interface IPropsProjectManageImg {
-  bgImages: string;
 }
 
 export const ProjectManageStyle = styled.div``;
@@ -68,6 +65,24 @@ export const ProjectTodoNavTab = styled.ul`
       border-right: 1px solid #ccc;
     }
   }
+  @media ${breakPoints.web} {
+    & > li {
+      cursor: auto;
+      padding: 0 30px;
+      text-align: left;
+      & > h3 {
+        font-size: 1.286rem;
+        padding-bottom: 30px;
+      }
+    }
+  }
+`;
+
+export const ResponsiveWebTodoList = styled.div`
+  display: none;
+  @media ${breakPoints.web} {
+    display: block;
+  }
 `;
 
 export const TodoWorker = styled.ul`
@@ -101,6 +116,24 @@ export const Todo = styled.div`
 `;
 
 export const ProjectManageTop = styled.div`
+  @media ${breakPoints.web} {
+    & > div > div {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+    & > div > div > div {
+      width: 100%;
+      :last-child {
+        border-left: 1px solid #ccc;
+        padding-left: 30px;
+      }
+    }
+    @media ${breakPoints.tablet} {
+      padding: 0 130px;
+    }
+  }
   border-bottom: 1px solid #ccc;
   & h3 {
     font-size: 1.714rem;
@@ -125,6 +158,32 @@ export const ProjectManageContentsTop = styled.div`
   & h3 {
     font-size: 1.286rem;
   }
+`;
+
+export const ResponsiveMobleTodoList = styled.div`
+  @media ${breakPoints.web} {
+    display: none;
+  }
+`;
+
+export const ProjectResponsiveWeb = styled.div`
+  @media ${breakPoints.web} {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    & > div {
+      width: 50%;
+    }
+    & > div:last-child {
+      padding-left: 30px;
+    }
+    margin-bottom: 30px;
+  }
+`;
+
+export const ProjectUserSlideBox = styled.div`
+  width: 100%;
+  overflow-x: hidden;
 `;
 
 export const ProjectManaBoard = styled.ul`
@@ -160,7 +219,7 @@ export const ProjectManaBoard = styled.ul`
 `;
 
 export const ProjectListInfo = styled.div`
-  padding: 15px;
+  padding: 15px 0;
   & > li {
     display: flex;
     width: 100%;
@@ -198,10 +257,28 @@ export const ProjectInfoValue = styled.div`
   color: #999;
 `;
 
-export const ProjectManageImg = styled.div`
-  background: ${(props: IPropsProjectManageImg) =>
-    `url(${props.bgImages}) no-repeat center/cover`};
-  padding: 60px 20px 250px;
-  display: flex;
-  justify-content: space-between;
+export const ProjectManageImg = styled.img``;
+
+export const ProjectImgBox = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  & > img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media ${breakPoints.tablet} {
+    height: 35vw;
+    margin-top: 50px;
+  }
+  @media ${breakPoints.web} {
+    height: 35vw;
+    margin-top: 50px;
+  }
 `;

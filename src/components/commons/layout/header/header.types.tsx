@@ -21,7 +21,9 @@ export interface IPropsHeaderToggleWrapper {
 export interface IHeaderContext {
   position?: number;
   isView?: boolean;
+  isPoint?: boolean;
   onCliclsetPosition?: () => void;
   onClickLogout?: () => void;
+  onClicPointModal?: () => void;
   onClickMovetoPage?: (name: string) => () => void;
 }

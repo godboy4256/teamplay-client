@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../../commons/styles/breakpoint";
 
 export const MultiSlideBox = styled.div`
   & * {
@@ -8,6 +9,16 @@ export const MultiSlideBox = styled.div`
   overflow-x: hidden;
   margin: 0 -20px;
   transform: translateX(20px);
+  @media ${breakPoints.tablet} {
+    transform: translateX(0);
+    margin: 0;
+    width: 100%;
+  }
+  @media ${breakPoints.web} {
+    transform: translateX(0);
+    margin: 0;
+    width: 100%;
+  }
 `;
 
 export const MultiSlideItem = styled.div`
