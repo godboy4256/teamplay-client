@@ -14,6 +14,8 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
+export const ChattingBox = styled.div``;
+
 export const Opacity = styled.div`
   display: ${(props: ISideIsToggle) => (props.isToggle ? "block" : "none")};
   position: absolute;
@@ -273,4 +275,117 @@ export const UploadImgBtn = styled.div`
 export const MsgInput = styled.div`
   width: calc(100% - 40px);
   padding: 0px 10px;
+`;
+
+// 다시 하는 구간
+
+export const ChattingContainer = styled.div`
+  width: 100%;
+  overflow-y: scroll;
+`;
+
+export const ChattingList = styled.ul`
+  width: 100%;
+
+  li {
+    width: 90%;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: 0.5rem;
+  }
+
+  .profile {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile .image {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 52px;
+    height: 52px;
+  }
+
+  .user {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10px;
+  }
+
+  .profile .name {
+    padding-top: 20px;
+    margin-bottom: 3px;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .message-box {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .received .user .message {
+    padding: 12px 20px;
+    border-radius: 0px 24px 24px 24px;
+    background-color: #999;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fff;
+  }
+
+  .received .continue-message {
+    margin-left: 62px;
+    padding: 12px 20px;
+    border-radius: 0px 24px 24px 24px;
+    background-color: #999;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fff;
+  }
+
+  .received .time {
+    margin-left: 10px;
+
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 11px;
+    color: #999999;
+  }
+
+  .sent {
+    flex-direction: row-reverse;
+    float: right;
+  }
+
+  .sent .message {
+    margin-right: 10px;
+    padding: 12px 20px;
+    border-radius: 24px 0px 24px 24px;
+    background-color: #3894ff;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fff;
+  }
+
+  .sent .time {
+    margin-right: 10px;
+
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 11px;
+    color: #999999;
+  }
 `;

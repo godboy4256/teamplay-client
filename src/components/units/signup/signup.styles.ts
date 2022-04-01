@@ -33,11 +33,11 @@ export const StateAlert = styled.div`
   background: #3894ff;
 
   @media ${breakPoints.tablet} {
-    display: block;
+    display: ${(props: IPropsSignupName) => (props.isEdit ? "block" : "none")};
   }
 
   @media ${breakPoints.web} {
-    display: block;
+    display: ${(props: IPropsSignupName) => (props.isEdit ? "block" : "none")};
   }
 `;
 
@@ -225,15 +225,18 @@ export const TabletBtnBox = styled.div`
   width: 100%;
   max-width: 1160px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   @media ${breakPoints.tablet} {
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
   }
 
   @media ${breakPoints.web} {
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
   }
 `;
 
@@ -242,20 +245,16 @@ export const BtnBox = styled.div`
   min-width: 375px;
   max-width: 467px;
   padding: 0px 18px 25px 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   @media ${breakPoints.tablet} {
-    width: 425px;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    width: 20%;
+    min-width: 375px;
+    max-width: 467px;
   }
 
   @media ${breakPoints.web} {
-    width: 425px;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    width: 20%;
+    min-width: 375px;
+    max-width: 467px;
   }
 `;

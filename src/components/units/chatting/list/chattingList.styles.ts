@@ -34,6 +34,10 @@ export const ChattingBox = styled.div`
   justify-content: space-between;
   padding: 23px 20px;
   border-bottom: 1px solid #c4c4c4;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const LeftBox = styled.div`
