@@ -5,15 +5,13 @@ import ChattingDetail from "./detail/chattingDetail.container";
 import ChattingList from "./list/chattingList.container";
 
 export default function ChattingUI() {
-  const { left } = useContext(ChattingContext);
+  const { left, chatRoomId } = useContext(ChattingContext);
   return (
     <S.Wrapper left={left}>
       <S.ListBox>
         <ChattingList />
       </S.ListBox>
-      <S.DetailBox>
-        <ChattingDetail />
-      </S.DetailBox>
+      <S.DetailBox>{chatRoomId ? <ChattingDetail /> : <></>}</S.DetailBox>
     </S.Wrapper>
   );
 }

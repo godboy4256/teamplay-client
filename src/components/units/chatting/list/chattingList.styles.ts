@@ -4,6 +4,8 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 15px 0px;
+
+  overflow-y: scroll;
 `;
 
 export const TitleBox = styled.div`

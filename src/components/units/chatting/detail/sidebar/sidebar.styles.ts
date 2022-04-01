@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   top: 0;
   right: ${(props: ISidebarWrapper) => `${props.position}px`};
   transition: all 0.25s;
-  z-index: 2;
+  z-index: 3;
 `;
 
 export const MainBox = styled.div`

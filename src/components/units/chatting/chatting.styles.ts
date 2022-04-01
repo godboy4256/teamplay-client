@@ -4,7 +4,7 @@ import { breakPoints } from "../../../commons/styles/breakpoint";
 
 export const Wrapper = styled.div`
   display: flex;
-  min-height: calc(100vh - 217.61px);
+  height: 90vh;
   overflow: hidden;
   position: fixed;
   left: ${(props: IPropsChattingUIWrapper) => `${props.left}vw`};
@@ -12,12 +12,12 @@ export const Wrapper = styled.div`
   transition: all 0.35s;
 
   @media ${breakPoints.tablet} {
-    overflow: auto;
+    height: 76vh;
     position: static;
   }
 
   @media ${breakPoints.web} {
-    overflow: auto;
+    height: 76vh;
     position: static;
     justify-content: center;
   }
