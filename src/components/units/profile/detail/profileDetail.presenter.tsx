@@ -46,9 +46,11 @@ export default function ProfileDetailUI(props: IPropsProfileDetail){
                     </S.Tag>
                 </S.InfoBox>
                </S.HeaderContents>
-               <div className="WebAboutMe">
+               {/* <div className="WebAboutMe"> */}
+                <S.WebAboutMe>
                     <AboutMe/>
-               </div>
+                </S.WebAboutMe>
+               {/* </div> */}
             </S.WrapperHeader>
             <S.LineBox>
                 <S.Detail>
@@ -62,31 +64,36 @@ export default function ProfileDetailUI(props: IPropsProfileDetail){
                 <AboutMe/>
             </div> 
         : props.isVisible === "Project" && 
-            <S.ProjectWrapper>
-                <S.Header>
-                    <img onClick={onClickMoveToProjectList} src="/img/profile/progressDone.svg"/>
-                </S.Header>
-                <S.ProjectBox>
-                    <S.ProjectImgItem>
-                        <img src="/img/contents01.jpg"/>
-                        <img src="/img/contents02.jpg"/>
-                        <img src="/img/contents03.jpg"/>
-                        <img src="/img/contents04.jpg"/>
-                        <img src="/img/contents05.png"/>
-                        <img src="/img/contents06.png"/>
-                        <img src="/img/contents01.jpg"/>
-                        <img src="/img/contents02.jpg"/>
-                        <img src="/img/contents03.jpg"/>
-                        <img src="/img/contents04.jpg"/>
-                        <img src="/img/contents05.png"/>
-                        <img src="/img/contents06.png"/>
-                        <img src="/img/contents01.jpg"/>
-                        <img src="/img/contents02.jpg"/>
-                        <img src="/img/contents04.jpg"/>
-                        <img src="/img/contents05.png"/>
-                    </S.ProjectImgItem>    
-                </S.ProjectBox>
-            </S.ProjectWrapper> 
+            <div>
+                <S.WebProject>
+                    <span>Project</span>
+                </S.WebProject>
+                <S.ProjectWrapper>
+                    <S.Header>
+                        <img onClick={onClickMoveToProjectList} src="/img/profile/progressDone.svg"/>
+                    </S.Header>
+                    <S.ProjectBox>
+                        <S.ProjectImgItem>
+                            <img src="/img/contents01.jpg"/>
+                            <img src="/img/contents02.jpg"/>
+                            <img src="/img/contents03.jpg"/>
+                            <img src="/img/contents04.jpg"/>
+                            <img src="/img/contents05.png"/>
+                            <img src="/img/contents06.png"/>
+                            <img src="/img/contents01.jpg"/>
+                            <img src="/img/contents02.jpg"/>
+                            <img src="/img/contents03.jpg"/>
+                            <img src="/img/contents04.jpg"/>
+                            <img src="/img/contents05.png"/>
+                            <img src="/img/contents06.png"/>
+                            <img src="/img/contents01.jpg"/>
+                            <img src="/img/contents02.jpg"/>
+                            <img src="/img/contents04.jpg"/>
+                            <img src="/img/contents05.png"/>
+                        </S.ProjectImgItem>    
+                    </S.ProjectBox>
+                </S.ProjectWrapper> 
+            </div>
         }
     </>
     )

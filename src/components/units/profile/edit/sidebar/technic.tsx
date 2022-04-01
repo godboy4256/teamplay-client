@@ -32,7 +32,7 @@ export default function ProfileEditTechnic() {
       ];
 
     return(
-        <S.Wrapper area={area}>
+        <S.Wrapper area={area} className="TechnicBlank">
             <S.MainBox>
                 <S.Header>
                     <S.RefreshBox>

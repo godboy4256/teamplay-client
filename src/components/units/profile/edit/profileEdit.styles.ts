@@ -2,16 +2,22 @@ import styled from "@emotion/styled";
 import { breakPoints } from "../../../../commons/styles/breakpoint";
 
 export const TopEditText = styled.div`
+  @media ${breakPoints.mobile}{
+    display: none;
+  }
+
+  @media ${breakPoints.tablet}{
+    display: none;
+  }
+
   @media ${breakPoints.web}{
-    /* height: 40px;
-    left: 18.75%;
-    right: 18.75%;
-    top: 81px; */
     margin: 11px 0px 11px 24px;
     background-color: #3894FF;
 
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 10px;
+    padding: 10px;
 
     span{
       height: 18px;
@@ -45,7 +51,7 @@ export const Wrapper = styled.div`
       
       & > div {
         display: flex;
-      
+        margin-top: 70px;
       }
     }
 `
@@ -57,15 +63,13 @@ export const FirstDiv = styled.div`
 `
 
 export const SecondDiv = styled.div`
-  background-color: green;
+  
   @media ${breakPoints.web} {
     margin: 90px 150px;
-    img{
-      background-color: red;
-    }
   }
 `
 export const ThirdDiv = styled.div`
+
 @media ${breakPoints.web}{
     width: 100%;
   }
@@ -118,7 +122,6 @@ export const ImgBox = styled.div`
   @media ${breakPoints.web}{
     height: 15vw;
     width: 200px;
-    background-color: yellow;
   }
 `;
 
@@ -172,8 +175,9 @@ export const BtnBox = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  padding: 90px 0px 0px 0px;
+
   @media ${breakPoints.web}{
-    /* background-color: purple; */
     display: flex;
     flex-direction: column-reverse;
     flex-flow: row-reverse;

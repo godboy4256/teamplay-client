@@ -8,12 +8,7 @@ export const Wrapper = styled.div`
 export const WrapperHeader = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
-
-  .webAboutMe{
-    max-width: 1200px;
-    display: none;
-  }
+  flex-direction: column;  
 `;
 export const HeaderLine = styled.div`
     width: 100%;
@@ -44,6 +39,16 @@ export const HeaderContents = styled.div`
     @media ${breakPoints.web}{
       padding: 0px 0px;
       height: 9vw;
+    }
+`
+export const WebAboutMe = styled.div`
+
+   @media ${breakPoints.mobile}{
+        display: none;
+    }
+
+    @media ${breakPoints.tablet}{
+      display: none;
     }
 `
 export const ImgBox = styled.div`
@@ -113,7 +118,7 @@ export const LineBox = styled.div`
   transform: rotate(0.05deg);
 
   @media ${breakPoints.web}{
-    /* display: none; */
+    display: none;
   }
 `;
 export const Detail = styled.div`
@@ -208,7 +213,22 @@ export const BottomInnerBox = styled.div`
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
 `
+export const WebProject = styled.div`
+  @media ${breakPoints.mobile}{
+    display: none;
+  }
 
+  @media ${breakPoints.tablet}{
+    display: none;
+  }
+
+  @media ${breakPoints.web}{
+    span{
+      font-size: 24px;
+      padding: 27px;
+    }
+  }
+`
 export const ProjectWrapper = styled.div`
     width: 100%;
     display: flex;

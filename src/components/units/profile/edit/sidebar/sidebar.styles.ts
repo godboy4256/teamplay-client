@@ -19,22 +19,27 @@ export const Wrapper = styled.div`
     filter: drop-shadow(0px -8px 20px rgba(0, 0, 0, 0.15));
     border-radius: 20px 20px 0px 0px;
     background: #FFFFFF;;
+
     @media ${breakPoints.web} {
       position: inherit;
-      height: 19vw;
+      height: 13vw;
       filter: none;
+
       &.PositionBlank{
-      height: 8vw;
+        height: 9vw;
       }
       &.InterestBlank{
-        height: 17vw;
+        height: 15vw;
+      }
+      &.TechnicBlank{
+        margin-bottom: 100px;
       }
     }
     
 `
 export const MainBox = styled.div`
-    /* display: flex; */
     flex-direction: column;
+
     @media ${breakPoints.web} {
       width: auto;
       position: absolute;
