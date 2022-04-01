@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../../commons/styles/breakpoint";
 import { IPropsTag, ISidebarWrapper } from "../profileEdit.types";
 
 
@@ -18,10 +19,19 @@ export const Wrapper = styled.div`
     filter: drop-shadow(0px -8px 20px rgba(0, 0, 0, 0.15));
     border-radius: 20px 20px 0px 0px;
     background: #FFFFFF;;
+    @media ${breakPoints.web} {
+      position: inherit;
+      height: 280px;
+      filter: none;
+    }
 `
 export const MainBox = styled.div`
     /* display: flex; */
     flex-direction: column;
+    @media ${breakPoints.web} {
+      width: auto;
+      position: absolute;
+    }
 `
 export const Header = styled.div`
     display: flex;

@@ -1,6 +1,7 @@
 import { RefObject } from "react";
 
 export interface IPropsProfileEditContext{
+    isvisible?: ""
     tendency?: string[];
     position?: string;
     interest?: string[];

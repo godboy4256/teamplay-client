@@ -1,18 +1,74 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 
 export const Wrapper = styled.div`
     width: 100%;
     height: 100vh;
     padding: 17px 20px 26px 20px;
     
-    overflow: hidden;
+    overflow: auto;
     position: relative;
     z-index: 1;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
+    @media ${breakPoints.web}{
+      max-width: 1200px;
+      margin: 0 auto;
+
+      /* background-color: blue; */
+      
+      & > div {
+        display: flex;
+        /* justify-content: space-between; */
+      }
+      /* background-color: green; */
+
+      /* overflow: auto;
+      position: relative;
+      z-index: 1; */
+      
+      /* & div {
+          background-color: red;
+          display: flex;
+          justify-content: space-between; */
+        /* & div {
+            
+            background-color: blue;
+          & div {
+            width: 100%;
+            background-color: yellow;
+            
+            flex-wrap: wrap;
+            flex-direction: column;
+          }
+        }
+      } */
+    }
 `
+export const FirstDiv = styled.div`
+@media ${breakPoints.web} {
+  display: none;
+}
+`
+
+export const SecondDiv = styled.div`
+  background-color: green;
+  @media ${breakPoints.web} {
+    margin-right: 10px;
+    img{
+      background-color: red;
+    }
+  }
+`
+export const ThirdDiv = styled.div`
+@media ${breakPoints.web}{
+    width: 100%;
+  }
+  `
+
 export const HeaderLine = styled.div`
   display: flex;
   justify-content: space-between;
@@ -30,6 +86,16 @@ export const HeaderLine = styled.div`
   }
 
   div{}
+
+  @media ${breakPoints.web}{
+   img{
+     display: none;
+   }
+
+   span {
+     display: none;
+   }
+  }
 `;
 
 export const ImgBox = styled.div`
@@ -46,11 +112,21 @@ export const ImgBox = styled.div`
       cursor: pointer;
     }
   }
+
+  @media ${breakPoints.web}{
+    height: 15vw;
+    width: 200px;
+    background-color: yellow;
+  }
 `;
 
 export const Name = styled.div`
   span{
     font-size: 24px;
+  }
+
+  @media ${breakPoints.web}{
+    margin: 0px 0px 0px 50px
   }
 `
 export const Tendency = styled.div`
@@ -76,6 +152,7 @@ export const Technic = styled.div`
 export const TagArea = styled.div`
   display: flex;
   flex-wrap: wrap;
+  
 `
 export const EditTag = styled.div`
   display: inline-block;
