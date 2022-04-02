@@ -61,7 +61,6 @@ export const FirstDiv = styled.div`
   display: none;
 }
 `
-
 export const SecondDiv = styled.div`
   
   @media ${breakPoints.web} {
@@ -74,7 +73,6 @@ export const ThirdDiv = styled.div`
     width: 100%;
   }
   `
-
 export const HeaderLine = styled.div`
   display: flex;
   justify-content: space-between;
@@ -103,7 +101,6 @@ export const HeaderLine = styled.div`
    }
   }
 `;
-
 export const ImgBox = styled.div`
   height: 30vw;
   display: flex;
@@ -124,7 +121,6 @@ export const ImgBox = styled.div`
     width: 200px;
   }
 `;
-
 export const Name = styled.div`
   span{
     font-size: 24px;
@@ -174,8 +170,7 @@ export const BtnBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  padding: 90px 0px 0px 0px;
+  margin-bottom: 30px;
 
   @media ${breakPoints.web}{
     display: flex;

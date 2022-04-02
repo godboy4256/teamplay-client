@@ -85,7 +85,7 @@ export default function RecruitUI() {
                         </h3>
                     </S.Contents>
                     <S.MultiSlide2>
-                        <MultiSlide2/>
+                        <MultiSlide2 slideToShow={0}/>
                     </S.MultiSlide2>
                     <S.WebSlideList>
                         {new Array(10).fill(1).map((_) => {
@@ -105,7 +105,7 @@ export default function RecruitUI() {
                         </h3>
                     </S.Contents>
                     <S.MultiSlide2>
-                        <MultiSlide2/>
+                        <MultiSlide2 slideToShow={0}/>
                     </S.MultiSlide2>
                 </S.RecruitBottom>
             </div>

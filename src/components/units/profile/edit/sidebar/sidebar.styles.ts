@@ -22,17 +22,21 @@ export const Wrapper = styled.div`
 
     @media ${breakPoints.web} {
       position: inherit;
-      height: 13vw;
+      /* height: 13vw; */
+      height: 200px;
       filter: none;
 
       &.PositionBlank{
-        height: 9vw;
+        /* height: 9vw; */
+        height: 130px;
       }
+  
       &.InterestBlank{
-        height: 15vw;
+        /* height: 15vw; */
+        height: 200px;
       }
       &.TechnicBlank{
-        margin-bottom: 100px;
+        margin-bottom: 40px;
       }
     }
     
