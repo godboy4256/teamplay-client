@@ -5,11 +5,15 @@ import userListDummy from "../../../../../commons/json/userList.json";
 import PropsProfileCardSlide from "../../../profileCard/profileCardSlide";
 import * as S from "./multislide.styles";
 
-export default function MultiSlide2() {
+interface IMultiSlide2 {
+  slideToShow: number;
+}
+
+export default function MultiSlide2(props: IMultiSlide2) {
   const settings = {
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: props.slideToShow,
+    slidesToScroll: props.slideToShow,
     initialSlide: 0,
     responsive: [
       {

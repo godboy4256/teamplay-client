@@ -8,6 +8,19 @@ export const ProjectListBox = styled.div`
     justify-content: space-between;
   }
   padding-bottom: 300px;
+  & > div {
+    @media (min-width: 1200px) {
+      width: 25%;
+      padding: 5px 10px;
+      & > div {
+        border-radius: 12px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+      }
+    }
+    @media ${breakPoints.tablet} {
+      width: 49%;
+    }
+  }
 `;
 
 export const ProjectListTitle = styled.h4`

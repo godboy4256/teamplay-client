@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const MainBox = styled.div`
   width: 100%;
   padding-bottom: 50px;
+  overflow-x: hidden;
 `;
 
 export const MainTop = styled.div``;

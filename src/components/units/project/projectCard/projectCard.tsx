@@ -10,28 +10,15 @@ const ProjectListItem = styled.div`
   cursor: pointer;
   & > div {
     border-radius: 12px;
-    margin-bottom: 25px;
-    overflow: hidden;
     border: 1px solid #ccc;
     transition: 0.4s ease-in-out;
+    overflow: hidden;
     &:hover {
       border-color: #3894ff;
-      transform: scale(1.01);
+      & img {
+        transform: translate(-50%, -50%) scale(1.05);
+      }
     }
-  }
-  @media (min-width: 1200px) {
-    width: 25%;
-    padding: 5px 10px;
-    & > div {
-      border-radius: 12px;
-      margin-bottom: 25px;
-      overflow: hidden;
-      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid #ccc;
-    }
-  }
-  @media ${breakPoints.tablet} {
-    width: 49%;
   }
 `;
 
@@ -42,13 +29,13 @@ const ProjectListItemTop = styled.div`
   color: #fff;
   position: relative;
   overflow: hidden;
-
   & > img {
     width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: 0.4s;
   }
   & > div {
     padding: 15px 13px;

@@ -20,7 +20,7 @@ const FETCH_PROJECTS = gql`
   }
 `;
 
-export default function MultiSlide(props: any) {
+export default function MultiSlide() {
   const { data } = useQuery<
     Pick<IQuery, "fetchProjects">,
     IQueryFetchProjectsArgs
@@ -34,8 +34,24 @@ export default function MultiSlide(props: any) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 1,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
   };
 
   return (
