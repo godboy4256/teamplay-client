@@ -1,4 +1,10 @@
-import { ChangeEvent, Dispatch, RefObject, SetStateAction } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  KeyboardEvent,
+  RefObject,
+  SetStateAction,
+} from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IChattingDetailContext {
@@ -6,6 +12,7 @@ export interface IChattingDetailContext {
   isToggle?: boolean;
   userName?: string | undefined;
   data?: Pick<IQuery, "fetchChats"> | undefined;
+  message?: string;
   setUserName?: Dispatch<SetStateAction<string>>;
   onClickSetPosition?: () => void;
   onChangeChatInput?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
@@ -14,6 +21,10 @@ export interface IChattingDetailContext {
 
 export interface IPropsChattingDetailUI {
   ChattingBoxRef: RefObject<HTMLUListElement>;
+  sendRef: RefObject<HTMLDivElement>;
+  wrapperRef: RefObject<HTMLDivElement>;
+  roomName: string;
+  onkeyPressEnter: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
 export interface ISidebarWrapper {

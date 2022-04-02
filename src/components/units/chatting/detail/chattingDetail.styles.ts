@@ -27,7 +27,7 @@ export const Opacity = styled.div`
   top: 0;
   left: 0;
   width: calc(100% - 262.5px);
-  height: 100vh;
+  height: 100%;
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.6);
 `;
@@ -274,7 +274,13 @@ export const MsgInput = styled.div`
 `;
 
 export const SendButton = styled.div`
+  width: 38px;
+  height: 42px;
   padding: 10px 13px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   background: #3894ff;
 
