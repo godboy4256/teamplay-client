@@ -1,7 +1,8 @@
 export const getTime = (time: string) => {
   const temp = time.substring(11, 16);
-  let hour = Number(temp[0] + temp[1]);
-  const min = temp[3] + temp[4];
+  const timeArr = temp.split(":");
+  let hour = Number(timeArr[0]);
+  const min = timeArr[1];
   let state = "";
 
   if (hour > 12) {

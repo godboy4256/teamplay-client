@@ -23,8 +23,30 @@ export const FETCH_CHAT_ROOM_MEMBERS = gql`
   query fetchChatRoomMembers($chatRoomId: String!) {
     fetchChatRoomMembers(chatRoomId: $chatRoomId) {
       user {
+        id
         name
+        point
+        tendencys {
+          name
+        }
+        position {
+          name
+        }
       }
+    }
+  }
+`;
+
+export const START_PROJECT = gql`
+  mutation startProject(
+    $projectId: String!
+    $userIds: [String!]!
+    $point: Float!
+  ) {
+    startProject(projectId: $projectId, userIds: $userIds, point: $point) {
+      id
+      name
+      teamname
     }
   }
 `;

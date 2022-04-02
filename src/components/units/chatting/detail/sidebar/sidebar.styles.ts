@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
-import { ISidebarWrapper } from "../chattingDetail.types";
+import {
+  IPropsSidebarSubmitBtn,
+  ISidebarWrapper,
+} from "../chattingDetail.types";
 
 export const Wrapper = styled.div`
   padding: 15px 10px;
@@ -156,5 +159,63 @@ export const SelectCircle = styled.div`
     :hover {
       cursor: pointer;
     }
+  }
+`;
+
+export const SelectPrice = styled.select`
+  width: 50%;
+`;
+
+export const Function = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const InputBox = styled.div`
+  width: 67%;
+  margin-top: 10px;
+  padding: 0 5px;
+
+  input {
+    width: 60%;
+    padding: 5px 0;
+    border-bottom: 1px solid #c4c4c4;
+
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 18px;
+
+    ::placeholder {
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 18px;
+      color: #999999;
+    }
+  }
+
+  span {
+    padding: 0 10px;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 18px;
+    color: #999999;
+  }
+`;
+
+export const SubmitBtn = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: ${(props: IPropsSidebarSubmitBtn) =>
+      props.isSubmit ? "#3894ff" : "#c4c4c4"};
+
+    font-size: 1rem;
+    color: #fff;
   }
 `;

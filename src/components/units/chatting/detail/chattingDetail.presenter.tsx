@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { TextArea } from "../../../commons/textarea/textarea";
 import { ChattingDetailContext } from "./chattingDetail.container";
 import * as S from "./chattingDetail.styles";
-import Sidebar from "./sidebar/sidebar";
+import Sidebar from "./sidebar/sidebar.container";
 import { ChattingContext } from "../chatting.container";
 import { IPropsChattingDetailUI } from "./chattingDetail.types";
 import { v4 as uuidv4 } from "uuid";

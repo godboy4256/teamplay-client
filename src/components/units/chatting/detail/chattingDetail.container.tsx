@@ -10,6 +10,7 @@ import {
 } from "react";
 import io from "socket.io-client";
 import { RoomListContext } from "../../../../../pages/chatting";
+import { getTime } from "../../../../commons/library/getTime";
 import {
   IMutation,
   IMutationSendMessageArgs,
@@ -59,8 +60,8 @@ export default function ChattingDetail() {
     roomList.fetchChatRooms.forEach((el) => {
       if (el.id === chatRoomId) setRoomName(el.name);
     });
-
-    wrapperRef.current?.scrollTo(0, wrapperRef.current.scrollHeight);
+    if (!isToggle)
+      wrapperRef.current?.scrollTo(0, wrapperRef.current.scrollHeight);
   }, [roomList, chatRoomId]);
 
   let socket: any;
@@ -99,13 +100,13 @@ export default function ChattingDetail() {
     if (data.user.name === userInfo?.fetchUser.name) {
       li.className = "sent";
       dom = `<span class="message">${data.content}</span>
-      <span class="time">${data.createdAt}</span>`;
+      <span class="time">${getTime(data.createdAt)}</span>`;
     } else {
       li.className = "received";
 
       if (data.user.name === userName) {
         dom = `<span class="continue-message">${data.content}</span>
-        <span class="time">${data.createdAt}</span>`;
+        <span class="time">${getTime(data.createdAt)}</span>`;
       } else {
         setUserName(data.user.name);
         dom = `<span class="profile">
@@ -120,7 +121,7 @@ export default function ChattingDetail() {
             <span class="message">
               ${data.content}
             </span>
-            <span class="time">${data.createdAt}</span>
+            <span class="time">${getTime(data.createdAt)}</span>
           </span>
         </span>
       </span>`;
@@ -155,9 +156,11 @@ export default function ChattingDetail() {
 
   const onClickSetPosition = () => {
     if (position === -262.5) {
+      wrapperRef.current?.scrollTo(0, 0);
       setPosition(0);
       setIsToggle(true);
     } else {
+      wrapperRef.current?.scrollTo(0, wrapperRef.current.scrollHeight);
       setPosition(-262.5);
       setIsToggle(false);
     }

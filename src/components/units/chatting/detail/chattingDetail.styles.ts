@@ -30,6 +30,10 @@ export const Opacity = styled.div`
   height: 100%;
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.6);
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const Alert = styled.div`
