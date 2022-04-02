@@ -2,12 +2,14 @@ import { useMutation, useQuery } from "@apollo/client";
 import {
   ChangeEvent,
   createContext,
+  KeyboardEvent,
   useContext,
   useEffect,
   useRef,
   useState,
 } from "react";
 import io from "socket.io-client";
+import { RoomListContext } from "../../../../../pages/chatting";
 import {
   IMutation,
   IMutationSendMessageArgs,
@@ -30,8 +32,36 @@ export default function ChattingDetail() {
   const [isToggle, setIsToggle] = useState(false);
   const [userName, setUserName] = useState("");
   const [message, setMessage] = useState("");
+  const [roomName, setRoomName] = useState("");
   const ChattingBoxRef = useRef<HTMLUListElement>(null);
+  const sendRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const { data: userInfo } = useFetchUser();
+  const { data: roomList } = useContext(RoomListContext);
+
+  const [sendMessage] = useMutation<
+    Pick<IMutation, "sendMessage">,
+    IMutationSendMessageArgs
+  >(SEND_MESAGE);
+  const { data } = useQuery<Pick<IQuery, "fetchChats">, IQueryFetchChatsArgs>(
+    FETCH_CHATS,
+    {
+      variables: {
+        chatRoomId: chatRoomId || "",
+        page: 1,
+      },
+    }
+  );
+
+  useEffect(() => {
+    if (!roomList) return;
+
+    roomList.fetchChatRooms.forEach((el) => {
+      if (el.id === chatRoomId) setRoomName(el.name);
+    });
+
+    wrapperRef.current?.scrollTo(0, wrapperRef.current.scrollHeight);
+  }, [roomList, chatRoomId]);
 
   let socket: any;
 
@@ -42,11 +72,8 @@ export default function ChattingDetail() {
 
     // message;
     socket.on("message" + chatRoomId, (data: IMessageData) => {
-      console.log("socket=========");
-      console.log(socket);
-      console.log("data=========");
-      console.log(data);
       makeLi(data);
+      wrapperRef.current?.scrollTo(0, wrapperRef.current.scrollHeight);
     });
 
     /* 누군가 입장 */
@@ -104,20 +131,6 @@ export default function ChattingDetail() {
     ChattingBoxRef.current?.appendChild(li);
   };
 
-  const [sendMessage] = useMutation<
-    Pick<IMutation, "sendMessage">,
-    IMutationSendMessageArgs
-  >(SEND_MESAGE);
-  const { data } = useQuery<Pick<IQuery, "fetchChats">, IQueryFetchChatsArgs>(
-    FETCH_CHATS,
-    {
-      variables: {
-        chatRoomId: chatRoomId || "",
-        page: 1,
-      },
-    }
-  );
-
   const onChangeChatInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   };
@@ -129,6 +142,15 @@ export default function ChattingDetail() {
         chatRoomId: chatRoomId || "",
       },
     });
+    setMessage("");
+  };
+
+  const onkeyPressEnter = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter")
+      if (!e.shiftKey) {
+        e.preventDefault();
+        sendRef.current?.click();
+      }
   };
 
   const onClickSetPosition = () => {
@@ -145,6 +167,7 @@ export default function ChattingDetail() {
     isToggle,
     position,
     data,
+    message,
     userName,
     setUserName,
     onClickSetPosition,
@@ -153,7 +176,13 @@ export default function ChattingDetail() {
   };
   return (
     <ChattingDetailContext.Provider value={value}>
-      <ChattingDetailUI ChattingBoxRef={ChattingBoxRef} />
+      <ChattingDetailUI
+        ChattingBoxRef={ChattingBoxRef}
+        sendRef={sendRef}
+        wrapperRef={wrapperRef}
+        roomName={roomName}
+        onkeyPressEnter={onkeyPressEnter}
+      />
     </ChattingDetailContext.Provider>
   );
 }

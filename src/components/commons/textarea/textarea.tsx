@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ChangeEvent, useCallback, useRef } from "react";
+import { ChangeEvent, KeyboardEvent, useCallback, useRef } from "react";
 
 const Textarea = styled.textarea`
   width: 100%;
@@ -15,7 +15,9 @@ const Textarea = styled.textarea`
 `;
 
 interface IProps {
+  value: string | undefined;
   onChange: ((e: ChangeEvent<HTMLTextAreaElement>) => void) | undefined;
+  onkeydown: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
 export function TextArea(props: IProps) {
@@ -32,7 +34,9 @@ export function TextArea(props: IProps) {
   return (
     <Textarea
       ref={textRef}
+      value={props.value}
       onInput={handleResizeHeight}
+      onKeyDown={props.onkeydown}
       onChange={props.onChange && props.onChange}
     />
   );

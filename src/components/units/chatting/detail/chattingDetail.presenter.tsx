@@ -7,19 +7,21 @@ import { ChattingContext } from "../chatting.container";
 import { IPropsChattingDetailUI } from "./chattingDetail.types";
 import { v4 as uuidv4 } from "uuid";
 import useFetchUser from "../../../commons/hooks/useFetchUser";
+import { getTime } from "../../../../commons/library/getTime";
 
 export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
   const {
-    onClickSetPosition,
     isToggle,
     data,
+    message,
+    onClickSetPosition,
     onChangeChatInput,
     onClickSendMessage,
   } = useContext(ChattingDetailContext);
   const { data: loginInfo } = useFetchUser();
   const { onClickChangePosition } = useContext(ChattingContext);
   return (
-    <S.Wrapper isToggle={isToggle}>
+    <S.Wrapper ref={props.wrapperRef} isToggle={isToggle}>
       <S.Opacity isToggle={isToggle} onClick={onClickSetPosition} />
       <Sidebar />
       <S.ChattingBox>
@@ -30,7 +32,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
               onClick={onClickChangePosition}
             />
             <S.Tag>Project</S.Tag>
-            <S.ProjectName>프로젝트 단톡방</S.ProjectName>
+            <S.ProjectName>{props.roomName}</S.ProjectName>
             <S.Count>5</S.Count>
           </S.RightBox>
           <S.DotImgBox onClick={onClickSetPosition}>
@@ -43,7 +45,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
               el.user.name === loginInfo?.fetchUser.name ? (
                 <li className="sent" key={uuidv4()}>
                   <span className="message">{el.content}</span>
-                  <span className="time">{el.createdAt}</span>
+                  <span className="time">{getTime(el.createdAt)}</span>
                 </li>
               ) : (
                 <li className="received" key={uuidv4()}>
@@ -57,7 +59,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
                       <span className="name">{el.user.name}</span>
                       <span className="message-box">
                         <span className="message">{el.content}</span>
-                        <span className="time">{el.createdAt}</span>
+                        <span className="time">{getTime(el.createdAt)}</span>
                       </span>
                     </span>
                   </span>
@@ -100,10 +102,14 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
               <img src="/img/chatting/camera.svg" />
             </S.UploadImgBtn>
             <S.MsgInput>
-              <TextArea onChange={onChangeChatInput} />
+              <TextArea
+                value={message}
+                onChange={onChangeChatInput}
+                onkeydown={props.onkeyPressEnter}
+              />
             </S.MsgInput>
           </S.InputBox>
-          <S.SendButton onClick={onClickSendMessage}>
+          <S.SendButton onClick={onClickSendMessage} ref={props.sendRef}>
             <img src="/img/chatting/send.svg" />
           </S.SendButton>
         </S.FunctionBox>
