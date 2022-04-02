@@ -32,6 +32,14 @@ export default function useMoveToPage() {
     router.push("/chatting");
   };
 
+  const moveToOnboarding = () => {
+    router.push("/onboarding");
+  };
+
+  const moveToBack = () => {
+    history.back();
+  };
+
   const onClickHeaderRouting = (e: MouseEvent<HTMLLIElement>) => {
     const navList = document.querySelectorAll(".nav__list");
     for (let i = 0; i < navList.length; i++) {
@@ -49,5 +57,7 @@ export default function useMoveToPage() {
     moveToProfileEdit,
     moveToProfile,
     onClickHeaderRouting,
+    moveToBack,
+    moveToOnboarding,
   };
 }

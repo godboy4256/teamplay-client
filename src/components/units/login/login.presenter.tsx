@@ -3,8 +3,10 @@ import Xmark from "../../commons/button/Xmark";
 import * as S from "./login.styles";
 import { IPropsLoginUI } from "./login.types";
 import Link from "next/link";
+import useMoveToPage from "../../commons/hooks/useMoveToPage";
 
 export default function LoginUI(props: IPropsLoginUI) {
+  const { moveToMain } = useMoveToPage();
   return (
     <S.Wrapper>
       <S.TabletBox>
@@ -12,7 +14,7 @@ export default function LoginUI(props: IPropsLoginUI) {
           <img src="/img/contents06.png" />
         </S.WebImgBox>
         <S.LoginBox>
-          <S.XmarkBox onClick={props.onClickLogout}>
+          <S.XmarkBox onClick={moveToMain}>
             <Xmark width={16} height={16} />
           </S.XmarkBox>
           <S.LogoBox>
@@ -25,12 +27,14 @@ export default function LoginUI(props: IPropsLoginUI) {
           <S.EmailInput
             type="text"
             placeholder="이메일"
+            onKeyDown={props.onPressEnter}
             onChange={props.onChangeLoginInput("email")}
           />
           <S.PassBox>
             <input
               type={props.type}
               placeholder="비밀번호"
+              onKeyDown={props.onPressEnter}
               onChange={props.onChangeLoginInput("password")}
             />
             <S.EyeImg>
@@ -50,7 +54,7 @@ export default function LoginUI(props: IPropsLoginUI) {
           <SubmitBtn
             isActive={false}
             onClick={props.onClickSubmitLogin}
-            name="이메일로 로그인"
+            name="로그인"
             fontSize={1.143}
             backgroundcolor="#3894FF"
           />
