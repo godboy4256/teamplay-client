@@ -8,6 +8,7 @@ import * as S from "./recruit.styles";
 // import FilterTendency from "./sidebar/tendency";
 import SideBarBasic from "./sidebar/sidebarBasic";
 import PropsProfileCard from "../../commons/profileCard/profileCard";
+// import MultiSlide from "../../commons/slider/component/multislide/multislide.container";
 
 export default function RecruitUI() {
     const {
@@ -25,6 +26,7 @@ export default function RecruitUI() {
         <S.TopText>
             <span>모든 팀원</span>
         </S.TopText>
+        {/* <MultiSlide/> */}
         <Wrapper paddingTop={0}>
             <S.Opacity isVisible={isVisible} onClick={onClickSearchfilter}/>
             <div>

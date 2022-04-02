@@ -51,6 +51,23 @@ export const WebAboutMe = styled.div`
       display: none;
     }
 `
+export const NoneWebVisible = styled.div`
+
+`
+export const WebVisible = styled.div`
+  @media ${breakPoints.mobile}{
+    display: none;
+  }
+  @media ${breakPoints.tablet}{
+    display: none;
+  }
+  @media ${breakPoints.web}{}
+`
+export const WebBottomAboutme = styled.div`
+  @media ${breakPoints.web}{
+    display: none;
+  }
+`
 export const ImgBox = styled.div`
   width: 35%;
   height: 30vw;
@@ -118,7 +135,7 @@ export const LineBox = styled.div`
   transform: rotate(0.05deg);
 
   @media ${breakPoints.web}{
-    display: none;
+    /* display: none; */
   }
 `;
 export const Detail = styled.div`

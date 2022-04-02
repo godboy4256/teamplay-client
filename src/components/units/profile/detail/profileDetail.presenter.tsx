@@ -59,10 +59,12 @@ export default function ProfileDetailUI(props: IPropsProfileDetail){
                 </S.Detail>
             </S.LineBox>
         </S.Wrapper>
+
+        <S.NoneWebVisible>
         {props.isVisible === "About me" ? 
-            <div>
+            <S.WebBottomAboutme>
                 <AboutMe/>
-            </div> 
+            </S.WebBottomAboutme> 
         : props.isVisible === "Project" && 
             <div>
                 <S.WebProject>
@@ -95,6 +97,40 @@ export default function ProfileDetailUI(props: IPropsProfileDetail){
                 </S.ProjectWrapper> 
             </div>
         }
+        </S.NoneWebVisible>
+
+        <S.WebVisible>
+            <div>
+                <S.WebProject>
+                    <span>Project</span>
+                </S.WebProject>
+                <S.ProjectWrapper>
+                    <S.Header>
+                        <img onClick={onClickMoveToProjectList} src="/img/profile/progressDone.svg"/>
+                    </S.Header>
+                    <S.ProjectBox>
+                        <S.ProjectImgItem>
+                            <img src="/img/contents01.jpg"/>
+                            <img src="/img/contents02.jpg"/>
+                            <img src="/img/contents03.jpg"/>
+                            <img src="/img/contents04.jpg"/>
+                            <img src="/img/contents05.png"/>
+                            <img src="/img/contents06.png"/>
+                            <img src="/img/contents01.jpg"/>
+                            <img src="/img/contents02.jpg"/>
+                            <img src="/img/contents03.jpg"/>
+                            <img src="/img/contents04.jpg"/>
+                            <img src="/img/contents05.png"/>
+                            <img src="/img/contents06.png"/>
+                            <img src="/img/contents01.jpg"/>
+                            <img src="/img/contents02.jpg"/>
+                            <img src="/img/contents04.jpg"/>
+                            <img src="/img/contents05.png"/>
+                        </S.ProjectImgItem>    
+                    </S.ProjectBox>
+                </S.ProjectWrapper> 
+            </div>
+        </S.WebVisible>
     </>
     )
 }

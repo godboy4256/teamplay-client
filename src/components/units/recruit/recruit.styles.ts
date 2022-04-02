@@ -23,6 +23,10 @@ export const TopText = styled.div`
 
     @media ${breakPoints.web}{
         padding: 20px;
+
+        max-width: 1200px;
+        margin: 0 auto;
+
         span{
             font-size: 28px;
             color: #0D223A
@@ -176,6 +180,7 @@ export const WebSlideList = styled.div`
         display: grid;
         grid-template-columns: repeat(5,1fr);
         grid-gap: 20px 15px;
+        cursor: pointer;
     }
 `
 
