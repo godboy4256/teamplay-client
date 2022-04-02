@@ -19,15 +19,16 @@ export default function ProfileProjectListUI() {
                     <span>진행 중인 프로젝트</span>
                 </S.ProgressTitle>
                 <S.ProgressList>
-                    {new Array(2).fill(1).map((_) => {
+                    {new Array(3).fill(1).map((_) => {
                         return <ProfileProgress key={uuidv4()}/>
                     })}
                 </S.ProgressList>
+                <S.WebLine/>
                 <S.ProgressTitle>
                     <span>완료된 프로젝트</span>
                 </S.ProgressTitle>
                 <S.ProgressList>
-                    {new Array(2).fill(1).map((_) => {
+                    {new Array(4).fill(1).map((_) => {
                         return <ProfileDone key={uuidv4()}/>
                     })}
                 </S.ProgressList>

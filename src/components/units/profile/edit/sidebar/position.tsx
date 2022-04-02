@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import * as S from "./sidebar.styles";
 import { ProfileEditContext } from "../profileEdit.container";
@@ -25,7 +25,7 @@ export default function ProfileEditPosition() {
   ];
 
   return (
-    <S.Wrapper area={area}>
+    <S.Wrapper area={area} className='PositionBlank'>
       <S.MainBox>
         <S.Header>
           <S.RefreshBox>
@@ -34,21 +34,25 @@ export default function ProfileEditPosition() {
           </S.RefreshBox>
           <S.XMark src="/img/preview/Xmark.svg" onClick={onClickEditPosition} />
         </S.Header>
-        <Blank height={24} width={0} />
+        <div className="NoneBlank">
+          <Blank height={24} width={0}/>
+        </div>
         <S.Title>
           <span>나의 포지션</span>
         </S.Title>
-        <Blank height={36} width={0} />
+        <div className="NoneBlank">
+          <Blank height={36} width={0}/>
+        </div>
         <S.TagArea>
           {list.map((name) => (
-            <Fragment key={uuidv4()}>
+            <div key={uuidv4()}>
               <ClickTag
                 name={name}
                 marginBottom={16}
                 isClick={position && position === name && true}
                 onClick={onClickPushTag}
               />
-            </Fragment>
+            </div>
           ))}
         </S.TagArea>
         {/* <S.TagArea>

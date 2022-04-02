@@ -32,7 +32,7 @@ export default function ProfileEditTechnic() {
       ];
 
     return(
-        <S.Wrapper area={area}>
+        <S.Wrapper area={area} className="TechnicBlank">
             <S.MainBox>
                 <S.Header>
                     <S.RefreshBox>
@@ -41,11 +41,15 @@ export default function ProfileEditTechnic() {
                     </S.RefreshBox>
                     <S.XMark src="/img/preview/Xmark.svg" onClick={onClickEditTechnic}/>
                 </S.Header>
-                <Blank height={24} width={0}/>
+                <div className="NoneBlank">
+                    <Blank height={24} width={0}/>
+                </div>
                 <S.Title>
                     <span>사용 가능한 기술/언어</span>
                 </S.Title>
-                <Blank height={36} width={0}/>
+                <div className="NoneBlank">
+                    <Blank height={36} width={0}/>
+                </div>
                 <S.TagArea>
                     {list.map((name) =>(
                         <Fragment key={uuidv4()}>
@@ -59,10 +63,11 @@ export default function ProfileEditTechnic() {
                 </S.TagArea>
                 <S.BtnBox>
                     <SubmitBtn 
-                        name="확인" 
-                        fontSize={1.143} 
-                        backgroundcolor="#3894FF" 
-                        onClick={onClickChangeTagButton}
+                        name="확인"
+                        fontSize={1.143}
+                        backgroundcolor="#3894FF"
+                        onClick={onClickChangeTagButton} 
+                        isActive={false}
                     />
                 </S.BtnBox>
             </S.MainBox>

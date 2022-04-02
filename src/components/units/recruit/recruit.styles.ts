@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../commons/styles/breakpoint";
 import { IPropsRecruitContext, IPropsTag } from "./recruit.types";
 
 export const Opacity = styled.div`
@@ -11,6 +12,28 @@ export const Opacity = styled.div`
   background-color: white;
 `;
 
+export const TopText = styled.div`
+    @media ${breakPoints.mobile}{
+        display: none;
+    }
+
+    @media ${breakPoints.tablet}{
+        display: none;
+    }
+
+    @media ${breakPoints.web}{
+        padding: 20px;
+
+        max-width: 1200px;
+        margin: 0 auto;
+
+        span{
+            font-size: 28px;
+            color: #0D223A
+        }
+    }
+`
+
 export const SearchBarWrapper = styled.div`
     width: 100%;
     padding: 10px 0;
@@ -21,7 +44,6 @@ export const TagArea = styled.div`
 
     display: flex;
     flex-wrap: wrap;
-    /* background-color: blueviolet; */
 
     padding: 0px 10px 0px;
 `;
@@ -134,6 +156,31 @@ export const Contents = styled.div`
     }
     & > h3 > img {
         margin-left: 5px;
+    }
+
+    @media ${breakPoints.web}{
+        display: none;
+    }
+`
+export const MultiSlide2 = styled.div`
+    @media ${breakPoints.web}{
+        display: none;
+    }
+`
+export const WebSlideList = styled.div`
+    @media ${breakPoints.mobile}{
+        display: none;
+    }
+
+    @media ${breakPoints.tablet}{
+        display: none;
+    }
+    
+    @media ${breakPoints.web}{
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        grid-gap: 20px 15px;
+        cursor: pointer;
     }
 `
 

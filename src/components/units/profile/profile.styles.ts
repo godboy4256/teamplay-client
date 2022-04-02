@@ -1,7 +1,13 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../commons/styles/breakpoint";
 
 export const Wrapper = styled.div`
   width: 100%;
+
+  @media ${breakPoints.web}{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 `;
 export const WrapperHeader = styled.div`
   width: 100%;
@@ -22,11 +28,23 @@ export const HeaderLine = styled.div`
         cursor: pointer;
       }
     }
+
+    @media ${breakPoints.web}{
+      display: block;
+      img{
+        display: none;
+      }
+    }
 `
 export const HeaderContents = styled.div`
     width: 100%;
     display: flex;
     padding: 20px 0px 0px 0px;
+
+    @media ${breakPoints.web}{
+      padding: 0px 0px;
+      height: 9vw;
+    }
 `
 
 export const ImgBox = styled.div`
@@ -38,6 +56,16 @@ export const ImgBox = styled.div`
     height: 80%;
     border-radius: 50%;
   }
+
+  @media ${breakPoints.web} {
+    width: 25%;
+    height: 100%;
+
+    img{
+      width: 70%;
+      height: 100%;
+    }
+  }
 `;
 
 export const InfoBox = styled.div`
@@ -45,7 +73,14 @@ export const InfoBox = styled.div`
   margin: 0px 20px 30px 0px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;;
+  justify-content: space-around;
+
+  @media ${breakPoints.web} {
+    width: 65%;
+    justify-content: flex-start;
+    justify-content: space-evenly;
+    height: 10vw;
+  }
 `;
 
 export const Name = styled.div`
@@ -81,6 +116,10 @@ export const LineBox = styled.div`
   border-top: 0.75px solid #ededed;
   border-bottom: 0.75px solid #ededed;
   transform: rotate(0.05deg);
+
+  @media ${breakPoints.web}{
+    display: none;
+  }
 `;
 
 export const Detail = styled.div`

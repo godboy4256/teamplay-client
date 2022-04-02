@@ -7,6 +7,8 @@ import { RecruitContext } from "./recruit.container";
 import * as S from "./recruit.styles";
 // import FilterTendency from "./sidebar/tendency";
 import SideBarBasic from "./sidebar/sidebarBasic";
+import PropsProfileCard from "../../commons/profileCard/profileCard";
+// import MultiSlide from "../../commons/slider/component/multislide/multislide.container";
 
 export default function RecruitUI() {
     const {
@@ -21,6 +23,10 @@ export default function RecruitUI() {
     return(
         <>
         {isVisible && <SideBarBasic/>}
+        <S.TopText>
+            <span>모든 팀원</span>
+        </S.TopText>
+        {/* <MultiSlide/> */}
         <Wrapper paddingTop={0}>
             <S.Opacity isVisible={isVisible} onClick={onClickSearchfilter}/>
             <div>
@@ -78,7 +84,19 @@ export default function RecruitUI() {
                             <img src="../img/req.svg" alt="req title" />
                         </h3>
                     </S.Contents>
-                    <MultiSlide2 margin-right={'30px'}/>
+                    <S.MultiSlide2>
+                        <MultiSlide2/>
+                    </S.MultiSlide2>
+                    <S.WebSlideList>
+                        {new Array(10).fill(1).map((_) => {
+                            return (
+                                <> 
+                                    <PropsProfileCard key={uuidv4()} img={"../img/onboarding/userProfile.png"} name={"쇼바스키"} position={"개발자"} tendency={undefined} fontSize={14}/>
+                                    <PropsProfileCard key={uuidv4()} img={"../img/user01.png"} name={"스바스키"} position={"기획자"} tendency={tendency} fontSize={14}/>
+                                </>
+                            )
+                        })}
+                    </S.WebSlideList>
                 </S.RecruitTop>
                 <S.RecruitBottom>
                     <S.Contents>
@@ -86,9 +104,10 @@ export default function RecruitUI() {
                             팀원을 구해요!
                         </h3>
                     </S.Contents>
-                    <MultiSlide2/>
+                    <S.MultiSlide2>
+                        <MultiSlide2/>
+                    </S.MultiSlide2>
                 </S.RecruitBottom>
-                
             </div>
         </Wrapper>
         </>

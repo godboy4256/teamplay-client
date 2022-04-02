@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../../commons/styles/breakpoint";
 import { IPropsTag, ISidebarWrapper } from "../profileEdit.types";
 
 
@@ -18,14 +19,42 @@ export const Wrapper = styled.div`
     filter: drop-shadow(0px -8px 20px rgba(0, 0, 0, 0.15));
     border-radius: 20px 20px 0px 0px;
     background: #FFFFFF;;
+
+    @media ${breakPoints.web} {
+      position: inherit;
+      height: 13vw;
+      filter: none;
+
+      &.PositionBlank{
+        height: 9vw;
+      }
+      &.InterestBlank{
+        height: 15vw;
+      }
+      &.TechnicBlank{
+        margin-bottom: 100px;
+      }
+    }
+    
 `
 export const MainBox = styled.div`
-    /* display: flex; */
     flex-direction: column;
+
+    @media ${breakPoints.web} {
+      width: auto;
+      position: absolute;
+      .NoneBlank{
+        display: none;
+      }
+    }
 `
 export const Header = styled.div`
     display: flex;
     justify-content: space-between;
+
+    @media ${breakPoints.web}{
+      display: none;
+    }
 `
 export const RefreshBox = styled.div`
     display: flex;
@@ -58,10 +87,20 @@ export const Title = styled.div`
         font-size: 16px;
         color: #6B6B6B;
     }
+
+    @media ${breakPoints.web}{
+      span{
+        display: none;
+      }
+    }
 `
+
 export const TagArea = styled.div`
   display: flex;
   flex-wrap: wrap;
+  @media ${breakPoints.web} {
+    
+  }
 `;
 export const Tag = styled.div`
   display: flex;
@@ -131,5 +170,9 @@ export const BtnBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media ${breakPoints.web} {
+    display: none;
+  }
 `;
 
