@@ -23,6 +23,7 @@ export default function WriteGoButton() {
   const router = useRouter();
   const onClickWritepage = () => {
     router.push("/project/new");
+    document.querySelector("#__next")?.classList.remove("projectdetalon");
   };
   return (
     <WriteGoButtonStyle onClick={onClickWritepage}>

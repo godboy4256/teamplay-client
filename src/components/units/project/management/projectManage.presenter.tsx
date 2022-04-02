@@ -122,7 +122,7 @@ export default function ProjectManageUI(props: IProsManage) {
                 <h3>팀 프로필</h3>
               </S.ProjectManageContentsTop>
               <S.ProjectUserSlideBox>
-                <MultiSlide2 />
+                <MultiSlide2 slideToShow={3} />
               </S.ProjectUserSlideBox>
             </div>
             <div>

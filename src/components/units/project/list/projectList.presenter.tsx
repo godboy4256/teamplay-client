@@ -34,15 +34,16 @@ export default function ProjectListUI(props: IPropsProjectListUI) {
             {props?.data &&
               props?.data.fetchProjects.map((el) => {
                 return (
-                  <ProjectCard
-                    key={uuidv4()}
-                    id={el.id}
-                    name={el.name}
-                    imgUrl={el.imgUrl}
-                    recruitDate={el.recruitDate}
-                    type={el.type.name}
-                    onDetail={props.onDetail}
-                  />
+                  <div key={uuidv4()}>
+                    <ProjectCard
+                      id={el.id}
+                      name={el.name}
+                      imgUrl={el.imgUrl}
+                      recruitDate={el.recruitDate}
+                      type={el.type.name}
+                      onDetail={props.onDetail}
+                    />
+                  </div>
                 );
               })}
           </S.ProjectListBox>

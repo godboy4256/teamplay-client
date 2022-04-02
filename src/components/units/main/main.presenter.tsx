@@ -4,7 +4,11 @@ import MainSlide from "../../commons/slider/component/mainslide/mainslide";
 import * as S from "./main.styles";
 import { Wrapper } from "../../../commons/styles/commonStyls";
 
-export default function MainPage() {
+interface IMainPage {
+  onClickProjects: () => void;
+}
+
+export default function MainPage(props: IMainPage) {
   return (
     <S.MainBox>
       <MainSlide />
@@ -16,7 +20,7 @@ export default function MainPage() {
               <br />
               이런 프로젝트는 어떠세요?💡
             </h3>
-            <button>{"더보기 >"}</button>
+            <button onClick={props.onClickProjects}>{"더보기 >"}</button>
           </S.ContentsHeader>
           <MultiSlide />
         </S.MainTop>
@@ -28,7 +32,7 @@ export default function MainPage() {
             </h3>
             <button>{"더보기 >"}</button>
           </S.ContentsHeader>
-          <MultiSlide2 />
+          <MultiSlide2 slideToShow={5} />
         </S.MainBottom>
       </Wrapper>
     </S.MainBox>
