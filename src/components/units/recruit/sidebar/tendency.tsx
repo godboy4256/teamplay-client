@@ -40,7 +40,7 @@ export default function FilterTendency(){
                                 name={name}
                                 marginBottom={12}
                                 backgroundColor={dump.tendency.color[index]}
-                                onClick={onClickPushTag}
+                                onClick={onClickPushTag} id={""}
                             />
                         </Fragment>
                     ))}

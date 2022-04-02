@@ -55,8 +55,10 @@ export const ProgressTitle = styled.div`
 export const ProgressList = styled.div`
   margin-bottom: 20px;
   
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  @media ${breakPoints.web}{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 `
 export const WebLine = styled.div`
   @media ${breakPoints.mobile}{
