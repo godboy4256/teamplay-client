@@ -25,6 +25,7 @@ export const Wrapper = styled.div`
 
 export const ListBox = styled.div`
   width: 100vw;
+  height: 100%;
 
   @media ${breakPoints.tablet} {
     width: 375px;
@@ -37,6 +38,7 @@ export const ListBox = styled.div`
 
 export const DetailBox = styled.div`
   width: 100vw;
+  height: 100%;
 
   @media ${breakPoints.tablet} {
     width: calc(100vw - 375px);

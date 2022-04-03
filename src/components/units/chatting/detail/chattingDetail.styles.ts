@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
   height: 100%;
   padding: 0px 10px 30px 10px;
   overflow: hidden;
-  overflow-y: ${(props: IPropsChattingDetailUIWrapper) =>
-    props.isToggle ? "hidden" : "scroll"};
+  /* overflow-y: ${(props: IPropsChattingDetailUIWrapper) =>
+    props.isToggle ? "hidden" : "scroll"}; */
   position: relative;
   z-index: 1;
   display: flex;
@@ -19,7 +19,9 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const ChattingBox = styled.div``;
+export const ChattingBox = styled.div`
+  width: 100%;
+`;
 
 export const Opacity = styled.div`
   display: ${(props: ISideIsToggle) => (props.isToggle ? "block" : "none")};
@@ -131,6 +133,8 @@ export const DotToggleImg = styled.img`
 
 export const ChattingContainer = styled.div`
   width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
 `;
 
 export const ChattingList = styled.ul`
@@ -237,10 +241,23 @@ export const ChattingList = styled.ul`
     line-height: 11px;
     color: #999999;
   }
+
+  .join {
+    justify-content: center;
+    padding: 20px 0px;
+  }
+
+  .join .alert {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+  }
 `;
 
 export const FunctionWrapper = styled.div`
   width: 100%;
+
   z-index: 2;
 `;
 
