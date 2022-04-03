@@ -41,9 +41,9 @@ export const Wrapper = styled.div`
         max-width: 1200px;
         margin: 0 auto;
         width: 35%;
-        height: 47vh;
+        height: 54vh;
         left: -742px;
-        margin-bottom: 350px;
+        margin-bottom: 300px;
     }
 `
 export const TopNavi = styled.div`

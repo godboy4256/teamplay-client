@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
     }
 
     @media ${breakPoints.web}{
-      height: 63vh;
+      height: 62vh;
 
       & div > div {
         margin-right: 11px;
