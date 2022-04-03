@@ -10,11 +10,22 @@ const FETCH_PROJECTS = gql`
       name
       imgUrl
       recruitDate
+      type{
+        name
+      }
     }
   }
 `;
 
+const FETCH_PROJECT_COUNTS = gql`
+  query fetchProjectCounts{
+    fetchProjectCounts
+  }
+`
+
 export default function ProjectList() {
+
+  const { data:fetchProjectCount } = useQuery(FETCH_PROJECT_COUNTS)
   const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_PROJECTS, {
     variables: {
@@ -61,6 +72,7 @@ export default function ProjectList() {
       detailModal={detailModal}
       setDetailModal={setDetailModal}
       detailId={detailId}
+      fetchProjectCount={fetchProjectCount?.fetchProjectCounts}
     />
   );
 }

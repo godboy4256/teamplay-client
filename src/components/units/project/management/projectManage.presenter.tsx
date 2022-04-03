@@ -18,7 +18,7 @@ import {
 
 interface IProsManage {
   onClickonAdd: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
-  project: string;
+  project?: string;
 }
 
 const FETCH_PROJECT = gql`
@@ -40,13 +40,12 @@ const FETCH_PROJECT = gql`
 `;
 
 export default function ProjectManageUI(props: IProsManage) {
-  console.log(props.project);
   const { data } = useQuery<
     Pick<IQuery, "fetchProject">,
     IQueryFetchProjectArgs
   >(FETCH_PROJECT, {
     variables: {
-      projectId: props.project,
+      projectId: props.project || "",
     },
   });
   const [toDoTab, setToDoTab] = useState("To do");
