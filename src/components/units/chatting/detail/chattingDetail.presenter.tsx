@@ -12,7 +12,6 @@ import { getTime } from "../../../../commons/library/getTime";
 export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
   const {
     isToggle,
-    data,
     message,
     onClickSetPosition,
     onChangeChatInput,
@@ -20,6 +19,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
   } = useContext(ChattingDetailContext);
   const { data: loginInfo } = useFetchUser();
   const { onClickChangePosition } = useContext(ChattingContext);
+
   return (
     <S.Wrapper ref={props.wrapperRef} isToggle={isToggle}>
       <S.Opacity isToggle={isToggle} onClick={onClickSetPosition} />
@@ -41,7 +41,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
         </S.TitleBox>
         <S.ChattingContainer>
           <S.ChattingList ref={props.ChattingBoxRef} className="chatting-list">
-            {data?.fetchChats.map((el) =>
+            {props.chatsArr?.map((el) =>
               el.user.name === loginInfo?.fetchUser.name ? (
                 <li className="sent" key={uuidv4()}>
                   <span className="message">{el.content}</span>
@@ -91,6 +91,9 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
             <li className="sent">
               <span className="message">테스트테스트테스트테스트테스트</span>
               <span className="time">1:00 pm</span>
+            </li>
+            <li className="join">
+              <span className="alert">유저2님이 참여하셨습니다.</span>
             </li>
           </S.ChattingList>
         </S.ChattingContainer>

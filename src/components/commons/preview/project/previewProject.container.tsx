@@ -1,54 +1,19 @@
-import { gql, useQuery } from "@apollo/client";
-import { Dispatch, SetStateAction } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
+import { Dday } from "../../../../commons/library/calcDate";
 import {
+  IMutation,
+  IMutationJoinChatRoomArgs,
   IQuery,
   IQueryFetchProjectArgs,
 } from "../../../../commons/types/generated/types";
 import PreviewProjectUI from "./previewProject.presenter";
+import { FETCH_PROJECT, JOIN_CHATROOM } from "./previewProject.queries";
+import { IPropsPreviewProject } from "./previewProject.types";
 
-interface PropsPreviewProject {
-  data?: Pick<IQuery, "fetchProject">;
-  setDetailModal: Dispatch<SetStateAction<boolean>>;
-  detailId: string;
-}
+export default function PreviewProject(props: IPropsPreviewProject) {
+  const router = useRouter();
 
-const FETCH_PROJECT = gql`
-  query fetchProject($projectId: String!) {
-    fetchProject(projectId: $projectId) {
-      id
-      name
-      teamname
-      intro
-      recruitDate
-      imgUrl
-      description
-      method
-      type {
-        name
-      }
-    	location{
-        name
-      }
-      leader{
-        name
-      }
-      isComplete
-      isStart
-      projectToPositions{
-        position{
-          name
-        }
-        number
-      }
-      users{
-        name
-      }
-    }
-  }
-`;
-
-export default function PreviewProject(props: PropsPreviewProject) {
-  console.log(props.detailId)
   const { data } = useQuery<
     Pick<IQuery, "fetchProject">,
     IQueryFetchProjectArgs
@@ -57,6 +22,36 @@ export default function PreviewProject(props: PropsPreviewProject) {
       projectId: props.detailId,
     },
   });
+  const [joinChatRoom] = useMutation<
+    Pick<IMutation, "joinChatRoom">,
+    IMutationJoinChatRoomArgs
+  >(JOIN_CHATROOM);
+  const day = Dday(data?.fetchProject.recruitDate);
 
-  return <PreviewProjectUI data={data} setDetailModal={props.setDetailModal} />;
+  const onClickChatStart = async () => {
+    try {
+      const result = await joinChatRoom({
+        variables: {
+          projectId: String(props.detailId),
+        },
+      });
+
+      router.push({
+        pathname: "/chatting",
+        query: { id: result?.data?.joinChatRoom?.id },
+      });
+      console.log(result);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
+
+  return (
+    <PreviewProjectUI
+      data={data}
+      day={day}
+      setDetailModal={props.setDetailModal}
+      onClickChatStart={onClickChatStart}
+    />
+  );
 }

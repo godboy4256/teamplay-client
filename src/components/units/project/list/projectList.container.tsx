@@ -15,14 +15,12 @@ const FETCH_PROJECTS = gql`
 `;
 
 export default function ProjectList() {
-  const router = useRouter()
+  const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_PROJECTS, {
     variables: {
       page: 1,
     },
   });
-
-  console.log(data)
 
   const [detailModal, setDetailModal] = useState(false);
   const [detailId, setDetailId] = useState("");
@@ -30,9 +28,9 @@ export default function ProjectList() {
   const onDetail = useCallback((e: MouseEvent<HTMLDivElement>) => {
     setDetailId(e.currentTarget.id);
     setDetailModal(true);
-    if(router.asPath === "/project/list"){
+    if (router.asPath === "/project/list") {
       document.querySelector("#__next")?.classList.add("projectdetalon");
-    }else{
+    } else {
       document.querySelector("#__next")?.classList.remove("projectdetalon");
     }
   }, []);

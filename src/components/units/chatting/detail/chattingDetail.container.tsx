@@ -12,6 +12,7 @@ import io from "socket.io-client";
 import { RoomListContext } from "../../../../../pages/chatting";
 import { getTime } from "../../../../commons/library/getTime";
 import {
+  IChat,
   IMutation,
   IMutationSendMessageArgs,
   IQuery,
@@ -21,7 +22,11 @@ import useFetchUser from "../../../commons/hooks/useFetchUser";
 import { ChattingContext } from "../chatting.container";
 import ChattingDetailUI from "./chattingDetail.presenter";
 import { FETCH_CHATS, SEND_MESAGE } from "./chattingDetail.queries";
-import { IChattingDetailContext, IMessageData } from "./chattingDetail.types";
+import {
+  IChattingDetailContext,
+  IJoinMsg,
+  IMessageData,
+} from "./chattingDetail.types";
 
 const url = "https://backend.ljh305.shop";
 
@@ -39,6 +44,7 @@ export default function ChattingDetail() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { data: userInfo } = useFetchUser();
   const { data: roomList } = useContext(RoomListContext);
+  const [chatsArr, setChatArr] = useState<IChat[]>([]);
 
   const [sendMessage] = useMutation<
     Pick<IMutation, "sendMessage">,
@@ -53,6 +59,14 @@ export default function ChattingDetail() {
       },
     }
   );
+
+  useEffect(() => {
+    setChatArr([]);
+    if (!data) return;
+    for (let i = data?.fetchChats.length - 1; i >= 0; i--) {
+      setChatArr((prev) => [...prev, data.fetchChats[i]]);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (!roomList) return;
@@ -78,15 +92,15 @@ export default function ChattingDetail() {
     });
 
     /* 누군가 입장 */
-    // socket.on("join" + chatRoomId, (comeOn) => {
-    //   console.log("fdsa");
-    //   const div = document.createElement("div");
-    //   const ref = ChattingBoxRef.current;
-    //   const dom = `<S.Alert>${comeOn}님이 참여하였습니다.</S.Alert>`;
+    socket.on("join" + chatRoomId, (join: IJoinMsg) => {
+      const li = document.createElement("li");
+      li.className = "join";
 
-    //   div.innerHTML = dom;
-    //   ref?.appendChild(div);
-    // });
+      const dom = `<span class="alert">${join.name}님이 참여하셨습니다.</span>`;
+
+      li.innerHTML = dom;
+      ChattingBoxRef.current?.appendChild(li);
+    });
 
     return () => {
       socket.disconnect();
@@ -180,6 +194,7 @@ export default function ChattingDetail() {
   return (
     <ChattingDetailContext.Provider value={value}>
       <ChattingDetailUI
+        chatsArr={chatsArr}
         ChattingBoxRef={ChattingBoxRef}
         sendRef={sendRef}
         wrapperRef={wrapperRef}
