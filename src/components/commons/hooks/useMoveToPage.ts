@@ -32,8 +32,13 @@ export default function useMoveToPage() {
     router.push("/chatting");
   };
 
+  const moveToPayment = () => {
+    router.push("/payment");
+  };
+
   const onClickHeaderRouting = (e: MouseEvent<HTMLLIElement>) => {
     const navList = document.querySelectorAll(".nav__list");
+    document.querySelector("#__next")?.classList.remove("projectdetalon");
     for (let i = 0; i < navList.length; i++) {
       navList[i].classList.remove("active__page");
     }
@@ -48,6 +53,7 @@ export default function useMoveToPage() {
     moveToMain,
     moveToProfileEdit,
     moveToProfile,
+    moveToPayment,
     onClickHeaderRouting,
   };
 }

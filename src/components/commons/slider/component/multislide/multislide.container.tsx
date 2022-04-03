@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Slider from "react-slick";
 import { v4 as uuidv4 } from "uuid";
 import * as S from "./multislide.styles";
@@ -56,18 +55,6 @@ export default function MultiSlide() {
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
-      </Head>
       <S.MultiSlideBox>
         <Slider {...settings}>
           {data?.fetchProjects.map((el) => {

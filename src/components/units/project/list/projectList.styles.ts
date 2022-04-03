@@ -9,9 +9,9 @@ export const ProjectListBox = styled.div`
   }
   padding-bottom: 300px;
   & > div {
-    @media (min-width: 1200px) {
+    @media ${breakPoints.web} {
+      padding: 10px;
       width: 25%;
-      padding: 5px 10px;
       & > div {
         border-radius: 12px;
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
@@ -19,6 +19,19 @@ export const ProjectListBox = styled.div`
     }
     @media ${breakPoints.tablet} {
       width: 49%;
+      padding-bottom: 15px;
+      & > div {
+        border-radius: 12px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+      }
+    }
+    @media ${breakPoints.mobile} {
+      width: 100%;
+      padding-bottom: 15px;
+      & > div {
+        border-radius: 12px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+      }
     }
   }
 `;

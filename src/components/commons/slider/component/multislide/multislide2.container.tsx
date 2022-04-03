@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Slider from "react-slick";
 import { v4 as uuidv4 } from "uuid";
 import userListDummy from "../../../../../commons/json/userList.json";
@@ -35,18 +34,7 @@ export default function MultiSlide2(props: IMultiSlide2) {
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
-      </Head>
+
       <S.MultiSlideBox>
         <Slider {...settings}>
           {userListDummy.userList.map((el) => {

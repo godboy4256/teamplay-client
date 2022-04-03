@@ -24,6 +24,6 @@ export interface IHeaderContext {
   isPoint?: boolean;
   onCliclsetPosition?: () => void;
   onClickLogout?: () => void;
-  onClicPointModal?: () => void;
+  onClickPointModal?: () => void;
   onClickMovetoPage?: (name: string) => () => void;
 }
