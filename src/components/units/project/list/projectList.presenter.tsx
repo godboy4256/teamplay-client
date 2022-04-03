@@ -16,14 +16,16 @@ interface IPropsProjectListUI {
   detailModal: boolean;
   setDetailModal: Dispatch<SetStateAction<boolean>>;
   detailId: string;
+  fetchProjectCount: number
 }
 
 export default function ProjectListUI(props: IPropsProjectListUI) {
+  console.log(props.fetchProjectCount)
   return (
     <>
       <Wrapper paddingTop={0}>
         <S.ProjectListTitle>모든 프로젝트</S.ProjectListTitle>
-        <SearchBar />
+        <SearchBar fetchProjectCount={props?.fetchProjectCount}/>
         <WriteGoButton />
         <InfiniteScroll
           loadMore={props.onLoadMore}
@@ -39,6 +41,7 @@ export default function ProjectListUI(props: IPropsProjectListUI) {
                       id={el.id}
                       name={el.name}
                       imgUrl={el.imgUrl}
+                      type={el.type.name}
                       recruitDate={el.recruitDate}
                       onDetail={props.onDetail}
                     />

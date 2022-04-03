@@ -2,11 +2,12 @@ import { Wrapper } from "../../../../../commons/styles/commonStyls";
 import SubmitButton from "../../../../commons/inputs/component/submitbutton/submit.container";
 import TypingInput from "../../../../commons/inputs/component/typinginput/typinginput.container";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useContext } from "react";
 import { breakPoints } from "../../../../../commons/styles/breakpoint";
+import { ProjectManageContext } from "../projectManage.container";
 
 const BoardAddStyle = styled.div`
-  width: 100%;
+  width: 0;
   background-color: #fff;
   flex-direction: column;
   border-radius: 20px 20px 0 0;
@@ -18,7 +19,7 @@ const BoardAddStyle = styled.div`
   left: 0;
   opacity: 0;
   &.onClick {
-    bottom: 0;
+    width: 100%;
     opacity: 1;
   }
   z-index: 2;
@@ -36,10 +37,11 @@ const BoardAddStyle = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30vw;
+    width: 0;
     border-radius: 30px;
     justify-content: center;
     &.onClick {
+      width: 30vw;
       opacity: 1;
     }
   }
@@ -69,7 +71,13 @@ const ModalBackground = styled.div`
 `;
 
 export default function BoardAdd() {
-  const [valid, setValid] = useState("");
+  const { 
+    onClickBoardAdd,
+    setContent,
+    setTitle,
+    validTitle,
+    validContent
+  } = useContext(ProjectManageContext)
   const onClickoffAdd = () => {
     const onAddref = document.getElementById("onBoardAdd");
     const modalref = document.getElementById("modalBackground");
@@ -77,32 +85,33 @@ export default function BoardAdd() {
     modalref?.classList.remove("onClick");
   };
 
+ 
+
   return (
     <>
       <ModalBackground id="modalBackground"></ModalBackground>
       <BoardAddStyle id="onBoardAdd">
         <DragBar onClick={onClickoffAdd}></DragBar>
-        {/* <img src="/img/down-arrow.svg" className="Xmark" alt="down-arrow" /> */}
         <Wrapper paddingTop="5px">
           <TypingInput
             label="제목"
             type="text"
             placeholder="제목을 입력해주세요."
-            setValues={setValid}
+            setValues={setContent}
             id="name"
-            valid={valid}
-            errorMessage="프로젝트 이름을 한 글자 이상 입력해야 합니다."
+            valid={validTitle}
+            errorMessage="제목을 한 글자 이상 입력해야 합니다."
           />
           <TypingInput
             label="내용"
             type="text"
             placeholder="내용을 입력해주세요."
-            setValues={setValid}
+            setValues={setTitle}
             id="name"
-            valid={valid}
-            errorMessage="프로젝트 이름을 한 글자 이상 입력해야 합니다."
+            valid={validContent}
+            errorMessage="내용을 한 글자 이상 입력해야 합니다."
           />
-          <SubmitButton btnvalue="게시글 올리기" />
+          <SubmitButton onClick={onClickBoardAdd} btnvalue="게시글 올리기" />
         </Wrapper>
       </BoardAddStyle>
     </>

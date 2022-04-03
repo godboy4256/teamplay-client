@@ -27,13 +27,13 @@ const ErroFont = styled.span`
 `;
 
 interface IPropsTypingInput {
-  label: string;
-  type: string;
-  placeholder: string;
+  label?: string;
+  type?: string;
+  placeholder?: string;
   setValues?: Dispatch<SetStateAction<string>>;
   id?: string;
   errorMessage?: string;
-  valid: boolean | string;
+  valid?: boolean | string;
 }
 
 export default function TypingInput(props: IPropsTypingInput) {

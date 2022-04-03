@@ -2,24 +2,12 @@
 import { useState } from "react";
 import SearchBarUI from "./searchbar.presenter";
 
-// const FETCH_PROJECTS = gql`
-//   query fetchProjects($page: Float!) {
-//     fetchProjects(page: $page) {
-//       id
-//       name
-//       imgUrl
-//       recruitDate
-//     }
-//   }
-// `;
+interface IPropsSearchBar{
+  fetchProjectCount?:number
+}
 
-export default function SearchBar() {
+export default function SearchBar(props:IPropsSearchBar) {
   const [isSearchBar, setIsSearchBar] = useState(false);
-  //   const { data } = useQuery(FETCH_PROJECTS, {
-  //     variables: {
-  //       page: 1,
-  //     },
-  //   });
   const onClickSearchOn = () => {
     setIsSearchBar(true);
   };
@@ -28,21 +16,13 @@ export default function SearchBar() {
     setIsSearchBar(false);
   };
 
-  //   const onClickSearch = (e) => {
-  //     console.log(e.target.value);
-
-  //     // data && data.fetchProjects
-  //   };
-  //   data &&
-  //     console.log(
-  //       data.fetchProjects.filter((el) => el.name.includes("프로젝트"))
-  //     );
 
   return (
     <SearchBarUI
       isSearchBar={isSearchBar}
       onClickSearchOn={onClickSearchOn}
       onClickSearchOff={onClickSearchOff}
+      fetchProjectCount={props.fetchProjectCount}
     />
   );
 }

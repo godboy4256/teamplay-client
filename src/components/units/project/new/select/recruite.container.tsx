@@ -96,6 +96,12 @@ const RecruitForms = memo((props: IPropsPositionMap) => {
                     <RecruitmentAddList key={uuidv4()}>
                       <span>{el.name}</span>
                       <input
+                        onChange={(e) => {
+                          if(Number(e.target.value) < 0){
+                            e.target.value = String(0)
+                          } 
+                         }
+                        }
                         id={el.id}
                         className={`${index}position${index}`}
                         type="number"

@@ -4,6 +4,7 @@ interface IPropsSearchBarUI {
   isSearchBar: boolean;
   onClickSearchOn: () => void;
   onClickSearchOff: () => void;
+  fetchProjectCount?:number | {}
 }
 
 export default function SearchBarUI(props: IPropsSearchBarUI) {
@@ -19,7 +20,7 @@ export default function SearchBarUI(props: IPropsSearchBarUI) {
         </div>
       </S.SearchBarTop>
       <S.SearchBarBottom>
-        <div>총 10 건</div>
+        <div>총 {props.fetchProjectCount} 건</div>
         <div>
           <span>최신순</span>
           <img src="../img/sort.svg" />
