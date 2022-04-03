@@ -5,7 +5,10 @@ import {
   RefObject,
   SetStateAction,
 } from "react";
-import { IQuery } from "../../../../commons/types/generated/types";
+import {
+  IChatRoomMember,
+  IQuery,
+} from "../../../../commons/types/generated/types";
 
 export interface IChattingDetailContext {
   position?: number;
@@ -54,4 +57,24 @@ export interface IMessageData {
     password: string;
     point: number;
   };
+}
+
+// sidebar
+export interface IPropsSidebarUI {
+  data: Pick<IQuery, "fetchChatRoomMembers"> | undefined;
+  isChoose: boolean;
+  checkList: IChatRoomMember[];
+  isCheck: string[];
+  price: number | string | undefined;
+  isSubmit: boolean;
+  isSelf: boolean;
+  onClickStartProject: () => void;
+  onClickProjectSetting: () => void;
+  onChangeCheckedUser: (data: IChatRoomMember) => () => void;
+  onChangeSelectPrice: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onChangeInputPrice: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface IPropsSidebarSubmitBtn {
+  isSubmit: boolean;
 }

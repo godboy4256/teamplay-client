@@ -4,8 +4,11 @@ import {
   IMutation,
   IMutationCheckTokenToEmailArgs,
   IMutationCreateUserArgs,
+  IMutationLoginArgs,
   IMutationSendTokenToEmailArgs,
 } from "../../../commons/types/generated/types";
+import useMoveToPage from "../../commons/hooks/useMoveToPage";
+import { LOGIN } from "../login/login.queries";
 import SignUpUI from "./signup.presenter";
 import {
   CHECK_TOKEN_TO_EMAIL,
@@ -39,7 +42,8 @@ export default function SignUp(props: IPropsSignUp) {
   const [isPrivite, setIsPrivite] = useState(false);
   const [isPolicy, setIsPolicy] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
-  const { name, email, token, password, chkPassword } = input;
+  const { moveToMain, moveToOnboarding } = useMoveToPage();
+  const { name, email, token, password } = input;
   const isEdit = props.isEdit;
 
   const [sendTokenToEmail] = useMutation<
@@ -54,14 +58,22 @@ export default function SignUp(props: IPropsSignUp) {
     Pick<IMutation, "createUser">,
     IMutationCreateUserArgs
   >(CREATE_USER);
+  const [login] = useMutation<Pick<IMutation, "login">, IMutationLoginArgs>(
+    LOGIN
+  );
 
   useEffect(() => {
     if (isEdit) {
-      if (password === chkPassword && isPolicy && isPrivite) setIsSubmit(true);
+      if (!passMsg && !checkMsg && isPolicy && isPrivite) setIsSubmit(true);
+      else setIsSubmit(false);
     } else {
-      if (email && name && password === chkPassword && isPolicy && isPrivite)
+      if (email && name && !passMsg && !checkMsg && isPolicy && isPrivite)
         setIsSubmit(true);
+      else setIsSubmit(false);
     }
+    if (input.password !== input.chkPassword)
+      setCheckMsg("비밀번호가 일치하지 않습니다.");
+    else setCheckMsg("");
   }, [input, isPolicy, isPrivite]);
 
   const onChangeInput = (key: string) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -83,13 +95,6 @@ export default function SignUp(props: IPropsSignUp) {
     if (key === "password" && valid.password.test(value)) {
       setPassMsg("");
     }
-
-    if (key === "chkPassword" && input.password !== value) {
-      setCheckMsg("비밀번호가 일치하지 않습니다.");
-    }
-    if (key === "chkPassword" && input.password === value) {
-      setCheckMsg("");
-    }
   };
 
   const onChageCheckBox = (name: string) => () => {
@@ -108,7 +113,15 @@ export default function SignUp(props: IPropsSignUp) {
           },
         },
       });
-      alert("어서오세요.");
+      alert("TEAMPLAY에 오신것을 환영합니다.");
+
+      const result = await login({
+        variables: {
+          email,
+          password,
+        },
+      });
+      result.data?.login.onboarding ? moveToMain() : moveToOnboarding();
     } catch (error) {
       if (error instanceof Error) alert("이메일을 다시 확인해주세요.");
     }

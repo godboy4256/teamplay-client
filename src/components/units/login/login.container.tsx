@@ -1,5 +1,11 @@
 import { useMutation } from "@apollo/client";
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { GlobalContext } from "../../../../pages/_app";
 import {
   IMutation,
@@ -11,7 +17,8 @@ import { LOGIN } from "./login.queries";
 
 export default function Login() {
   const { setAccessToken, setIsLogin } = useContext(GlobalContext);
-  const { moveToMain } = useMoveToPage();
+  const { moveToMain, moveToOnboarding } = useMoveToPage();
+
   const [isView, setIsView] = useState(false);
   const [type, setType] = useState("password");
   const [loginInput, setLoginInput] = useState({
@@ -27,6 +34,10 @@ export default function Login() {
     if (isView) setType("text");
     else setType("password");
   }, [isView]);
+
+  const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") onClickSubmitLogin();
+  };
 
   const onClickSetIsView = () => {
     setIsView((prev) => !prev);
@@ -51,7 +62,8 @@ export default function Login() {
       });
       setIsLogin(true);
       setAccessToken(result.data?.login.accessToken || "");
-      moveToMain();
+
+      result.data?.login.onboarding ? moveToMain() : moveToOnboarding();
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -61,6 +73,7 @@ export default function Login() {
     <LoginUI
       type={type}
       isView={isView}
+      onPressEnter={onPressEnter}
       onClickSetIsView={onClickSetIsView}
       onChangeLoginInput={onChangeLoginInput}
       onClickSubmitLogin={onClickSubmitLogin}

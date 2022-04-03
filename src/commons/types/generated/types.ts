@@ -125,6 +125,7 @@ export type IMutation = {
   restoreAccessToken: IToken;
   sendMessage: Scalars['String'];
   sendTokenToEmail: Scalars['String'];
+  startProject: IProject;
   updateBoard: IBoard;
   updateTask: ITask;
   updateUserByOnboard: IUser;
@@ -234,6 +235,13 @@ export type IMutationSendTokenToEmailArgs = {
 };
 
 
+export type IMutationStartProjectArgs = {
+  point: Scalars['Float'];
+  projectId: Scalars['String'];
+  userIds: Array<Scalars['String']>;
+};
+
+
 export type IMutationUpdateBoardArgs = {
   boardId: Scalars['String'];
   updateBoardInput: IUpdateBoardInput;
@@ -291,6 +299,7 @@ export type IProject = {
   imgUrl: Scalars['String'];
   intro: Scalars['String'];
   isComplete: Scalars['Boolean'];
+  isStart: Scalars['Boolean'];
   leader: IUser;
   location: ILocation;
   method: IMethod_Enum;
@@ -301,6 +310,7 @@ export type IProject = {
   skill: Scalars['String'];
   teamname: Scalars['String'];
   type: IType;
+  users?: Maybe<Array<IUser>>;
 };
 
 export type IProjectToPosition = {
@@ -430,6 +440,7 @@ export type IUser = {
   name: Scalars['String'];
   point: Scalars['Int'];
   position?: Maybe<IPosition>;
+  projects: Array<IProject>;
   task?: Maybe<Array<ITask>>;
   tendencys?: Maybe<Array<ITendency>>;
   types?: Maybe<Array<IType>>;

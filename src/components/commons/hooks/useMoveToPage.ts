@@ -32,8 +32,16 @@ export default function useMoveToPage() {
     router.push("/chatting");
   };
 
+
   const moveToPayment = () => {
     router.push("/payment");
+    
+  const moveToOnboarding = () => {
+    router.push("/onboarding");
+  };
+    
+  const moveToBack = () => {
+    history.back();
   };
 
   const onClickHeaderRouting = (e: MouseEvent<HTMLLIElement>) => {
@@ -55,5 +63,7 @@ export default function useMoveToPage() {
     moveToProfile,
     moveToPayment,
     onClickHeaderRouting,
+    moveToBack,
+    moveToOnboarding,
   };
 }
