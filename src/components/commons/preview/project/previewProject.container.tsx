@@ -26,11 +26,29 @@ const FETCH_PROJECT = gql`
       type {
         name
       }
+    	location{
+        name
+      }
+      leader{
+        name
+      }
+      isComplete
+      isStart
+      projectToPositions{
+        position{
+          name
+        }
+        number
+      }
+      users{
+        name
+      }
     }
   }
 `;
 
 export default function PreviewProject(props: PropsPreviewProject) {
+  console.log(props.detailId)
   const { data } = useQuery<
     Pick<IQuery, "fetchProject">,
     IQueryFetchProjectArgs
