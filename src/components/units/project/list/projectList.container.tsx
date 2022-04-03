@@ -24,8 +24,9 @@ const FETCH_PROJECT_COUNTS = gql`
 `
 
 export default function ProjectList() {
-  const router = useRouter()
+
   const { data:fetchProjectCount } = useQuery(FETCH_PROJECT_COUNTS)
+  const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_PROJECTS, {
     variables: {
       page: 1,
@@ -38,9 +39,9 @@ export default function ProjectList() {
   const onDetail = useCallback((e: MouseEvent<HTMLDivElement>) => {
     setDetailId(e.currentTarget.id);
     setDetailModal(true);
-    if(router.asPath === "/project/list"){
+    if (router.asPath === "/project/list") {
       document.querySelector("#__next")?.classList.add("projectdetalon");
-    }else{
+    } else {
       document.querySelector("#__next")?.classList.remove("projectdetalon");
     }
   }, []);

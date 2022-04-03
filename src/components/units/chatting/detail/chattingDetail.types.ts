@@ -6,6 +6,7 @@ import {
   SetStateAction,
 } from "react";
 import {
+  IChat,
   IChatRoomMember,
   IQuery,
 } from "../../../../commons/types/generated/types";
@@ -27,6 +28,7 @@ export interface IPropsChattingDetailUI {
   sendRef: RefObject<HTMLDivElement>;
   wrapperRef: RefObject<HTMLDivElement>;
   roomName: string;
+  chatsArr: IChat[];
   onkeyPressEnter: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
@@ -59,6 +61,14 @@ export interface IMessageData {
   };
 }
 
+export interface IJoinMsg {
+  career: string;
+  createdAt: string;
+  email: string;
+  id: string;
+  name: string;
+  point: number;
+}
 // sidebar
 export interface IPropsSidebarUI {
   data: Pick<IQuery, "fetchChatRoomMembers"> | undefined;
