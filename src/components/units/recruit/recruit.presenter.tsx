@@ -85,9 +85,9 @@ export default function RecruitUI() {
                             <img src="../img/req.svg" alt="req title" />
                         </h3>
                     </S.Contents>
-                    {/* <S.MultiSlide2> */}
+                    <S.MultiSlide2>
                         <MultiSlide2 slideToShow={5}/>
-                    {/* </S.MultiSlide2> */}
+                    </S.MultiSlide2>
                     <S.WebSlideList>
                         {new Array(10).fill(1).map((el) => {
                             return (
@@ -125,9 +125,9 @@ export default function RecruitUI() {
                             팀원을 구해요!
                         </h3>
                     </S.Contents>
-                    {/* <S.MultiSlide2> */}
+                    <S.MultiSlide2>
                         <MultiSlide2 slideToShow={5}/>
-                    {/* </S.MultiSlide2> */}
+                    </S.MultiSlide2>
                 </S.RecruitBottom>
             </div>
         </S.Wrapper>
