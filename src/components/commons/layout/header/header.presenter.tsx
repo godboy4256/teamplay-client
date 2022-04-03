@@ -1,14 +1,13 @@
 import { useContext } from "react";
 import useFetchUser from "../../hooks/useFetchUser";
-import useMoveToPage from "../../hooks/useMoveToPage";
 import { HeaderContext } from "./header.container";
 import * as S from "./header.styles";
 import { IPropsHeaderUI } from "./header.types";
 import HeaderToggle from "./toggle/headerToggle";
 
 export default function HeaderUI(props: IPropsHeaderUI) {
-  const { onClickHeaderRouting } = useMoveToPage();
-  const { onCliclsetPosition, onClickMovetoPage } = useContext(HeaderContext);
+  const { onCliclsetPosition, onClickMovetoPage, onClickHeaderRouting } =
+    useContext(HeaderContext);
   const { data } = useFetchUser();
   return (
     <S.HeaderStyle>

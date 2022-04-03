@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { createContext, useState } from "react";
+import { createContext, MouseEvent, useState } from "react";
 import { IMutation } from "../../../../commons/types/generated/types";
 import useMoveToPage from "../../hooks/useMoveToPage";
 import HeaderUI from "./header.presenter";
@@ -32,6 +32,8 @@ export default function Header() {
   ];
 
   const onClickMovetoPage = (name: string) => () => {
+    setPosition(-80);
+    setIsView(false);
     document.querySelector("#__next")?.classList.remove("projectdetalon");
 
     if (name === "login") moveToLogin();
@@ -44,9 +46,19 @@ export default function Header() {
 
     if (name === "myProject") moveToMyProject();
 
-    if(name === "payment") moveToPayment();
-    
+    if (name === "payment") moveToPayment();
+  };
+
+  const onClickHeaderRouting = (e: MouseEvent<HTMLLIElement>) => {
     setPosition(-80);
+    setIsView(false);
+    const navList = document.querySelectorAll(".nav__list");
+    document.querySelector("#__next")?.classList.remove("projectdetalon");
+    for (let i = 0; i < navList.length; i++) {
+      navList[i].classList.remove("active__page");
+    }
+    router.push(e.currentTarget.id);
+    e.currentTarget && e.currentTarget.classList.add("active__page");
   };
 
   const onClickLogout = () => {
@@ -55,8 +67,7 @@ export default function Header() {
   };
 
   const onCliclsetPosition = () => {
-    if (position === -80) setPosition(0);
-    if (position === 0) setPosition(-80);
+    setPosition((prev) => (prev === -80 ? 0 : -80));
     setIsView((prev) => !prev);
   };
 
@@ -72,6 +83,7 @@ export default function Header() {
     onClickLogout,
     onClickMovetoPage,
     onClickPointModal,
+    onClickHeaderRouting,
   };
 
   return (
