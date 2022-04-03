@@ -7,7 +7,7 @@ import {
 export const Wrapper = styled.div`
   padding: 15px 10px;
   width: 262.5px;
-  height: 100vh;
+  height: 100%;
   background-color: #fff;
   position: absolute;
   top: 0;
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
 export const MainBox = styled.div`
   padding: 15px 10px;
   width: 262.5px;
-  height: 100vh;
+  height: 100%;
   background-color: #fff;
 `;
 

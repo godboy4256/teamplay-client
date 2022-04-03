@@ -30,17 +30,15 @@ export default function PreviewProject(props: IPropsPreviewProject) {
 
   const onClickChatStart = async () => {
     try {
-      const result = await joinChatRoom({
+      await joinChatRoom({
         variables: {
           projectId: String(props.detailId),
         },
       });
 
-      router.push({
-        pathname: "/chatting",
-        query: { id: result?.data?.joinChatRoom?.id },
-      });
-      console.log(result);
+      router.push("/chatting");
+
+      document.querySelector("#__next")?.classList.remove("projectdetalon");
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }

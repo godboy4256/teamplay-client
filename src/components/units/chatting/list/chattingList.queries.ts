@@ -5,18 +5,12 @@ export const FETCH_CHAT_ROOMS = gql`
     fetchChatRooms {
       id
       name
+      project {
+        id
+        leader {
+          name
+        }
+      }
     }
   }
 `;
-
-// export const FETCH_CHAT_ROOMS = gql`
-//   query fetchChatRooms {
-//     fetchChatRooms {
-//       id
-//       name
-//       project {
-//         id
-//       }
-//     }
-//   }
-// `;

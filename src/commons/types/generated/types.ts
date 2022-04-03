@@ -57,11 +57,6 @@ export type IChatRoomMember = {
   user: IUser;
 };
 
-export type ICreateBoardInput = {
-  content: Scalars['String'];
-  title: Scalars['String'];
-};
-
 export type ICreateProjectInput = {
   description: Scalars['String'];
   imgUrl: Scalars['String'];
@@ -71,16 +66,13 @@ export type ICreateProjectInput = {
   name: Scalars['String'];
   numbers: Array<Scalars['Int']>;
   platformIds: Array<Scalars['String']>;
+  point: Scalars['Int'];
   positionIds: Array<Scalars['String']>;
   recruitDate: Scalars['DateTime'];
   skill: Scalars['String'];
   teamname: Scalars['String'];
   typeId: Scalars['String'];
-};
-
-export type ICreateTaskInput = {
-  content: Scalars['String'];
-  limit: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type ICreateUserInput = {
@@ -117,7 +109,9 @@ export type IMutation = {
   createTendency: ITendency;
   createType: IType;
   createUser: IUser;
+  deleteAllProject: Scalars['Boolean'];
   deleteBoard: Scalars['Boolean'];
+  deleteProject: Scalars['Boolean'];
   deleteTask: Scalars['Boolean'];
   joinChatRoom: IChatRoomMember;
   login: IToken;
@@ -145,8 +139,9 @@ export type IMutationCheckTokenToEmailArgs = {
 
 
 export type IMutationCreateBoardArgs = {
-  createBoardInput: ICreateBoardInput;
+  content: Scalars['String'];
   projectId: Scalars['String'];
+  title: Scalars['String'];
 };
 
 
@@ -182,9 +177,11 @@ export type IMutationCreateRegionArgs = {
 
 
 export type IMutationCreateTaskArgs = {
-  createTaskInput: ICreateTaskInput;
+  content: Scalars['String'];
+  dutyMember: Array<Scalars['String']>;
+  limit: Scalars['DateTime'];
   projectId: Scalars['String'];
-  taskTypeId: Scalars['String'];
+  taskType: ITask_Type_Enum;
 };
 
 
@@ -205,6 +202,11 @@ export type IMutationCreateUserArgs = {
 
 export type IMutationDeleteBoardArgs = {
   boardId: Scalars['String'];
+};
+
+
+export type IMutationDeleteProjectArgs = {
+  projectId: Scalars['String'];
 };
 
 
@@ -236,21 +238,25 @@ export type IMutationSendTokenToEmailArgs = {
 
 
 export type IMutationStartProjectArgs = {
+  chatRoomId: Scalars['String'];
   point: Scalars['Float'];
-  projectId: Scalars['String'];
   userIds: Array<Scalars['String']>;
 };
 
 
 export type IMutationUpdateBoardArgs = {
   boardId: Scalars['String'];
-  updateBoardInput: IUpdateBoardInput;
+  content: Scalars['String'];
+  title: Scalars['String'];
 };
 
 
 export type IMutationUpdateTaskArgs = {
+  content: Scalars['String'];
+  dutyMember: Array<Scalars['String']>;
+  limit: Scalars['DateTime'];
   taskId: Scalars['String'];
-  updateTaskInput: IUpdateTaskInput;
+  taskType: ITask_Type_Enum;
 };
 
 
@@ -279,7 +285,7 @@ export type IPointPayment = {
   __typename?: 'PointPayment';
   amount: Scalars['Int'];
   id: Scalars['String'];
-  impUid: Scalars['String'];
+  impUid?: Maybe<Scalars['String']>;
   status: IPoint_Payment_Status_Enum;
 };
 
@@ -305,11 +311,13 @@ export type IProject = {
   method: IMethod_Enum;
   name: Scalars['String'];
   platforms: Array<IPlatform>;
+  point: Scalars['Int'];
   projectToPositions: Array<IProjectToPosition>;
   recruitDate: Scalars['DateTime'];
   skill: Scalars['String'];
   teamname: Scalars['String'];
   type: IType;
+  updatedAt: Scalars['DateTime'];
   users?: Maybe<Array<IUser>>;
 };
 
@@ -324,6 +332,7 @@ export type IProjectToPosition = {
 export type IQuery = {
   __typename?: 'Query';
   fetchBoard: IBoard;
+  fetchBoards: Array<IBoard>;
   fetchChatRoomMembers: Array<IChatRoomMember>;
   fetchChatRooms: Array<IChatRoom>;
   fetchChats: Array<IChat>;
@@ -334,6 +343,7 @@ export type IQuery = {
   fetchProjects: Array<IProject>;
   fetchRegions: Array<IRegion>;
   fetchTask: ITask;
+  fetchTasks: Array<ITask>;
   fetchTendencys: Array<ITendency>;
   fetchTypes: Array<IType>;
   fetchUser: IUser;
@@ -389,7 +399,6 @@ export type ITask = {
   is_complete: Scalars['Boolean'];
   limit: Scalars['DateTime'];
   taskType: ITask_Type_Enum;
-  users: Array<IUser>;
 };
 
 export type ITendency = {
@@ -410,16 +419,6 @@ export type IType = {
   id: Scalars['String'];
   name: Scalars['String'];
   users: Array<IUser>;
-};
-
-export type IUpdateBoardInput = {
-  content?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type IUpdateTaskInput = {
-  content?: InputMaybe<Scalars['String']>;
-  limit?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type IUpdateUserOnboardInput = {

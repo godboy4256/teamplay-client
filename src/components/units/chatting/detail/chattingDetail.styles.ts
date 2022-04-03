@@ -1,26 +1,20 @@
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../../commons/styles/breakpoint";
-import {
-  IPropsChattingDetailUIWrapper,
-  ISideIsToggle,
-} from "./chattingDetail.types";
+import { ISideIsToggle } from "./chattingDetail.types";
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 0px 10px 30px 10px;
+  width: 90%;
+  height: 76vh;
+  padding: 0px 10px 0px 10px;
   overflow: hidden;
-  /* overflow-y: ${(props: IPropsChattingDetailUIWrapper) =>
-    props.isToggle ? "hidden" : "scroll"}; */
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 `;
 
 export const ChattingBox = styled.div`
   width: 100%;
+  position: absolute;
+  top: 0;
 `;
 
 export const Opacity = styled.div`
@@ -50,6 +44,7 @@ export const Alert = styled.div`
 
 export const TitleBox = styled.div`
   width: 100%;
+  height: 5vh;
   display: flex;
   justify-content: space-between;
   position: sticky;
@@ -58,7 +53,6 @@ export const TitleBox = styled.div`
   z-index: 2;
   align-items: center;
   padding: 10px 5px 10px 20px;
-  margin-bottom: 30px;
 
   @media ${breakPoints.tablet} {
     padding: 10px 5px 10px 0px;
@@ -133,7 +127,7 @@ export const DotToggleImg = styled.img`
 
 export const ChattingContainer = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 60vh;
   overflow-y: scroll;
 `;
 
@@ -257,7 +251,7 @@ export const ChattingList = styled.ul`
 
 export const FunctionWrapper = styled.div`
   width: 100%;
-
+  padding: 0px 0px 30px 0px;
   z-index: 2;
 `;
 
