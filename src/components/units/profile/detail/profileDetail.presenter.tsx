@@ -22,9 +22,9 @@ export default function ProfileDetailUI(props: IPropsProfileDetail){
         <S.Wrapper>
            <S.WrapperHeader>
                <S.HeaderLine>
-                   <img src="/img/commons/leftArrow1.svg"/>
+                   <img className="Arrow" src="/img/commons/leftArrow1.svg"/>
                    <span>상세프로필</span>
-                   <img onClick={moveToProfileEdit} src="/img/commons/settingGear.svg"/>
+                   <img className="Gear" onClick={moveToProfileEdit} src="/img/commons/settingGear.svg"/>
                </S.HeaderLine>
                <S.HeaderContents>
                 <S.ImgBox>

@@ -58,6 +58,8 @@ export const ProgressList = styled.div`
   @media ${breakPoints.web}{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px 20px;
+    margin-top: 10px;
   }
 `
 export const WebLine = styled.div`

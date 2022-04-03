@@ -22,17 +22,21 @@ export const Wrapper = styled.div`
 
     @media ${breakPoints.web} {
       position: inherit;
-      height: 13vw;
+      /* height: 13vw; */
+      height: 200px;
       filter: none;
 
       &.PositionBlank{
-        height: 9vw;
+        /* height: 9vw; */
+        height: 130px;
       }
+  
       &.InterestBlank{
-        height: 15vw;
+        /* height: 15vw; */
+        height: 200px;
       }
       &.TechnicBlank{
-        margin-bottom: 100px;
+        margin-bottom: 40px;
       }
     }
     
@@ -94,14 +98,25 @@ export const Title = styled.div`
       }
     }
 `
-
 export const TagArea = styled.div`
   display: flex;
   flex-wrap: wrap;
-  @media ${breakPoints.web} {
-    
-  }
 `;
+export const WebTag = styled.div`
+  @media ${breakPoints.web}{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 10px;
+
+    > div {
+      margin-bottom: 10px;
+    }
+  }
+`
+export const TagBox = styled.div`
+  display: flex;
+`
 export const Tag = styled.div`
   display: flex;
 

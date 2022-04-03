@@ -1,13 +1,14 @@
 import { Fragment, useContext } from "react";
 import dump from "../../../commons/json/tendency.json";
 import { v4 as uuidv4 } from "uuid";
-import { Wrapper } from "../../../commons/styles/commonStyls";
+// import { Wrapper } from "../../../commons/styles/commonStyls";
 import MultiSlide2 from "../../commons/slider/component/multislide/multislide2.container";
 import { RecruitContext } from "./recruit.container";
 import * as S from "./recruit.styles";
-// import FilterTendency from "./sidebar/tendency";
 import SideBarBasic from "./sidebar/sidebarBasic";
 import PropsProfileCard from "../../commons/profileCard/profileCard";
+// import FilterTendency from "./sidebar/tendency";
+// import userListDummy from "../../../commons/json/userList.json";
 // import MultiSlide from "../../commons/slider/component/multislide/multislide.container";
 
 export default function RecruitUI() {
@@ -21,14 +22,14 @@ export default function RecruitUI() {
     } = useContext(RecruitContext)
 
     return(
-        <>
-        {isVisible && <SideBarBasic/>}
+        <S.MainBox>
         <S.TopText>
             <span>모든 팀원</span>
         </S.TopText>
         {/* <MultiSlide/> */}
-        <Wrapper paddingTop={0}>
-            <S.Opacity isVisible={isVisible} onClick={onClickSearchfilter}/>
+        <S.Wrapper>
+            {isVisible && <SideBarBasic/>}
+            {/* <S.Opacity isVisible={isVisible} onClick={onClickSearchfilter}/> */}
             <div>
                 <S.SearchBarWrapper>
                     <S.SearchBar>
@@ -40,15 +41,15 @@ export default function RecruitUI() {
                                             console.log(name);
                                             return (
                                             <S.Tag
-                                                bgColor={
+                                            bgColor={
                                                 dump.tendency.name.indexOf(name) > 0
-                                                    ? dump.tendency.color[dump.tendency.name.indexOf(name)]
-                                                    : "#0D223A"
-                                                }
-                                                key={uuidv4()}
-                                                onClick={
+                                                ? dump.tendency.color[dump.tendency.name.indexOf(name)]
+                                                : "#0D223A"
+                                            }
+                                            key={uuidv4()}
+                                            onClick={
                                                 onClickDeleteTendencyTag && onClickDeleteTendencyTag(name)
-                                                }
+                                            }
                                             >
                                                 <span>{name}</span>
                                                 <div>x</div>
@@ -58,7 +59,7 @@ export default function RecruitUI() {
                                         </>
                                     ) : (
                                         <></>
-                                    )}
+                                        )}
                             </S.TagArea>
                         {isSearchBar ? (
                             <Fragment>
@@ -85,17 +86,37 @@ export default function RecruitUI() {
                         </h3>
                     </S.Contents>
                     <S.MultiSlide2>
-                        <MultiSlide2/>
+                        <MultiSlide2 slideToShow={5}/>
                     </S.MultiSlide2>
                     <S.WebSlideList>
-                        {new Array(10).fill(1).map((_) => {
+                        {new Array(10).fill(1).map((el) => {
                             return (
                                 <> 
-                                    <PropsProfileCard key={uuidv4()} img={"../img/onboarding/userProfile.png"} name={"쇼바스키"} position={"개발자"} tendency={undefined} fontSize={14}/>
-                                    <PropsProfileCard key={uuidv4()} img={"../img/user01.png"} name={"스바스키"} position={"기획자"} tendency={tendency} fontSize={14}/>
+                                    <PropsProfileCard key={uuidv4()} img={"../img/onboarding/userProfile.png"} name={"쇼바스키"} position={"개발자"} tendency={el.tendency} fontSize={14}/>
+                                    <PropsProfileCard key={uuidv4()} img={"../img/user01.png"} name={"스바스키"} position={"기획자"} tendency={el.tendency} fontSize={14}/>
                                 </>
                             )
                         })}
+                        {/* {userListDummy.userList.map((el) => {
+                            return (
+                                <> 
+                                <PropsProfileCard key={uuidv4()} 
+                                img={el.img} 
+                                name={el.name} 
+                                position={el.position} 
+                                tendency={el.tendency} 
+                                fontSize={14}
+                                />
+                                <PropsProfileCard key={uuidv4()} 
+                                img={"../img/user01.png"} 
+                                name={"스바스키"} 
+                                position={"기획자"} 
+                                tendency={el.tendency} 
+                                fontSize={14}
+                                    />
+                                    </>
+                                    )
+                                })} */}
                     </S.WebSlideList>
                 </S.RecruitTop>
                 <S.RecruitBottom>
@@ -105,11 +126,11 @@ export default function RecruitUI() {
                         </h3>
                     </S.Contents>
                     <S.MultiSlide2>
-                        <MultiSlide2/>
+                        <MultiSlide2 slideToShow={5}/>
                     </S.MultiSlide2>
                 </S.RecruitBottom>
             </div>
-        </Wrapper>
-        </>
+        </S.Wrapper>
+        </S.MainBox>
     )
 }

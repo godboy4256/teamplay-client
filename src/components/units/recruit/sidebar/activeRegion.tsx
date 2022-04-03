@@ -1,6 +1,6 @@
 import { Fragment, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-import * as S from "./interest.styles";
+import * as S from "./activeRegion.styles";
 import Blank from "../../../commons/blank/blank";
 import ClickTag from "../../../commons/tags/commons/clickTag";
 import SubmitBtn from "../../../commons/button/Submit";

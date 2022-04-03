@@ -1,16 +1,21 @@
 import styled from "@emotion/styled";
 import { breakPoints } from "../../../commons/styles/breakpoint";
-import { IPropsRecruitContext, IPropsTag } from "./recruit.types";
+import { IPropsTag } from "./recruit.types";
 
-export const Opacity = styled.div`
-  display: ${(props: IPropsRecruitContext) => (props.isVisible ? "block" : "none")};
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  width: calc(50% -240px);
-  height: 100vh;
-  background-color: white;
-`;
+// export const Opacity = styled.div`
+//   display: ${(props: IPropsRecruitContext) => (props.isVisible ? "block" : "none")};
+//   position: absolute;
+//   z-index: 1;
+//   left: 0px;
+//   right: 0px;
+//   width: calc(50% -240px);
+//   height: 100vh;
+//   background-color: white;
+// `;
+export const MainBox = styled.div`
+    width: 100%;
+    overflow-x: hidden;
+`
 
 export const TopText = styled.div`
     @media ${breakPoints.mobile}{
@@ -32,6 +37,16 @@ export const TopText = styled.div`
             color: #0D223A
         }
     }
+`
+
+export const Wrapper = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  /* position: relative;
+  overflow: hidden; */
 `
 
 export const SearchBarWrapper = styled.div`
@@ -180,6 +195,7 @@ export const WebSlideList = styled.div`
         display: grid;
         grid-template-columns: repeat(5,1fr);
         grid-gap: 20px 15px;
+
         cursor: pointer;
     }
 `

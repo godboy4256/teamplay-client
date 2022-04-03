@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 import { IPropsTag, ISideBarWrapper } from "../recruit.types";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 85vh;
   padding: 20px;
 
   display: flex;
@@ -23,6 +24,15 @@ export const Wrapper = styled.div`
   & div > div{
       margin-right: 24px;
       cursor: pointer;
+  }
+
+  @media ${breakPoints.web}{
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 98%;
+    height: 89vh;
+    left: -742px;
+    margin-bottom: -290px;
   }
 `
 export const MainBox = styled.div`

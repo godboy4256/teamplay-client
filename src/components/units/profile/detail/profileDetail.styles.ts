@@ -25,9 +25,9 @@ export const HeaderLine = styled.div`
     }
 
     @media ${breakPoints.web}{
-      display: block;
-      img{
-        display: none;
+      display: flex;
+      .Arrow{
+          display: none;
       }
     }
 `
@@ -135,7 +135,7 @@ export const LineBox = styled.div`
   transform: rotate(0.05deg);
 
   @media ${breakPoints.web}{
-    /* display: none; */
+    display: none;
   }
 `;
 export const Detail = styled.div`

@@ -77,11 +77,16 @@ export const Tags = styled.div`
   justify-content: space-between;
 `;
 
+interface IPropsTendency{
+ name : string,
+ bgColor:string
+}
+
 interface IPropsProfileCard {
   img: string;
-  name: string;
+  name: string | undefined
   position: string;
-  tendency: string[] | undefined;
+  tendency:IPropsTendency[] | undefined
   fontSize: number;
 }
 
