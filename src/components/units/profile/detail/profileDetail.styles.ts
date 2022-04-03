@@ -25,9 +25,9 @@ export const HeaderLine = styled.div`
     }
 
     @media ${breakPoints.web}{
-      display: block;
-      img{
-        display: none;
+      display: flex;
+      .Arrow{
+          display: none;
       }
     }
 `
