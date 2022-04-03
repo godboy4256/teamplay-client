@@ -13,10 +13,10 @@ import {
 } from "../../../../../commons/types/generated/types";
 import { ChattingContext } from "../../chatting.container";
 import SidebarUI from "./sidebar.presenter";
-import { RoomListContext } from "../../../../../../pages/chatting";
+import useMoveToPage from "../../../../commons/hooks/useMoveToPage";
 
 export default function Sidebar() {
-  const { data: roomList } = useContext(RoomListContext);
+  const { moveToProjectManagement } = useMoveToPage();
   const { chatRoomId } = useContext(ChattingContext);
   const [checkList, setCheckList] = useState<IChatRoomMember[]>([]);
   const [isCheck, setIsCheck] = useState<string[]>([]);
@@ -79,26 +79,24 @@ export default function Sidebar() {
   };
 
   const onClickStartProject = async () => {
+    if (!chatRoomId) return;
     const userIds: string[] = [];
-    let projectId = "";
-    roomList?.fetchChatRooms.forEach((data) => {
-      if (data.id === chatRoomId) projectId = data.project.id;
-    });
+
     checkList.forEach((data) => {
       userIds.push(data.user.id);
     });
 
     try {
-      const reulst = await startProject({
+      const result = await startProject({
         variables: {
           userIds,
           point: Number(price),
-          projectId,
+          chatRoomId,
         },
       });
-      console.log(reulst);
+      moveToProjectManagement(String(result.data?.startProject.id));
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 

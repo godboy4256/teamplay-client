@@ -39,11 +39,11 @@ export const FETCH_CHAT_ROOM_MEMBERS = gql`
 
 export const START_PROJECT = gql`
   mutation startProject(
-    $projectId: String!
+    $chatRoomId: String!
     $userIds: [String!]!
     $point: Float!
   ) {
-    startProject(projectId: $projectId, userIds: $userIds, point: $point) {
+    startProject(chatRoomId: $chatRoomId, userIds: $userIds, point: $point) {
       id
       name
       teamname

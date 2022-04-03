@@ -21,7 +21,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
   const { onClickChangePosition } = useContext(ChattingContext);
 
   return (
-    <S.Wrapper ref={props.wrapperRef} isToggle={isToggle}>
+    <S.Wrapper ref={props.wrapperRef}>
       <S.Opacity isToggle={isToggle} onClick={onClickSetPosition} />
       <Sidebar />
       <S.ChattingBox>
@@ -39,84 +39,88 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
             <S.DotToggleImg src="/img/commons/dotToggle.svg" />
           </S.DotImgBox>
         </S.TitleBox>
-        <S.ChattingContainer>
+        <S.ChattingContainer ref={props.chattingRef}>
           <S.ChattingList ref={props.ChattingBoxRef} className="chatting-list">
-            {props.chatsArr?.map((el) =>
+            {props.chatsArr?.map((el, idx) =>
               el.user.name === loginInfo?.fetchUser.name ? (
                 <li className="sent" key={uuidv4()}>
                   <span className="message">{el.content}</span>
                   <span className="time">{getTime(el.createdAt)}</span>
                 </li>
               ) : (
-                <li className="received" key={uuidv4()}>
-                  <span className="profile">
-                    <img
-                      className="image"
-                      src="https://placeimg.com/50/50/any"
-                      alt="any"
-                    />
-                    <span className="user">
-                      <span className="name">{el.user.name}</span>
-                      <span className="message-box">
-                        <span className="message">{el.content}</span>
-                        <span className="time">{getTime(el.createdAt)}</span>
+                <>
+                  {idx === 0 && (
+                    <li className="received" key={uuidv4()}>
+                      <span className="profile">
+                        <img
+                          className="image"
+                          src="https://placeimg.com/50/50/any"
+                          alt="any"
+                        />
+                        <span className="user">
+                          <span className="name">{el.user.name}</span>
+                          <span className="message-box">
+                            <span className="message">{el.content}</span>
+                            <span className="time">
+                              {getTime(el.createdAt)}
+                            </span>
+                          </span>
+                        </span>
                       </span>
-                    </span>
-                  </span>
-                </li>
+                    </li>
+                  )}
+                  {idx !== 0 &&
+                  props.chatsArr[idx - 1].user.name === el.user.name ? (
+                    <li className="received">
+                      <span className="continue-message">{el.content}</span>
+                      <span className="time">{getTime(el.createdAt)}</span>
+                    </li>
+                  ) : (
+                    <li className="received" key={uuidv4()}>
+                      <span className="profile">
+                        <img
+                          className="image"
+                          src="https://placeimg.com/50/50/any"
+                          alt="any"
+                        />
+                        <span className="user">
+                          <span className="name">{el.user.name}</span>
+                          <span className="message-box">
+                            <span className="message">{el.content}</span>
+                            <span className="time">
+                              {getTime(el.createdAt)}
+                            </span>
+                          </span>
+                        </span>
+                      </span>
+                    </li>
+                  )}
+                </>
               )
             )}
-            <li className="received">
-              <span className="profile">
-                <img
-                  className="image"
-                  src="https://placeimg.com/50/50/any"
-                  alt="any"
-                />
-                <span className="user">
-                  <span className="name">유저1</span>
-                  <span className="message-box">
-                    <span className="message">
-                      테스트테스트테스트테스트테스트
-                    </span>
-                    <span className="time">1:00 pm</span>
-                  </span>
-                </span>
-              </span>
-            </li>
-            <li className="received">
-              <span className="continue-message">연속 채팅 테스트</span>
-              <span className="time">1:00 pm</span>
-            </li>
-            <li className="sent">
-              <span className="message">테스트테스트테스트테스트테스트</span>
-              <span className="time">1:00 pm</span>
-            </li>
-            <li className="join">
-              <span className="alert">유저2님이 참여하셨습니다.</span>
-            </li>
           </S.ChattingList>
         </S.ChattingContainer>
+        <S.FunctionWrapper>
+          <S.FunctionBox>
+            <S.InputBox>
+              <S.UploadImgBtn>
+                <img src="/img/chatting/camera.svg" />
+              </S.UploadImgBtn>
+              <S.MsgInput>
+                <TextArea
+                  wrapperRef={props.wrapperRef}
+                  value={message}
+                  onChange={onChangeChatInput}
+                  onkeydown={props.onkeyPressEnter}
+                />
+              </S.MsgInput>
+            </S.InputBox>
+            <S.SendButton onClick={onClickSendMessage} ref={props.sendRef}>
+              <img src="/img/chatting/send.svg" />
+            </S.SendButton>
+          </S.FunctionBox>
+        </S.FunctionWrapper>
       </S.ChattingBox>
-      <S.FunctionWrapper>
-        <S.FunctionBox>
-          <S.InputBox>
-            <S.UploadImgBtn>
-              <img src="/img/chatting/camera.svg" />
-            </S.UploadImgBtn>
-            <S.MsgInput>
-              <TextArea
-                value={message}
-                onChange={onChangeChatInput}
-                onkeydown={props.onkeyPressEnter}
-              />
-            </S.MsgInput>
-          </S.InputBox>
-          <S.SendButton onClick={onClickSendMessage} ref={props.sendRef}>
-            <img src="/img/chatting/send.svg" />
-          </S.SendButton>
-        </S.FunctionBox>
-      </S.FunctionWrapper>
     </S.Wrapper>
   );
 }

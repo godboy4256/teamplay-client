@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
-import { ChangeEvent, KeyboardEvent, useCallback, useRef } from "react";
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  RefObject,
+  useCallback,
+  useRef,
+} from "react";
 
 const Textarea = styled.textarea`
   width: 100%;
@@ -16,6 +22,7 @@ const Textarea = styled.textarea`
 
 interface IProps {
   value: string | undefined;
+  wrapperRef: RefObject<HTMLDivElement>;
   onChange: ((e: ChangeEvent<HTMLTextAreaElement>) => void) | undefined;
   onkeydown: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
@@ -26,9 +33,16 @@ export function TextArea(props: IProps) {
   const handleResizeHeight = useCallback(() => {
     const textArea = textRef.current;
     if (!textArea) return;
-    if (!textArea.value) textArea.style.height = "30px";
+    if (!textArea.value) {
+      textArea.style.height = "30px";
+      props.wrapperRef.current?.scrollTo(0, props.wrapperRef.current.scrollTop);
+    }
 
     textArea.style.height = textArea.scrollHeight + "px";
+    props.wrapperRef.current?.scrollTo(
+      0,
+      props.wrapperRef.current.scrollHeight
+    );
   }, []);
 
   return (

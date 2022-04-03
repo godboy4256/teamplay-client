@@ -36,7 +36,6 @@ export default function ChattingDetail() {
   const { chatRoomId } = useContext(ChattingContext);
   const [position, setPosition] = useState(-262.5);
   const [isToggle, setIsToggle] = useState(false);
-  const [userName, setUserName] = useState("");
   const [message, setMessage] = useState("");
   const [roomName, setRoomName] = useState("");
   const ChattingBoxRef = useRef<HTMLUListElement>(null);
@@ -45,6 +44,7 @@ export default function ChattingDetail() {
   const { data: userInfo } = useFetchUser();
   const { data: roomList } = useContext(RoomListContext);
   const [chatsArr, setChatArr] = useState<IChat[]>([]);
+  const chattingRef = useRef<HTMLDivElement>(null);
 
   const [sendMessage] = useMutation<
     Pick<IMutation, "sendMessage">,
@@ -59,6 +59,14 @@ export default function ChattingDetail() {
       },
     }
   );
+
+  // useEffect(() => {
+  //   const ref = chattingRef.current?.style;
+  //   const height = buttonBoxRef.current?.scrollHeight;
+
+  //   if (!ref || !height) return;
+  //   ref.height = `${71 - height}vh`;
+  // });
 
   useEffect(() => {
     setChatArr([]);
@@ -75,7 +83,7 @@ export default function ChattingDetail() {
       if (el.id === chatRoomId) setRoomName(el.name);
     });
     if (!isToggle)
-      wrapperRef.current?.scrollTo(0, wrapperRef.current.scrollHeight);
+      chattingRef.current?.scrollTo(0, chattingRef.current.scrollHeight);
   }, [roomList, chatRoomId]);
 
   let socket: any;
@@ -84,11 +92,12 @@ export default function ChattingDetail() {
     if (!chatRoomId) return;
 
     socket = io(url);
-
+    console.log(socket);
     // message;
     socket.on("message" + chatRoomId, (data: IMessageData) => {
+      // console.log(data);
       makeLi(data);
-      wrapperRef.current?.scrollTo(0, wrapperRef.current.scrollHeight);
+      chattingRef.current?.scrollTo(0, chattingRef.current.scrollHeight);
     });
 
     /* 누군가 입장 */
@@ -111,34 +120,51 @@ export default function ChattingDetail() {
     let dom;
     const li = document.createElement("li");
 
-    if (data.user.name === userInfo?.fetchUser.name) {
+    if (data.chat.user.name === userInfo?.fetchUser.name) {
       li.className = "sent";
-      dom = `<span class="message">${data.content}</span>
-      <span class="time">${getTime(data.createdAt)}</span>`;
+      dom = `<span class="message">${data.chat.content}</span>
+      <span class="time">${getTime(data.chat.createdAt)}</span>`;
     } else {
       li.className = "received";
-
-      if (data.user.name === userName) {
-        dom = `<span class="continue-message">${data.content}</span>
-        <span class="time">${getTime(data.createdAt)}</span>`;
-      } else {
-        setUserName(data.user.name);
-        dom = `<span class="profile">
-        <img
-          class="image"
-          src="https://placeimg.com/50/50/any"
-          alt="any"
-        />
-        <span class="user">
-          <span class="name">${data.user.name}</span>
-          <span class="message-box">
-            <span class="message">
-              ${data.content}
+      if (data.previousChat.user.name) {
+        if (data.chat.user.name === data.previousChat.user.name) {
+          dom = `<span class="continue-message">${data.chat.content}</span>
+          <span class="time">${getTime(data.chat.createdAt)}</span>`;
+        } else {
+          dom = `<span class="profile">
+          <img
+            class="image"
+            src="https://placeimg.com/50/50/any"
+            alt="any"
+          />
+          <span class="user">
+            <span class="name">${data.chat.user.name}</span>
+            <span class="message-box">
+              <span class="message">
+                ${data.chat.content}
+              </span>
+              <span class="time">${getTime(data.chat.createdAt)}</span>
             </span>
-            <span class="time">${getTime(data.createdAt)}</span>
           </span>
-        </span>
-      </span>`;
+        </span>`;
+        }
+      } else {
+        dom = `<span class="profile">
+          <img
+            class="image"
+            src="https://placeimg.com/50/50/any"
+            alt="any"
+          />
+          <span class="user">
+            <span class="name">${data.chat.user.name}</span>
+            <span class="message-box">
+              <span class="message">
+                ${data.chat.content}
+              </span>
+              <span class="time">${getTime(data.chat.createdAt)}</span>
+            </span>
+          </span>
+        </span>`;
       }
     }
 
@@ -164,7 +190,7 @@ export default function ChattingDetail() {
     if (e.key === "Enter")
       if (!e.shiftKey) {
         e.preventDefault();
-        sendRef.current?.click();
+        if (message) sendRef.current?.click();
       }
   };
 
@@ -185,8 +211,6 @@ export default function ChattingDetail() {
     position,
     data,
     message,
-    userName,
-    setUserName,
     onClickSetPosition,
     onChangeChatInput,
     onClickSendMessage,
@@ -194,6 +218,7 @@ export default function ChattingDetail() {
   return (
     <ChattingDetailContext.Provider value={value}>
       <ChattingDetailUI
+        chattingRef={chattingRef}
         chatsArr={chatsArr}
         ChattingBoxRef={ChattingBoxRef}
         sendRef={sendRef}

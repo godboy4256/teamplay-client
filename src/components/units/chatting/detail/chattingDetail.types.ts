@@ -29,6 +29,7 @@ export interface IPropsChattingDetailUI {
   wrapperRef: RefObject<HTMLDivElement>;
   roomName: string;
   chatsArr: IChat[];
+  chattingRef: RefObject<HTMLDivElement>;
   onkeyPressEnter: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
@@ -40,24 +41,37 @@ export interface ISideIsToggle {
   isToggle: boolean | undefined;
 }
 
-export interface IPropsChattingDetailUIWrapper {
-  isToggle: boolean | undefined;
-}
-
 export interface IMessageData {
-  chatRoom: string;
-  content: string;
-  createdAt: string;
-  id: number;
-  user: {
-    career: string;
+  chat: {
+    chatRoom: string;
+    content: string;
     createdAt: string;
-    deletedAt: any;
-    email: string;
-    id: string;
-    name: string;
-    password: string;
-    point: number;
+    id: number;
+    user: {
+      career: string;
+      createdAt: string;
+      deletedAt: any;
+      email: string;
+      id: string;
+      name: string;
+      password: string;
+      point: number;
+    };
+  };
+  previousChat: {
+    content: string;
+    createdAt: string;
+    id: number;
+    user: {
+      career: string;
+      createdAt: string;
+      deletedAt: any;
+      email: string;
+      id: string;
+      name: string;
+      password: string;
+      point: number;
+    };
   };
 }
 

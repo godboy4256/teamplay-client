@@ -6,6 +6,7 @@ import ChattingList from "./list/chattingList.container";
 
 export default function ChattingUI() {
   const { left, chatRoomId } = useContext(ChattingContext);
+
   return (
     <S.Wrapper left={left}>
       <S.ListBox>

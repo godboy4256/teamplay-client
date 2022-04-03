@@ -32,15 +32,18 @@ export default function useMoveToPage() {
     router.push("/chatting");
   };
 
-
   const moveToPayment = () => {
     router.push("/payment");
-  }
-  
+  };
+
   const moveToOnboarding = () => {
     router.push("/onboarding");
   };
-    
+
+  const moveToProjectManagement = (_id: string) => {
+    router.push(`/project/management/${_id}`);
+  };
+
   const moveToBack = () => {
     history.back();
   };
@@ -66,5 +69,6 @@ export default function useMoveToPage() {
     onClickHeaderRouting,
     moveToBack,
     moveToOnboarding,
+    moveToProjectManagement,
   };
 }
