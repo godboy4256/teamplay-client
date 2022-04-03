@@ -1,3 +1,5 @@
+import { MouseEvent } from "react";
+
 export interface IPropsHeaderUI {
   isHiddenNav: boolean;
 }
@@ -26,4 +28,5 @@ export interface IHeaderContext {
   onClickLogout?: () => void;
   onClickPointModal?: () => void;
   onClickMovetoPage?: (name: string) => () => void;
+  onClickHeaderRouting?: (e: MouseEvent<HTMLLIElement>) => void;
 }

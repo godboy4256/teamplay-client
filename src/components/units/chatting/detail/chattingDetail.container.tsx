@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 import { RoomListContext } from "../../../../../pages/chatting";
 import { getTime } from "../../../../commons/library/getTime";
 import {
@@ -60,14 +60,6 @@ export default function ChattingDetail() {
     }
   );
 
-  // useEffect(() => {
-  //   const ref = chattingRef.current?.style;
-  //   const height = buttonBoxRef.current?.scrollHeight;
-
-  //   if (!ref || !height) return;
-  //   ref.height = `${71 - height}vh`;
-  // });
-
   useEffect(() => {
     setChatArr([]);
     if (!data) return;
@@ -86,16 +78,15 @@ export default function ChattingDetail() {
       chattingRef.current?.scrollTo(0, chattingRef.current.scrollHeight);
   }, [roomList, chatRoomId]);
 
-  let socket: any;
+  let socket: Socket;
 
   useEffect(() => {
     if (!chatRoomId) return;
 
     socket = io(url);
-    console.log(socket);
+
     // message;
     socket.on("message" + chatRoomId, (data: IMessageData) => {
-      // console.log(data);
       makeLi(data);
       chattingRef.current?.scrollTo(0, chattingRef.current.scrollHeight);
     });

@@ -8,14 +8,18 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { IPropsPreviewProjectUI } from "./previewProject.types";
 
-let recuriteNumber = 0
-if(props.data?.fetchProject?.projectToPositions){
-  for(let i = 0;i < props.data?.fetchProject?.projectToPositions?.length;i++){
-    recuriteNumber = recuriteNumber + props.data?.fetchProject?.projectToPositions[i].number
-  }
-}
-
 export default function PreviewProjectUI(props: IPropsPreviewProjectUI) {
+  let recuriteNumber = 0;
+  if (props.data?.fetchProject?.projectToPositions) {
+    for (
+      let i = 0;
+      i < props.data?.fetchProject?.projectToPositions?.length;
+      i++
+    ) {
+      recuriteNumber =
+        recuriteNumber + props.data?.fetchProject?.projectToPositions[i].number;
+    }
+  }
   return (
     <S.Wrapper id="detail__modal">
       <S.Modal>
@@ -69,9 +73,11 @@ export default function PreviewProjectUI(props: IPropsPreviewProjectUI) {
           </S.TagBox>
         </S.TitleBox>
         <S.ProjectListInfo>
-        <li>
+          <li>
             <ProjectInfoKey>팀명</ProjectInfoKey>
-            <ProjectInfoValue>{props.data?.fetchProject?.teamname}</ProjectInfoValue>
+            <ProjectInfoValue>
+              {props.data?.fetchProject?.teamname}
+            </ProjectInfoValue>
           </li>
           <li>
             <ProjectInfoKey>팀장</ProjectInfoKey>
@@ -99,17 +105,14 @@ export default function PreviewProjectUI(props: IPropsPreviewProjectUI) {
           <li>
             <ProjectInfoKey>진행 방식</ProjectInfoKey>
             <ProjectInfoValue>
-              { props.data?.fetchProject?.method === "MEET" && "대면"}
-              { props.data?.fetchProject?.method === "UNTACT" && "비대면"}
-              { props.data?.fetchProject?.method === "MEDIATE" && "조정 가능"}
+              {props.data?.fetchProject?.method === "MEET" && "대면"}
+              {props.data?.fetchProject?.method === "UNTACT" && "비대면"}
+              {props.data?.fetchProject?.method === "MEDIATE" && "조정 가능"}
             </ProjectInfoValue>
           </li>
         </S.ProjectListInfo>
         <S.TeamInfoBox>
-          <S.InfoName>
-            {recuriteNumber}
-            명 구인 중
-          </S.InfoName>
+          <S.InfoName>{recuriteNumber}명 구인 중</S.InfoName>
           <S.WantedBox>
             {props.data?.fetchProject?.projectToPositions &&
               props.data?.fetchProject?.projectToPositions.map((el) => {
