@@ -6,11 +6,13 @@ export const Wrapper = styled.div`
   justify-content: center;
 
   @media (min-width: 930px) and (max-width: 1199px) {
-    padding: 100px;
+    padding: 0 100px;
+    height: 90vh;
   }
 
   @media ${breakPoints.web} {
-    padding: 100px;
+    padding: 0 100px;
+    height: 90vh;
   }
 `;
 
@@ -35,6 +37,9 @@ export const WebImgBox = styled.div`
     margin-right: 65px;
     width: 463.5px;
     height: 777px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
       width: 100%;
@@ -47,6 +52,9 @@ export const WebImgBox = styled.div`
     width: 463.5px;
     height: 777px;
     margin-right: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
       width: 100%;
@@ -59,11 +67,27 @@ export const LoginBox = styled.div`
   width: 375px;
 
   padding: 20px 20px 40px 20px;
+
+  @media ${breakPoints.tablet} {
+    height: 100%;
+  }
+
+  @media ${breakPoints.web} {
+    height: 100%;
+  }
 `;
 
 export const XmarkBox = styled.div`
   position: relative;
   margin-bottom: 72px;
+
+  @media ${breakPoints.tablet} {
+    display: none;
+  }
+
+  @media ${breakPoints.web} {
+    display: none;
+  }
 `;
 
 export const LogoBox = styled.div`
@@ -71,6 +95,14 @@ export const LogoBox = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
+
+  @media ${breakPoints.tablet} {
+    margin-top: 100px;
+  }
+
+  @media ${breakPoints.web} {
+    margin-top: 100px;
+  }
 `;
 
 export const Subscript = styled.div`
@@ -125,6 +157,14 @@ export const PassBox = styled.div`
       line-height: 18px;
       color: #999999;
     }
+  }
+
+  @media ${breakPoints.tablet} {
+    margin-bottom: 40px;
+  }
+
+  @media ${breakPoints.web} {
+    margin-bottom: 40px;
   }
 `;
 

@@ -32,20 +32,22 @@ export const ResponseBox = styled.div`
   @media ${breakPoints.tablet} {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     img {
-      display: inline;
+      width: 60%;
+      display: block;
       border-radius: 20px;
-      width: 45%;
     }
   }
 
   @media ${breakPoints.web} {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     img {
-      display: inline;
+      width: 60%;
+      display: block;
       border-radius: 20px;
-      width: 45%;
     }
   }
 `;
@@ -53,6 +55,16 @@ export const ResponseBox = styled.div`
 export const ResponseBtnBox = styled.div`
   width: 100%;
   max-width: 1200px;
+
+  @media ${breakPoints.tablet} {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media ${breakPoints.web} {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const BackArrow = styled.div`
@@ -218,12 +230,14 @@ export const ButtonBox = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-`;
 
-export const BtnBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  @media ${breakPoints.tablet} {
+    width: 30%;
+  }
+
+  @media ${breakPoints.web} {
+    width: 30%;
+  }
 `;
 
 export const FlexBox = styled.div`

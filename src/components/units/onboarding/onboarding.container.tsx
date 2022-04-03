@@ -141,7 +141,7 @@ export default function OnBoarding() {
       }
     }
   };
-
+  console.log(positionData);
   const onClickSubmit = async () => {
     let careerId = "";
     let positionId = "";

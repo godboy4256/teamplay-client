@@ -11,9 +11,9 @@ export default function OnBoardingFourthPage() {
     useContext(OnBoardingContext);
   const list = [
     "기획자",
-    "UI디자이너",
-    "UX디자이너",
-    "UXUI디자이너",
+    "UI 디자이너",
+    "UX 디자이너",
+    "UXUI 디자이너",
     "프론트엔드",
     "백엔드",
     "풀스택",
@@ -62,7 +62,7 @@ export default function OnBoardingFourthPage() {
         </div>
       </S.ResponseBox>
       <S.ResponseBtnBox>
-        <S.BtnBox>
+        <S.ButtonBox>
           <SubmitBtn
             isActive={false}
             name="다음으로"
@@ -70,7 +70,7 @@ export default function OnBoardingFourthPage() {
             backgroundcolor="#3894FF"
             fontSize={1.143}
           />
-        </S.BtnBox>
+        </S.ButtonBox>
       </S.ResponseBtnBox>
     </S.Wrapper>
   );

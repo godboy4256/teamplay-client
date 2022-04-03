@@ -25,7 +25,6 @@ export default function Header() {
   const [isView, setIsView] = useState(false);
   const isHiddenNav = [
     "/project/new",
-    "/login",
     "/onboarding",
     "/chatting/detail",
     "/chatting/list",
