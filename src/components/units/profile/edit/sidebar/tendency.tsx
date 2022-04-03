@@ -51,25 +51,30 @@ export default function ProfileEditTendency() {
         <S.TagArea>
           {tendency?.length ? (
             <>
-              {tendency.map((name) => {
-                console.log(name);
-                return (
-                  <S.Tag
-                    bgColor={
-                      dump.tendency.name.indexOf(name) > 0
-                        ? dump.tendency.color[dump.tendency.name.indexOf(name)]
-                        : "#0D223A"
-                    }
-                    key={uuidv4()}
-                    onClick={
-                      onClickDeleteTendencyTag && onClickDeleteTendencyTag(name)
-                    }
-                  >
-                    <span>{name}</span>
-                    <div>x</div>
-                  </S.Tag>
-                );
-              })}
+              <S.WebTag>
+                <div>선택항목</div>
+                <S.TagBox>
+                  {tendency.map((name) => {
+                    console.log(name);
+                    return (
+                      <S.Tag
+                        bgColor={
+                          dump.tendency.name.indexOf(name) > 0
+                            ? dump.tendency.color[dump.tendency.name.indexOf(name)]
+                            : "#0D223A"
+                        }
+                        key={uuidv4()}
+                        onClick={
+                          onClickDeleteTendencyTag && onClickDeleteTendencyTag(name)
+                        }
+                      >
+                        <span>{name}</span>
+                        <div>x</div>
+                      </S.Tag>
+                    );
+                  })}
+                </S.TagBox>
+              </S.WebTag>
             </>
           ) : (
             <></>

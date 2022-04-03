@@ -51,7 +51,7 @@ export const Wrapper = styled.div`
       
       & > div {
         display: flex;
-        margin-top: 70px;
+        margin-top: 30px;
       }
     }
 `
@@ -64,7 +64,7 @@ export const FirstDiv = styled.div`
 export const SecondDiv = styled.div`
   
   @media ${breakPoints.web} {
-    margin: 90px 150px;
+    margin: 50px 150px;
   }
 `
 export const ThirdDiv = styled.div`
@@ -170,6 +170,7 @@ export const BtnBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 30px;
   margin-bottom: 30px;
 
   @media ${breakPoints.web}{

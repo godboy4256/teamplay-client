@@ -102,10 +102,22 @@ export const Title = styled.div`
 export const TagArea = styled.div`
   display: flex;
   flex-wrap: wrap;
-  @media ${breakPoints.web} {
-    
-  }
 `;
+export const WebTag = styled.div`
+  @media ${breakPoints.web}{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 10px;
+
+    > div {
+      margin-bottom: 10px;
+    }
+  }
+`
+export const TagBox = styled.div`
+  display: flex;
+`
 export const Tag = styled.div`
   display: flex;
 
