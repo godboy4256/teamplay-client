@@ -11,7 +11,7 @@ export default function LoginUI(props: IPropsLoginUI) {
     <S.Wrapper>
       <S.TabletBox>
         <S.WebImgBox>
-          <img src="/img/contents06.png" />
+          <img src="/img/login/login.png" />
         </S.WebImgBox>
         <S.LoginBox>
           <S.XmarkBox onClick={moveToMain}>

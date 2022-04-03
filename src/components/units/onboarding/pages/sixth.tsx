@@ -31,7 +31,7 @@ export default function OnBoardingSixthPage() {
       </div>
 
       <S.ResponseBtnBox>
-        <S.BtnBox>
+        <S.ButtonBox>
           <SubmitBtn
             isActive={false}
             name="다음으로"
@@ -39,7 +39,7 @@ export default function OnBoardingSixthPage() {
             fontSize={1.143}
             onClick={onClickSubmit}
           />
-        </S.BtnBox>
+        </S.ButtonBox>
       </S.ResponseBtnBox>
     </S.Wrapper>
   );

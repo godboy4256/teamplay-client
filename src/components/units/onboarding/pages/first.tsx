@@ -24,7 +24,7 @@ export default function OnBoardingFirstPage() {
           </S.Subscript>
           <S.Subscript>추천해드릴게요!</S.Subscript>
         </div>
-        <img src="/img/contents05.png" />
+        <img src="/img/onboarding/onboarding.png" />
       </S.ResponseBox>
       <S.ResponseBtnBox>
         <S.ButtonBox>

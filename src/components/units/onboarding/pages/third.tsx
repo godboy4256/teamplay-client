@@ -85,7 +85,7 @@ export default function OnBoardingThirdPage() {
         </div>
       </S.ResponseBox>
       <S.ResponseBtnBox>
-        <S.BtnBox>
+        <S.ButtonBox>
           <SubmitBtn
             isActive={false}
             name="다음으로"
@@ -93,7 +93,7 @@ export default function OnBoardingThirdPage() {
             backgroundcolor="#3894FF"
             fontSize={1.143}
           />
-        </S.BtnBox>
+        </S.ButtonBox>
       </S.ResponseBtnBox>
     </S.Wrapper>
   );
