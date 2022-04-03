@@ -45,31 +45,35 @@ export default function FilterTendency(){
                         </Fragment>
                     ))}
                 </S.TagArea>
-                <span>선택항목</span>
                 <Blank width={0} height={12}/>
                 {/* <span>선택항목</span> */}
                 <S.TagArea>
                 {tendency?.length ? (
                     <>
-                    {tendency.map((name) => {
-                        console.log(name);
-                        return (
-                        <S.Tag
-                            bgColor={
-                            dump.tendency.name.indexOf(name) > 0
-                                ? dump.tendency.color[dump.tendency.name.indexOf(name)]
-                                : "#0D223A"
-                            }
-                            key={uuidv4()}
-                            onClick={
-                            onClickDeleteTendencyTag && onClickDeleteTendencyTag(name)
-                            }
-                        >
-                            <span>{name}</span>
-                            <div>x</div>
-                        </S.Tag>
-                        );
-                    })}
+                    <S.WebTag>
+                        <span>선택항목</span>
+                        <S.TagBox>
+                            {tendency.map((name) => {
+                                console.log(name);
+                                return (
+                                <S.Tag
+                                    bgColor={
+                                    dump.tendency.name.indexOf(name) > 0
+                                        ? dump.tendency.color[dump.tendency.name.indexOf(name)]
+                                        : "#0D223A"
+                                    }
+                                    key={uuidv4()}
+                                    onClick={
+                                    onClickDeleteTendencyTag && onClickDeleteTendencyTag(name)
+                                    }
+                                >
+                                    <span>{name}</span>
+                                    <div>x</div>
+                                </S.Tag>
+                                );
+                            })}
+                        </S.TagBox>
+                    </S.WebTag>
                     </>
                 ) : (
                     <></>

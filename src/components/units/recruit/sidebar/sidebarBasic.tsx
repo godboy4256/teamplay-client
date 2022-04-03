@@ -16,10 +16,11 @@ export default function SideBarBasic(){
         onClickTendency,
         onClickRegion,
         onClickPosition,
-        onClickInterest
+        onClickInterest,
+        // onClickSearchfilter
     } = useContext(RecruitContext)
     return(
-        <S.WrapperRelative>
+        // <S.WrapperRelative>
             <S.Wrapper locate={locate}>
                 <S.TopNavi>
                     <div>
@@ -39,7 +40,10 @@ export default function SideBarBasic(){
                         <div onClick={onClickInterest}>관심분야</div>
                     </div>
                 </S.TopNavi>
+                {/* <S.XMark src="/img/preview/Xmark.svg" 
+                    onClick={onClickSearchfilter} 
+                    /> */}
             </S.Wrapper>
-        </S.WrapperRelative>
+        // </S.WrapperRelative>
     )
 }

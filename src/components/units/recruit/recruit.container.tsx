@@ -20,10 +20,10 @@ export default function Recruit() {
     const [isInterest, setIsInterest] = useState(false)
 
     const [isSearchBar, setIsSearchBar] = useState(false)
-    const [locate, setLocate] = useState(-260)
+    const [locate, setLocate] = useState(0)
     const [tendencyLocate, setTendencyLocate] = useState(-10)
-    const [positionLocate, setPositionLocate] = useState(-10)
     const [regionLocate, setRegionLocate] = useState(-10)
+    const [positionLocate, setPositionLocate] = useState(-10)
     const [interestLocate, setInterestLocate] = useState(-10)
 
     // const { data: tendencyData } = 
@@ -34,17 +34,15 @@ export default function Recruit() {
     }
 
     const onClickSearchfilter = () => {
-        if(locate === -260){
-            setLocate(-10)
-            setIsVisible(true)
+        if(locate === 0){
+            setLocate(0)
+            setIsVisible(prev => !prev)
+            console.log("좀 되라 ㅡㅡ")
             setIsTendency(true)
             setIsPosition(false)
             setIsRegion(false)
             setIsInterest(false)
-        } else {
-            setLocate(-260)
-            setIsVisible(false)
-        }
+        } 
     }
 
     const onClickTendency = () => {
@@ -66,7 +64,7 @@ export default function Recruit() {
             setIsPosition(false)
             setIsRegion(true)
             setIsInterest(false)
-        }
+        } 
     }
 
     const onClickPosition = () => {
@@ -164,6 +162,7 @@ export default function Recruit() {
         // isSearchFilterBar,
         locate,
         tendencyLocate,
+        regionLocate,
         positionLocate,
         interestLocate,
         onClickSearchImg,

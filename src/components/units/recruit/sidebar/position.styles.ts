@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 import { ISideBarWrapper } from "../recruit.types";
 
 export const Wrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 85vh;
     padding: 20px;
 
     background-color: green;
@@ -25,6 +26,10 @@ export const Wrapper = styled.div`
     & div > div{
         margin-right: 24px;
         cursor: pointer;
+    }
+
+    @media ${breakPoints.web}{
+      height: 63vh;
     }
 `
 export const MainBox = styled.div`

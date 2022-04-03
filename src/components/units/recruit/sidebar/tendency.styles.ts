@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
+import { breakPoints } from "../../../../commons/styles/breakpoint";
 import { IPropsTag, ISideBarWrapper } from "../recruit.types";
 
 export const Wrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 85vh;
     padding: 20px;
 
     display: flex;
     overflow: hidden;
     z-index: 2;
-    position: fixed;
+    position: absolute;
     right: 0px;
     left: 0px;
 
@@ -21,8 +22,16 @@ export const Wrapper = styled.div`
     background: #FFFFFF;;
 
     & div > div{
-        margin-right: 24px;
+        margin-right: 1px;
         cursor: pointer;
+    }
+
+    @media ${breakPoints.web}{
+      height: 63vh;
+
+      & div > div {
+        margin-right: 11px;
+      }
     }
 `
 export const MainBox = styled.div`
@@ -70,6 +79,21 @@ export const TagArea = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
+export const WebTag = styled.div`
+  @media ${breakPoints.web}{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 10px;
+
+    > span {
+      margin-bottom: 10px;
+    }
+  }
+`
+export const TagBox = styled.div`
+  display: flex;
+`
 export const Tag = styled.div`
   display: flex;
 

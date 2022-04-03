@@ -98,7 +98,6 @@ export const Title = styled.div`
       }
     }
 `
-
 export const TagArea = styled.div`
   display: flex;
   flex-wrap: wrap;
