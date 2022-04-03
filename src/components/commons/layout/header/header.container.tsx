@@ -16,6 +16,7 @@ export default function Header() {
     moveToProfile,
     moveToMyProject,
     moveToChatting,
+    moveToPayment,
   } = useMoveToPage();
   const [logout] = useMutation<Pick<IMutation, "logout">>(LOGOUT);
   const router = useRouter();
@@ -31,6 +32,8 @@ export default function Header() {
   ];
 
   const onClickMovetoPage = (name: string) => () => {
+    document.querySelector("#__next")?.classList.remove("projectdetalon");
+
     if (name === "login") moveToLogin();
 
     if (name === "signup") moveToSignup();
@@ -41,6 +44,8 @@ export default function Header() {
 
     if (name === "myProject") moveToMyProject();
 
+    if(name === "payment") moveToPayment();
+    
     setPosition(-80);
   };
 
@@ -55,8 +60,8 @@ export default function Header() {
     setIsView((prev) => !prev);
   };
 
-  const onClicPointModal = () => {
-    setIsPoint(true);
+  const onClickPointModal = () => {
+    setIsPoint((prev) => !prev);
   };
 
   const value = {
@@ -66,7 +71,7 @@ export default function Header() {
     onCliclsetPosition,
     onClickLogout,
     onClickMovetoPage,
-    onClicPointModal,
+    onClickPointModal,
   };
 
   return (

@@ -3,7 +3,7 @@ import * as S from "./previewProject.styles";
 import SubmitButton from "../../inputs/component/submitbutton/submit.container";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { Dispatch, SetStateAction } from "react";
-import { gql, useMutation } from "@apollo/client";
+// import { gql } from "@apollo/client";
 import {
   ProjectInfoKey,
   ProjectInfoValue,
@@ -16,13 +16,13 @@ interface PropsPreviewProject {
   setDetailModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const JOIN_CHATROOM = gql`
-  mutation joinChatRoom($projectId: String!) {
-    joinChatRoom(projectId: $projectId) {
-      id
-    }
-  }
-`;
+// const JOIN_CHATROOM = gql`
+//   mutation joinChatRoom($projectId: String!) {
+//     joinChatRoom(projectId: $projectId) {
+//       id
+//     }
+//   }
+// `;
 
 export default function PreviewProjectUI(props: PropsPreviewProject) {
   const xmasDay: Date | null = props.data?.fetchProject.recruitDate
@@ -32,25 +32,23 @@ export default function PreviewProjectUI(props: PropsPreviewProject) {
   const gap = Number(xmasDay) - Number(now);
   const day = Math.floor(gap / (1000 * 60 * 60 * 24));
   const router = useRouter();
-  const [joinChatRoom] = useMutation(JOIN_CHATROOM);
-
+  // const [joinChatRoom] = useMutation(JOIN_CHATROOM);
   const onClickChatStart = async () => {
-    try {
-      const result = await joinChatRoom({
-        variables: {
-          projectId: props.data?.fetchProject.id,
-        },
-      });
-      router.push({
-        pathname: "chatting/list",
-        query: result?.data?.joinChatRoom?.id,
-      });
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const result = await joinChatRoom({
+    //     variables: {
+    //       projectId: props.data?.fetchProject.id,
+    //     },
+    //   });
+    //   console.log(result);
+    //   document.querySelector("#__next")?.classList.remove("projectdetalon");
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    router.push("/chatting");
+    document.querySelector("#__next")?.classList.remove("projectdetalon");
   };
-
+ 
   return (
     <S.Wrapper id="detail__modal">
       <S.Modal>

@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 import { MouseEvent, useCallback, useState } from "react";
 import ProjectListUI from "./projectList.presenter";
 
@@ -17,6 +18,7 @@ const FETCH_PROJECTS = gql`
 `;
 
 export default function ProjectList() {
+  const router = useRouter()
   const { data, fetchMore } = useQuery(FETCH_PROJECTS, {
     variables: {
       page: 1,
@@ -29,7 +31,11 @@ export default function ProjectList() {
   const onDetail = useCallback((e: MouseEvent<HTMLDivElement>) => {
     setDetailId(e.currentTarget.id);
     setDetailModal(true);
-    document.querySelector("#__next")?.classList.add("projectdetalon");
+    if(router.asPath === "/project/list"){
+      document.querySelector("#__next")?.classList.add("projectdetalon");
+    }else{
+      document.querySelector("#__next")?.classList.remove("projectdetalon");
+    }
   }, []);
 
   const onLoadMore = () => {

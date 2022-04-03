@@ -1,4 +1,4 @@
-import * as S from "./previewProfile.styles";
+ import * as S from "./previewProfile.styles";
 import ProfileUserInfo from "./userInfo/profileUserInfo";
 
 export default function PreviewProfileUI() {
