@@ -10,9 +10,6 @@ const FETCH_PROJECTS = gql`
       name
       imgUrl
       recruitDate
-      type {
-        name
-      }
     }
   }
 `;
@@ -24,6 +21,8 @@ export default function ProjectList() {
       page: 1,
     },
   });
+
+  console.log(data)
 
   const [detailModal, setDetailModal] = useState(false);
   const [detailId, setDetailId] = useState("");

@@ -59,24 +59,42 @@ export default function Project() {
   const onSubmitProject = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (window) {
-      const ui = Number(
+      const uiNumber = Number(
         document?.querySelector<HTMLInputElement>("[class='0position0']")?.value
       );
-      const ux = Number(
+      const uiId = document?.querySelector<HTMLInputElement>("[class='0position0']")?.id
+
+      const uxNumber = Number(
         document?.querySelector<HTMLInputElement>("[class='1position1']")?.value
       );
-      const planner = Number(
+      const uxId = document?.querySelector<HTMLInputElement>("[class='1position1']")?.id
+    
+
+      const plannerNumber = Number(
         document?.querySelector<HTMLInputElement>("[class='2position2']")?.value
       );
-      const backend = Number(
+      const plannerId = document?.querySelector<HTMLInputElement>("[class='2position2']")?.id
+      
+
+      const backendNumber = Number(
         document?.querySelector<HTMLInputElement>("[class='3position3']")?.value
       );
-      const fullstack = Number(
+      const backendId = document?.querySelector<HTMLInputElement>("[class='3position3']")?.id
+      
+
+
+      const fullstackNumber = Number(
         document?.querySelector<HTMLInputElement>("[class='4position4']")?.value
       );
-      const front = Number(
+      const fullstackId = document?.querySelector<HTMLInputElement>("[class='4position4']")?.id
+     
+
+      const frontNumber = Number(
         document?.querySelector<HTMLInputElement>("[class='5position5']")?.value
       );
+      const frontId = document?.querySelector<HTMLInputElement>("[class='5position5']")?.id
+      
+
 
       if (name === "") {
         setValidName(true);
@@ -114,11 +132,23 @@ export default function Project() {
         setValidLocationId(false);
       }
 
-      if (ui + ux + planner + backend + fullstack + front === 0) {
+      if (uiNumber + uxNumber + plannerNumber + backendNumber + fullstackNumber + frontNumber === 0) {
         setValidNumbers(true);
       } else {
         setValidNumbers(false);
       }
+     const positionObject =  [
+        {id:uiId,number:Number(uiNumber)},
+        {id:uxId,number:Number(uxNumber)},
+        {id:plannerId,number:Number(plannerNumber)},
+        {id:fullstackId,number:Number(fullstackNumber)},
+        {id:backendId,number:Number(backendNumber)},
+        {id:frontId,number:Number(frontNumber)}
+      ].filter(el => {
+      return el.number !== 0
+      })
+
+      console.log(positionObject)
 
       if (
         name !== "" &&
@@ -127,7 +157,7 @@ export default function Project() {
         method !== "" &&
         typeId !== "" &&
         locationId !== "" &&
-        ui + ux + planner + backend + fullstack + front > 0
+        uiNumber + uxNumber + plannerNumber + backendNumber + fullstackNumber + frontNumber > 0
       ) {
         try {
           const result = await createProject({
@@ -140,12 +170,12 @@ export default function Project() {
                 recruitDate,
                 imgUrl,
                 description,
-                numbers: [ui, ux, planner, backend, fullstack, front],
+                numbers:positionObject.map(el => {return el.number}),
                 typeId,
-                skill: " ",
-                platformIds: [""],
+                skill: "skill",
+                platformIds: ["5578b56c-be95-4fc5-92c1-2c2f7cddf7ec"],
                 locationId,
-                positionIds: [""],
+                positionIds: positionObject.map(el => {return el.id}),
               },
             },
           });
@@ -158,10 +188,27 @@ export default function Project() {
       } else {
         window && window.scrollTo(0, 0);
       }
+      console.log(
+        {
+          name,
+          teamname,
+          intro,
+          method,
+          recruitDate,
+          imgUrl,
+          description,
+          numbers:positionObject.map(el => {return el.number}),
+          typeId,
+          skill: "skill",
+          platformIds: ["5578b56c-be95-4fc5-92c1-2c2f7cddf7ec"],
+          locationId,
+          positionIds: positionObject.map(el => {return el.id}),
+        }
+      );
     }
   };
 
-  console.log(method, typeId);
+ 
 
   const positonMinus = () => {
     if (positionCount === 1) return;

@@ -48,7 +48,7 @@ export default function PreviewProjectUI(props: PropsPreviewProject) {
     router.push("/chatting");
     document.querySelector("#__next")?.classList.remove("projectdetalon");
   };
- 
+  
   return (
     <S.Wrapper id="detail__modal">
       <S.Modal>
@@ -86,9 +86,9 @@ export default function PreviewProjectUI(props: PropsPreviewProject) {
               size={1}
               name={day <= 0 ? "마감" : `D-${day}`}
             />
-            <S.Func>
+            {/* <S.Func>
               <img src="/img/preview/Heart.svg" />
-            </S.Func>
+            </S.Func> */}
           </div>
           <S.Title>
             <span>{props.data?.fetchProject.name}</span>
@@ -107,29 +107,35 @@ export default function PreviewProjectUI(props: PropsPreviewProject) {
         <S.ProjectListInfo>
           <li>
             <ProjectInfoKey>팀장</ProjectInfoKey>
-            <ProjectInfoValue>제이든</ProjectInfoValue>
+            <ProjectInfoValue>{props.data?.fetchProject?.leader.name}</ProjectInfoValue>
           </li>
           <li>
             <ProjectInfoKey>팀원</ProjectInfoKey>
-            <ProjectInfoValue>지호, 마이클, 톰, 민수</ProjectInfoValue>
+            <ProjectInfoValue>{
+              props.data?.fetchProject?.users &&
+              props.data?.fetchProject?.users?.length > 0 ?
+              props.data?.fetchProject?.users?.map(el => {return <span key={uuidv4()}>{el}</span>}) :
+              "아직 팀원이 없습니다."
+            }</ProjectInfoValue>
           </li>
           <li>
             <ProjectInfoKey>활동 지역</ProjectInfoKey>
-            <ProjectInfoValue>서울 강남구</ProjectInfoValue>
+            <ProjectInfoValue>{props.data?.fetchProject?.location.name}</ProjectInfoValue>
           </li>
         </S.ProjectListInfo>
         <S.TeamInfoBox>
           <S.InfoName>2명 구인 중</S.InfoName>
           <S.WantedBox>
-            {new Array(2).fill(1).map((_) => {
+            {props.data?.fetchProject?.projectToPositions && 
+            props.data?.fetchProject?.projectToPositions.map((el) => {
               return (
                 <S.ProfileBox key={uuidv4()}>
                   <div>
                     <img src="/img/preview/user1.png" />
-                    <div>UX 디자이너</div>
+                    <div>{el.position.name}</div>
                   </div>
                   <div>
-                    <span>1</span>명 모집중
+                    <span>{el.number}</span>명 모집중
                   </div>
                 </S.ProfileBox>
               );

@@ -35,7 +35,8 @@ export default function useMoveToPage() {
 
   const moveToPayment = () => {
     router.push("/payment");
-    
+  }
+  
   const moveToOnboarding = () => {
     router.push("/onboarding");
   };
