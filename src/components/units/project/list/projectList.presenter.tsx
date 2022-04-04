@@ -19,19 +19,6 @@ interface IPropsProjectListUI {
   fetchProjectCount?: number;
 }
 
-interface IPropsProjectCardEl {
-  id: string;
-  name: string;
-  imgUrl: string;
-  type: {
-    name: string;
-  };
-  recruitDate: string;
-  projectToPositions: {};
-  projectMembers: null | [];
-  onDetail: () => void;
-}
-
 export default function ProjectListUI(props: IPropsProjectListUI) {
   return (
     <>
@@ -46,7 +33,7 @@ export default function ProjectListUI(props: IPropsProjectListUI) {
         >
           <S.ProjectListBox>
             {props?.data &&
-              props?.data.fetchProjects.map((el:IPropsProjectCardEl) => {
+              props?.data.fetchProjects.map((el:any) => {
                 return (
                   <div key={uuidv4()}>
                     <ProjectCard
