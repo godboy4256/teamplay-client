@@ -10,6 +10,7 @@ const FETCH_PROJECTS = gql`
       name
       imgUrl
       recruitDate
+      isStart
       type {
         name
       }
@@ -43,7 +44,6 @@ export default function ProjectList() {
     },
   });
 
-  console.log(data);
   const [detailModal, setDetailModal] = useState(false);
   const [detailId, setDetailId] = useState("");
 
@@ -62,9 +62,10 @@ export default function ProjectList() {
     fetchMore({
       variables: { page: Math.ceil(data.fetchProjects.length / 12) + 1 },
       updateQuery: (prev, { fetchMoreResult }) => {
+        console.log(fetchProjectCount?.fetchProjectCounts - data.fetchProjects.length)
         if (!fetchMoreResult.fetchProjects)
           return { fetchProjects: [...prev.fetchProjects] };
-
+          
         return {
           fetchProjects: [
             ...prev.fetchProjects,
@@ -75,7 +76,6 @@ export default function ProjectList() {
     });
   };
 
-  console.log(data);
   return (
     <ProjectListUI
       data={data}

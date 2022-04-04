@@ -9,7 +9,7 @@ interface IPropsSearchBarUI {
 
 export default function SearchBarUI(props: IPropsSearchBarUI) {
   return (
-    <S.SearchBarStyle>
+    <S.SearchBarStyle id="stick_header">
       <S.SearchBarTop>
         <img src="../img/filter.svg" alt="search bar filter" />
         <div>
@@ -20,7 +20,7 @@ export default function SearchBarUI(props: IPropsSearchBarUI) {
         </div>
       </S.SearchBarTop>
       <S.SearchBarBottom>
-        <div>총 {props.fetchProjectCount} 건</div>
+        <div>총 {props?.fetchProjectCount} 건</div>
         <div>
           <span>최신순</span>
           <img src="../img/sort.svg" />

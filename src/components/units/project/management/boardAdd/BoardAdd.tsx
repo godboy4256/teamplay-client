@@ -18,6 +18,7 @@ const BoardAddStyle = styled.div`
   bottom: -100%;
   left: 0;
   opacity: 0;
+  display: none;
   &.onClick {
     width: 100%;
     opacity: 1;
@@ -33,6 +34,7 @@ const BoardAddStyle = styled.div`
   }
   @media ${breakPoints.web} {
     display: flex;
+    display: none;
     bottom: 0;
     top: 50%;
     left: 50%;

@@ -21,6 +21,7 @@ const TodoAddStyle = styled.div`
   bottom: -100%;
   left: 0;
   opacity: 0;
+  display: none;
   &.onClick {
     bottom: 0;
     opacity: 1;
@@ -41,6 +42,7 @@ const TodoAddStyle = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     width: 30vw;
+    display: none;
     border-radius: 30px;
     justify-content: center;
     &.onClick {
@@ -83,6 +85,7 @@ export default function TodoAdd() {
 
   const [recruitDate,setRecruitDate] = useState("")
   console.log(recruitDate)
+
   return (
     <>
       <ModalBackground id="modalBackground"></ModalBackground>
