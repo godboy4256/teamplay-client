@@ -7,19 +7,11 @@ export const FETCH_PROJECT = gql`
       name
       teamname
       intro
+      method
       recruitDate
       imgUrl
+      skill
       description
-      method
-      type {
-        name
-      }
-      location {
-        name
-      }
-      leader {
-        name
-      }
       isComplete
       isStart
       projectToPositions {
@@ -28,8 +20,20 @@ export const FETCH_PROJECT = gql`
         }
         number
       }
-      users {
+      platforms {
         name
+      }
+      location {
+        name
+      }
+      leader {
+        name
+      }
+      type {
+        name
+      }
+      projectMembers {
+        id
       }
     }
   }

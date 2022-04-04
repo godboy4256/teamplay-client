@@ -1,6 +1,6 @@
 import { Wrapper } from "../../../../../commons/styles/commonStyls";
 import { Label } from "../../../../commons/inputs/commons/styles";
-import Date from "../../../../commons/inputs/component/date/date.container";
+import DateInput from "../../../../commons/inputs/component/date/date.container";
 import SubmitButton from "../../../../commons/inputs/component/submitbutton/submit.container";
 import TypingInput from "../../../../commons/inputs/component/typinginput/typinginput.container";
 import { TodoWorker } from "../projectManage.styles";
@@ -81,6 +81,8 @@ export default function TodoAdd() {
     modalref?.classList.remove("onClick");
   };
 
+  const [recruitDate,setRecruitDate] = useState("")
+  console.log(recruitDate)
   return (
     <>
       <ModalBackground id="modalBackground"></ModalBackground>
@@ -96,7 +98,11 @@ export default function TodoAdd() {
             valid={valid}
             errorMessage="프로젝트 이름을 한 글자 이상 입력해야 합니다."
           />
-          <Date label="마감 기한" />
+           <DateInput 
+            label="마감 기간" 
+            setValues={setRecruitDate} 
+            warringText="* 마감 기간을 선택하지 않으면 마감기간 없음으로 표시됩니다."
+          />
           <div>
             <Label>담당 팀원</Label>
             <TodoWorker align="left">

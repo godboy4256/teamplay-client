@@ -23,6 +23,7 @@ const CautionFont = styled.span`
 interface IPropsDate {
   label: string;
   setValues?: Dispatch<SetStateAction<string>>;
+  warringText: string
 }
 
 export default function DateInput(props: IPropsDate) {
@@ -31,8 +32,7 @@ export default function DateInput(props: IPropsDate) {
       <Label>
         <div>{props.label}</div>
         <CautionFont>
-          * 모집 기간을 선택하지 않으면 자동으로 상시 모집으로 공고가
-          올라갑니다.
+          {props.warringText}
         </CautionFont>
       </Label>
       <DateStyle

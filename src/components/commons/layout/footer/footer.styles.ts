@@ -23,11 +23,10 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #ccc;
-
   & > div {
     width: 100%;
     max-width: 1200px;
-    padding: 37px 0px 27px 0px;
+    padding: 37px 15px 27px 15px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -41,7 +40,6 @@ export const TopBox = styled.div`
 
   img {
     width: 177px;
-    height: 32px;
     margin-right: 67px;
   }
 

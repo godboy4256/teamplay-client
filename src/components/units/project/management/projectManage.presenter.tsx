@@ -15,6 +15,7 @@ import {
   IQuery,
   IQueryFetchProjectArgs,
 } from "../../../../commons/types/generated/types";
+import SubmitButton from "../../../commons/inputs/component/submitbutton/submit.container";
 
 interface IProsManage {
   onClickonAdd: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
@@ -26,14 +27,35 @@ const FETCH_PROJECT = gql`
     fetchProject(projectId: $projectId) {
       id
       name
+      teamname
       intro
       method
-      teamname
-      imgUrl
       recruitDate
+      imgUrl
+      skill
       description
+      isComplete
+      isStart
+      projectToPositions {
+        position {
+          name
+        }
+        number
+      }
+      platforms {
+        name
+      }
+      location {
+        name
+      }
+      leader {
+        name
+      }
       type {
         name
+      }
+      projectMembers {
+        id
       }
     }
   }
@@ -174,6 +196,7 @@ export default function ProjectManageUI(props: IProsManage) {
       </MainBox>
       <TodoAdd />
       <BoardAdd />
+      <SubmitButton onClick={() => {}} btnvalue="프로젝트 완료" />
     </S.ProjectManageStyle>
   );
 }

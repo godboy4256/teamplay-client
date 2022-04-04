@@ -106,7 +106,12 @@ export default function ProjectUI() {
             errorMessage="어떤 직군이든 한 명이상 모집해야 합니다."
             onchangeValue={onchangeValue}
           />
-          <DateInput label="모집 기간" setValues={setRecruitDate} />
+          <DateInput 
+           label="모집 기간" 
+           setValues={setRecruitDate} 
+           warringText="* 모집 기간을 선택하지 않으면 자동으로 상시 모집으로 공고가
+           올라갑니다."
+          />
           <ImageUpload label="대표 이미지" setValues={setImgUrl} />
           <TextArea label="프로젝트 설명" setValues={setDescription} />
           <S.ProjectNewButtons>

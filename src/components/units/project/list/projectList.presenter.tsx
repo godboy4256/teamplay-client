@@ -16,16 +16,28 @@ interface IPropsProjectListUI {
   detailModal: boolean;
   setDetailModal: Dispatch<SetStateAction<boolean>>;
   detailId: string;
-  fetchProjectCount: number
+  fetchProjectCount?: number;
+}
+
+interface IPropsProjectCardEl {
+  id: string;
+  name: string;
+  imgUrl: string;
+  type: {
+    name: string;
+  };
+  recruitDate: string;
+  projectToPositions: {};
+  projectMembers: null | [];
+  onDetail: () => void;
 }
 
 export default function ProjectListUI(props: IPropsProjectListUI) {
-  console.log(props.fetchProjectCount)
   return (
     <>
       <Wrapper paddingTop={0}>
         <S.ProjectListTitle>모든 프로젝트</S.ProjectListTitle>
-        <SearchBar fetchProjectCount={props?.fetchProjectCount}/>
+        <SearchBar fetchProjectCount={props?.fetchProjectCount} />
         <WriteGoButton />
         <InfiniteScroll
           loadMore={props.onLoadMore}
@@ -34,7 +46,7 @@ export default function ProjectListUI(props: IPropsProjectListUI) {
         >
           <S.ProjectListBox>
             {props?.data &&
-              props?.data.fetchProjects.map((el) => {
+              props?.data.fetchProjects.map((el:IPropsProjectCardEl) => {
                 return (
                   <div key={uuidv4()}>
                     <ProjectCard
@@ -43,6 +55,8 @@ export default function ProjectListUI(props: IPropsProjectListUI) {
                       imgUrl={el.imgUrl}
                       type={el.type.name}
                       recruitDate={el.recruitDate}
+                      projectToPositions={el.projectToPositions}
+                      projectMembers={el?.projectMembers}
                       onDetail={props.onDetail}
                     />
                   </div>

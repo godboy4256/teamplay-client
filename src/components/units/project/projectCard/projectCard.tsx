@@ -15,7 +15,7 @@ const ProjectListItem = styled.div`
     overflow: hidden;
     &:hover {
       border-color: #3894ff;
-      & img {
+      & .thumnail {
         transform: translate(-50%, -50%) scale(1.05);
       }
     }
@@ -56,6 +56,9 @@ const ProjectListItemBottom = styled.div`
   padding: 15px 13px;
   & > h3 {
     padding-bottom: 7px;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -65,14 +68,15 @@ const ProjectMembers = styled.div`
   align-items: center;
   font-size: 13px;
 `;
-
 interface IPropsProjectCard {
   id?: string;
   imgUrl?: string;
   name?: string | undefined;
   recruitDate?: string | undefined;
   onDetail: (e: MouseEvent<HTMLDivElement>) => void;
+  projectToPositions?: any | null;
   type?: string;
+  projectMembers?: any | null;
 }
 
 const ProjectCard = memo((props: IPropsProjectCard) => {
@@ -82,6 +86,14 @@ const ProjectCard = memo((props: IPropsProjectCard) => {
   const now: Date | null = new Date();
   const gap = Number(xmasDay) - Number(now);
   const day = Math.floor(gap / (1000 * 60 * 60 * 24));
+
+  let recruiteNumber = 0;
+  if (props?.projectToPositions) {
+    for (let i = 0; i < props?.projectToPositions?.length; i++) {
+      recruiteNumber =
+        recruiteNumber + Number(props?.projectToPositions[i].number);
+    }
+  }
 
   return (
     <ProjectListItem id={props.id} onClick={props.onDetail}>
@@ -93,11 +105,11 @@ const ProjectCard = memo((props: IPropsProjectCard) => {
               size={1}
               name={day <= 0 ? "마감" : `D-${day}`}
             />
-            {/* <img src="../img/like.svg" alt="like icon" /> */}
           </div>
           {props.imgUrl &&
           !props.imgUrl.includes("cdn-cashy-static-assets.lucidchart.com/") ? (
             <img
+              className="thumnail"
               src={`https://storage.googleapis.com/${props.imgUrl}`}
               alt={props.name}
             />
@@ -116,7 +128,14 @@ const ProjectCard = memo((props: IPropsProjectCard) => {
           />
           <ProjectMembers>
             <img src="../img/big_member.svg" alt="members icon" />
-            <span>1/3</span>
+            <span>
+              {`${
+                props.projectMembers?.length ||
+                (props.projectMembers === null && 0)
+              }
+                 /
+                 ${recruiteNumber}`}
+            </span>
           </ProjectMembers>
         </ProjectListItemBottom>
       </div>
