@@ -36,24 +36,27 @@ const BoardAddStyle = styled.div`
     bottom: 0;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
+    padding: 30px 0;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    width: 30vw;
     border-radius: 30px;
     justify-content: center;
     &.onClick {
-      width: 30vw;
       opacity: 1;
+      transform:translate(-50%, -50%) rotateY(0);
     }
   }
 `;
 
-const DragBar = styled.div`
-  width: 80px;
-  height: 3px;
-  border-radius: 2px;
-  background-color: #c0c1c2;
-  margin: 5px 0 30px;
+const OffAdd = styled.button`
+  width: 20px;
   cursor: pointer;
+  position: absolute;
+  top:20px;
+  right:20px;
+  & > img{
+    width: 100%;
+  }
 `;
 
 const ModalBackground = styled.div`
@@ -91,7 +94,13 @@ export default function BoardAdd() {
     <>
       <ModalBackground id="modalBackground"></ModalBackground>
       <BoardAddStyle id="onBoardAdd">
-        <DragBar onClick={onClickoffAdd}></DragBar>
+        <OffAdd onClick={onClickoffAdd}>
+          <img
+              src="/img/down-arrow-black.svg"
+              className="Xmark"
+              alt="down-arrow"
+          />
+        </OffAdd>
         <Wrapper paddingTop="5px">
           <TypingInput
             label="제목"

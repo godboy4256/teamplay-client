@@ -10,22 +10,32 @@ const FETCH_PROJECTS = gql`
       name
       imgUrl
       recruitDate
-      type{
+      type {
         name
+      }
+      projectToPositions {
+        id
+        position {
+          name
+          id
+        }
+        number
+      }
+      projectMembers {
+        id
       }
     }
   }
 `;
 
 const FETCH_PROJECT_COUNTS = gql`
-  query fetchProjectCounts{
+  query fetchProjectCounts {
     fetchProjectCounts
   }
-`
+`;
 
 export default function ProjectList() {
-
-  const { data:fetchProjectCount } = useQuery(FETCH_PROJECT_COUNTS)
+  const { data: fetchProjectCount } = useQuery(FETCH_PROJECT_COUNTS);
   const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_PROJECTS, {
     variables: {
@@ -33,6 +43,7 @@ export default function ProjectList() {
     },
   });
 
+  console.log(data);
   const [detailModal, setDetailModal] = useState(false);
   const [detailId, setDetailId] = useState("");
 
@@ -64,6 +75,7 @@ export default function ProjectList() {
     });
   };
 
+  console.log(data);
   return (
     <ProjectListUI
       data={data}
