@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Wrapper } from "../../../../commons/styles/commonStyls";
 import MultiSlide2 from "../../../commons/slider/component/multislide/multislide2.container";
@@ -10,82 +10,29 @@ import TodoProgress from "./todo-progress/todoProgress.container";
 import SquareTag from "../../../commons/tags/commons/squareTag";
 import { MainBox } from "../../main/main.styles";
 import BoardAdd from "./boardAdd/BoardAdd";
-import { gql, useQuery } from "@apollo/client";
-import {
-  IQuery,
-  IQueryFetchProjectArgs,
-} from "../../../../commons/types/generated/types";
 import SubmitButton from "../../../commons/inputs/component/submitbutton/submit.container";
 
 interface IProsManage {
   onClickonAdd: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
   project?: string;
+  data?:any;
+  toDoTab:string;
+  onClickChangeTab:() => void
+  projectcomplete:() => void
 }
 
-const FETCH_PROJECT = gql`
-  query fetchProject($projectId: String!) {
-    fetchProject(projectId: $projectId) {
-      id
-      name
-      teamname
-      intro
-      method
-      recruitDate
-      imgUrl
-      skill
-      description
-      isComplete
-      isStart
-      projectToPositions {
-        position {
-          name
-        }
-        number
-      }
-      platforms {
-        name
-      }
-      location {
-        name
-      }
-      leader {
-        name
-      }
-      type {
-        name
-      }
-      projectMembers {
-        id
-      }
-    }
-  }
-`;
-
 export default function ProjectManageUI(props: IProsManage) {
-  const { data } = useQuery<
-    Pick<IQuery, "fetchProject">,
-    IQueryFetchProjectArgs
-  >(FETCH_PROJECT, {
-    variables: {
-      projectId: props.project || "",
-    },
-  });
-  const [toDoTab, setToDoTab] = useState("To do");
-  const onClickChangeTab = () => {
-    setToDoTab((prev) => (prev === "To do" ? "Done" : "To do"));
-  };
-
   return (
     <S.ProjectManageStyle>
       <S.ProjectImgBox>
-        {data?.fetchProject.imgUrl ? (
-          data?.fetchProject.imgUrl.includes(
+        {props?.data?.fetchProject.imgUrl ? (
+          props?.data?.fetchProject.imgUrl.includes(
             "cdn-cashy-static-assets.lucidchart.com/"
           ) ? (
-            <S.ProjectManageImg src={data?.fetchProject.imgUrl} />
+            <S.ProjectManageImg src={props?.data?.fetchProject.imgUrl} />
           ) : (
             <S.ProjectManageImg
-              src={`https://storage.googleapis.com/${data?.fetchProject.imgUrl}`}
+              src={`https://storage.googleapis.com/${props?.data?.fetchProject.imgUrl}`}
             />
           )
         ) : (
@@ -96,10 +43,10 @@ export default function ProjectManageUI(props: IProsManage) {
         <div>
           <Wrapper paddingTop="30px">
             <div>
-              <h3>{data?.fetchProject.name}</h3>
-              <h4>{data?.fetchProject.description}</h4>
+              <h3>{props?.data?.fetchProject.name}</h3>
+              <h4>{props?.data?.fetchProject.description}</h4>
               <SquareTag
-                name={data?.fetchProject.type.name}
+                name={props?.data?.fetchProject.type.name}
                 size={0.525}
                 bgColor="#C4C4C4"
               />
@@ -108,7 +55,7 @@ export default function ProjectManageUI(props: IProsManage) {
               <li>
                 <S.ProjectInfoKey>팀</S.ProjectInfoKey>
                 <S.ProjectInfoValue>
-                  {data?.fetchProject.teamname}
+                  {props?.data?.fetchProject.teamname}
                 </S.ProjectInfoValue>
               </li>
               <li>
@@ -118,9 +65,9 @@ export default function ProjectManageUI(props: IProsManage) {
               <li>
                 <S.ProjectInfoKey>진행 방식</S.ProjectInfoKey>
                 <S.ProjectInfoValue>
-                  {data?.fetchProject.method === "UNTACT" && "비대면"}
-                  {data?.fetchProject.method === "MEET" && "대면"}
-                  {data?.fetchProject.method === "MEDIATE" && "조정 가능"}
+                  {props?.data?.fetchProject.method === "UNTACT" && "비대면"}
+                  {props?.data?.fetchProject.method === "MEET" && "대면"}
+                  {props?.data?.fetchProject.method === "MEDIATE" && "조정 가능"}
                 </S.ProjectInfoValue>
               </li>
               <li>
@@ -168,10 +115,10 @@ export default function ProjectManageUI(props: IProsManage) {
               </button>
             </S.ProjectManageContentsTop>
             <S.ProjectTodoNavTab>
-              <li onClick={onClickChangeTab}>해야 하는 업무</li>
-              <li onClick={onClickChangeTab}>완료한 업무</li>
+              <li onClick={props?.onClickChangeTab}>해야 하는 업무</li>
+              <li onClick={props?.onClickChangeTab}>완료한 업무</li>
             </S.ProjectTodoNavTab>
-            {toDoTab === "To do" ? <TodoProgress /> : <TodoDone />}
+            {props?.toDoTab === "To do" ? <TodoProgress /> : <TodoDone />}
           </S.ResponsiveMobleTodoList>
 
           <S.ResponsiveWebTodoList>
@@ -182,11 +129,11 @@ export default function ProjectManageUI(props: IProsManage) {
               </button>
             </S.ProjectManageContentsTop>
             <S.ProjectTodoNavTab>
-              <li onClick={onClickChangeTab}>
+              <li onClick={props?.onClickChangeTab}>
                 <h3>해야 하는 업무</h3>
                 <TodoProgress />
               </li>
-              <li onClick={onClickChangeTab}>
+              <li onClick={props?.onClickChangeTab}>
                 <h3>완료한 업무</h3>
                 <TodoDone />
               </li>
@@ -196,7 +143,9 @@ export default function ProjectManageUI(props: IProsManage) {
       </MainBox>
       <TodoAdd />
       <BoardAdd />
-      <SubmitButton onClick={() => {}} btnvalue="프로젝트 완료" />
+      <S.ProjectCompleteButton>
+      <SubmitButton onClick={props.projectcomplete} btnvalue="프로젝트 완료" />
+      </S.ProjectCompleteButton>
     </S.ProjectManageStyle>
   );
 }

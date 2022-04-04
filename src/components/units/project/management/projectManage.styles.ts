@@ -282,3 +282,11 @@ export const ProjectImgBox = styled.div`
     margin-top: 50px;
   }
 `;
+
+
+export const ProjectCompleteButton = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 100px;
+`
