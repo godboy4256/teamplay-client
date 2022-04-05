@@ -131,16 +131,16 @@ export const ChattingContainer = styled.div`
   height: 60vh;
 
   overflow-y: auto;
-  display: flex;
 
   /* ::-webkit-scrollbar {
     display: none;
   } */
+  scroll-behavior: smooth;
 `;
 
 export const ChattingList = styled.ul`
   width: 100%;
-  height: 100%;
+
   li {
     width: 90%;
     padding: 0.3rem;

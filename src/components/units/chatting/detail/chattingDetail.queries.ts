@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_CHATS = gql`
-  query fetchChats($chatRoomId: String!, $page: Float!) {
-    fetchChats(chatRoomId: $chatRoomId, page: $page) {
+  query fetchChats($chatRoomId: String!) {
+    fetchChats(chatRoomId: $chatRoomId) {
       id
       content
       createdAt

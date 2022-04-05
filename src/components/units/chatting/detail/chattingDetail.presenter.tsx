@@ -7,13 +7,12 @@ import { ChattingContext } from "../chatting.container";
 import { IPropsChattingDetailUI } from "./chattingDetail.types";
 import { v4 as uuidv4 } from "uuid";
 import ChatHistory from "./chatHistory/chatHistory";
-import InfiniteScroll from "react-infinite-scroller";
 
 export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
   const {
     isToggle,
     message,
-    chatArr,
+    chatsArr,
     onClickSetPosition,
     onChangeChatInput,
     onClickSendMessage,
@@ -40,29 +39,20 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
           </S.DotImgBox>
         </S.TitleBox>
         <S.ChattingContainer ref={props.scrollRef}>
-          <InfiniteScroll
-            threshold={150}
-            loadMore={props.onLoadMore}
-            hasMore={true || false}
-            useWindow={false}
-            isReverse={true}
-            initialLoad={false}
-          >
-            <S.ChattingList className="chatting-list">
-              {chatArr?.current.map((el, idx) => (
-                <ChatHistory
-                  el={el}
-                  idx={idx}
-                  chatsArr={chatArr.current}
-                  key={uuidv4()}
-                />
-              ))}
-            </S.ChattingList>
-            <S.ChattingList
-              className="chatting-list"
-              ref={props.ChattingBoxRef}
-            ></S.ChattingList>
-          </InfiniteScroll>
+          <S.ChattingList className="chatting-list">
+            {chatsArr?.map((el, idx) => (
+              <ChatHistory
+                el={el}
+                idx={idx}
+                chatsArr={chatsArr}
+                key={uuidv4()}
+              />
+            ))}
+          </S.ChattingList>
+          <S.ChattingList
+            className="chatting-list"
+            ref={props.ChattingBoxRef}
+          ></S.ChattingList>
         </S.ChattingContainer>
         <S.FunctionWrapper>
           <S.FunctionBox>

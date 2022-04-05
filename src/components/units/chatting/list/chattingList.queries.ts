@@ -11,6 +11,7 @@ export const FETCH_CHAT_ROOMS = gql`
       }
       project {
         id
+        imgUrl
         leader {
           name
         }
