@@ -3,12 +3,14 @@ import MultiSlide2 from "../../commons/slider/component/multislide/multislide2.c
 import MainSlide from "../../commons/slider/component/mainslide/mainslide";
 import * as S from "./main.styles";
 import { Wrapper } from "../../../commons/styles/commonStyls";
+import useFetchUser from "../../commons/hooks/useFetchUser";
 
 interface IMainPage {
   onClickProjects: () => void;
 }
 
 export default function MainPage(props: IMainPage) {
+  const { data } = useFetchUser();
   return (
     <S.MainBox>
       <MainSlide />
@@ -16,7 +18,7 @@ export default function MainPage(props: IMainPage) {
         <S.MainTop>
           <S.ContentsHeader>
             <h3>
-              제이슨님,
+              {data?.fetchUser.name ? `${data?.fetchUser.name}님,` : ""}
               <br />
               이런 프로젝트는 어떠세요?💡
             </h3>

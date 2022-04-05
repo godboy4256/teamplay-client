@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { ChattingContext } from "../chatting.container";
 import * as S from "./chattingList.styles";
-import { IPropsChattingListUI } from "./chattingList.types";
 import { v4 as uuidv4 } from "uuid";
+import { RoomListContext } from "../../../../../pages/chatting";
+import { getTime } from "../../../../commons/library/getTime";
 
-export default function ChattingListUI(props: IPropsChattingListUI) {
+export default function ChattingListUI() {
   const { onClickChangePosition, onClickSetRoomId } =
     useContext(ChattingContext);
+  const { data } = useContext(RoomListContext);
   return (
     <S.Wrapper onClick={onClickChangePosition}>
       <S.TitleBox>
@@ -14,7 +16,7 @@ export default function ChattingListUI(props: IPropsChattingListUI) {
         <S.Title>메세지</S.Title>
         <S.DotToggleImg src="/img/commons/dotToggle.svg" />
       </S.TitleBox>
-      {props.data?.map((data) => (
+      {data?.fetchChatRooms.map((data) => (
         <S.ChattingBox
           key={uuidv4()}
           onClick={onClickSetRoomId && onClickSetRoomId(data.id)}
@@ -25,11 +27,17 @@ export default function ChattingListUI(props: IPropsChattingListUI) {
             </S.ProfileBox>
             <S.MiddleBox>
               <S.Name>{data.name}</S.Name>
-              <S.Contents>안녕하세요! 개발자 제이든입니다. 😀</S.Contents>
+              <S.Contents>
+                {data.chat.length ? data.chat[0].content : ""}
+              </S.Contents>
             </S.MiddleBox>
           </S.LeftBox>
           <S.RightBox>
-            <span>1:04 AM</span>
+            <span>
+              {data.chat.length
+                ? getTime(data.chat[data.chat.length - 1].createdAt)
+                : ""}
+            </span>
           </S.RightBox>
         </S.ChattingBox>
       ))}

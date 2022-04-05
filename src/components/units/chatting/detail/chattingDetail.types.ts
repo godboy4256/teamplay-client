@@ -2,35 +2,35 @@ import {
   ChangeEvent,
   Dispatch,
   KeyboardEvent,
+  MouseEvent,
+  MutableRefObject,
   RefObject,
   SetStateAction,
 } from "react";
 import {
   IChat,
   IChatRoomMember,
-  IQuery,
 } from "../../../../commons/types/generated/types";
 
 export interface IChattingDetailContext {
   position?: number;
   isToggle?: boolean;
   userName?: string | undefined;
-  data?: Pick<IQuery, "fetchChats"> | undefined;
   message?: string;
+  chatArr?: MutableRefObject<IChat[]>;
   setUserName?: Dispatch<SetStateAction<string>>;
   onClickSetPosition?: () => void;
   onChangeChatInput?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  onClickSendMessage?: () => void;
+  onClickSendMessage?: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
 export interface IPropsChattingDetailUI {
   ChattingBoxRef: RefObject<HTMLUListElement>;
-  sendRef: RefObject<HTMLDivElement>;
   wrapperRef: RefObject<HTMLDivElement>;
+  scrollRef: RefObject<HTMLDivElement>;
   roomName: string;
-  chatsArr: IChat[];
-  chattingRef: RefObject<HTMLDivElement>;
   onkeyPressEnter: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
+  onLoadMore: () => void;
 }
 
 export interface ISidebarWrapper {
@@ -85,7 +85,6 @@ export interface IJoinMsg {
 }
 // sidebar
 export interface IPropsSidebarUI {
-  data: Pick<IQuery, "fetchChatRoomMembers"> | undefined;
   isChoose: boolean;
   checkList: IChatRoomMember[];
   isCheck: string[];
@@ -107,4 +106,11 @@ export interface ServerToClientEvents {
   noArg: () => void;
   basicEmit: (a: number, b: string, c: Buffer) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
+}
+
+// chatHistory
+export interface IPropsChatHistory {
+  el: IChat;
+  idx: number;
+  chatsArr: IChat[];
 }

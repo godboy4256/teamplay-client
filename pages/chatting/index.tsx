@@ -15,7 +15,7 @@ export default function ChattingPage() {
     useQuery<Pick<IQuery, "fetchChatRooms">>(FETCH_CHAT_ROOMS);
 
   if (loading) return "Loading...";
-
+  console.log(data);
   const value = {
     data,
   };

@@ -5,6 +5,10 @@ export const FETCH_CHAT_ROOMS = gql`
     fetchChatRooms {
       id
       name
+      chat {
+        content
+        createdAt
+      }
       project {
         id
         leader {

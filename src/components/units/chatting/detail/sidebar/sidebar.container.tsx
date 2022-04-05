@@ -1,15 +1,10 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import {
-  FETCH_CHAT_ROOM_MEMBERS,
-  START_PROJECT,
-} from "../chattingDetail.queries";
+import { useMutation } from "@apollo/client";
+import { START_PROJECT } from "../chattingDetail.queries";
 import {
   IChatRoomMember,
   IMutation,
   IMutationStartProjectArgs,
-  IQuery,
-  IQueryFetchChatRoomMembersArgs,
 } from "../../../../../commons/types/generated/types";
 import { ChattingContext } from "../../chatting.container";
 import SidebarUI from "./sidebar.presenter";
@@ -29,14 +24,6 @@ export default function Sidebar() {
     Pick<IMutation, "startProject">,
     IMutationStartProjectArgs
   >(START_PROJECT);
-  const { data } = useQuery<
-    Pick<IQuery, "fetchChatRoomMembers">,
-    IQueryFetchChatRoomMembersArgs
-  >(FETCH_CHAT_ROOM_MEMBERS, {
-    variables: {
-      chatRoomId: chatRoomId || "",
-    },
-  });
 
   useEffect(() => {
     if (typeof price !== "number" || !isCheck.length) setIsSubmit(false);
@@ -102,7 +89,6 @@ export default function Sidebar() {
 
   return (
     <SidebarUI
-      data={data}
       checkList={checkList}
       price={price}
       isCheck={isCheck}

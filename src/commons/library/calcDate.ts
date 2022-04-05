@@ -6,3 +6,26 @@ export const Dday = (data: any) => {
 
   return day;
 };
+
+export const ValidNowDate = (data: string) => {
+  const date = new Date();
+  const temp = Number(data.substring(0, 10).split("-").join(""));
+  const nowDate = Number(String(date).substring(0, 10).split("-").join(""));
+
+  if (temp < nowDate) return true;
+  else return false;
+};
+
+export const SetDateFunc = (data: string) => {
+  const temp = data.substring(0, 10).split("-");
+
+  return `${temp[0]}년 ${temp[1]}월 ${temp[2]}일`;
+};
+
+export const CheckPrevDate = (prev: string, data: string) => {
+  const prevTemp = Number(prev.substring(0, 10).split("-").join(""));
+  const dataTemp = Number(data.substring(0, 10).split("-").join(""));
+
+  if (prevTemp < dataTemp) return true;
+  else return false;
+};

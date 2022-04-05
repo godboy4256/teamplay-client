@@ -10,6 +10,10 @@ import {
 } from "react";
 import io, { Socket } from "socket.io-client";
 import { RoomListContext } from "../../../../../pages/chatting";
+import {
+  CheckPrevDate,
+  SetDateFunc,
+} from "../../../../commons/library/calcDate";
 import { getTime } from "../../../../commons/library/getTime";
 import {
   IChat,
@@ -39,43 +43,42 @@ export default function ChattingDetail() {
   const [message, setMessage] = useState("");
   const [roomName, setRoomName] = useState("");
   const ChattingBoxRef = useRef<HTMLUListElement>(null);
-  const sendRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { data: userInfo } = useFetchUser();
   const { data: roomList } = useContext(RoomListContext);
-  const [chatsArr, setChatArr] = useState<IChat[]>([]);
-  const chattingRef = useRef<HTMLDivElement>(null);
+  const chatArr = useRef<IChat[]>([]);
 
   const [sendMessage] = useMutation<
     Pick<IMutation, "sendMessage">,
     IMutationSendMessageArgs
   >(SEND_MESAGE);
-  const { data } = useQuery<Pick<IQuery, "fetchChats">, IQueryFetchChatsArgs>(
-    FETCH_CHATS,
-    {
-      variables: {
-        chatRoomId: chatRoomId || "",
-        page: 1,
-      },
-    }
-  );
+  const { data, fetchMore } = useQuery<
+    Pick<IQuery, "fetchChats">,
+    IQueryFetchChatsArgs
+  >(FETCH_CHATS, {
+    variables: {
+      chatRoomId: chatRoomId || "",
+      page: 1,
+    },
+  });
 
   useEffect(() => {
-    setChatArr([]);
     if (!data) return;
-    for (let i = data?.fetchChats.length - 1; i >= 0; i--) {
-      setChatArr((prev) => [...prev, data.fetchChats[i]]);
-    }
+    if (data.fetchChats.length === chatArr.current.length) return;
+    chatArr.current = data.fetchChats.map(
+      (_, idx, array) => array[array.length - 1 - idx]
+    );
+    // setToggle((prev) => !prev);
   }, [data]);
 
   useEffect(() => {
     if (!roomList) return;
-
     roomList.fetchChatRooms.forEach((el) => {
       if (el.id === chatRoomId) setRoomName(el.name);
     });
-    if (!isToggle)
-      chattingRef.current?.scrollTo(0, chattingRef.current.scrollHeight);
+    const ref = scrollRef.current?.style;
+    if (ref) ref.flexDirection = "column-reverse";
   }, [roomList, chatRoomId]);
 
   let socket: Socket;
@@ -88,7 +91,7 @@ export default function ChattingDetail() {
     // message;
     socket.on("message" + chatRoomId, (data: IMessageData) => {
       makeLi(data);
-      chattingRef.current?.scrollTo(0, chattingRef.current.scrollHeight);
+      scrollRef.current?.scrollTo(0, scrollRef.current?.scrollHeight);
     });
 
     /* 누군가 입장 */
@@ -108,9 +111,27 @@ export default function ChattingDetail() {
   }, [chatRoomId]);
 
   const makeLi = (data: IMessageData) => {
+    if (!chatArr) return;
     let dom;
     const li = document.createElement("li");
 
+    if (
+      chatArr.current.length &&
+      CheckPrevDate(
+        chatArr.current[chatArr.current.length - 1].createdAt,
+        data.chat.createdAt
+      )
+    ) {
+      li.className = "join";
+      dom = `<li className="join">
+      <span class="alert">
+        ${SetDateFunc(data.chat.createdAt)}
+      </span>
+    </li>`;
+
+      li.innerHTML = dom;
+      ChattingBoxRef.current?.appendChild(li);
+    }
     if (data.chat.user.name === userInfo?.fetchUser.name) {
       li.className = "sent";
       dom = `<span class="message">${data.chat.content}</span>
@@ -168,6 +189,7 @@ export default function ChattingDetail() {
   };
 
   const onClickSendMessage = async () => {
+    if (!message) return;
     await sendMessage({
       variables: {
         message,
@@ -180,8 +202,9 @@ export default function ChattingDetail() {
   const onkeyPressEnter = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter")
       if (!e.shiftKey) {
+        if (!message) return;
         e.preventDefault();
-        if (message) sendRef.current?.click();
+        onClickSendMessage();
       }
   };
 
@@ -197,11 +220,34 @@ export default function ChattingDetail() {
     }
   };
 
+  const onLoadMore = () => {
+    if (!data) return;
+
+    const ref = scrollRef.current?.style;
+    if (ref) ref.flexDirection = "column-reverse";
+
+    fetchMore({
+      variables: {
+        page: Math.ceil(data.fetchChats.length / 20) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchChats)
+          return { fetchChats: [...prev.fetchChats] };
+        else {
+          return {
+            fetchChats: [...prev.fetchChats, ...fetchMoreResult.fetchChats],
+          };
+        }
+      },
+    });
+  };
+
   const value = {
     isToggle,
     position,
     data,
     message,
+    chatArr,
     onClickSetPosition,
     onChangeChatInput,
     onClickSendMessage,
@@ -209,13 +255,12 @@ export default function ChattingDetail() {
   return (
     <ChattingDetailContext.Provider value={value}>
       <ChattingDetailUI
-        chattingRef={chattingRef}
-        chatsArr={chatsArr}
         ChattingBoxRef={ChattingBoxRef}
-        sendRef={sendRef}
+        scrollRef={scrollRef}
         wrapperRef={wrapperRef}
         roomName={roomName}
         onkeyPressEnter={onkeyPressEnter}
+        onLoadMore={onLoadMore}
       />
     </ChattingDetailContext.Provider>
   );
