@@ -1,26 +1,41 @@
 import { Wrapper } from "../../../../../commons/styles/commonStyls";
-// import { Label } from "../../../../commons/inputs/commons/styles";
 import DateInput from "../../../../commons/inputs/component/date/date.container";
 import SubmitButton from "../../../../commons/inputs/component/submitbutton/submit.container";
 import TypingInput from "../../../../commons/inputs/component/typinginput/typinginput.container";
-// import { TodoWorker } from "../projectManage.styles";
-// import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import { Dispatch, SetStateAction, useState } from "react";
 import { breakPoints } from "../../../../../commons/styles/breakpoint";
 import TagBox from "../../new/tagbox/TagBox";
-import { gql,useMutation } from "@apollo/client"
+import { gql,useMutation,useQuery } from "@apollo/client"
 import { FETCH_PROJECT } from "../projectManage.queries";
-// import TeamProfile from "./teamProfile";
 
-const CREATE_TASK = gql`
-    mutation createTask($projectId:String!,$content:String!,$limit:DateTime!,$taskType:TASK_TYPE_ENUM!,$userIds:[String!]!){
-      createTask(projectId:$projectId,content:$content,limit:$limit,taskType:$taskType,userIds:$userIds){
-        id
-      }
+const UPDATE_TASK = gql`
+    mutation updateTask(
+        $taskId: String!
+        $content: String!
+        $limit: DateTime!
+        $taskType: TASK_TYPE_ENUM!
+        $userIds: [String!]!
+    ){
+        updateTask(
+            taskId: $taskId
+            content: $content
+            limit: $limit
+            taskType: $taskType
+            userIds: $userIds
+        ){
+          id
+        }
     }
 `
 
+const FETCH_USER = gql`
+  query fetchUser{
+    fetchUser{
+      id
+    }
+  }
+`
 
 const TodoAddStyle = styled.div`
   width: 100%;
@@ -75,27 +90,26 @@ const ModalBackground = styled.div`
   display: block;
 `;
 
-interface IPropsTodoAdd{
-  data:any
-  setTodoOn:Dispatch<SetStateAction<boolean>>
+interface IPropsTodoUpdate{
+  taskId:string
+  setUpdateOn:Dispatch<SetStateAction<boolean>>
 }
 
-export default function TodoAdd(props:IPropsTodoAdd) {
-  // const [warker,setWarker] = useState<string[]>([])
-
+export default function TodoUpdate(props:IPropsTodoUpdate) {
   const [content, setContent] = useState("");
   const [contentValid, setContentValid] = useState(false);
-  const [createTask] = useMutation(CREATE_TASK)
-  const onClickoffAdd = () => {
-     props.setTodoOn(false)
-  };
 
+  const {data} = useQuery(FETCH_USER)
+  const [updateTask] = useMutation(UPDATE_TASK)
+
+  console.log(props.taskId)
+  
   const [limit,setLimit] = useState("")
 
   const [field,setField] = useState("")
   const [fieldValid,setFieldValid] = useState(false)
  
-  const onClickcreateTask = async () => {
+  const onClickUpdateTask = async () => {
 
     if (field === "") {
       setFieldValid(true);
@@ -111,40 +125,30 @@ export default function TodoAdd(props:IPropsTodoAdd) {
 
     if(content && field){
       try{
-        const result = await createTask({
+        const result = await updateTask({
           variables:{
-            projectId:props?.data?.fetchProject?.id,
+            taskId:props?.taskId,
             content,
             limit:String(limit),
             taskType:field,
-            userIds:""
+            userIds:data?.fetchUser?.id
           },
           refetchQueries:[FETCH_PROJECT]
         })
-        alert("할 일이 등록되었습니다.")
-        onClickoffAdd()
+        alert("할 일이 수정되었습니다.")
+        props.setUpdateOn(false)
         console.log(result)
       }catch(error){
         console.log(error)
       }
     }
   }
-  
-  // const onMouseEnterprofileOn = (userId:string) => (e:MouseEvent<HTMLLIElement>) => {
-  //   const user = document.getElementById(userId)
-  //   user?.classList.add('onMouse')
-  // }
-
-  // const onMouseLeaveProfileOn = (userId:string) => (e:MouseEvent<HTMLLIElement>) => {
-  //   const user = document.getElementById(userId)
-  //   user?.classList.remove('onMouse')
-  // }
 
   return (
     <>
-      <ModalBackground id="modalBackground"></ModalBackground>
-      <TodoAddStyle id="onTodoAdd">
-      <OffAdd onClick={() => props.setTodoOn(false)}>
+      <ModalBackground></ModalBackground>
+      <TodoAddStyle>
+       <OffAdd onClick={() => props.setUpdateOn(false)}>
           <img
               src="/img/down-arrow-black.svg"
               className="Xmark"
@@ -178,31 +182,7 @@ export default function TodoAdd(props:IPropsTodoAdd) {
             setValues={setField}
             errorMessage="분야를 선택해주세요."
           />
-          {/* <div>
-            <Label>담당 팀원</Label>
-            <TodoWorker align="left">
-              {props?.data?.fetchProject?.projectMembers && props?.data?.fetchProject?.projectMembers?.map((el:any,index:number) => {
-                if(index === 0){
-                  return null
-                }
-                console.log(el)
-                return (
-                  <TeamProfile 
-                    key={uuidv4()}
-                    userId={el.user?.id}
-                    userName={el.user?.name}
-                    userPosition={el.user?.position?.name}
-                    imgUrl={el.user?.imgUrl}
-                    onMouseEnterprofileOn={onMouseEnterprofileOn}
-                    onMouseLeaveProfileOn={onMouseLeaveProfileOn}
-                    setWarker={setWarker}
-                    warker={warker}
-                  />
-                );
-              })}
-            </TodoWorker>
-          </div> */}
-          <SubmitButton onClick={onClickcreateTask} btnvalue="업무 추가하기" />
+          <SubmitButton onClick={onClickUpdateTask} btnvalue="업무 수정하기" />
         </Wrapper>
       </TodoAddStyle>
     </>

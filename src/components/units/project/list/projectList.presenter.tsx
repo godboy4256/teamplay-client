@@ -19,17 +19,12 @@ interface IPropsProjectListUI {
   fetchProjectCount?: number;
 }
 
-export default function ProjectListUI(props: IPropsProjectListUI) {
-  const wellProjectCount = props.data?.fetchProjects?.filter((el:any) => {
-    return !el.isStart
-  })
-   
-  
+export default function ProjectListUI(props: IPropsProjectListUI) {  
   return (
     <>
       <Wrapper paddingTop={0}>
         <S.ProjectListTitle>모든 프로젝트</S.ProjectListTitle>
-        <SearchBar fetchProjectCount={wellProjectCount && wellProjectCount?.length} />
+        <SearchBar fetchProjectCount={props.fetchProjectCount} />
         <WriteGoButton />
         <InfiniteScroll
           loadMore={props.onLoadMore}

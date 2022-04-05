@@ -5,6 +5,15 @@ import styled from "@emotion/styled";
 import { useContext } from "react";
 import { breakPoints } from "../../../../../commons/styles/breakpoint";
 import { ProjectManageContext } from "../projectManage.container";
+import { FETCH_PROJECT } from "../projectManage.queries";
+import { gql, useMutation } from "@apollo/client";
+
+const UPDATE_BOARD = gql`
+   mutation updateBoard($boardId: String!$title: String!$content: String!){
+    updateBoard(boardId:$boardId,title:$title,content:$content)
+   }
+
+`
 
 const BoardAddStyle = styled.div`
   width: 100%;
@@ -59,21 +68,62 @@ const ModalBackground = styled.div`
   display: block;
 `;
 
-export default function BoardAdd() {
+interface IPropsBoardUpdate{
+  boardId?:string
+}
+
+export default function BoardUpdate(props:IPropsBoardUpdate) {
+  const [updateBoard] = useMutation(UPDATE_BOARD)
   const { 
-    onClickBoardAdd,
     setContent,
     setTitle,
-    setOnAdd,
+    setOnUpdate,
+    setValidTitle,
+    setValidContent,
+    title,
+    content,
     validTitle,
     validContent
   } = useContext(ProjectManageContext)
+
+
+  const onClickBoardUpdate = async () => {
+    if (title === "") {
+      setValidTitle && setValidTitle(true);
+    } else {
+      setValidTitle && setValidTitle(false);
+    }
+
+    if (content === "") {
+      setValidContent && setValidContent(true);
+    } else {
+      setValidContent && setValidContent(false);
+    }
+
+    if(title && content){
+      try{
+        const result = await updateBoard({
+          variables : {
+            title:"SAd",
+            content:"Asdd",
+            boardId:props.boardId
+          },
+          refetchQueries:[FETCH_PROJECT]
+        })
+        console.log(result)
+        alert("게시글이 수정되었습니다.")
+        setOnUpdate && setOnUpdate(false)
+      }catch(error){
+        console.log(error)
+      }
+    }
+  }
  
   return (
     <>
       <ModalBackground id="modalBackground"></ModalBackground>
       <BoardAddStyle id="onBoardAdd">
-        <OffAdd onClick={() => {setOnAdd && setOnAdd(false)}}>
+        <OffAdd onClick={() => {setOnUpdate && setOnUpdate(false)}}>
           <img
               src="/img/down-arrow-black.svg"
               className="Xmark"
@@ -99,7 +149,7 @@ export default function BoardAdd() {
             valid={validContent}
             errorMessage="내용을 한 글자 이상 입력해야 합니다."
           />
-          <SubmitButton onClick={onClickBoardAdd} btnvalue="게시글 올리기" />
+          <SubmitButton onClick={onClickBoardUpdate} btnvalue="게시글 수정하기" />
         </Wrapper>
       </BoardAddStyle>
     </>

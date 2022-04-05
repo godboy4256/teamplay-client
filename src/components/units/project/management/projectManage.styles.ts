@@ -3,7 +3,13 @@ import { breakPoints } from "../../../../commons/styles/breakpoint";
 
 interface IPropsTodoWorker {
   align: string;
+  status:number;
 }
+
+interface IPropsStatusBar{
+  status?:number
+}
+
 
 export const ProjectManageStyle = styled.div``;
 
@@ -14,7 +20,7 @@ export const TodoInfos = styled.div`
   & > div {
     display: flex;
   }
-  & span {
+  & > span {
     display: block;
     font-size: 10px;
     background-color: #ccc;
@@ -25,13 +31,33 @@ export const TodoInfos = styled.div`
   }
 `;
 
+export const TodoButton = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+`;
+
+export const TodoSetting = styled.div`
+      display: flex;
+      & > button{
+        width: 20px;
+        margin-right: 10px;
+        & > img{
+          width: 100%;
+        }
+      }
+`;
+
+
+
 export const TodoLimitDescription = styled.div`
   font-size: 1.143rem;
   padding: 5px 0;
   margin-bottom: 10px;
 `;
 
-export const TodoLimitTime = styled.div`
+export const TodoDoneButton = styled.div`
   font-size: 0.714rem;
   color: #ccc;
   margin-bottom: 10px;
@@ -42,7 +68,14 @@ export const DoneList = styled.div`
   margin-bottom: 10px;
 `;
 
-export const TodoList = styled.div``;
+export const TodoList = styled.div`
+  height: 500px;
+  overflow: auto;
+  padding: 30px 0;
+  ::-webkit-scrollbar {
+    display: none; 
+  }
+`;
 
 export const ProjectDetail = styled.div`
   padding-top: 30px;
@@ -54,6 +87,7 @@ export const ProjectDetail = styled.div`
 export const ProjectTodoNavTab = styled.ul`
   display: flex;
   padding: 5px 0;
+  border-bottom: 1px solid #ccc;
   & > li {
     width: 50%;
     text-align: center;
@@ -68,8 +102,11 @@ export const ProjectTodoNavTab = styled.ul`
   @media ${breakPoints.web} {
     & > li {
       cursor: auto;
-      padding: 0 30px;
+      padding-right:30px;
       text-align: left;
+      :last-child{
+        padding-left: 30px;
+      }
       & > h3 {
         font-size: 1.286rem;
         padding-bottom: 30px;
@@ -101,9 +138,48 @@ export const TodoWorker = styled.ul`
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    position: relative;
+    &.checking__warker{
+        &::after{
+          content:"";
+          display: block;
+          position: absolute;
+          top:0;
+          left:0;
+          width: 100%;
+          height: 100%;
+          background-color: #fff;
+        }
+      }
     & img {
       width: 100%;
+    }
+    & .info_box{
+      position: absolute;
+      top:0;
+      left:0;
+      background-color: #fff;
+      z-index: 20;
+      border:1px solid #ccc;
+      display: flex;
+      word-break: keep-all;
+      flex-direction: column;
+      padding: 10px;
+      top: 21px;
+      left: 13px;
+      opacity: 0;
+      transition: .4s;
+      & h4{
+        font-size: 12px;
+        padding-bottom: 5px;
+      }
+      & h5{
+        font-size: 10px;
+        color: #999;
+      } 
+      &.onMouse{
+        opacity: 1;
+      }
     }
   }
 `;
@@ -150,13 +226,45 @@ export const ProjectManageTop = styled.div`
   }
 `;
 
+export const ProjectMembers = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    & .left_img{
+      width: 40px;
+      & > img{
+        width: 100%;
+      }
+    }
+    & .right_info{
+      margin-left: 10px;
+      & .name{
+        font-size: 13px;
+        padding-bottom: 3px;
+      }
+      & .position{
+        font-size: 10px;
+        color: #999;
+      }
+    }
+`;
+
 export const ProjectManageContentsTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 0;
+  padding:20px 0;
   & h3 {
     font-size: 1.286rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding:10px 0;
+  }
+  & .status_bar{
+    padding: 15px 0;
   }
 `;
 
@@ -170,12 +278,17 @@ export const ProjectResponsiveWeb = styled.div`
   @media ${breakPoints.web} {
     width: 100%;
     display: flex;
+   
     justify-content: space-between;
     & > div {
       width: 50%;
     }
     & > div:last-child {
       padding-left: 30px;
+    }
+    & > div > div:last-child{
+      height: 300px;
+      overflow: auto;
     }
     margin-bottom: 30px;
   }
@@ -243,13 +356,15 @@ export const ProjectStatus = styled.div`
   color: #fff;
   border-radius: 30px;
   font-size: 8px;
-  width: 23%;
+  transition: .4s;
+  width: ${(props:IPropsStatusBar) => `${props.status}%`};
   padding: 3px 5px;
 `;
 
 export const ProjectInfoKey = styled.div`
   width: 30%;
   font-weight: 900;
+  padding-bottom: 5px;
 `;
 
 export const ProjectInfoValue = styled.div`

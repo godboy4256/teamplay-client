@@ -16,7 +16,7 @@ interface IPropsTagBox {
   checkBox: boolean;
   valid: boolean;
   errorMessage: string;
-  setValues?: Dispatch<SetStateAction<string | string[]>>;
+  setValues?: Dispatch<SetStateAction<string[] | any>>
 }
 
 const ProjectTagArea = styled.div`

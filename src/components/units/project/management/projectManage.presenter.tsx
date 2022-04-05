@@ -1,7 +1,6 @@
-import { MouseEvent } from "react";
+import { Dispatch, MouseEvent, SetStateAction, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Wrapper } from "../../../../commons/styles/commonStyls";
-import MultiSlide2 from "../../../commons/slider/component/multislide/multislide2.container";
 import * as S from "./projectManage.styles";
 import ProjectTeamBoard from "./teamBoard/projectTeamBoard.container";
 import TodoAdd from "./todo-add/todoAdd.container";
@@ -11,6 +10,7 @@ import SquareTag from "../../../commons/tags/commons/squareTag";
 import { MainBox } from "../../main/main.styles";
 import BoardAdd from "./boardAdd/BoardAdd";
 import SubmitButton from "../../../commons/inputs/component/submitbutton/submit.container";
+import BoardUpdate from "./boardUpdate/BoardUpdate";
 
 interface IProsManage {
   onClickonAdd: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
@@ -19,9 +19,30 @@ interface IProsManage {
   toDoTab:string;
   onClickChangeTab:() => void
   projectcomplete:() => void
+  setOnUpdate:Dispatch<SetStateAction<boolean>>
+  onAdd:boolean
+  onUpdate:boolean
+  setBoardId?:Dispatch<SetStateAction<string>>
+  boardId?:string
+  onClickUpdateBoard?:any
 }
 
+
+// const NOT_COMPLETE_TASK = gql`
+//   mutation notCompleteTask($taskId:String!){
+//     notCompleteTask(taskId:$taskId){
+//       id
+//       is_complete
+//     }
+//   }
+// `
+
+
 export default function ProjectManageUI(props: IProsManage) {
+   const complete = props?.data?.fetchProject.task.filter((el:any) => {
+     return el.is_complete
+   })
+  const [todoOn,setTodoOn] = useState(false)
   return (
     <S.ProjectManageStyle>
       <S.ProjectImgBox>
@@ -59,10 +80,6 @@ export default function ProjectManageUI(props: IProsManage) {
                 </S.ProjectInfoValue>
               </li>
               <li>
-                <S.ProjectInfoKey>밋업 장소</S.ProjectInfoKey>
-                <S.ProjectInfoValue>코드 캠프 패스트파이브</S.ProjectInfoValue>
-              </li>
-              <li>
                 <S.ProjectInfoKey>진행 방식</S.ProjectInfoKey>
                 <S.ProjectInfoValue>
                   {props?.data?.fetchProject.method === "UNTACT" && "비대면"}
@@ -71,10 +88,12 @@ export default function ProjectManageUI(props: IProsManage) {
                 </S.ProjectInfoValue>
               </li>
               <li>
-                <S.ProjectInfoKey>진행 단계</S.ProjectInfoKey>
+                <S.ProjectInfoKey>업무 진행률</S.ProjectInfoKey>
                 <S.ProjectInfoValue>
                   <S.ProjectStatusBox>
-                    <S.ProjectStatus>23%</S.ProjectStatus>
+                    <S.ProjectStatus status={complete && complete.length/props?.data?.fetchProject.task.length*100}>
+                      {Math.round(complete && complete.length/props?.data?.fetchProject.task.length*100)} %
+                    </S.ProjectStatus>
                   </S.ProjectStatusBox>
                 </S.ProjectInfoValue>
               </li>
@@ -88,10 +107,30 @@ export default function ProjectManageUI(props: IProsManage) {
             <div>
               <S.ProjectManageContentsTop>
                 <h3>팀 프로필</h3>
-              </S.ProjectManageContentsTop>
-              <S.ProjectUserSlideBox>
-                <MultiSlide2 slideToShow={3} />
-              </S.ProjectUserSlideBox>
+              </S.ProjectManageContentsTop>  
+              <div>
+                {
+                props.data?.fetchProject.projectMembers.length >= 1 ? 
+                props.data?.fetchProject.projectMembers?.map((el:any,index:number) => {
+                  if(index === 0){
+                    return null
+                  }
+                  return <S.ProjectMembers key={uuidv4()}>
+                    <div className="left_img">
+                    {
+                      el.user?.imgUrl ? 
+                      <img src={el.user?.imgUrl} alt="profile" /> : <img src="/img/unprofile.svg" alt="unprofile"/>
+                    }
+                    </div>
+                    <div className="right_info">
+                      <div className="name">{el.user?.name && el.user?.name}</div>
+                      <div className="position">{el.user?.position?.name ? el.user?.position?.name : "포지션 미정"}</div>
+                    </div>
+                  </S.ProjectMembers>
+                }): <div>팀원이 없습니다.</div>
+                } 
+              </div>
+
             </div>
             <div>
               <S.ProjectManageContentsTop>
@@ -101,8 +140,20 @@ export default function ProjectManageUI(props: IProsManage) {
                 </button>
               </S.ProjectManageContentsTop>
               <S.ProjectManaBoard>
-                {new Array(4).fill(1).map((_) => {
-                  return <ProjectTeamBoard key={uuidv4()} />;
+                {
+                props.data?.fetchProject.board.length === 0 ? <div>게시물이 없습니다.</div> :
+                props.data?.fetchProject.board.map((el:any) => {
+                  return <ProjectTeamBoard 
+                    key={uuidv4()} 
+                    title={el.title} 
+                    content={el.content} 
+                    createdAt={el.createdAt}
+                    id={el.id}
+                    onUpdate={props.onUpdate}
+                    setOnUpdate={props.setOnUpdate}
+                    setBoardId={props.setBoardId}
+                    onClickUpdateBoard={props.onClickUpdateBoard}
+                  />;
                 })}
               </S.ProjectManaBoard>
             </div>
@@ -110,7 +161,7 @@ export default function ProjectManageUI(props: IProsManage) {
           <S.ResponsiveMobleTodoList>
             <S.ProjectManageContentsTop>
               <h3>To Do List</h3>
-              <button id="todos" onClick={props.onClickonAdd}>
+              <button id="todos" onClick={() => setTodoOn(true)}>
                 <img src="/img/plusicon.svg" alt="contents plus icon" />
               </button>
             </S.ProjectManageContentsTop>
@@ -118,31 +169,32 @@ export default function ProjectManageUI(props: IProsManage) {
               <li onClick={props?.onClickChangeTab}>해야 하는 업무</li>
               <li onClick={props?.onClickChangeTab}>완료한 업무</li>
             </S.ProjectTodoNavTab>
-            {props?.toDoTab === "To do" ? <TodoProgress /> : <TodoDone />}
+            {props?.toDoTab === "To do" ? <TodoProgress data={props.data} /> : <TodoDone  data={props.data}/>}
           </S.ResponsiveMobleTodoList>
 
           <S.ResponsiveWebTodoList>
             <S.ProjectManageContentsTop>
               <h3>To Do List</h3>
-              <button id="todos" onClick={props.onClickonAdd}>
+              <button id="todos" onClick={() => setTodoOn(true)}>
                 <img src="/img/plusicon.svg" alt="contents plus icon" />
               </button>
             </S.ProjectManageContentsTop>
             <S.ProjectTodoNavTab>
               <li onClick={props?.onClickChangeTab}>
                 <h3>해야 하는 업무</h3>
-                <TodoProgress />
+                <TodoProgress data={props.data} />
               </li>
               <li onClick={props?.onClickChangeTab}>
                 <h3>완료한 업무</h3>
-                <TodoDone />
+                <TodoDone data={props.data}/>
               </li>
             </S.ProjectTodoNavTab>
           </S.ResponsiveWebTodoList>
         </Wrapper>
       </MainBox>
-      <TodoAdd />
-      <BoardAdd />
+      {todoOn ? <TodoAdd data={props.data} setTodoOn={setTodoOn}/> : null}
+      {props.onAdd ? <BoardAdd /> : null}
+      {props.onUpdate ? <BoardUpdate boardId={props.boardId}/> : null}
       <S.ProjectCompleteButton>
       <SubmitButton onClick={props.projectcomplete} btnvalue="프로젝트 완료" />
       </S.ProjectCompleteButton>

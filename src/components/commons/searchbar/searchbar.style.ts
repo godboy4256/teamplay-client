@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 export const SearchBarStyle = styled.div`
   width: 100%;
   padding: 10px 0;
-  position: sticky;
-  top:0;
   transition: 0.4s;
   background-color: #fff;
   &.onSticky{

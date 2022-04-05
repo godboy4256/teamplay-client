@@ -8,7 +8,13 @@ export interface IPropsProjectManage {
     onClickBoardAdd?: () => void
     setContent?:Dispatch<SetStateAction<string>>
     setTitle?:Dispatch<SetStateAction<string>>
+    setOnAdd?:Dispatch<SetStateAction<boolean>> | undefined
+    setOnUpdate?:Dispatch<SetStateAction<boolean>> | undefined
     validContent?:boolean
     validTitle?:boolean
+    title?:string
+    content?:string
+    setValidTitle?:Dispatch<SetStateAction<boolean>> | undefined,
+    setValidContent?:Dispatch<SetStateAction<boolean>> | undefined
   }
   
