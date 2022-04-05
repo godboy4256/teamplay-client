@@ -50,10 +50,13 @@ export const LeftBox = styled.div`
 
 export const ProfileBox = styled.div`
   width: 50px;
-  height: 53px;
+  height: 50px;
 
+  display: flex;
+  align-items: center;
   img {
     width: 100%;
+    height: 100%;
     border-radius: 50%;
   }
 `;

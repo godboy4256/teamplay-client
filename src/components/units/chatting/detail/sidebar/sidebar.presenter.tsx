@@ -6,6 +6,8 @@ import { useContext } from "react";
 import Blank from "../../../../commons/blank/blank";
 import { ChattingContext } from "../../chatting.container";
 
+const STORAGE = "https://storage.googleapis.com/";
+
 export default function SidebarUI(props: IPropsSidebarUI) {
   const { position, onClickSetPosition } = useContext(ChattingDetailContext);
   const { roomMembers } = useContext(ChattingContext);
@@ -31,7 +33,13 @@ export default function SidebarUI(props: IPropsSidebarUI) {
             <S.UserProfileBox key={uuidv4()}>
               <S.ProfileImg>
                 <S.Profile>
-                  <img src="https://placeimg.com/50/50/any" />
+                  <img
+                    src={
+                      data.user.imgUrl
+                        ? STORAGE + data.user.imgUrl
+                        : "/img/commons/noimage.jpg"
+                    }
+                  />
                 </S.Profile>
               </S.ProfileImg>
               <S.NameBox>
@@ -80,7 +88,13 @@ export default function SidebarUI(props: IPropsSidebarUI) {
             <S.UserProfileBox key={uuidv4()}>
               <S.ProfileImg>
                 <S.Profile>
-                  <img src="https://placeimg.com/50/50/any" />
+                  <img
+                    src={
+                      data.user.imgUrl
+                        ? STORAGE + data.user.imgUrl
+                        : "/img/commons/noimage.jpg"
+                    }
+                  />
                 </S.Profile>
               </S.ProfileImg>
               <S.NameBox>
