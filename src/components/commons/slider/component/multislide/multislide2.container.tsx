@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import { v4 as uuidv4 } from "uuid";
-import userListDummy from "../../../../../commons/json/userList.json";
+import { useFetchUsers } from "../../../hooks/useFetchUsers";
 import PropsProfileCardSlide from "../../../profileCard/profileCardSlide";
 import * as S from "./multislide.styles";
 
@@ -9,6 +9,8 @@ interface IMultiSlide2 {
 }
 
 export default function MultiSlide2(props: IMultiSlide2) {
+  const { data } = useFetchUsers();
+  console.log(data);
   const settings = {
     speed: 500,
     slidesToShow: props.slideToShow,
@@ -34,18 +36,17 @@ export default function MultiSlide2(props: IMultiSlide2) {
 
   return (
     <>
-
       <S.MultiSlideBox>
         <Slider {...settings}>
-          {userListDummy.userList.map((el) => {
+          {data?.fetchUsers.map((el) => {
             return (
               <S.MultiSlideWrapper key={uuidv4()} style={{ width: 200 }}>
                 <S.MultiSlideItem>
                   <PropsProfileCardSlide
-                    img={el.img}
+                    img={el.imgUrl}
                     name={el.name}
-                    position={el.position}
-                    tendency={el.tendency}
+                    position={el.position?.name}
+                    tendency={el.tendencys}
                     fontSize={0.571}
                   />
                 </S.MultiSlideItem>

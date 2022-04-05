@@ -27,8 +27,9 @@ export default function ChattingListUI() {
             <S.ProfileBox>
               <img
                 src={
-                  STORAGE + data.project.imgUrl ||
-                  "https://placeimg.com/50/50/any"
+                  data.project.imgUrl
+                    ? STORAGE + data.project.imgUrl
+                    : "/img/commons/noimage.jpg"
                 }
               />
             </S.ProfileBox>
