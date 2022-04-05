@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   height: 76vh;
   padding: 0px 10px 0px 10px;
   overflow: hidden;
+
   position: relative;
   z-index: 1;
 `;
@@ -128,12 +129,18 @@ export const DotToggleImg = styled.img`
 export const ChattingContainer = styled.div`
   width: 100%;
   height: 60vh;
-  overflow-y: scroll;
+
+  overflow-y: auto;
+  display: flex;
+
+  /* ::-webkit-scrollbar {
+    display: none;
+  } */
 `;
 
 export const ChattingList = styled.ul`
   width: 100%;
-
+  height: 100%;
   li {
     width: 90%;
     padding: 0.3rem;

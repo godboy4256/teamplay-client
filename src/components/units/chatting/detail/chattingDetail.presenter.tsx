@@ -6,19 +6,19 @@ import Sidebar from "./sidebar/sidebar.container";
 import { ChattingContext } from "../chatting.container";
 import { IPropsChattingDetailUI } from "./chattingDetail.types";
 import { v4 as uuidv4 } from "uuid";
-import useFetchUser from "../../../commons/hooks/useFetchUser";
-import { getTime } from "../../../../commons/library/getTime";
+import ChatHistory from "./chatHistory/chatHistory";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
   const {
     isToggle,
     message,
+    chatArr,
     onClickSetPosition,
     onChangeChatInput,
     onClickSendMessage,
   } = useContext(ChattingDetailContext);
-  const { data: loginInfo } = useFetchUser();
-  const { onClickChangePosition } = useContext(ChattingContext);
+  const { roomMembers, onClickChangePosition } = useContext(ChattingContext);
 
   return (
     <S.Wrapper ref={props.wrapperRef}>
@@ -33,72 +33,36 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
             />
             <S.Tag>Project</S.Tag>
             <S.ProjectName>{props.roomName}</S.ProjectName>
-            <S.Count>5</S.Count>
+            <S.Count>{roomMembers?.fetchChatRoomMembers.length}</S.Count>
           </S.RightBox>
           <S.DotImgBox onClick={onClickSetPosition}>
             <S.DotToggleImg src="/img/commons/dotToggle.svg" />
           </S.DotImgBox>
         </S.TitleBox>
-        <S.ChattingContainer ref={props.chattingRef}>
-          <S.ChattingList ref={props.ChattingBoxRef} className="chatting-list">
-            {props.chatsArr?.map((el, idx) =>
-              el.user.name === loginInfo?.fetchUser.name ? (
-                <li className="sent" key={uuidv4()}>
-                  <span className="message">{el.content}</span>
-                  <span className="time">{getTime(el.createdAt)}</span>
-                </li>
-              ) : (
-                <>
-                  {idx === 0 && (
-                    <li className="received" key={uuidv4()}>
-                      <span className="profile">
-                        <img
-                          className="image"
-                          src="https://placeimg.com/50/50/any"
-                          alt="any"
-                        />
-                        <span className="user">
-                          <span className="name">{el.user.name}</span>
-                          <span className="message-box">
-                            <span className="message">{el.content}</span>
-                            <span className="time">
-                              {getTime(el.createdAt)}
-                            </span>
-                          </span>
-                        </span>
-                      </span>
-                    </li>
-                  )}
-                  {idx !== 0 &&
-                  props.chatsArr[idx - 1].user.name === el.user.name ? (
-                    <li className="received">
-                      <span className="continue-message">{el.content}</span>
-                      <span className="time">{getTime(el.createdAt)}</span>
-                    </li>
-                  ) : (
-                    <li className="received" key={uuidv4()}>
-                      <span className="profile">
-                        <img
-                          className="image"
-                          src="https://placeimg.com/50/50/any"
-                          alt="any"
-                        />
-                        <span className="user">
-                          <span className="name">{el.user.name}</span>
-                          <span className="message-box">
-                            <span className="message">{el.content}</span>
-                            <span className="time">
-                              {getTime(el.createdAt)}
-                            </span>
-                          </span>
-                        </span>
-                      </span>
-                    </li>
-                  )}
-                </>
-              )
-            )}
-          </S.ChattingList>
+        <S.ChattingContainer ref={props.scrollRef}>
+          <InfiniteScroll
+            threshold={150}
+            loadMore={props.onLoadMore}
+            hasMore={true || false}
+            useWindow={false}
+            isReverse={true}
+            initialLoad={false}
+          >
+            <S.ChattingList className="chatting-list">
+              {chatArr?.current.map((el, idx) => (
+                <ChatHistory
+                  el={el}
+                  idx={idx}
+                  chatsArr={chatArr.current}
+                  key={uuidv4()}
+                />
+              ))}
+            </S.ChattingList>
+            <S.ChattingList
+              className="chatting-list"
+              ref={props.ChattingBoxRef}
+            ></S.ChattingList>
+          </InfiniteScroll>
         </S.ChattingContainer>
         <S.FunctionWrapper>
           <S.FunctionBox>
@@ -115,7 +79,7 @@ export default function ChattingDetailUI(props: IPropsChattingDetailUI) {
                 />
               </S.MsgInput>
             </S.InputBox>
-            <S.SendButton onClick={onClickSendMessage} ref={props.sendRef}>
+            <S.SendButton onClick={onClickSendMessage}>
               <img src="/img/chatting/send.svg" />
             </S.SendButton>
           </S.FunctionBox>

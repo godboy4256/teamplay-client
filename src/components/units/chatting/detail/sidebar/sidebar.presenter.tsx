@@ -4,16 +4,18 @@ import { IPropsSidebarUI } from "../chattingDetail.types";
 import { ChattingDetailContext } from "../chattingDetail.container";
 import { useContext } from "react";
 import Blank from "../../../../commons/blank/blank";
+import { ChattingContext } from "../../chatting.container";
 
 export default function SidebarUI(props: IPropsSidebarUI) {
   const { position, onClickSetPosition } = useContext(ChattingDetailContext);
+  const { roomMembers } = useContext(ChattingContext);
 
   return (
     <S.Wrapper position={position}>
       <S.TitleBox>
         <S.RightBox>
           <S.ProjectName>프로젝트 단톡방</S.ProjectName>
-          <S.Count>5</S.Count>
+          <S.Count>{roomMembers?.fetchChatRoomMembers.length}</S.Count>
         </S.RightBox>
         <S.Xmark src="/img/preview/Xmark.svg" onClick={onClickSetPosition} />
       </S.TitleBox>
@@ -74,7 +76,7 @@ export default function SidebarUI(props: IPropsSidebarUI) {
         </>
       ) : (
         <>
-          {props.data?.fetchChatRoomMembers.map((data, idx) => (
+          {roomMembers?.fetchChatRoomMembers.map((data, idx) => (
             <S.UserProfileBox key={uuidv4()}>
               <S.ProfileImg>
                 <S.Profile>

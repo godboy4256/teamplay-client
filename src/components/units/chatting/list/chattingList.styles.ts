@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 15px 0px;
-
+  overflow: hidden;
   overflow-y: scroll;
 `;
 
@@ -32,6 +32,7 @@ export const DotToggleImg = styled.img`
 `;
 
 export const ChattingBox = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 23px 20px;
@@ -44,6 +45,7 @@ export const ChattingBox = styled.div`
 
 export const LeftBox = styled.div`
   display: flex;
+  width: calc(100% - 56px);
 `;
 
 export const ProfileBox = styled.div`
@@ -55,8 +57,10 @@ export const ProfileBox = styled.div`
     width: 100%;
   }
 `;
+
 export const MiddleBox = styled.div`
   padding: 8px 10px;
+  width: calc(100% - 50px);
 `;
 
 export const Name = styled.div`
@@ -66,13 +70,13 @@ export const Name = styled.div`
   line-height: 18px;
   color: #2c2422;
 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   img {
     width: 8%;
   }
-`;
-
-export const ProjectName = styled.span`
-  margin: 0px 10px 0px 5px;
 `;
 
 export const Tag = styled.div`
@@ -94,6 +98,12 @@ export const Count = styled.span`
 `;
 
 export const Contents = styled.div`
+  width: 100px;
+  word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   font-weight: 400;
   font-size: 0.857rem;
   line-height: 14px;
@@ -101,6 +111,7 @@ export const Contents = styled.div`
 `;
 
 export const RightBox = styled.div`
+  width: 56px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;

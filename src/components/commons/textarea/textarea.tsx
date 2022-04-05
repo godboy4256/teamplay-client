@@ -50,7 +50,7 @@ export function TextArea(props: IProps) {
       ref={textRef}
       value={props.value}
       onInput={handleResizeHeight}
-      onKeyDown={props.onkeydown}
+      onKeyPress={props.onkeydown}
       onChange={props.onChange && props.onChange}
     />
   );
