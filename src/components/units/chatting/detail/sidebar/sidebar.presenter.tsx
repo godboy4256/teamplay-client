@@ -31,7 +31,7 @@ export default function SidebarUI(props: IPropsSidebarUI) {
             <S.UserProfileBox key={uuidv4()}>
               <S.ProfileImg>
                 <S.Profile>
-                  <img src="/img/임시사진.png" />
+                  <img src="https://placeimg.com/50/50/any" />
                 </S.Profile>
               </S.ProfileImg>
               <S.NameBox>
@@ -80,7 +80,7 @@ export default function SidebarUI(props: IPropsSidebarUI) {
             <S.UserProfileBox key={uuidv4()}>
               <S.ProfileImg>
                 <S.Profile>
-                  <img src="/img/임시사진.png" />
+                  <img src="https://placeimg.com/50/50/any" />
                 </S.Profile>
               </S.ProfileImg>
               <S.NameBox>

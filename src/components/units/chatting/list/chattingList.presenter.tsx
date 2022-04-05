@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import { RoomListContext } from "../../../../../pages/chatting";
 import { getTime } from "../../../../commons/library/getTime";
 
+const STORAGE = "https://storage.googleapis.com/";
+
 export default function ChattingListUI() {
   const { onClickChangePosition, onClickSetRoomId } =
     useContext(ChattingContext);
@@ -23,7 +25,12 @@ export default function ChattingListUI() {
         >
           <S.LeftBox>
             <S.ProfileBox>
-              <img src="/img/chatting/smalluser1.png" />
+              <img
+                src={
+                  STORAGE + data.project.imgUrl ||
+                  "https://placeimg.com/50/50/any"
+                }
+              />
             </S.ProfileBox>
             <S.MiddleBox>
               <S.Name>{data.name}</S.Name>

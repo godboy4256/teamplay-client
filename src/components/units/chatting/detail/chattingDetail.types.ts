@@ -3,7 +3,6 @@ import {
   Dispatch,
   KeyboardEvent,
   MouseEvent,
-  MutableRefObject,
   RefObject,
   SetStateAction,
 } from "react";
@@ -17,7 +16,7 @@ export interface IChattingDetailContext {
   isToggle?: boolean;
   userName?: string | undefined;
   message?: string;
-  chatArr?: MutableRefObject<IChat[]>;
+  chatsArr?: IChat[];
   setUserName?: Dispatch<SetStateAction<string>>;
   onClickSetPosition?: () => void;
   onChangeChatInput?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
@@ -30,7 +29,6 @@ export interface IPropsChattingDetailUI {
   scrollRef: RefObject<HTMLDivElement>;
   roomName: string;
   onkeyPressEnter: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
-  onLoadMore: () => void;
 }
 
 export interface ISidebarWrapper {

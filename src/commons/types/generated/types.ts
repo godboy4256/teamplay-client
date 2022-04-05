@@ -19,9 +19,12 @@ export type Scalars = {
 export type IBoard = {
   __typename?: 'Board';
   content: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  deletedAt: Scalars['DateTime'];
   id: Scalars['String'];
   project: IProject;
   title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
   user: IUser;
 };
 
@@ -44,6 +47,7 @@ export type IChatRoom = {
   __typename?: 'ChatRoom';
   chat: Array<IChat>;
   chatRoomMembers: Array<IChatRoomMember>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['String'];
   name: Scalars['String'];
   project: IProject;
@@ -66,13 +70,11 @@ export type ICreateProjectInput = {
   name: Scalars['String'];
   numbers: Array<Scalars['Int']>;
   platformIds: Array<Scalars['String']>;
-  point: Scalars['Int'];
   positionIds: Array<Scalars['String']>;
   recruitDate: Scalars['DateTime'];
   skill: Scalars['String'];
   teamname: Scalars['String'];
   typeId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
 };
 
 export type ICreateUserInput = {
@@ -98,6 +100,7 @@ export type IMutation = {
   __typename?: 'Mutation';
   cancelPointPayment: IPointPayment;
   checkTokenToEmail: Scalars['Boolean'];
+  completeTask: ITask;
   createBoard: IBoard;
   createLocation: ILocation;
   createPlatform: IPlatform;
@@ -113,15 +116,19 @@ export type IMutation = {
   deleteBoard: Scalars['Boolean'];
   deleteProject: Scalars['Boolean'];
   deleteTask: Scalars['Boolean'];
+  deleteUser: Scalars['Boolean'];
+  endProject: Scalars['Boolean'];
   joinChatRoom: IChatRoomMember;
   login: IToken;
   logout: Scalars['String'];
+  notCompleteTask: ITask;
   restoreAccessToken: IToken;
   sendMessage: Scalars['String'];
   sendTokenToEmail: Scalars['String'];
   startProject: IProject;
   updateBoard: IBoard;
   updateTask: ITask;
+  updateUser: IUser;
   updateUserByOnboard: IUser;
   uploadFile: Array<Scalars['String']>;
 };
@@ -135,6 +142,11 @@ export type IMutationCancelPointPaymentArgs = {
 export type IMutationCheckTokenToEmailArgs = {
   email: Scalars['String'];
   token: Scalars['String'];
+};
+
+
+export type IMutationCompleteTaskArgs = {
+  taskId: Scalars['String'];
 };
 
 
@@ -178,10 +190,10 @@ export type IMutationCreateRegionArgs = {
 
 export type IMutationCreateTaskArgs = {
   content: Scalars['String'];
-  dutyMember: Array<Scalars['String']>;
   limit: Scalars['DateTime'];
   projectId: Scalars['String'];
   taskType: ITask_Type_Enum;
+  userIds: Array<Scalars['String']>;
 };
 
 
@@ -215,6 +227,11 @@ export type IMutationDeleteTaskArgs = {
 };
 
 
+export type IMutationEndProjectArgs = {
+  projectId: Scalars['String'];
+};
+
+
 export type IMutationJoinChatRoomArgs = {
   projectId: Scalars['String'];
 };
@@ -223,6 +240,11 @@ export type IMutationJoinChatRoomArgs = {
 export type IMutationLoginArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+
+export type IMutationNotCompleteTaskArgs = {
+  taskId: Scalars['String'];
 };
 
 
@@ -253,10 +275,17 @@ export type IMutationUpdateBoardArgs = {
 
 export type IMutationUpdateTaskArgs = {
   content: Scalars['String'];
-  dutyMember: Array<Scalars['String']>;
   limit: Scalars['DateTime'];
   taskId: Scalars['String'];
   taskType: ITask_Type_Enum;
+  userIds: Array<Scalars['String']>;
+};
+
+
+export type IMutationUpdateUserArgs = {
+  changePassword: Scalars['String'];
+  name: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
@@ -298,6 +327,7 @@ export type IPosition = {
 
 export type IProject = {
   __typename?: 'Project';
+  board?: Maybe<Array<IBoard>>;
   createdAt: Scalars['DateTime'];
   deletedAt: Scalars['DateTime'];
   description: Scalars['String'];
@@ -312,13 +342,21 @@ export type IProject = {
   name: Scalars['String'];
   platforms: Array<IPlatform>;
   point: Scalars['Int'];
+  projectMembers?: Maybe<Array<IProjectMember>>;
   projectToPositions: Array<IProjectToPosition>;
   recruitDate: Scalars['DateTime'];
   skill: Scalars['String'];
+  task?: Maybe<Array<ITask>>;
   teamname: Scalars['String'];
   type: IType;
   updatedAt: Scalars['DateTime'];
-  users?: Maybe<Array<IUser>>;
+};
+
+export type IProjectMember = {
+  __typename?: 'ProjectMember';
+  id: Scalars['String'];
+  project: IUser;
+  user: IUser;
 };
 
 export type IProjectToPosition = {
@@ -340,6 +378,7 @@ export type IQuery = {
   fetchPlatforms: Array<IPlatform>;
   fetchPositions: Array<IPosition>;
   fetchProject: IProject;
+  fetchProjectCounts: Scalars['Int'];
   fetchProjects: Array<IProject>;
   fetchRegions: Array<IRegion>;
   fetchTask: ITask;
@@ -347,11 +386,19 @@ export type IQuery = {
   fetchTendencys: Array<ITendency>;
   fetchTypes: Array<IType>;
   fetchUser: IUser;
+  fetchUsers: Array<IUser>;
+  progressRatio: Scalars['Int'];
+  searchProjects: Array<IProject>;
 };
 
 
 export type IQueryFetchBoardArgs = {
   boardId: Scalars['String'];
+};
+
+
+export type IQueryFetchBoardsArgs = {
+  projectId: Scalars['String'];
 };
 
 
@@ -362,7 +409,6 @@ export type IQueryFetchChatRoomMembersArgs = {
 
 export type IQueryFetchChatsArgs = {
   chatRoomId: Scalars['String'];
-  page: Scalars['Float'];
 };
 
 
@@ -380,6 +426,26 @@ export type IQueryFetchTaskArgs = {
   taskId: Scalars['String'];
 };
 
+
+export type IQueryFetchTasksArgs = {
+  projectId: Scalars['String'];
+};
+
+
+export type IQueryFetchUsersArgs = {
+  page: Scalars['Float'];
+};
+
+
+export type IQueryProgressRatioArgs = {
+  projectId: Scalars['String'];
+};
+
+
+export type IQuerySearchProjectsArgs = {
+  search: Scalars['String'];
+};
+
 export type IRegion = {
   __typename?: 'Region';
   id: Scalars['String'];
@@ -395,10 +461,16 @@ export enum ITask_Type_Enum {
 export type ITask = {
   __typename?: 'Task';
   content: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  deletedAt: Scalars['DateTime'];
   id: Scalars['String'];
   is_complete: Scalars['Boolean'];
   limit: Scalars['DateTime'];
+  project: IProject;
   taskType: ITask_Type_Enum;
+  updatedAt: Scalars['DateTime'];
+  user: IUser;
+  users: Array<IUser>;
 };
 
 export type ITendency = {
@@ -423,6 +495,7 @@ export type IType = {
 
 export type IUpdateUserOnboardInput = {
   career?: InputMaybe<ICareer_Enum>;
+  imgUrl?: InputMaybe<Scalars['String']>;
   positionId: Scalars['String'];
   tendencyId: Array<Scalars['String']>;
   typeId: Array<Scalars['String']>;
@@ -430,17 +503,19 @@ export type IUpdateUserOnboardInput = {
 
 export type IUser = {
   __typename?: 'User';
+  board?: Maybe<Array<IBoard>>;
   career?: Maybe<ICareer_Enum>;
   chatRoomMembers: Array<IChatRoomMember>;
   createdAt: Scalars['DateTime'];
   deletedAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
   id: Scalars['String'];
+  imgUrl?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   point: Scalars['Int'];
   position?: Maybe<IPosition>;
-  projects: Array<IProject>;
-  task?: Maybe<Array<ITask>>;
+  projectMembers?: Maybe<Array<IProjectMember>>;
+  tasks?: Maybe<Array<ITask>>;
   tendencys?: Maybe<Array<ITendency>>;
   types?: Maybe<Array<IType>>;
 };

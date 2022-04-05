@@ -47,38 +47,40 @@ export default function ChattingDetail() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { data: userInfo } = useFetchUser();
   const { data: roomList } = useContext(RoomListContext);
-  const chatArr = useRef<IChat[]>([]);
+  const [chatsArr, setChatsArr] = useState<IChat[]>([]);
 
   const [sendMessage] = useMutation<
     Pick<IMutation, "sendMessage">,
     IMutationSendMessageArgs
   >(SEND_MESAGE);
-  const { data, fetchMore } = useQuery<
-    Pick<IQuery, "fetchChats">,
-    IQueryFetchChatsArgs
-  >(FETCH_CHATS, {
-    variables: {
-      chatRoomId: chatRoomId || "",
-      page: 1,
-    },
-  });
+  const { data } = useQuery<Pick<IQuery, "fetchChats">, IQueryFetchChatsArgs>(
+    FETCH_CHATS,
+    {
+      variables: {
+        chatRoomId: chatRoomId || "",
+      },
+    }
+  );
 
   useEffect(() => {
     if (!data) return;
-    if (data.fetchChats.length === chatArr.current.length) return;
-    chatArr.current = data.fetchChats.map(
+
+    const temp = data.fetchChats.map(
       (_, idx, array) => array[array.length - 1 - idx]
     );
-    // setToggle((prev) => !prev);
+
+    setChatsArr([...temp]);
   }, [data]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo(0, scrollRef.current?.scrollHeight);
+  }, [chatsArr]);
 
   useEffect(() => {
     if (!roomList) return;
     roomList.fetchChatRooms.forEach((el) => {
       if (el.id === chatRoomId) setRoomName(el.name);
     });
-    const ref = scrollRef.current?.style;
-    if (ref) ref.flexDirection = "column-reverse";
   }, [roomList, chatRoomId]);
 
   let socket: Socket;
@@ -111,14 +113,14 @@ export default function ChattingDetail() {
   }, [chatRoomId]);
 
   const makeLi = (data: IMessageData) => {
-    if (!chatArr) return;
+    if (!chatsArr) return;
     let dom;
     const li = document.createElement("li");
 
     if (
-      chatArr.current.length &&
+      chatsArr.length &&
       CheckPrevDate(
-        chatArr.current[chatArr.current.length - 1].createdAt,
+        chatsArr[chatsArr.length - 1].createdAt,
         data.chat.createdAt
       )
     ) {
@@ -220,34 +222,12 @@ export default function ChattingDetail() {
     }
   };
 
-  const onLoadMore = () => {
-    if (!data) return;
-
-    const ref = scrollRef.current?.style;
-    if (ref) ref.flexDirection = "column-reverse";
-
-    fetchMore({
-      variables: {
-        page: Math.ceil(data.fetchChats.length / 20) + 1,
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult?.fetchChats)
-          return { fetchChats: [...prev.fetchChats] };
-        else {
-          return {
-            fetchChats: [...prev.fetchChats, ...fetchMoreResult.fetchChats],
-          };
-        }
-      },
-    });
-  };
-
   const value = {
     isToggle,
     position,
     data,
     message,
-    chatArr,
+    chatsArr,
     onClickSetPosition,
     onChangeChatInput,
     onClickSendMessage,
@@ -260,7 +240,6 @@ export default function ChattingDetail() {
         wrapperRef={wrapperRef}
         roomName={roomName}
         onkeyPressEnter={onkeyPressEnter}
-        onLoadMore={onLoadMore}
       />
     </ChattingDetailContext.Provider>
   );
