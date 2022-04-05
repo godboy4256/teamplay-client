@@ -1,5 +1,100 @@
-export default function TodoDone() {
+import CircleTag from "../../../../commons/tags/commons/circleTag";
+import SquareTag from "../../../../commons/tags/commons/squareTag";
+import { v4 as uuidv4 } from "uuid";
+import * as S from "../projectManage.styles";
+import { gql, useMutation } from "@apollo/client";
+import { FETCH_PROJECT } from "../projectManage.queries";
+
+interface IPropsTodoProgress{
+    data:any
+}
+
+const DELETE_TASK = gql`
+    mutation deleteTask($taskId:String!){
+        deleteTask(taskId:$taskId)
+    }
+`
+
+const COMPLETE_TASK = gql`
+  mutation completeTask($taskId:String!){
+    completeTask(taskId:$taskId){
+      id
+      is_complete
+    }
+  }
+`
+
+export default function TodoProgress(props:IPropsTodoProgress) {
+    console.log(props.data)
+    const [completeTask] = useMutation(COMPLETE_TASK)
+    const onClickComplete = (taskId:string) => async () => {
+            try{
+                const result = await completeTask({
+                    variables:{
+                        taskId
+                    },
+                    refetchQueries:[FETCH_PROJECT]
+                })
+                console.log(result)
+                alert("업무가 완료되었습니다.")
+            }catch(error){
+                console.log(error)
+            }
+    }
+
+    const [deleteTask] = useMutation(DELETE_TASK)
+    const onClickDelete = (taskId:string) => async () => {
+        try{
+            const result = await deleteTask({
+                variables:{
+                    taskId
+                },
+                refetchQueries:[FETCH_PROJECT]
+            })
+            console.log(result)
+            alert("기록을 삭제히였습니다.")
+        }catch(error){
+            console.log(error)
+        }
+    }
+    
     return (
-       <div>완료된 업무가 없습니다.</div>
+        <S.TodoList>
+            {
+                props?.data?.fetchProject?.task.length === 0 ? <div>완료된 업무가 없습니다.</div> :
+                props?.data?.fetchProject?.task.map((el:any) => {
+                    if(!el.is_complete){
+                        return null
+                    }else{  
+                        return <S.Todo key={uuidv4()}>
+                    <S.TodoInfos>
+                        <div>
+                            <CircleTag 
+                                name="완료된 업무입니다."
+                                size={0.514}
+                                bgColor="#999"
+                                margin={10}
+                            />
+                            <SquareTag 
+                                name={el.taskType}
+                                size={0.514}
+                                bgColor="#c4c4c4"
+                            />
+                        </div>
+                        <S.TodoSetting>
+                            <button onClick={onClickDelete(el.id)}>
+                                <img src="/img/delete.svg" alt="delete" />
+                            </button>
+                        </S.TodoSetting>
+                    </S.TodoInfos> 
+                    <S.TodoLimitDescription>{el.content}</S.TodoLimitDescription>
+                    <S.TodoDoneButton>
+                        <button onClick={onClickComplete(el.id)}>업무 완료</button>
+                    </S.TodoDoneButton>
+                </S.Todo>
+                    }
+                })
+            }
+</S.TodoList> 
     )
 }

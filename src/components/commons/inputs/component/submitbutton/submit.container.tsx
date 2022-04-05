@@ -22,7 +22,7 @@ interface IPropsSubmitButton {
   btnvalue?: string;
   type?: "button" | "submit" | "reset";
   bgColor?: string;
-  onClick?: () => void | undefined;
+  onClick?: () => void
 }
 
 export default function SubmitButton(props: IPropsSubmitButton) {

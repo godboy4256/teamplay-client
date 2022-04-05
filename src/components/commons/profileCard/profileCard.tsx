@@ -1,9 +1,6 @@
 import styled from "@emotion/styled";
 import CircleTag from "../tags/commons/circleTag";
 import { v4 as uuidv4 } from "uuid";
-import { useContext } from "react";
-import { OnBoardingContext } from "../../units/onboarding/onboarding.container";
-import dump from "../../../commons/json/tendency.json";
 
 interface IPropsInfoBox {
   fontSize: number;
@@ -91,7 +88,6 @@ interface IPropsProfileCard {
 }
 
 export default function PropsProfileCard(props: IPropsProfileCard) {
-  const { colorIndex } = useContext(OnBoardingContext);
   return (
     <ProfileBox>
       <HeartImg src="/img/commons/heart.svg" />
@@ -105,9 +101,9 @@ export default function PropsProfileCard(props: IPropsProfileCard) {
           {props.tendency &&
             props.tendency.map((el, i) => (
               <CircleTag
-                name={el}
-                size={1}
-                bgColor={colorIndex && dump.tendency.color[colorIndex[i]]}
+                name={el.name}
+                size={0.124}
+                bgColor={"#3894FF"}
                 margin={4}
                 key={uuidv4()}
               />

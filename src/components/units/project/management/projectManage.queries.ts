@@ -34,7 +34,28 @@ export const FETCH_PROJECT = gql`
       }
       projectMembers {
         id
+        user{
+        id
+          name
+          imgUrl
+          position{
+            name
+          }
+        }
       }
+      board{
+        id
+        title
+        content
+        createdAt
+      }
+      task{
+        id
+        content
+        limit
+        taskType
+        is_complete
+    }
     }
   }
 `;

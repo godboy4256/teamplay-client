@@ -14,7 +14,8 @@ export const ProjectManageContext = createContext<IProjectManagement>({});
 export default function ProjectManage(props: IPropsProjectManage) {
   const [title,setTitle] = useState("")
   const [content,setContent] = useState("")
-  
+  const [onAdd,setOnAdd] = useState(false)
+  const [onUpdate,setOnUpdate] = useState(false)
   const router = useRouter()
 
   const [createBoard] = useMutation(CREATE_BOARD)
@@ -23,17 +24,7 @@ export default function ProjectManage(props: IPropsProjectManage) {
 
 
   const onClickonAdd = (e: MouseEvent<HTMLButtonElement>) => {
-    if (e.currentTarget.id === "todos") {
-      const onAddref = document.getElementById("onTodoAdd");
-      const modalref = document.getElementById("modalBackground");
-      onAddref?.classList.add("onClick");
-      modalref?.classList.add("onClick");
-    } else if (e.currentTarget.id === "board") {
-      const onAddref = document.getElementById("onBoardAdd");
-      const modalref = document.getElementById("modalBackground");
-      onAddref?.classList.add("onClick");
-      modalref?.classList.add("onClick");
-    }
+    setOnAdd(true)
   };
 
   const [validTitle, setValidTitle] = useState(false);
@@ -58,9 +49,11 @@ export default function ProjectManage(props: IPropsProjectManage) {
             title,
             content,
             projectId:router.query.temp
-          }
+          },
+          refetchQueries:[FETCH_PROJECT]
         })
         console.log(result)
+        setOnAdd(false)
         alert("게시글이 등록되었습니다.")
       }catch(error){
         console.log(error)
@@ -68,15 +61,23 @@ export default function ProjectManage(props: IPropsProjectManage) {
     }
   }
 
+
+
   const value = {
     onClickBoardAdd,
     setTitle,
     setContent,
     validTitle,
-    validContent
+    validContent,
+    setOnAdd,
+    setOnUpdate,
+    title,
+    content,
+    setValidTitle,
+    setValidContent,
   }
 
-    const { data } = useQuery<
+  const { data } = useQuery<
     Pick<IQuery, "fetchProject">,
     IQueryFetchProjectArgs
   >(FETCH_PROJECT, {
@@ -85,6 +86,7 @@ export default function ProjectManage(props: IPropsProjectManage) {
     },
   });
   const [toDoTab, setToDoTab] = useState("To do");
+  const [boardId,setBoardId] = useState("")
   const onClickChangeTab = () => {
     setToDoTab((prev) => (prev === "To do" ? "Done" : "To do"));
   };
@@ -102,26 +104,36 @@ export default function ProjectManage(props: IPropsProjectManage) {
         }
       })
       console.log(result)
-
       alert("프로젝트를 성공적으로 마무리 했습니다!!")
       router.push("/project/list")
-
-
       console.log(deleteResult)
     }catch(error){
       console.log(error)
     }
   }
 
+  const onClickUpdateBoard = (bid:string) => () => {
+    setOnUpdate(true)
+    setBoardId(bid)
+  }
+
+  console.log(boardId)
+
   return (
     <ProjectManageContext.Provider value={value}>
       <ProjectManageUI 
-      project={props.project} 
-      onClickonAdd={onClickonAdd} 
-      data={data}
-      toDoTab={toDoTab}
-      onClickChangeTab={onClickChangeTab}
-      projectcomplete={projectcomplete}
+        project={props.project} 
+        onClickonAdd={onClickonAdd} 
+        data={data}
+        toDoTab={toDoTab}
+        onClickChangeTab={onClickChangeTab}
+        projectcomplete={projectcomplete}
+        setOnUpdate={setOnUpdate}
+        onAdd={onAdd}
+        onUpdate={onUpdate}
+        setBoardId={setBoardId}
+        boardId={boardId}
+        onClickUpdateBoard={onClickUpdateBoard}
       />
     </ProjectManageContext.Provider>
   );

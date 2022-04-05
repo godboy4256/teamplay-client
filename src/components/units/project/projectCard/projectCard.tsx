@@ -129,12 +129,7 @@ const ProjectCard = memo((props: IPropsProjectCard) => {
           <ProjectMembers>
             <img src="../img/big_member.svg" alt="members icon" />
             <span>
-              {`${
-                props.projectMembers?.length ||
-                (props.projectMembers === null && 0)
-              }
-                 /
-                 ${recruiteNumber}`}
+              {recruiteNumber} 명 모집중
             </span>
           </ProjectMembers>
         </ProjectListItemBottom>

@@ -1,27 +1,89 @@
-import { useState } from "react"
+import { gql, useMutation } from "@apollo/client";
+import styled from "@emotion/styled";
+import { Dispatch, MouseEvent, SetStateAction, useState } from "react"
+import { FETCH_PROJECT } from "../projectManage.queries";
 import * as S from "../projectManage.styles";
 
-export default function ProjectTeamBoard() {
+interface IPropsProjectTeamBoard{
+    title:string,
+    content:string,
+    createdAt:any,
+    id:string,
+    onUpdate?:boolean
+    setOnUpdate:Dispatch<SetStateAction<boolean>>
+    setBoardId?:Dispatch<SetStateAction<string>>
+    onClickUpdateBoard?:any
+}
+
+const DELETE_BOARD = gql`
+   mutation deleteBoard($boardId:String!){
+        deleteBoard(boardId:$boardId)
+  } 
+`
+
+export const BoardAddBox = styled.div`
+    position: relative;
+    & .setting_box{
+        & button{
+            width: 20px;
+            margin-left: 10px;
+            & > img{
+                width: 100%;
+            }
+        }
+    }
+`
+
+
+export default function ProjectTeamBoard(props:IPropsProjectTeamBoard) {
+    const [deleteBoard] = useMutation(DELETE_BOARD)
     const [detail,setDetail] = useState(false)
-    const onClickDetail = () => {
+    const onClickDetail = (e:MouseEvent<HTMLLIElement>) => {
+        e.stopPropagation()
         setDetail(prev => !prev)
     }
+
+    const onClickDeleteBoard = async (e:MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation()
+        try{
+            const result = await deleteBoard({
+                variables:{
+                    boardId:props.id
+                },
+                refetchQueries:[FETCH_PROJECT]
+            })
+            console.log(result)
+            alert("게시글이 삭제되었습니다.")
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    const y = new Date(props.createdAt).getFullYear()
+    const m = new Date(props.createdAt).getMonth()
+    const g = new Date(props.createdAt).getDate()
+
     return (
         <>
             <li onClick={onClickDetail}>
-                <div>
+                <BoardAddBox>
                     <div>
-                        <time>2022.3.15</time>
-                        <h4>내일 7시에 회의합니다!</h4>
+                        <time>{`${y}-${m}-${g}`}</time>
+                        <h4>{props.title}</h4>
                     </div>
-                    <button>
-                        <img src="/img/contents_menu.svg" alt="contents menu"/>
-                    </button>
-                </div>
+                    <div className="setting_box">
+                        <button onClick={props.onClickUpdateBoard && props.onClickUpdateBoard(props.id)}>
+                            <img src="/img/edit.svg" alt="edit" />
+                        </button>
+                        <button onClick={onClickDeleteBoard}>
+                            <img src="/img/delete.svg" alt="delete" />
+                        </button>
+                    </div>
+                </BoardAddBox>
                 {   
                     detail &&
                     <S.ProjectDetail>
-                        패스트파이브에서 회의 있습니다... 늦으시면 벌금 백만원에 삼겹살 쏘세요~~
+                        {props.content}
                     </S.ProjectDetail>
                 }
             </li>

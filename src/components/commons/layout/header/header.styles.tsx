@@ -19,17 +19,14 @@ export const HeaderBox = styled.div`
 
 export const HeaderStyle = styled.header`
   background-color: #fff;
-  height: 10vh;
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #ccc;
 
   @media ${breakPoints.tablet} {
-    height: 7vh;
   }
 
   @media ${breakPoints.web} {
-    height: 7vh;
   }
 `;
 

@@ -7,9 +7,26 @@ import { RecruitContext } from "./recruit.container";
 import * as S from "./recruit.styles";
 import SideBarBasic from "./sidebar/sidebarBasic";
 import PropsProfileCard from "../../commons/profileCard/profileCard";
+import { gql, useQuery } from "@apollo/client";
 // import FilterTendency from "./sidebar/tendency";
 // import userListDummy from "../../../commons/json/userList.json";
 // import MultiSlide from "../../commons/slider/component/multislide/multislide.container";
+
+const FETCH_USER = gql`
+    query fetchUsers($page:Float!){
+        fetchUsers(page:$page){
+            id
+            name
+            imgUrl
+            tendencys{
+                name
+            }
+            position{
+                name
+            }
+        }
+    }   
+`
 
 export default function RecruitUI() {
     const {
@@ -20,6 +37,14 @@ export default function RecruitUI() {
         onClickSearchfilter,
         onClickDeleteTendencyTag,
     } = useContext(RecruitContext)
+
+    const {data} = useQuery(FETCH_USER,{
+        variables:{
+            page:1
+        }
+    })
+
+    console.log(data)
 
     return(
         <S.MainBox>
@@ -89,11 +114,23 @@ export default function RecruitUI() {
                         <MultiSlide2 slideToShow={5}/>
                     </S.MultiSlide2>
                     <S.WebSlideList>
-                        {new Array(10).fill(1).map((el) => {
+                        {data?.fetchUsers &&
+                        data?.fetchUsers?.map((el:any) => {
+                            console.log(el?.tendencys)
                             return (
                                 <> 
-                                    <PropsProfileCard key={uuidv4()} img={"../img/onboarding/userProfile.png"} name={"쇼바스키"} position={"개발자"} tendency={el.tendency} fontSize={14}/>
-                                    <PropsProfileCard key={uuidv4()} img={"../img/user01.png"} name={"스바스키"} position={"기획자"} tendency={el.tendency} fontSize={14}/>
+                                    <PropsProfileCard 
+                                        key={uuidv4()} 
+                                        img={el?.imgUrl || "/img/noimage.jpg"} 
+                                        name={el?.name} 
+                                        position={el?.position?.name || "미정"} 
+                                        tendency={
+                                            el?.tendencys.length === 0 ?
+                                            [{name:"best"},{name:"team"},{name:"project"}]
+                                            : el?.tendencys
+                                        } 
+                                        fontSize={14}
+                                    />
                                 </>
                             )
                         })}

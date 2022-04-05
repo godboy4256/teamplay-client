@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 interface IPropsSquareTag {
-  name?: string;
+  name?: string | "DESIGN" | "DEVELOPMENT" |"PLANNING";
   size: number;
   bgColor: string;
 }
@@ -23,7 +23,12 @@ const Wrapper = styled.div`
 export default function SquareTag(props: IPropsSquareTag) {
   return (
     <Wrapper bgColor={props.bgColor} size={props.size}>
-      {props.name}
+      {
+        props.name === "DESIGN" ? "디자인" :
+        props.name=== "DEVELOPMENT" ? "개발" : 
+        props.name === "PLANNING" ? "기획" :
+        props.name
+      }
     </Wrapper>
   );
 }

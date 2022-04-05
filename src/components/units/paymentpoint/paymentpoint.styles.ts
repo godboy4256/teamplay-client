@@ -2,7 +2,8 @@ import { breakPoints } from './../../../commons/styles/breakpoint';
 import styled from "@emotion/styled";
 
 export const PaymentWrapper = styled.div`
-  width: 700px;
+  max-width: 1200px;
+  width: 100%;
   background-color: #fff;
   height: 76vh;
   display: flex;
@@ -12,11 +13,9 @@ export const PaymentWrapper = styled.div`
   padding: 20px;
   line-height: 1.4;
   border:1px solid #ccc;
-  margin:50px 0;
+  margin:50px;
   @media ${breakPoints.tablet}{
-    flex-direction: column-reverse;
-    border:none;
-    padding: 0;
+  
   }
   @media ${breakPoints.mobile}{
     flex-direction: column-reverse;
@@ -24,9 +23,9 @@ export const PaymentWrapper = styled.div`
     padding: 0;
   }
   &> div{
-    width: 30%;
+    width: 25%;
     @media ${breakPoints.tablet}{
-      width: 100%;
+      
     }
     @media ${breakPoints.mobile}{
       width: 100%;
@@ -63,12 +62,13 @@ export const PaymentWrapper = styled.div`
   }
   & .payment__back{
     width: 70%;
-    @media ${breakPoints.tablet}{
+    /* @media ${breakPoints.tablet}{
       width: 100%;
       margin-bottom: 20px;
-    }
+    } */
     @media ${breakPoints.mobile}{
-      display: none;
+      width: 100%;
+      margin-bottom: 20px;
     }
     height:100%;
     border-left: 1px solid #ccc;
