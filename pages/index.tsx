@@ -1,9 +1,13 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next";
+import { useEffect } from "react";
+import useMoveToPage from "../src/components/commons/hooks/useMoveToPage";
 
 const Home: NextPage = () => {
-  return (
-    <div>ads</div>
-  )
-}
+  const { moveToMain } = useMoveToPage();
+  useEffect(() => {
+    moveToMain();
+  }, []);
+  return <div>ads</div>;
+};
 
-export default Home
+export default Home;

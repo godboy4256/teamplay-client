@@ -81,6 +81,10 @@ export default function ChattingDetail() {
     roomList.fetchChatRooms.forEach((el) => {
       if (el.id === chatRoomId) setRoomName(el.name);
     });
+    while (ChattingBoxRef.current?.hasChildNodes()) {
+      if (!ChattingBoxRef.current?.firstChild) return;
+      ChattingBoxRef.current?.removeChild(ChattingBoxRef.current?.firstChild);
+    }
   }, [roomList, chatRoomId]);
 
   let socket: Socket;
