@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import Blank from "../../../commons/blank/blank";
 import SubmitBtn from "../../../commons/button/Submit";
+import useFetchUser from "../../../commons/hooks/useFetchUser";
 import PropsProfileCard from "../../../commons/profileCard/profileCard";
 import { OnBoardingContext } from "../onboarding.container";
 import * as S from "./pages.styles";
 
 export default function OnBoardingSixthPage() {
-  const { onClickSubmit, tendency } = useContext(OnBoardingContext);
+  const { onClickSubmit, tendency, position } = useContext(OnBoardingContext);
+  const { data } = useFetchUser();
   return (
     <S.Wrapper>
       <div>
@@ -20,16 +22,15 @@ export default function OnBoardingSixthPage() {
         <S.FlexBox>
           <S.CardBox>
             <PropsProfileCard
-              img="/img/onboarding/userProfile.png"
-              name="제이든"
-              position="기획자"
+              img="/img/commons/noimage.jpg"
+              name={data?.fetchUser.name}
+              position={position || ""}
               tendency={tendency}
               fontSize={14}
             />
           </S.CardBox>
         </S.FlexBox>
       </div>
-
       <S.ResponseBtnBox>
         <S.ButtonBox>
           <SubmitBtn
