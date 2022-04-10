@@ -11,7 +11,32 @@ interface IPropsStatusBar{
 }
 
 
-export const ProjectManageStyle = styled.div``;
+export const NoneTodo = styled.div`
+  background-color:  #d9d9d9;
+  color: #fff;
+  font-size: 1.4rem;
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  border-radius:10px;
+`
+
+export const ProjectManageStyle = styled.div`
+  & > h2{
+    font-size: 3rem;
+    text-align: center;
+    margin: 50px 0;
+    font-weight: 400;
+  } 
+  @media ${breakPoints.web}{
+    & > .layout__responsive{
+      display: flex;
+      width: 100%;
+      margin-bottom: 50px;
+    }
+  }
+  `;
 
 export const TodoInfos = styled.div`
   display: flex;
@@ -50,7 +75,6 @@ export const TodoSetting = styled.div`
 `;
 
 
-
 export const TodoLimitDescription = styled.div`
   font-size: 1.143rem;
   padding: 5px 0;
@@ -59,8 +83,14 @@ export const TodoLimitDescription = styled.div`
 
 export const TodoDoneButton = styled.div`
   font-size: 0.714rem;
-  color: #ccc;
   margin-bottom: 10px;
+  background-color: #3894FF;
+  border-radius: 10px;
+  display: inline-block;
+  & > button{
+    color: #fff;
+    padding: 5px 10px;
+  }
 `;
 export const DoneList = styled.div`
   font-size: 8px;
@@ -69,7 +99,7 @@ export const DoneList = styled.div`
 `;
 
 export const TodoList = styled.div`
-  height: 500px;
+  max-height: 500px;
   overflow: auto;
   padding: 30px 0;
   ::-webkit-scrollbar {
@@ -86,7 +116,6 @@ export const ProjectDetail = styled.div`
 
 export const ProjectTodoNavTab = styled.ul`
   display: flex;
-  padding: 5px 0;
   border-bottom: 1px solid #ccc;
   & > li {
     width: 50%;
@@ -139,48 +168,6 @@ export const TodoWorker = styled.ul`
     justify-content: center;
     align-items: center;
     position: relative;
-    &.checking__warker{
-        &::after{
-          content:"";
-          display: block;
-          position: absolute;
-          top:0;
-          left:0;
-          width: 100%;
-          height: 100%;
-          background-color: #fff;
-        }
-      }
-    & img {
-      width: 100%;
-    }
-    & .info_box{
-      position: absolute;
-      top:0;
-      left:0;
-      background-color: #fff;
-      z-index: 20;
-      border:1px solid #ccc;
-      display: flex;
-      word-break: keep-all;
-      flex-direction: column;
-      padding: 10px;
-      top: 21px;
-      left: 13px;
-      opacity: 0;
-      transition: .4s;
-      & h4{
-        font-size: 12px;
-        padding-bottom: 5px;
-      }
-      & h5{
-        font-size: 10px;
-        color: #999;
-      } 
-      &.onMouse{
-        opacity: 1;
-      }
-    }
   }
 `;
 
@@ -198,13 +185,12 @@ export const ProjectManageTop = styled.div`
       display: flex;
       justify-content: space-between;
       margin-bottom: 30px;
+      @media ${breakPoints.web} {
+        flex-direction: column;
+      }
     }
     & > div > div > div {
       width: 100%;
-      :last-child {
-        border-left: 1px solid #ccc;
-        padding-left: 30px;
-      }
     }
     @media ${breakPoints.tablet} {
       padding: 0 130px;
@@ -213,16 +199,21 @@ export const ProjectManageTop = styled.div`
   border-bottom: 1px solid #ccc;
   & h3 {
     font-size: 1.714rem;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
   }
   & h4 {
     font-size: 0.929rem;
     line-height: 1.4rem;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     color: #999;
   }
   & ul {
     display: flex;
+  }
+  @media ${breakPoints.web} {
+    width: 50%;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
   }
 `;
 
@@ -230,8 +221,9 @@ export const ProjectMembers = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    background-color: #F3F9FF;
     border-bottom: 1px solid #ccc;
-    padding: 10px 0;
+    padding: 10px;
     & .left_img{
       width: 40px;
       & > img{
@@ -252,19 +244,34 @@ export const ProjectMembers = styled.div`
 `;
 
 export const ProjectManageContentsTop = styled.div`
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding:20px 0;
-  & h3 {
-    font-size: 1.286rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding:10px 0;
+  & #add__button{
+    margin-top: 10px;
+    background-color: #3894FF;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #fff;
+    white-space: nowrap;
+    &.post{
+      margin-top: 0;
+    }
   }
-  & .status_bar{
-    padding: 15px 0;
+  & h3{
+    width: 100%;
+    @media ${breakPoints.web}{
+      width: 40%;
+      margin-top: 0;
+    } 
+    font-size: 1.4rem;
+    & .to_do_title{
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
   }
 `;
 
@@ -278,7 +285,6 @@ export const ProjectResponsiveWeb = styled.div`
   @media ${breakPoints.web} {
     width: 100%;
     display: flex;
-   
     justify-content: space-between;
     & > div {
       width: 50%;
@@ -287,7 +293,7 @@ export const ProjectResponsiveWeb = styled.div`
       padding-left: 30px;
     }
     & > div > div:last-child{
-      height: 300px;
+      max-height: 300px;
       overflow: auto;
     }
     margin-bottom: 30px;
@@ -299,10 +305,24 @@ export const ProjectUserSlideBox = styled.div`
   overflow-x: hidden;
 `;
 
+export const NonePost = styled.div`
+  width: 100%;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.4rem;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const ProjectManaBoard = styled.ul`
+  height: 300px;
+  overflow: auto;
   & > li {
     display: flex;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border:1px solid #ccc;
     flex-direction: column;
     border-radius: 12px;
     padding: 20px 13px;
@@ -345,10 +365,18 @@ export const ProjectListInfo = styled.div`
   }
 `;
 
+export const ProjectDefaultInfo = styled.div`
+  @media ${breakPoints.web} {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+  }
+`;
+
 export const ProjectStatusBox = styled.div`
   width: 100%;
-  background-color: #e9e9e9;
+  background-color: #ccc;
   border-radius: 30px;
+  padding: 5px;
 `;
 
 export const ProjectStatus = styled.div`
@@ -356,20 +384,40 @@ export const ProjectStatus = styled.div`
   color: #fff;
   border-radius: 30px;
   font-size: 8px;
-  transition: .4s;
+  transition: .8s;
   width: ${(props:IPropsStatusBar) => `${props.status}%`};
-  padding: 3px 5px;
+  padding: 9px 0;
 `;
 
 export const ProjectInfoKey = styled.div`
   width: 30%;
   font-weight: 900;
   padding-bottom: 5px;
+  @media ${breakPoints.web} {
+    width: 20%;
+    padding-bottom: 0;
+    padding-right: 10px;
+  }
 `;
+
+export const TodoStatus = styled.div`
+ & .status{
+    padding: 10px 0;
+    display: flex;
+    width: 100%;
+  }
+  & .status__value{
+    color: #3894FF;
+    margin-left: 10px;
+  }
+`
 
 export const ProjectInfoValue = styled.div`
   width: 70%;
   color: #999;
+  @media ${breakPoints.web} {
+    width: auto;
+  }
 `;
 
 export const ProjectManageImg = styled.img``;
@@ -393,8 +441,8 @@ export const ProjectImgBox = styled.div`
     margin-top: 50px;
   }
   @media ${breakPoints.web} {
-    height: 35vw;
-    margin-top: 50px;
+    margin:0;
+    width: 50%;
   }
 `;
 

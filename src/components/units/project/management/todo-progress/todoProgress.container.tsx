@@ -70,7 +70,9 @@ export default function TodoProgress(props:IPropsTodoProgress) {
     return (
         <S.TodoList>
             {
-                props?.data?.fetchProject?.task.length === 0 ? <div>할 일이 없습니다.</div> :
+                props?.data?.fetchProject?.task.filter((el:any) => {
+                    return !el.is_complete
+                }).length === 0 ? <S.NoneTodo>할 일이 없습니다.</S.NoneTodo> :
                 props?.data?.fetchProject?.task.map((el:any) => {
                     const day = Dday(el.limit);
                             if(el.is_complete){
@@ -102,7 +104,7 @@ export default function TodoProgress(props:IPropsTodoProgress) {
                     </S.TodoInfos> 
                     <S.TodoLimitDescription>{el.content}</S.TodoLimitDescription>
                     <S.TodoDoneButton>
-                        <button onClick={onClickComplete(el.id)}>업무 완료</button>
+                        <button onClick={onClickComplete(el.id)}>Done</button>
                     </S.TodoDoneButton>
                 </S.Todo>
                     }

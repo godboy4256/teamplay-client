@@ -24,6 +24,5 @@ const FETCH_USER = gql`
 
 export default function useFetchUser() {
   const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
-
   return { data };
 }

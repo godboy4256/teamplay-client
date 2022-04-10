@@ -16,8 +16,10 @@ interface IProsManage {
   onClickonAdd: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
   project?: string;
   data?:any;
-  toDoTab:string;
-  onClickChangeTab:() => void
+  toDoTab:boolean;
+  doneTab:boolean;
+  onClickChangeTabTodo:() => void
+  onClickChangeTabDone:() => void
   projectcomplete:() => void
   setOnUpdate:Dispatch<SetStateAction<boolean>>
   onAdd:boolean
@@ -27,24 +29,18 @@ interface IProsManage {
   onClickUpdateBoard?:any
 }
 
-
-// const NOT_COMPLETE_TASK = gql`
-//   mutation notCompleteTask($taskId:String!){
-//     notCompleteTask(taskId:$taskId){
-//       id
-//       is_complete
-//     }
-//   }
-// `
-
-
 export default function ProjectManageUI(props: IProsManage) {
    const complete = props?.data?.fetchProject.task.filter((el:any) => {
      return el.is_complete
    })
-  const [todoOn,setTodoOn] = useState(false)
+   console.log(props.data)
+   const statusState = complete && isNaN(complete.length/props?.data?.fetchProject.task.length*100) ? 0 :
+   complete && complete.length/props?.data?.fetchProject.task.length*100
+    const [todoOn,setTodoOn] = useState(false)
   return (
     <S.ProjectManageStyle>
+      <h2>프로젝트 관리</h2>
+      <div className="layout__responsive">
       <S.ProjectImgBox>
         {props?.data?.fetchProject.imgUrl ? (
           props?.data?.fetchProject.imgUrl.includes(
@@ -57,26 +53,39 @@ export default function ProjectManageUI(props: IProsManage) {
             />
           )
         ) : (
-          <div></div>
+          <div>이미지가 없습니다.</div>
         )}
       </S.ProjectImgBox>
       <S.ProjectManageTop>
         <div>
           <Wrapper paddingTop="30px">
-            <div>
+            <S.ProjectDefaultInfo>
               <h3>{props?.data?.fetchProject.name}</h3>
               <h4>{props?.data?.fetchProject.description}</h4>
               <SquareTag
                 name={props?.data?.fetchProject.type.name}
                 size={0.525}
-                bgColor="#C4C4C4"
+                bgColor="#3894FF"
               />
-            </div>
+            </S.ProjectDefaultInfo>
             <S.ProjectListInfo>
               <li>
                 <S.ProjectInfoKey>팀</S.ProjectInfoKey>
                 <S.ProjectInfoValue>
                   {props?.data?.fetchProject.teamname}
+                </S.ProjectInfoValue>
+              </li>
+              <li>
+                <S.ProjectInfoKey>팀장</S.ProjectInfoKey>
+                <S.ProjectInfoValue>
+                  {props?.data?.fetchProject.leader.name}
+
+                </S.ProjectInfoValue>
+              </li>
+              <li>
+                <S.ProjectInfoKey>활동 지역</S.ProjectInfoKey>
+                <S.ProjectInfoValue>
+                  {props?.data?.fetchProject.location.name}
                 </S.ProjectInfoValue>
               </li>
               <li>
@@ -87,20 +96,11 @@ export default function ProjectManageUI(props: IProsManage) {
                   {props?.data?.fetchProject.method === "MEDIATE" && "조정 가능"}
                 </S.ProjectInfoValue>
               </li>
-              <li>
-                <S.ProjectInfoKey>업무 진행률</S.ProjectInfoKey>
-                <S.ProjectInfoValue>
-                  <S.ProjectStatusBox>
-                    <S.ProjectStatus status={complete && complete.length/props?.data?.fetchProject.task.length*100}>
-                      {Math.round(complete && complete.length/props?.data?.fetchProject.task.length*100)} %
-                    </S.ProjectStatus>
-                  </S.ProjectStatusBox>
-                </S.ProjectInfoValue>
-              </li>
             </S.ProjectListInfo>
           </Wrapper>
         </div>
       </S.ProjectManageTop>
+      </div>
       <MainBox>
         <Wrapper paddingTop="0">
           <S.ProjectResponsiveWeb>
@@ -135,13 +135,13 @@ export default function ProjectManageUI(props: IProsManage) {
             <div>
               <S.ProjectManageContentsTop>
                 <h3>팀 게시판</h3>
-                <button id="board" onClick={props.onClickonAdd}>
-                  <img src="/img/plusicon.svg" alt="contents plus icon" />
+                <button className="post" id="add__button" onClick={props.onClickonAdd}>
+                  글 올리기 +
                 </button>
               </S.ProjectManageContentsTop>
               <S.ProjectManaBoard>
                 {
-                props.data?.fetchProject.board.length === 0 ? <div>게시물이 없습니다.</div> :
+                props.data?.fetchProject.board.length === 0 ? <S.NonePost>게시물이 없습니다.</S.NonePost> :
                 props.data?.fetchProject.board.map((el:any) => {
                   return <ProjectTeamBoard 
                     key={uuidv4()} 
@@ -160,31 +160,61 @@ export default function ProjectManageUI(props: IProsManage) {
           </S.ProjectResponsiveWeb>
           <S.ResponsiveMobleTodoList>
             <S.ProjectManageContentsTop>
-              <h3>To Do List</h3>
-              <button id="todos" onClick={() => setTodoOn(true)}>
-                <img src="/img/plusicon.svg" alt="contents plus icon" />
-              </button>
+              <h3>
+                <div className="to_do_title">To Do List</div>
+                <div className="to_do_status"> 
+                  <S.ProjectInfoKey>
+                    <S.TodoStatus><span>업무 진행률</span> <span className="status__value">{`${Math.round(statusState)}`}</span>%</S.TodoStatus>
+                  </S.ProjectInfoKey>
+                  <S.ProjectInfoValue>
+                    <S.ProjectStatusBox>
+                      <S.ProjectStatus status={statusState}>
+                      </S.ProjectStatus>
+                    </S.ProjectStatusBox>
+                    <button id="add__button" onClick={() => setTodoOn(true)}>
+                     업무 추가 +
+                    </button>
+                  </S.ProjectInfoValue>
+                </div>
+              </h3>
             </S.ProjectManageContentsTop>
             <S.ProjectTodoNavTab>
-              <li onClick={props?.onClickChangeTab}>해야 하는 업무</li>
-              <li onClick={props?.onClickChangeTab}>완료한 업무</li>
+              <li onClick={props?.onClickChangeTabTodo}>해야 하는 업무</li>
+              <li onClick={props?.onClickChangeTabDone}>완료한 업무</li>
             </S.ProjectTodoNavTab>
-            {props?.toDoTab === "To do" ? <TodoProgress data={props.data} /> : <TodoDone  data={props.data}/>}
+            {props?.toDoTab && <TodoProgress data={props.data} />}
+            {props?.doneTab &&  <TodoDone  data={props.data} />}
           </S.ResponsiveMobleTodoList>
 
           <S.ResponsiveWebTodoList>
-            <S.ProjectManageContentsTop>
-              <h3>To Do List</h3>
-              <button id="todos" onClick={() => setTodoOn(true)}>
-                <img src="/img/plusicon.svg" alt="contents plus icon" />
-              </button>
+          <S.ProjectManageContentsTop>
+              <h3>
+                <div className="to_do_title">To Do List</div>
+                <div className="to_do_status"> 
+                  <S.TodoStatus>
+                    <div className="status">
+                      <span>업무 진행률</span>
+                      <span className="status__value">{`${Math.round(statusState)}`}</span>%
+                    </div>
+                  </S.TodoStatus>
+                  <div>
+                    <S.ProjectStatusBox>
+                      <S.ProjectStatus status={statusState}>
+                      </S.ProjectStatus>
+                    </S.ProjectStatusBox>
+                    <button id="add__button" onClick={() => setTodoOn(true)}>
+                     업무 추가 +
+                    </button>
+                  </div>
+                </div>
+              </h3>
             </S.ProjectManageContentsTop>
             <S.ProjectTodoNavTab>
-              <li onClick={props?.onClickChangeTab}>
+              <li>
                 <h3>해야 하는 업무</h3>
                 <TodoProgress data={props.data} />
               </li>
-              <li onClick={props?.onClickChangeTab}>
+              <li>
                 <h3>완료한 업무</h3>
                 <TodoDone data={props.data}/>
               </li>

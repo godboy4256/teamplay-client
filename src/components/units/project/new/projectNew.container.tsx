@@ -159,52 +159,35 @@ export default function Project() {
         locationId !== "" &&
         uiNumber + uxNumber + plannerNumber + backendNumber + fullstackNumber + frontNumber > 0
       ) {
-        try {
-          const result = await createProject({
-            variables: {
-              createProjectInput: {
-                name,
-                teamname,
-                intro,
-                method,
-                recruitDate,
-                imgUrl,
-                description,
-                numbers:positionObject.map(el => {return el.number}),
-                typeId,
-                skill: "skill",
-                platformIds: ["5578b56c-be95-4fc5-92c1-2c2f7cddf7ec"],
-                locationId,
-                positionIds: positionObject.map(el => {return el.id}),
-              },
-            },
-          });
-          console.log(result);
-          alert("프로젝트 추가 완료");
-          router.push("/project/list");
-        } catch (error) {
-          console.log(error);
-        }
+            try {
+              const result = await createProject({
+                variables: {
+                  createProjectInput: {
+                    name,
+                    teamname,
+                    intro,
+                    method,
+                    recruitDate,
+                    imgUrl,
+                    description,
+                    numbers:positionObject.map(el => {return el.number}),
+                    typeId,
+                    skill: "skill",
+                    platformIds: ["5578b56c-be95-4fc5-92c1-2c2f7cddf7ec"],
+                    locationId,
+                    positionIds: positionObject.map(el => {return el.id}),
+                  },
+                },
+              });
+              console.log(result)
+              alert("프로젝트 추가 완료");
+              router.push("/project/list");
+            } catch (error) {
+              console.log(error);
+            }
       } else {
         window && window.scrollTo(0, 0);
       }
-      console.log(
-        {
-          name,
-          teamname,
-          intro,
-          method,
-          recruitDate,
-          imgUrl,
-          description,
-          numbers:positionObject.map(el => {return el.number}),
-          typeId,
-          skill: "skill",
-          platformIds: ["5578b56c-be95-4fc5-92c1-2c2f7cddf7ec"],
-          locationId,
-          positionIds: positionObject.map(el => {return el.id}),
-        }
-      );
     }
   };
 
