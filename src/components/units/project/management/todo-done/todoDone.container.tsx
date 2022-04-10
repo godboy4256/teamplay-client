@@ -15,33 +15,7 @@ const DELETE_TASK = gql`
     }
 `
 
-const COMPLETE_TASK = gql`
-  mutation completeTask($taskId:String!){
-    completeTask(taskId:$taskId){
-      id
-      is_complete
-    }
-  }
-`
-
 export default function TodoProgress(props:IPropsTodoProgress) {
-    console.log(props.data)
-    const [completeTask] = useMutation(COMPLETE_TASK)
-    const onClickComplete = (taskId:string) => async () => {
-            try{
-                const result = await completeTask({
-                    variables:{
-                        taskId
-                    },
-                    refetchQueries:[FETCH_PROJECT]
-                })
-                console.log(result)
-                alert("업무가 완료되었습니다.")
-            }catch(error){
-                console.log(error)
-            }
-    }
-
     const [deleteTask] = useMutation(DELETE_TASK)
     const onClickDelete = (taskId:string) => async () => {
         try{
@@ -57,11 +31,13 @@ export default function TodoProgress(props:IPropsTodoProgress) {
             console.log(error)
         }
     }
-    
+
     return (
         <S.TodoList>
             {
-                props?.data?.fetchProject?.task.length === 0 ? <div>완료된 업무가 없습니다.</div> :
+            props?.data?.fetchProject?.task.filter((el:any) => {
+                return el.is_complete
+            }).length === 0 ? <S.NoneTodo>완료된 업무가 없습니다.</S.NoneTodo> :
                 props?.data?.fetchProject?.task.map((el:any) => {
                     if(!el.is_complete){
                         return null
@@ -88,9 +64,6 @@ export default function TodoProgress(props:IPropsTodoProgress) {
                         </S.TodoSetting>
                     </S.TodoInfos> 
                     <S.TodoLimitDescription>{el.content}</S.TodoLimitDescription>
-                    <S.TodoDoneButton>
-                        <button onClick={onClickComplete(el.id)}>업무 완료</button>
-                    </S.TodoDoneButton>
                 </S.Todo>
                     }
                 })

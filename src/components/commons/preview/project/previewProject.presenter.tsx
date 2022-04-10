@@ -86,17 +86,6 @@ export default function PreviewProjectUI(props: IPropsPreviewProjectUI) {
             </ProjectInfoValue>
           </li>
           <li>
-            <ProjectInfoKey>팀원</ProjectInfoKey>
-            <ProjectInfoValue>
-              {props.data?.fetchProject?.users &&
-              props.data?.fetchProject?.users?.length > 0
-                ? props.data?.fetchProject?.users?.map((el) => {
-                    return <span key={uuidv4()}>{el}</span>;
-                  })
-                : "아직 팀원이 없습니다."}
-            </ProjectInfoValue>
-          </li>
-          <li>
             <ProjectInfoKey>활동 지역</ProjectInfoKey>
             <ProjectInfoValue>
               {props.data?.fetchProject?.location.name}

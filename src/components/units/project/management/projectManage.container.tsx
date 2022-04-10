@@ -1,4 +1,4 @@
-import { createContext, MouseEvent, useState } from "react";
+import { createContext, useState } from "react";
 import ProjectManageUI from "./projectManage.presenter";
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -23,7 +23,7 @@ export default function ProjectManage(props: IPropsProjectManage) {
   const [deleteProject] = useMutation(DELETE_PROJECT)
 
 
-  const onClickonAdd = (e: MouseEvent<HTMLButtonElement>) => {
+  const onClickonAdd = () => {
     setOnAdd(true)
   };
 
@@ -62,7 +62,6 @@ export default function ProjectManage(props: IPropsProjectManage) {
   }
 
 
-
   const value = {
     onClickBoardAdd,
     setTitle,
@@ -85,10 +84,18 @@ export default function ProjectManage(props: IPropsProjectManage) {
       projectId: props.project || "",
     },
   });
-  const [toDoTab, setToDoTab] = useState("To do");
-  const [boardId,setBoardId] = useState("")
-  const onClickChangeTab = () => {
-    setToDoTab((prev) => (prev === "To do" ? "Done" : "To do"));
+  const [toDoTab, setToDoTab] = useState(true);
+  const [doneTab, setDoneTab] = useState(false);
+  const [boardId,setBoardId] = useState("");
+
+  const onClickChangeTabTodo = () => {
+    setToDoTab(true);
+    setDoneTab(false);
+  };
+
+  const onClickChangeTabDone = () => {
+    setToDoTab(false);
+    setDoneTab(true);
   };
 
   const projectcomplete = async () => {
@@ -103,10 +110,13 @@ export default function ProjectManage(props: IPropsProjectManage) {
           projectId: props.project
         }
       })
+
       console.log(result)
+      console.log(deleteResult)
+
       alert("프로젝트를 성공적으로 마무리 했습니다!!")
       router.push("/project/list")
-      console.log(deleteResult)
+
     }catch(error){
       console.log(error)
     }
@@ -117,7 +127,6 @@ export default function ProjectManage(props: IPropsProjectManage) {
     setBoardId(bid)
   }
 
-  console.log(boardId)
 
   return (
     <ProjectManageContext.Provider value={value}>
@@ -126,7 +135,9 @@ export default function ProjectManage(props: IPropsProjectManage) {
         onClickonAdd={onClickonAdd} 
         data={data}
         toDoTab={toDoTab}
-        onClickChangeTab={onClickChangeTab}
+        doneTab={doneTab}
+        onClickChangeTabTodo={onClickChangeTabTodo}
+        onClickChangeTabDone={onClickChangeTabDone}
         projectcomplete={projectcomplete}
         setOnUpdate={setOnUpdate}
         onAdd={onAdd}
