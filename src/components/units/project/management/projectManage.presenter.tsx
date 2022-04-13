@@ -11,6 +11,7 @@ import { MainBox } from "../../main/main.styles";
 import BoardAdd from "./boardAdd/BoardAdd";
 import SubmitButton from "../../../commons/inputs/component/submitbutton/submit.container";
 import BoardUpdate from "./boardUpdate/BoardUpdate";
+import TeamMember from "./teamMenber/teamMember";
 
 interface IProsManage {
   onClickonAdd: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
@@ -27,16 +28,17 @@ interface IProsManage {
   setBoardId?:Dispatch<SetStateAction<string>>
   boardId?:string
   onClickUpdateBoard?:any
+  onClickAllDeleteBoard?:() => void
+  onClickAllDeleteTask?:() => void
 }
 
-export default function ProjectManageUI(props: IProsManage) {
+function ProjectManageUI(props: IProsManage) {
    const complete = props?.data?.fetchProject.task.filter((el:any) => {
      return el.is_complete
    })
-   console.log(props.data)
    const statusState = complete && isNaN(complete.length/props?.data?.fetchProject.task.length*100) ? 0 :
    complete && complete.length/props?.data?.fetchProject.task.length*100
-    const [todoOn,setTodoOn] = useState(false)
+  const [todoOn,setTodoOn] = useState(false)
   return (
     <S.ProjectManageStyle>
       <h2>프로젝트 관리</h2>
@@ -115,18 +117,12 @@ export default function ProjectManageUI(props: IProsManage) {
                   if(index === 0){
                     return null
                   }
-                  return <S.ProjectMembers key={uuidv4()}>
-                    <div className="left_img">
-                    {
-                      el.user?.imgUrl ? 
-                      <img src={el.user?.imgUrl} alt="profile" /> : <img src="/img/unprofile.svg" alt="unprofile"/>
-                    }
-                    </div>
-                    <div className="right_info">
-                      <div className="name">{el.user?.name && el.user?.name}</div>
-                      <div className="position">{el.user?.position?.name ? el.user?.position?.name : "포지션 미정"}</div>
-                    </div>
-                  </S.ProjectMembers>
+                  return <TeamMember 
+                      key={uuidv4()}
+                      imgurl={el.user?.imgUrl}
+                      name={el.user?.name && el.user?.name}
+                      position={el.user?.position?.name}
+                  />
                 }): <div>팀원이 없습니다.</div>
                 } 
               </div>
@@ -135,9 +131,14 @@ export default function ProjectManageUI(props: IProsManage) {
             <div>
               <S.ProjectManageContentsTop>
                 <h3>팀 게시판</h3>
-                <button className="post" id="add__button" onClick={props.onClickonAdd}>
-                  글 올리기 +
-                </button>
+                <div className="board_button">
+                  <button className="post" id="add__button" onClick={props.onClickonAdd}>
+                    글 올리기 +
+                  </button>
+                  <button className="post board_delete" id="add__button" onClick={props.onClickAllDeleteBoard}>
+                    전체 삭제
+                  </button>
+                </div>
               </S.ProjectManageContentsTop>
               <S.ProjectManaBoard>
                 {
@@ -174,6 +175,9 @@ export default function ProjectManageUI(props: IProsManage) {
                     <button id="add__button" onClick={() => setTodoOn(true)}>
                      업무 추가 +
                     </button>
+                    <button id="add__button" onClick={props.onClickAllDeleteTask}>
+                     전체 삭제
+                    </button>
                   </S.ProjectInfoValue>
                 </div>
               </h3>
@@ -205,6 +209,9 @@ export default function ProjectManageUI(props: IProsManage) {
                     <button id="add__button" onClick={() => setTodoOn(true)}>
                      업무 추가 +
                     </button>
+                    <button id="add__button" onClick={props.onClickAllDeleteTask}>
+                     전체 삭제
+                    </button>
                   </div>
                 </div>
               </h3>
@@ -231,3 +238,6 @@ export default function ProjectManageUI(props: IProsManage) {
     </S.ProjectManageStyle>
   );
 }
+
+
+export default ProjectManageUI

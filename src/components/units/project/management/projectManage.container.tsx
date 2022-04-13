@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import ProjectManageUI from "./projectManage.presenter";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery, useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import {
   IQuery,
@@ -9,10 +9,22 @@ import {
 import { CREATE_BOARD, DELETE_PROJECT, END_PROJECT, FETCH_PROJECT } from "./projectManage.queries";
 import { IProjectManagement, IPropsProjectManage } from "./projectManage.types";
 
+const DELETE_BOARD = gql`
+   mutation deleteBoard($boardId:String!){
+        deleteBoard(boardId:$boardId)
+  } 
+`
+
+const DELETE_TASK = gql`
+    mutation deleteTask($taskId:String!){
+        deleteTask(taskId:$taskId)
+    }
+`
+
 export const ProjectManageContext = createContext<IProjectManagement>({});
 
 export default function ProjectManage(props: IPropsProjectManage) {
-  const [title,setTitle] = useState("")
+   const [title,setTitle] = useState("")
   const [content,setContent] = useState("")
   const [onAdd,setOnAdd] = useState(false)
   const [onUpdate,setOnUpdate] = useState(false)
@@ -21,7 +33,8 @@ export default function ProjectManage(props: IPropsProjectManage) {
   const [createBoard] = useMutation(CREATE_BOARD)
   const [endProject] = useMutation(END_PROJECT)
   const [deleteProject] = useMutation(DELETE_PROJECT)
-
+  const [deleteBoards] = useMutation(DELETE_BOARD)
+  const [deleteTask] = useMutation(DELETE_TASK)
 
   const onClickonAdd = () => {
     setOnAdd(true)
@@ -60,7 +73,6 @@ export default function ProjectManage(props: IPropsProjectManage) {
       }
     }
   }
-
 
   const value = {
     onClickBoardAdd,
@@ -127,6 +139,46 @@ export default function ProjectManage(props: IPropsProjectManage) {
     setBoardId(bid)
   }
 
+  const onClickAllDeleteBoard = () => {
+    if(!data) return;
+    console.log(data?.fetchProject?.board)
+    try{
+      data?.fetchProject?.board?.forEach( async (el:any) => {
+        const result = await deleteBoards({
+          variables:{
+            boardId:el.id
+          },
+          refetchQueries:[FETCH_PROJECT]
+        })
+        console.log(result)
+      })
+      alert("모든 게시판이 삭제되었습니다.")
+    }catch(error){
+      console.log(error)
+    }
+    console.log("sadsa")
+  }
+
+  const onClickAllDeleteTask = () => {
+    if(!data) return;
+    console.log(data?.fetchProject?.board)
+    try{
+      data?.fetchProject?.task?.forEach( async (el:any) => {
+        const result = await deleteTask({
+          variables:{
+            taskId:el.id
+          },
+          refetchQueries:[FETCH_PROJECT]
+        })
+        console.log(result)
+      })
+      alert("모든 투두 리스트가 삭제되었습니다.")
+    }catch(error){
+      console.log(error)
+    }
+    console.log("sadsa")
+  }
+
 
   return (
     <ProjectManageContext.Provider value={value}>
@@ -145,6 +197,8 @@ export default function ProjectManage(props: IPropsProjectManage) {
         setBoardId={setBoardId}
         boardId={boardId}
         onClickUpdateBoard={onClickUpdateBoard}
+        onClickAllDeleteBoard={onClickAllDeleteBoard}
+        onClickAllDeleteTask={onClickAllDeleteTask}
       />
     </ProjectManageContext.Provider>
   );
