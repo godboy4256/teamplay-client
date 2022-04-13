@@ -10,9 +10,10 @@ import { gql, useMutation } from "@apollo/client";
 
 const UPDATE_BOARD = gql`
    mutation updateBoard($boardId: String!$title: String!$content: String!){
-    updateBoard(boardId:$boardId,title:$title,content:$content)
+    updateBoard(boardId:$boardId,title:$title,content:$content){
+      id
+    }
    }
-
 `
 
 const BoardAddStyle = styled.div`
@@ -104,8 +105,8 @@ export default function BoardUpdate(props:IPropsBoardUpdate) {
       try{
         const result = await updateBoard({
           variables : {
-            title:"SAd",
-            content:"Asdd",
+            title,
+            content,
             boardId:props.boardId
           },
           refetchQueries:[FETCH_PROJECT]

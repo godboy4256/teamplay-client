@@ -34,6 +34,8 @@ export const ProjectManageStyle = styled.div`
       display: flex;
       width: 100%;
       margin-bottom: 50px;
+      border-top:1px solid #ccc;
+      border-bottom:1px solid #ccc;
     }
   }
   `;
@@ -212,8 +214,7 @@ export const ProjectManageTop = styled.div`
   }
   @media ${breakPoints.web} {
     width: 50%;
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
+    border-bottom: none;
   }
 `;
 
@@ -251,6 +252,7 @@ export const ProjectManageContentsTop = styled.div`
   padding:20px 0;
   & #add__button{
     margin-top: 10px;
+    margin-right: 10px;
     background-color: #3894FF;
     padding: 5px 10px;
     border-radius: 5px;
@@ -259,7 +261,13 @@ export const ProjectManageContentsTop = styled.div`
     white-space: nowrap;
     &.post{
       margin-top: 0;
+      &.board_delete{
+        margin-right: 0;
+      }
     }
+  }
+  & .board_button{
+    display: flex;
   }
   & h3{
     width: 100%;

@@ -65,7 +65,7 @@ export default function ProjectTeamBoard(props:IPropsProjectTeamBoard) {
 
     return (
         <>
-            <li onClick={onClickDetail}>
+            <li onClick={onClickDetail} id={props.id}>
                 <BoardAddBox>
                     <div>
                         <time>{`${y}-${m}-${g}`}</time>
