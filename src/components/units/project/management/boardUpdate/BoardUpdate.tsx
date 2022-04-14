@@ -9,12 +9,12 @@ import { FETCH_PROJECT } from "../projectManage.queries";
 import { gql, useMutation } from "@apollo/client";
 
 const UPDATE_BOARD = gql`
-   mutation updateBoard($boardId: String!$title: String!$content: String!){
-    updateBoard(boardId:$boardId,title:$title,content:$content){
+  mutation updateBoard($boardId: String!, $title: String!, $content: String!) {
+    updateBoard(boardId: $boardId, title: $title, content: $content) {
       id
     }
-   }
-`
+  }
+`;
 
 const BoardAddStyle = styled.div`
   width: 100%;
@@ -22,7 +22,7 @@ const BoardAddStyle = styled.div`
   flex-direction: column;
   border-radius: 20px 20px 0 0;
   display: flex;
-  align-items: center; 
+  align-items: center;
   position: fixed;
   transition: 0.4s;
   bottom: 0;
@@ -38,12 +38,12 @@ const BoardAddStyle = styled.div`
   }
   z-index: 2;
   @media ${breakPoints.web} {
-      bottom:50%;
-      left:50%;
-      transform: translate(-50%,50%);
-      width: 30vw;
-      border-radius: 12px;
-      opacity: 1;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 30vw;
+    border-radius: 12px;
+    opacity: 1;
   }
 `;
 
@@ -51,9 +51,9 @@ const OffAdd = styled.button`
   width: 20px;
   cursor: pointer;
   position: absolute;
-  top:20px;
-  right:20px;
-  & > img{
+  top: 20px;
+  right: 20px;
+  & > img {
     width: 100%;
   }
 `;
@@ -69,13 +69,13 @@ const ModalBackground = styled.div`
   display: block;
 `;
 
-interface IPropsBoardUpdate{
-  boardId?:string
+interface IPropsBoardUpdate {
+  boardId?: string;
 }
 
-export default function BoardUpdate(props:IPropsBoardUpdate) {
-  const [updateBoard] = useMutation(UPDATE_BOARD)
-  const { 
+export default function BoardUpdate(props: IPropsBoardUpdate) {
+  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const {
     setContent,
     setTitle,
     setOnUpdate,
@@ -84,9 +84,8 @@ export default function BoardUpdate(props:IPropsBoardUpdate) {
     title,
     content,
     validTitle,
-    validContent
-  } = useContext(ProjectManageContext)
-
+    validContent,
+  } = useContext(ProjectManageContext);
 
   const onClickBoardUpdate = async () => {
     if (title === "") {
@@ -101,34 +100,38 @@ export default function BoardUpdate(props:IPropsBoardUpdate) {
       setValidContent && setValidContent(false);
     }
 
-    if(title && content){
-      try{
-        const result = await updateBoard({
-          variables : {
+    if (title && content) {
+      try {
+        await updateBoard({
+          variables: {
             title,
             content,
-            boardId:props.boardId
+            boardId: props.boardId,
           },
-          refetchQueries:[FETCH_PROJECT]
-        })
-        console.log(result)
-        alert("게시글이 수정되었습니다.")
-        setOnUpdate && setOnUpdate(false)
-      }catch(error){
-        console.log(error)
+          refetchQueries: [FETCH_PROJECT],
+        });
+
+        alert("게시글이 수정되었습니다.");
+        setOnUpdate && setOnUpdate(false);
+      } catch (error) {
+        console.log(error);
       }
     }
-  }
- 
+  };
+
   return (
     <>
       <ModalBackground id="modalBackground"></ModalBackground>
       <BoardAddStyle id="onBoardAdd">
-        <OffAdd onClick={() => {setOnUpdate && setOnUpdate(false)}}>
+        <OffAdd
+          onClick={() => {
+            setOnUpdate && setOnUpdate(false);
+          }}
+        >
           <img
-              src="/img/down-arrow-black.svg"
-              className="Xmark"
-              alt="down-arrow"
+            src="/img/down-arrow-black.svg"
+            className="Xmark"
+            alt="down-arrow"
           />
         </OffAdd>
         <Wrapper paddingTop="5px">
@@ -150,7 +153,10 @@ export default function BoardUpdate(props:IPropsBoardUpdate) {
             valid={validContent}
             errorMessage="내용을 한 글자 이상 입력해야 합니다."
           />
-          <SubmitButton onClick={onClickBoardUpdate} btnvalue="게시글 수정하기" />
+          <SubmitButton
+            onClick={onClickBoardUpdate}
+            btnvalue="게시글 수정하기"
+          />
         </Wrapper>
       </BoardAddStyle>
     </>

@@ -94,7 +94,7 @@ export default function OnBoarding() {
 
   const onClickDeleteTag = (name: string) => () => {
     const temp = tendency.filter((el) => el !== name);
-    console.log(name);
+
     setTendency([...temp]);
   };
 
@@ -141,7 +141,7 @@ export default function OnBoarding() {
       }
     }
   };
-  console.log(positionData);
+
   const onClickSubmit = async () => {
     let careerId = "";
     let positionId = "";
@@ -171,7 +171,7 @@ export default function OnBoarding() {
     if (career === "대학생") careerId = "STUDENT";
     if (career === "취준생") careerId = "JOBSEEKER";
     if (career === "신입~2년차") careerId = "NEWCOMER";
-    console.log(positionId);
+
     try {
       await updateUserByOnboard({
         variables: {

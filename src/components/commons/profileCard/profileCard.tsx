@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import CircleTag from "../tags/commons/circleTag";
 import { v4 as uuidv4 } from "uuid";
 import dumpData from "../../../commons/json/tendency.json";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface IPropsInfoBox {
   fontSize: number;
@@ -76,31 +76,35 @@ export const Tags = styled.div`
   justify-content: space-between;
 `;
 
-// interface IPropsTendency {
-//   name: string;
-//   bgColor: string;
-// }
+interface IPropsTendency {
+  name: string;
+}
 
 interface IPropsProfileCard {
   img: string;
   name: string | undefined;
   position: string;
-  tendency: string[] | undefined;
+  tendency: { name: string }[] | (IPropsTendency[] | undefined);
   fontSize: number;
 }
 
 export default function PropsProfileCard(props: IPropsProfileCard) {
-  const bgColor: string[] = [];
+  const [color, setColor] = useState<string[]>([]);
+  const defultTag = ["best", "team", "player"];
+  const defultColor = ["#68A4FF", "#DCCBFF", "#FBA04C"];
 
   useEffect(() => {
     if (!props.tendency) return;
 
-    props.tendency.forEach((name) => {
-      const idx = dumpData.tendency.name.indexOf(name);
+    const bg: string[] = [];
+    props.tendency?.forEach((el) => {
+      const idx = dumpData.tendency.name.indexOf(el.name);
 
-      bgColor.push(dumpData.tendency.color[idx]);
+      bg.push(dumpData.tendency.color[idx]);
     });
-  }, []);
+
+    setColor([...bg]);
+  }, [props.tendency]);
 
   return (
     <ProfileBox>
@@ -112,16 +116,35 @@ export default function PropsProfileCard(props: IPropsProfileCard) {
         <Name>{props.name}</Name>
         <Position>{props.position}</Position>
         <Tags>
-          {props.tendency &&
-            props.tendency.map((el, idx) => (
-              <CircleTag
-                name={el}
-                size={0.124}
-                bgColor={bgColor[idx] || "#3894FF"}
-                margin={4}
-                key={uuidv4()}
-              />
-            ))}
+          {props.tendency?.length ? (
+            <>
+              {props.tendency.map((el, idx) => {
+                return (
+                  <CircleTag
+                    key={uuidv4()}
+                    name={el.name}
+                    size={0.124}
+                    bgColor={color[idx]}
+                    margin={4}
+                  />
+                );
+              })}
+            </>
+          ) : (
+            <>
+              {defultTag.map((el, idx) => {
+                return (
+                  <CircleTag
+                    key={uuidv4()}
+                    name={el}
+                    size={0.124}
+                    bgColor={defultColor[idx]}
+                    margin={4}
+                  />
+                );
+              })}
+            </>
+          )}
         </Tags>
       </InfoBox>
     </ProfileBox>

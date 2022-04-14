@@ -25,7 +25,7 @@ export default function ProfileEditPosition() {
   ];
 
   return (
-    <S.Wrapper area={area} className='PositionBlank'>
+    <S.Wrapper area={area} className="PositionBlank">
       <S.MainBox>
         <S.Header>
           <S.RefreshBox>
@@ -35,13 +35,13 @@ export default function ProfileEditPosition() {
           <S.XMark src="/img/preview/Xmark.svg" onClick={onClickEditPosition} />
         </S.Header>
         <div className="NoneBlank">
-          <Blank height={24} width={0}/>
+          <Blank height={24} width={0} />
         </div>
         <S.Title>
           <span>나의 포지션</span>
         </S.Title>
         <div className="NoneBlank">
-          <Blank height={36} width={0}/>
+          <Blank height={36} width={0} />
         </div>
         <S.TagArea>
           {list.map((name) => (
@@ -59,7 +59,6 @@ export default function ProfileEditPosition() {
                     {list?.length ? (
                         <>
                             {list.map((name)=>{
-                                console.log(name)
                                 return (
                                     <S.NormalTag
                                         key={uuidv4()}

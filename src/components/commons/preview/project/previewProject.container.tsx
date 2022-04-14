@@ -22,7 +22,7 @@ export default function PreviewProject(props: IPropsPreviewProject) {
       projectId: props.detailId,
     },
   });
-  console.log(props.detailId)
+
   const [joinChatRoom] = useMutation<
     Pick<IMutation, "joinChatRoom">,
     IMutationJoinChatRoomArgs
