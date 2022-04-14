@@ -3,23 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 import { Wrapper } from "../../../../commons/styles/commonStyls";
 import WriteGoButton from "../../../commons/inputs/component/write_button/write_button";
 import * as S from "./projectList.styles";
-import { IQuery } from "../../../../commons/types/generated/types";
 import InfiniteScroll from "react-infinite-scroller";
-import { Dispatch, MouseEvent, SetStateAction } from "react";
 import PreviewProject from "../../../commons/preview/project/previewProject.container";
 import ProjectCard from "../projectCard/projectCard";
+import { IPropsProjectListUI } from "./projectList.types";
 
-interface IPropsProjectListUI {
-  data: Pick<IQuery, "fetchProjects">;
-  onLoadMore: any;
-  onDetail: (e: MouseEvent<HTMLDivElement>) => void;
-  detailModal: boolean;
-  setDetailModal: Dispatch<SetStateAction<boolean>>;
-  detailId: string;
-  fetchProjectCount?: number;
-}
-
-export default function ProjectListUI(props: IPropsProjectListUI) {  
+export default function ProjectListUI(props: IPropsProjectListUI) {
   return (
     <>
       <Wrapper paddingTop={0}>
@@ -33,9 +22,8 @@ export default function ProjectListUI(props: IPropsProjectListUI) {
         >
           <S.ProjectListBox>
             {props?.data &&
-              props?.data.fetchProjects.map((el:any) => {
-                return (
-                el.isStart ? null :
+              props?.data.fetchProjects.map((el: any) => {
+                return el.isStart ? null : (
                   <div key={uuidv4()}>
                     <ProjectCard
                       id={el.id}

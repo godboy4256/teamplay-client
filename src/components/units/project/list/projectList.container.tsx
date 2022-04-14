@@ -1,42 +1,10 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { MouseEvent, useCallback, useState } from "react";
 import ProjectListUI from "./projectList.presenter";
-
-const FETCH_PROJECTS = gql`
-  query fetchProjects($page: Float!) {
-    fetchProjects(page: $page) {
-      id
-      name
-      imgUrl
-      recruitDate
-      isStart
-      type {
-        name
-      }
-      projectToPositions {
-        id
-        position {
-          name
-          id
-        }
-        number
-      }
-      projectMembers {
-        id
-      }
-    }
-  }
-`;
-
-const FETCH_PROJECT_COUNTS = gql`
-  query fetchProjectCounts {
-    fetchProjectCounts
-  }
-`;
+import { FETCH_PROJECTS, FETCH_PROJECT_COUNTS } from "./projectList.query";
 
 export default function ProjectList() {
   const { data: fetchProjectCount } = useQuery(FETCH_PROJECT_COUNTS);
-  // const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_PROJECTS, {
     variables: {
       page: 1,
