@@ -1,8 +1,5 @@
-// import { useQuery } from "@apollo/client";
 import { createContext, useState } from "react";
-// import { IQuery } from "../../../commons/types/generated/types";
 import RecruitUI from "./recruit.presenter";
-// import { FETCH_TENDENCYS } from "./recruit.queries";
 import { IPropsRecruitContext } from "./recruit.types";
 
 export const RecruitContext = createContext<IPropsRecruitContext>({});
@@ -25,9 +22,6 @@ export default function Recruit() {
   const [regionLocate, setRegionLocate] = useState(-10);
   const [positionLocate, setPositionLocate] = useState(-10);
   const [interestLocate, setInterestLocate] = useState(-10);
-
-  // const { data: tendencyData } =
-  //     useQuery<Pick<IQuery, "fetchTendencys">>(FETCH_TENDENCYS)
 
   const onClickSearchImg = () => {
     setIsSearchBar((prev) => !prev);
@@ -154,8 +148,6 @@ export default function Recruit() {
     isPosition,
     isInterest,
     isSearchBar,
-    // tendencyData,
-    // isSearchFilterBar,
     locate,
     tendencyLocate,
     regionLocate,
