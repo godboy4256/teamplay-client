@@ -56,7 +56,7 @@ const ProjectListItemBottom = styled.div`
   padding: 15px 13px;
   & > h3 {
     padding-bottom: 7px;
-    white-space:nowrap;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -127,10 +127,8 @@ const ProjectCard = memo((props: IPropsProjectCard) => {
             margin={0}
           />
           <ProjectMembers>
-            <img src="../img/big_member.svg" alt="members icon" />
-            <span>
-              {recruiteNumber} 명 모집중
-            </span>
+            <img src="/img/big_member.svg" alt="members icon" />
+            <span>{recruiteNumber} 명 모집중</span>
           </ProjectMembers>
         </ProjectListItemBottom>
       </div>

@@ -76,13 +76,13 @@ export const MainSlideContents = styled.div`
     z-index: 1;
   }
   &.slide1 {
-    background: url("img/slide01.png") no-repeat center/cover;
+    background: url("/img/slide01.png") no-repeat center/cover;
   }
   &.slide2 {
-    background: url("img/slide02.png") no-repeat center/cover;
+    background: url("/img/slide02.png") no-repeat center/cover;
   }
   &.slide3 {
-    background: url("img/slide03.png") no-repeat center/cover;
+    background: url("/img/slide03.png") no-repeat center/cover;
   }
 `;
 

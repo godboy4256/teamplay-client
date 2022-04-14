@@ -34,12 +34,12 @@ export default function TodoProgress(props: IPropsTodoProgress) {
 
   return (
     <S.TodoList>
-      {props?.data?.fetchProject?.task.filter((el: any) => {
+      {props?.data?.fetchProject?.tasks.filter((el: any) => {
         return el.is_complete;
       }).length === 0 ? (
         <S.NoneTodo>완료된 업무가 없습니다.</S.NoneTodo>
       ) : (
-        props?.data?.fetchProject?.task.map((el: any) => {
+        props?.data?.fetchProject?.tasks.map((el: any) => {
           if (!el.is_complete) {
             return null;
           } else {
