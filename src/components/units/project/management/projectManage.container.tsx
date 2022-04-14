@@ -98,7 +98,7 @@ export default function ProjectManage(props: IPropsProjectManage) {
     IQueryFetchProjectArgs
   >(FETCH_PROJECT, {
     variables: {
-      projectId: props.project || "",
+      projectId: String(props.project) || "",
     },
   });
   const [toDoTab, setToDoTab] = useState(true);
