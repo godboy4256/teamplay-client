@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import CircleTag from "../tags/commons/circleTag";
 import { v4 as uuidv4 } from "uuid";
+import dumpData from "../../../commons/json/tendency.json";
+import { useEffect } from "react";
 
 interface IPropsInfoBox {
   fontSize: number;
@@ -74,20 +76,32 @@ export const Tags = styled.div`
   justify-content: space-between;
 `;
 
-interface IPropsTendency{
- name : string,
- bgColor:string
-}
+// interface IPropsTendency {
+//   name: string;
+//   bgColor: string;
+// }
 
 interface IPropsProfileCard {
   img: string;
-  name: string | undefined
+  name: string | undefined;
   position: string;
-  tendency:IPropsTendency[] | undefined
+  tendency: string[] | undefined;
   fontSize: number;
 }
 
 export default function PropsProfileCard(props: IPropsProfileCard) {
+  const bgColor: string[] = [];
+
+  useEffect(() => {
+    if (!props.tendency) return;
+
+    props.tendency.forEach((name) => {
+      const idx = dumpData.tendency.name.indexOf(name);
+
+      bgColor.push(dumpData.tendency.color[idx]);
+    });
+  }, []);
+
   return (
     <ProfileBox>
       <HeartImg src="/img/commons/heart.svg" />
@@ -99,11 +113,11 @@ export default function PropsProfileCard(props: IPropsProfileCard) {
         <Position>{props.position}</Position>
         <Tags>
           {props.tendency &&
-            props.tendency.map((el, i) => (
+            props.tendency.map((el, idx) => (
               <CircleTag
-                name={el.name}
+                name={el}
                 size={0.124}
-                bgColor={"#3894FF"}
+                bgColor={bgColor[idx] || "#3894FF"}
                 margin={4}
                 key={uuidv4()}
               />

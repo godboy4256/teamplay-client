@@ -123,7 +123,7 @@ export default function SignUp(props: IPropsSignUp) {
       });
       result.data?.login.onboarding ? moveToMain() : moveToOnboarding();
     } catch (error) {
-      if (error instanceof Error) alert("이메일을 다시 확인해주세요.");
+      if (error instanceof Error) alert(error.message);
     }
   };
 
@@ -138,7 +138,7 @@ export default function SignUp(props: IPropsSignUp) {
         },
       });
     } catch (error) {
-      if (error instanceof Error) alert("이메일을 다시 확인해주세요.");
+      if (error instanceof Error) alert(error.message);
       setIsEmail(true);
       setIsAuth(false);
     }
