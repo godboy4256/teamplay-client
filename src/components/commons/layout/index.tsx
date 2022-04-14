@@ -30,26 +30,17 @@ export default function Layout(props: ILayoutProps) {
 
   return (
     <>
-      {router.asPath.includes("/project/list/") ? (
-        <div>{props.children}</div>
-      ) : (
-        <>
-          <S.HeaderBox
-            isHiddenHeader={isHiddenHeaderMobile}
-            isHiddenHeaderWeb={isHiddenHeaderWeb}
-            asPath={router.asPath}
-          >
-            <Header />
-          </S.HeaderBox>
-          <div>{props.children}</div>
-          <F.FooterBox
-            isHiddenFooterWeb={isHiddenFooterWeb}
-            asPath={router.asPath}
-          >
-            <Footer />
-          </F.FooterBox>
-        </>
-      )}
+      <S.HeaderBox
+        isHiddenHeader={isHiddenHeaderMobile}
+        isHiddenHeaderWeb={isHiddenHeaderWeb}
+        asPath={router.asPath}
+      >
+        <Header />
+      </S.HeaderBox>
+      <div>{props.children}</div>
+      <F.FooterBox isHiddenFooterWeb={isHiddenFooterWeb} asPath={router.asPath}>
+        <Footer />
+      </F.FooterBox>
     </>
   );
 }

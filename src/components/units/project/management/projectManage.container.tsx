@@ -144,7 +144,7 @@ export default function ProjectManage(props: IPropsProjectManage) {
     if (!data) return;
 
     try {
-      data?.fetchProject?.board?.forEach(async (el: any) => {
+      data?.fetchProject?.boards?.forEach(async (el: any) => {
         await deleteBoards({
           variables: {
             boardId: el.id,
@@ -162,7 +162,7 @@ export default function ProjectManage(props: IPropsProjectManage) {
     if (!data) return;
 
     try {
-      data?.fetchProject?.task?.forEach(async (el: any) => {
+      data?.fetchProject?.tasks?.forEach(async (el: any) => {
         await deleteTask({
           variables: {
             taskId: el.id,

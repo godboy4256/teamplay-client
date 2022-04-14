@@ -68,12 +68,12 @@ export default function TodoProgress(props: IPropsTodoProgress) {
   };
   return (
     <S.TodoList>
-      {props?.data?.fetchProject?.task.filter((el: any) => {
+      {props?.data?.fetchProject?.tasks.filter((el: any) => {
         return !el.is_complete;
       }).length === 0 ? (
         <S.NoneTodo>할 일이 없습니다.</S.NoneTodo>
       ) : (
-        props?.data?.fetchProject?.task.map((el: any) => {
+        props?.data?.fetchProject?.tasks.map((el: any) => {
           const day = Dday(el.limit);
           if (el.is_complete) {
             return null;

@@ -139,16 +139,6 @@ export default function TodoAdd(props: IPropsTodoAdd) {
     }
   };
 
-  // const onMouseEnterprofileOn = (userId:string) => (e:MouseEvent<HTMLLIElement>) => {
-  //   const user = document.getElementById(userId)
-  //   user?.classList.add('onMouse')
-  // }
-
-  // const onMouseLeaveProfileOn = (userId:string) => (e:MouseEvent<HTMLLIElement>) => {
-  //   const user = document.getElementById(userId)
-  //   user?.classList.remove('onMouse')
-  // }
-
   return (
     <>
       <ModalBackground id="modalBackground"></ModalBackground>
@@ -187,30 +177,6 @@ export default function TodoAdd(props: IPropsTodoAdd) {
             setValues={setField}
             errorMessage="분야를 선택해주세요."
           />
-          {/* <div>
-            <Label>담당 팀원</Label>
-            <TodoWorker align="left">
-              {props?.data?.fetchProject?.projectMembers && props?.data?.fetchProject?.projectMembers?.map((el:any,index:number) => {
-                if(index === 0){
-                  return null
-                }
-                
-                return (
-                  <TeamProfile 
-                    key={uuidv4()}
-                    userId={el.user?.id}
-                    userName={el.user?.name}
-                    userPosition={el.user?.position?.name}
-                    imgUrl={el.user?.imgUrl}
-                    onMouseEnterprofileOn={onMouseEnterprofileOn}
-                    onMouseLeaveProfileOn={onMouseLeaveProfileOn}
-                    setWarker={setWarker}
-                    warker={warker}
-                  />
-                );
-              })}
-            </TodoWorker>
-          </div> */}
           <SubmitButton onClick={onClickcreateTask} btnvalue="업무 추가하기" />
         </Wrapper>
       </TodoAddStyle>

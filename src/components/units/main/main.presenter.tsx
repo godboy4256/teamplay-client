@@ -30,7 +30,7 @@ export default function MainPage(props: IMainPage) {
           <S.ContentsHeader>
             <h3>
               팀원을 구해요
-              <img src="../img/req.svg" alt="req title" />
+              <img src="/img/req.svg" alt="req title" />
             </h3>
             <button>{"더보기 >"}</button>
           </S.ContentsHeader>

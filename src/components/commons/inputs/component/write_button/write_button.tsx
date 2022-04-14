@@ -27,7 +27,7 @@ export default function WriteGoButton() {
   };
   return (
     <WriteGoButtonStyle onClick={onClickWritepage}>
-      <img src="../img/gowrite.svg" alt="go write page button" />
+      <img src="/img/gowrite.svg" alt="go write page button" />
     </WriteGoButtonStyle>
   );
 }
