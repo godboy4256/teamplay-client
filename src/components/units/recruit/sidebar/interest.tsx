@@ -52,7 +52,9 @@ export default function FilterInterest() {
               <ClickTag
                 name={name}
                 marginBottom={16}
-                isClick={interest && interest === name && true}
+                isClick={
+                  typeof interest === "boolean" && interest === name && true
+                }
                 onClick={onClickPushTag}
               />
             </Fragment>

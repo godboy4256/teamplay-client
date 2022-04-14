@@ -20,7 +20,4 @@ export const ContentsHeader = styled.div`
     display: flex;
     align-items: center;
   }
-  & > h3 > img {
-    margin-left: 5px;
-  }
 `;
