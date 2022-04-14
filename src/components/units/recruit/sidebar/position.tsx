@@ -55,7 +55,6 @@ export default function FilterPosition() {
             {list?.length ? (
                 <>
                     {list.map((name)=>{
-                        console.log(name)
                         return (
                             <S.NormalTag
                                 key={uuidv4()}

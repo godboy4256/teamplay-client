@@ -44,8 +44,6 @@ export default function RecruitUI() {
     },
   });
 
-  console.log(data);
-
   return (
     <S.MainBox>
       <S.TopText>
@@ -67,7 +65,6 @@ export default function RecruitUI() {
                 {tendency?.length ? (
                   <>
                     {tendency.map((name) => {
-                      console.log(name);
                       return (
                         <S.Tag
                           bgColor={
@@ -135,7 +132,6 @@ export default function RecruitUI() {
             <S.WebSlideList>
               {data?.fetchUsers &&
                 data?.fetchUsers?.map((el: any) => {
-                  console.log(el?.tendencys);
                   return (
                     <>
                       <PropsProfileCard
@@ -143,11 +139,7 @@ export default function RecruitUI() {
                         img={el?.imgUrl || "/img/noimage.jpg"}
                         name={el?.name}
                         position={el?.position?.name || "미정"}
-                        tendency={
-                          el?.tendencys.length === 0
-                            ? ["best", "team", "project"]
-                            : el?.tendencys
-                        }
+                        tendency={el?.tendencys}
                         fontSize={14}
                       />
                     </>

@@ -25,7 +25,13 @@ export default function OnBoardingSixthPage() {
               img="/img/commons/noimage.jpg"
               name={data?.fetchUser.name}
               position={position || ""}
-              tendency={tendency}
+              tendency={
+                tendency && [
+                  { name: tendency[0] },
+                  { name: tendency[1] },
+                  { name: tendency[2] },
+                ]
+              }
               fontSize={14}
             />
           </S.CardBox>

@@ -10,7 +10,7 @@ interface IMultiSlide2 {
 
 export default function MultiSlide2(props: IMultiSlide2) {
   const { data } = useFetchUsers();
-  console.log(data);
+
   const settings = {
     speed: 500,
     slidesToShow: props.slideToShow,

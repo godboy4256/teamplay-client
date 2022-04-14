@@ -6,36 +6,36 @@ import styled from "@emotion/styled";
 import { Dispatch, SetStateAction, useState } from "react";
 import { breakPoints } from "../../../../../commons/styles/breakpoint";
 import TagBox from "../../new/tagbox/TagBox";
-import { gql,useMutation,useQuery } from "@apollo/client"
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { FETCH_PROJECT } from "../projectManage.queries";
 
 const UPDATE_TASK = gql`
-    mutation updateTask(
-        $taskId: String!
-        $content: String!
-        $limit: DateTime!
-        $taskType: TASK_TYPE_ENUM!
-        $userIds: [String!]!
-    ){
-        updateTask(
-            taskId: $taskId
-            content: $content
-            limit: $limit
-            taskType: $taskType
-            userIds: $userIds
-        ){
-          id
-        }
-    }
-`
-
-const FETCH_USER = gql`
-  query fetchUser{
-    fetchUser{
+  mutation updateTask(
+    $taskId: String!
+    $content: String!
+    $limit: DateTime!
+    $taskType: TASK_TYPE_ENUM!
+    $userIds: [String!]!
+  ) {
+    updateTask(
+      taskId: $taskId
+      content: $content
+      limit: $limit
+      taskType: $taskType
+      userIds: $userIds
+    ) {
       id
     }
   }
-`
+`;
+
+const FETCH_USER = gql`
+  query fetchUser {
+    fetchUser {
+      id
+    }
+  }
+`;
 
 const TodoAddStyle = styled.div`
   width: 100%;
@@ -43,7 +43,7 @@ const TodoAddStyle = styled.div`
   flex-direction: column;
   border-radius: 20px 20px 0 0;
   display: flex;
-  align-items: center; 
+  align-items: center;
   position: fixed;
   transition: 0.4s;
   bottom: 0;
@@ -59,12 +59,12 @@ const TodoAddStyle = styled.div`
   }
   z-index: 2;
   @media ${breakPoints.web} {
-      bottom:50%;
-      left:50%;
-      transform: translate(-50%,50%);
-      width: 30vw;
-      border-radius: 12px;
-      opacity: 1;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 30vw;
+    border-radius: 12px;
+    opacity: 1;
   }
 `;
 
@@ -72,9 +72,9 @@ const OffAdd = styled.button`
   width: 20px;
   cursor: pointer;
   position: absolute;
-  top:20px;
-  right:20px;
-  & > img{
+  top: 20px;
+  right: 20px;
+  & > img {
     width: 100%;
   }
 `;
@@ -90,27 +90,24 @@ const ModalBackground = styled.div`
   display: block;
 `;
 
-interface IPropsTodoUpdate{
-  taskId:string
-  setUpdateOn:Dispatch<SetStateAction<boolean>>
+interface IPropsTodoUpdate {
+  taskId: string;
+  setUpdateOn: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function TodoUpdate(props:IPropsTodoUpdate) {
+export default function TodoUpdate(props: IPropsTodoUpdate) {
   const [content, setContent] = useState("");
   const [contentValid, setContentValid] = useState(false);
 
-  const {data} = useQuery(FETCH_USER)
-  const [updateTask] = useMutation(UPDATE_TASK)
+  const { data } = useQuery(FETCH_USER);
+  const [updateTask] = useMutation(UPDATE_TASK);
 
-  console.log(props.taskId)
-  
-  const [limit,setLimit] = useState("")
+  const [limit, setLimit] = useState("");
 
-  const [field,setField] = useState("")
-  const [fieldValid,setFieldValid] = useState(false)
- 
+  const [field, setField] = useState("");
+  const [fieldValid, setFieldValid] = useState(false);
+
   const onClickUpdateTask = async () => {
-
     if (field === "") {
       setFieldValid(true);
     } else {
@@ -123,36 +120,35 @@ export default function TodoUpdate(props:IPropsTodoUpdate) {
       setContentValid(false);
     }
 
-    if(content && field){
-      try{
-        const result = await updateTask({
-          variables:{
-            taskId:props?.taskId,
+    if (content && field) {
+      try {
+        await updateTask({
+          variables: {
+            taskId: props?.taskId,
             content,
-            limit:String(limit),
-            taskType:field,
-            userIds:data?.fetchUser?.id
+            limit: String(limit),
+            taskType: field,
+            userIds: data?.fetchUser?.id,
           },
-          refetchQueries:[FETCH_PROJECT]
-        })
-        alert("할 일이 수정되었습니다.")
-        props.setUpdateOn(false)
-        console.log(result)
-      }catch(error){
-        console.log(error)
+          refetchQueries: [FETCH_PROJECT],
+        });
+        alert("할 일이 수정되었습니다.");
+        props.setUpdateOn(false);
+      } catch (error) {
+        console.log(error);
       }
     }
-  }
+  };
 
   return (
     <>
       <ModalBackground></ModalBackground>
       <TodoAddStyle>
-       <OffAdd onClick={() => props.setUpdateOn(false)}>
+        <OffAdd onClick={() => props.setUpdateOn(false)}>
           <img
-              src="/img/down-arrow-black.svg"
-              className="Xmark"
-              alt="down-arrow"
+            src="/img/down-arrow-black.svg"
+            className="Xmark"
+            alt="down-arrow"
           />
         </OffAdd>
         <Wrapper paddingTop="5px">
@@ -165,16 +161,16 @@ export default function TodoUpdate(props:IPropsTodoUpdate) {
             valid={contentValid}
             errorMessage="프로젝트 이름을 한 글자 이상 입력해야 합니다."
           />
-          <DateInput 
-            label="마감 기한" 
-            setValues={setLimit} 
+          <DateInput
+            label="마감 기한"
+            setValues={setLimit}
             warringText="* 마감 기한을 선택하지 않으면 마감기간 없음으로 표시됩니다."
           />
-          <TagBox 
+          <TagBox
             list={[
-              {name:"기획",id:"PLANNING"},
-              {name:"디자인",id:"DESIGN"},
-              {name:"개발",id:"DEVELOPMENT"}
+              { name: "기획", id: "PLANNING" },
+              { name: "디자인", id: "DESIGN" },
+              { name: "개발", id: "DEVELOPMENT" },
             ]}
             label="분야"
             checkBox={false}

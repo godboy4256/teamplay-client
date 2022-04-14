@@ -7,7 +7,6 @@ const url = "https://backend.ljh305.shop";
 export function useTest() {
   const { data: roomList } = useContext(RoomListContext);
 
-  // const { socket } = useTest();
   let socket: any;
   useEffect(() => {
     if (!roomList) return;
@@ -17,7 +16,6 @@ export function useTest() {
     });
 
     socket = io(url);
-    console.log(socket);
 
     socket.emit("front", { channel: [...temp] });
     socket.on("back", (data: string) => {
