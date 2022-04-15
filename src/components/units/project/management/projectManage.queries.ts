@@ -56,6 +56,7 @@ export const FETCH_PROJECT = gql`
         taskType
         is_complete
       }
+      point
     }
   }
 `;
