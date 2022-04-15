@@ -70,7 +70,6 @@ export default function ProjectManage(props: IPropsProjectManage) {
           },
           refetchQueries: [FETCH_PROJECT],
         });
-
         setOnAdd(false);
         alert("게시글이 등록되었습니다.");
       } catch (error) {
@@ -127,9 +126,13 @@ export default function ProjectManage(props: IPropsProjectManage) {
           projectId: props.project,
         },
       });
-
-      alert("프로젝트를 성공적으로 마무리 했습니다!!");
-      router.push("/project/list");
+      router.push({
+        pathname: "/project/complete",
+        query: {
+          name: data?.fetchProject?.name,
+          point: String(data?.fetchProject?.point),
+        },
+      });
     } catch (error) {
       console.log(error);
     }
