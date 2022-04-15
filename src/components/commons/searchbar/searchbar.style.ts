@@ -5,15 +5,19 @@ export const SearchBarStyle = styled.div`
   padding: 10px 0;
   transition: 0.4s;
   background-color: #fff;
-  &.onSticky{
-      background-color: #ccc;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #ccc;
+  &.onSticky {
+    background-color: #ccc;
   }
 `;
 
 export const SearchBarTop = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
   @media (min-width: 1200px) {
     border-bottom: 1px solid #ccc;
@@ -37,8 +41,7 @@ export const SearchInput = styled.input`
 export const SearchBarBottom = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-bottom: 25px;
-  & div > img {
-    margin-left: 5px;
+  & div > span {
+    color: #3894ff;
   }
 `;
