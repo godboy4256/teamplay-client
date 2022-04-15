@@ -1,3 +1,4 @@
+// import { gql } from "@apollo/client";
 import * as S from "./searchbar.style";
 
 interface IPropsSearchBarUI {
@@ -6,6 +7,14 @@ interface IPropsSearchBarUI {
   onClickSearchOff: () => void;
   fetchProjectCount?: number | {};
 }
+
+// const SEARCH_PROJCETS = gql`
+//   query searchProjects($search:String!){
+//     searchProjects(search:$search){
+
+//     }
+//   }
+// `;
 
 export default function SearchBarUI(props: IPropsSearchBarUI) {
   return (
@@ -19,10 +28,8 @@ export default function SearchBarUI(props: IPropsSearchBarUI) {
         </div>
       </S.SearchBarTop>
       <S.SearchBarBottom>
-        <div>총 {props?.fetchProjectCount} 건</div>
         <div>
-          <span>최신순</span>
-          <img src="/img/sort.svg" />
+          총 <span>{props?.fetchProjectCount}</span> 건
         </div>
       </S.SearchBarBottom>
     </S.SearchBarStyle>
