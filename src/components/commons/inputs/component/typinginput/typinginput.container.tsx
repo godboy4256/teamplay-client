@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, memo, SetStateAction } from "react";
 import { Label } from "../../commons/styles";
 
 const TypingInputStyle = styled.div`
@@ -36,7 +36,7 @@ interface IPropsTypingInput {
   valid?: boolean | string;
 }
 
-export default function TypingInput(props: IPropsTypingInput) {
+const TypingInput = (props: IPropsTypingInput) => {
   return (
     <TypingInputStyle id={props.id && props.id}>
       <Label>{props.label}</Label>
@@ -52,4 +52,6 @@ export default function TypingInput(props: IPropsTypingInput) {
       {props.valid && <ErroFont>{props.valid && props.errorMessage}</ErroFont>}
     </TypingInputStyle>
   );
-}
+};
+
+export default memo(TypingInput);

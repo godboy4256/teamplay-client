@@ -7,6 +7,7 @@ import {
 } from "../../../units/project/management/projectManage.styles";
 import { v4 as uuidv4 } from "uuid";
 import { IPropsPreviewProjectUI } from "./previewProject.types";
+import Comment from "../../../units/project/comment/comment.container";
 
 export default function PreviewProjectUI(props: IPropsPreviewProjectUI) {
   let recuriteNumber = 0;
@@ -123,6 +124,7 @@ export default function PreviewProjectUI(props: IPropsPreviewProjectUI) {
           <h3>상세 설명</h3>
           <div>{props.data?.fetchProject.description}</div>
         </S.DescriptionBox>
+        <Comment projectId={String(props.data?.fetchProject.id)} />
         <S.SubmitBox onClick={props.onClickChatStart}>
           <SubmitButton btnvalue="팀플 참여하기" bgColor="#3894ff" />
         </S.SubmitBox>
