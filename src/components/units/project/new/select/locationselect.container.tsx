@@ -13,7 +13,7 @@ const SelectStyle = styled.select`
   border-radius: 5px;
   margin-right: 8px;
   appearance: none;
-  background: url("../img/select.svg") no-repeat right 9px center;
+  background: url("/img/select.svg") no-repeat right 9px center;
   &:last-child {
     margin-right: 0;
   }

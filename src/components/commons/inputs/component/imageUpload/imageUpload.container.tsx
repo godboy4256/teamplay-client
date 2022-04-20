@@ -78,7 +78,7 @@ export default function ImageUpload(props: IPropsImageUpload) {
     IMutationUploadFileArgs
   >(UPLOADE_FILE);
 
-  const [imgSrc, setImgSrc] = useState("../img/image_upload.svg");
+  const [imgSrc, setImgSrc] = useState("/img/image_upload.svg");
 
   const onFileUpload = () => {
     const refCurret = refFile.current;
@@ -116,7 +116,7 @@ export default function ImageUpload(props: IPropsImageUpload) {
       </Label>
       <div>
         <ImageBox onClick={onFileUpload}>
-          {imgSrc !== "../img/image_upload.svg" ? (
+          {imgSrc !== "/img/image_upload.svg" ? (
             <img
               ref={refImage}
               src={imgSrc}
@@ -126,7 +126,7 @@ export default function ImageUpload(props: IPropsImageUpload) {
           ) : (
             <div>
               <img
-                src="../img/image_upload.svg"
+                src="/img/image_upload.svg"
                 alt="preview upload before image"
               />
               <div>프로젝트를 대표할 이미지를 첨부해주세요.</div>

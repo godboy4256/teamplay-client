@@ -95,6 +95,7 @@ const ProjectCard = memo((props: IPropsProjectCard) => {
     }
   }
 
+
   return (
     <ProjectListItem id={props.id} onClick={props.onDetail}>
       <div>

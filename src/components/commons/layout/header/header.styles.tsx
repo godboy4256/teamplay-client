@@ -136,6 +136,8 @@ export const Setting = styled.div`
   }
 
   .toggle {
+    position: relative;
+    z-index: 500;
     @media ${breakPoints.tablet} {
       position: relative;
     }
