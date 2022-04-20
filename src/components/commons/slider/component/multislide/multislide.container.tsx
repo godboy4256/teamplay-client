@@ -15,6 +15,12 @@ const FETCH_PROJECTS = gql`
       name
       imgUrl
       recruitDate
+      projectToPositions {
+        position {
+          name
+        }
+        number
+      }
     }
   }
 `;
@@ -66,6 +72,7 @@ export default function MultiSlide() {
                     name={el.name}
                     recruitDate={el.recruitDate}
                     onDetail={() => {}}
+                    projectToPositions={el.projectToPositions}
                   />
                 </S.MultiSlideItem>
               </S.MultiSlideWrapper>

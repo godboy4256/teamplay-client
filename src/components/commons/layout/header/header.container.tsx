@@ -56,10 +56,6 @@ export default function Header() {
     for (let i = 0; i < navList.length; i++) {
       navList[i].classList.remove("active__page");
     }
-    if(e.currentTarget.id === '/community/list'){
-      alert("준비중인 페이지입니다.")
-      return
-    } 
     router.push(e.currentTarget.id);
     e.currentTarget && e.currentTarget.classList.add("active__page");
   };

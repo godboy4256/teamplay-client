@@ -44,10 +44,10 @@ export default function HeaderUI(props: IPropsHeaderUI) {
                 </li>
                 <li
                   onClick={onClickHeaderRouting}
-                  id="/community/list"
+                  id="/about"
                   className="nav__list"
                 >
-                  커뮤니티
+                  소개
                 </li>
               </ul>
             </S.HeaderNav>

@@ -22,6 +22,7 @@ export const Wrapper = styled.div`
     top: 2vw;
     right: 0;
     width: 350px;
+    z-index: 100;
   }
 
   @media ${breakPoints.web} {
