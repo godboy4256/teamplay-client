@@ -13,10 +13,7 @@
 ## 포트폴리오 자료
 
 ### 👉 서비스 배포 링크
-https://teamplay.store/login <br>
-회원 가입 없이 즉시 기능을 확인해보세요.
-- <div>아이디 : godboy47474@gmail.com</div>
-- <div>비밀번호 : fkdlvmf42%%</div>
+https://teamplay.store/signup <br>
 
 ### 🛠 백엔드 API 서버
 https://backend.ljh305.shop/graphql <br>
