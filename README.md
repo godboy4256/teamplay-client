@@ -18,7 +18,7 @@ https://teamplay.store/login <br>
 - <div>아이디 : godboy47474@gmail.com</div>
 - <div>비밀번호 : fkdlvmf42%%</div>
 
-### 백엔드 API 서버
+### 🛠 백엔드 API 서버
 https://backend.ljh305.shop/graphql <br>
 
 ### 📚 팀 노션
