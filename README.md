@@ -7,6 +7,9 @@
 
 팀 프로젝트가 필요한 경력 없는 주니어 분들을 위한 팀 프로젝트 팀 빌딩 서비스입니다. 기존의 여러가지 사이드 프로젝트 플랫폼이나 스타트업 창업 멤버를 모집하는 플랫폼들과는 다르게 취업을 위한 팀 프로젝트 포트폴리오가 필요하지만 경력이 없고 팀 프로젝트 경험이 없어서 열심히 독학을 해서 팀 프로젝트에 들어갈 준비가 되어도 같이 할 신입 팀원이 없어서 팀 프로젝트 포트폴리오를 준비하기 힘들었던 분들을 위한 서비스입니다.
 
+## 서비스 유형
+반응형 웹 서비스
+
 ## 기술 스택
 - 프론트엔드
 <div style="display:flex;flex-wrap:wrap">
@@ -22,8 +25,6 @@
   <img src="https://img.shields.io/badge/docker-2392e6?&logo=docker&logoColor=white">
    <img src="https://img.shields.io/badge/socket.io-000000?&logo=socket.io&logoColor=white">
 </div>
-
-<br />
 <br />
 
 - 백엔드
@@ -41,6 +42,9 @@
   <img src="https://img.shields.io/badge/typeORM-dd3222?&logo=typeORM&logoColor=white">
 </div>
 
+
+
+
 ## 프로젝트 팀 소개 
 | 이름   | 역할                     | 담당 부분                                                                                                                                    |
 | ------ | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -51,11 +55,97 @@
 | 김성주 | 백엔드   | 1. 프로젝트 관리 CRUD(게시판, 투두리스트) API <br>2. 프로젝트 리스트 댓글 및 리뷰 CRUD API<br>3. 포인트 충전 시 결제 API<br>4. 프로젝트 발표
 
 
-## 프로젝트 기능 설명 및 소개
+## 프로젝트 기능 , 서비스 흐름 설명
+### 1. 회원 가입
+- <div>서비스 이용을 위한 회원가입 기능입니다. 이메일 인증으로 가입이 가능합니다.</div>
+<div style="border:1px solid #ccc">
+  <img src="https://user-images.githubusercontent.com/82381946/167580791-d6c0b9ab-a4c3-4176-9b40-a204e40333c8.gif"
+</div>
+  <br>
+  <br>
+  <br>
 
-### 메인 페이지
+### 2 .로그인
+  - <div>유저 식별을 위한 로그인 기능입니다. 구글,네이버,카카오 등의 소셜을 연동한 로그인도 가능합니다.</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167580813-7cd72c30-24dd-430b-92d9-c8d1944199f4.gif"
+</div>
+  <br>
+  <br>
+  <br>
+  
+### 3 .유저 정보 온보딩
+ - <div>서비스 이용을 위해 로그인을 한 후 온보딩 기능을 활용한 유저의 성향과 선호하는 프로젝트 유형,어떤 포지션(프론트엔드,백엔드,기획자 등)을 맡기 원하는지 등 다양한 유저의 세부 정보를 설정해 둘 수 있습니다.</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167580846-3b539dc6-0cdb-4b8f-b0f7-043ec1060533.gif"
+</div>
+  <br>
+  <br>
+  <br>
+  
+### 4 .프로젝트 리스트 페이지
+ - <div>다른 사용자들이 생성한 프로젝트를 모두 보여주는 프로젝트 리스트 페이지에서 진행하고 싶은 프로젝트를 선택할 수 있습니다. 프로젝트를 참여하기 이전에 댓글을 작성해서 프로젝트 생성자에게 프로젝트에 관해 사전에 문의할 수 있습니다.</div>  
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167580963-12166967-ed4b-4093-a733-bb91c29b1e50.gif"
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167588842-86d48cb5-c827-4db7-aede-2a9b252b44e7.gif"
+</div>
+  <br>
+  <br>
+  <br> 
 
-## Reference
+### 5 .프로젝트 추가 페이지
+ - <div>좋은 아이디어가 있다면 프로젝트를 직접 생성할 수 있습니다. 프로젝트의 이름,프로젝트를 진행한 팀명,소개,설명,프로젝트의 분야,대면과 비대면 여부,프로젝트가 진행되는 지역(서울,부산,대구 등),모집중인 포지션과 인원, 모집 기간 등 프로젝트의 정보를 세부적으로 정해서 생성할 수 있습니다.</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167580870-e054e87e-a2d1-4608-b701-1dfe93f80bbd.gif"
+</div>
+  <br>
+  <br>
+  <br>
+
+### 6 .프로젝트 챌린지 포인트 충전
+ - <div>아임포트 결제 연동 API를 활용해서 프로젝트 진행에 필요한 포인트를 충전할 수 있습니다.</div>  
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167580984-fc650cb4-f33e-4998-be9a-545d896a57be.gif"
+</div>
+  <br>
+  <br>
+  <br>
+  
+### 7 .프로젝트 빌드 채팅
+- <div>생성된 프로젝트에 대한 채팅방이 생성됩니다. 프로젝트에 참여하기 원하는 사용자들이 모두 채팅에 참여할 수 있고 채팅방의 방장(프로젝트를 생성한 팀장)이 프로젝트를 함께 진행하고 싶은 유저를 선택해서 챌린저스 포인트를 설정하고 프로젝트를 시작하면 프로젝트 관리 페이지로 이동됩니다. </div>  
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167581009-25ace8a4-84ae-4ec0-b7b8-f6a87a63ee65.gif"
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167581129-d409b0d0-f090-492b-a4ec-42f01597dddb.gif"
+</div>  
+  <br>
+  <br>
+  <br>
+
+### 8. 프로젝트 관리 툴 페이지 (투두리스트, 게시판)
+- <div>프로젝트를 시작하면 프로젝트 관리 툴 페이지가 주어집니다. 관리 툴에는 투두리스트와 게시판, 팀 프로필이 있습니다. </div>  
+<div>  
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167581046-df946d13-c367-47c4-b9d4-b5824fac6832.gif"
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167581067-aa0f7881-40e7-4756-8337-1f65f1fb3b0c.gif"
+</div>  
+  <br>
+  <br>
+  <br>
+  
+### 9. 프로젝트 종료 후 챌린저스 포인트 반환
+- <div>프로젝트가 끝나면 프로젝트 관리 툴 페이지에서 팀장이 프로젝트 종료 버튼을 누르면 챌린저스 포인트가 사용자들에 각각 환급됩니다. </div>    
+<div>
+  <img src="https://user-images.githubusercontent.com/82381946/167581103-a0457dd0-bae6-4b00-9a41-8df3644e474a.gif"
+</div>   
+  <br>
+  <br>
+  <br>
 
 Centernet  
 https://tfhub.dev/tensorflow/centernet/hourglass_512x512/1
