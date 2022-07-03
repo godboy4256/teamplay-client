@@ -18,6 +18,7 @@ export default function OnBoardingFourthPage() {
     "백엔드",
     "풀스택",
   ];
+
   return (
     <S.Wrapper>
       <S.ResponseBox>
