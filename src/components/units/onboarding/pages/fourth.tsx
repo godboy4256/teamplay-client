@@ -11,13 +11,14 @@ export default function OnBoardingFourthPage() {
     useContext(OnBoardingContext);
   const list = [
     "기획자",
-    "UI 디자이너",
-    "UX 디자이너",
-    "UXUI 디자이너",
+    "UI디자이너",
+    "UX디자이너",
+    "UXUI디자이너",
     "프론트엔드",
     "백엔드",
     "풀스택",
   ];
+
   return (
     <S.Wrapper>
       <S.ResponseBox>
