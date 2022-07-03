@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import useFetchUser from "../../../hooks/useFetchUser";
 
 const WriteGoButtonStyle = styled.div`
   width: 54px;
@@ -21,7 +22,12 @@ const WriteGoButtonStyle = styled.div`
 
 export default function WriteGoButton() {
   const router = useRouter();
+  const user: any = useFetchUser();
   const onClickWritepage = () => {
+    if (!user?.data?.fetchUser?.name) {
+      alert("프로젝트를 빌드하려면 로그인이 필요합니다.");
+      return;
+    }
     router.push("/project/new");
     document.querySelector("#__next")?.classList.remove("projectdetalon");
   };

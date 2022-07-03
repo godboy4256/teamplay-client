@@ -46,7 +46,13 @@ export default function Comment(props: IPropsComment) {
         setTitle("");
         alert("질문을 완료했습니다.");
       } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+          if (error.message === "Unauthorized") {
+            alert("댓글을 작성하려면 로그인이 필요합니다.");
+          } else {
+            alert(error.message);
+          }
+        }
       }
     } else {
       alert("제목과 질문 모두 한 글자 이상 입력해주세요.");

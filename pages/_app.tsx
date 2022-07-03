@@ -25,8 +25,9 @@ import {
   IType,
 } from "../src/commons/types/generated/types";
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { MainRenderingBackground } from "../src/components/units/main/main.styles";
 
 export interface IGlobalContext {
   accessToken?: string;
@@ -111,6 +112,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
         <Global styles={globalStyles} />
+        <MainRenderingBackground>TEAMPLAY</MainRenderingBackground>
         <Layout>
           <Component {...pageProps} />
         </Layout>

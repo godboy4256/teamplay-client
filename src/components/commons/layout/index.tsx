@@ -25,7 +25,6 @@ export default function Layout(props: ILayoutProps) {
   ];
 
   const isHiddenHeaderWeb = ["/", "/onboarding", "/about/"];
-
   const isHiddenFooterWeb = ["/login", "/onboarding"];
 
   return (

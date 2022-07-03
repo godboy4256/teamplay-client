@@ -1,31 +1,22 @@
-// import { gql } from "@apollo/client";
 import * as S from "./searchbar.style";
 
 interface IPropsSearchBarUI {
   isSearchBar: boolean;
-  onClickSearchOn: () => void;
+  onClickSearchOn: (e: any) => void;
   onClickSearchOff: () => void;
   fetchProjectCount?: number | {};
 }
-
-// const SEARCH_PROJCETS = gql`
-//   query searchProjects($search:String!){
-//     searchProjects(search:$search){
-
-//     }
-//   }
-// `;
 
 export default function SearchBarUI(props: IPropsSearchBarUI) {
   return (
     <S.SearchBarStyle id="stick_header">
       <S.SearchBarTop>
-        <div>
+        <form onSubmit={props.onClickSearchOn}>
           <S.SearchInput type="text" placeholder="검색어를 입력해주세요." />
-          <button onClick={props.onClickSearchOn}>
+          <button>
             <img src="/img/search.svg" alt="search icon" />
           </button>
-        </div>
+        </form>
       </S.SearchBarTop>
       <S.SearchBarBottom>
         <div>
