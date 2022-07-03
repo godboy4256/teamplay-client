@@ -13,7 +13,6 @@ export default function MainPage(props: IMainPage) {
   const { data } = useFetchUser();
   return (
     <S.MainBox>
-      <S.MainRenderingBackground>TEAMPLAY</S.MainRenderingBackground>
       <MainSlide />
       <Wrapper paddingTop={0}>
         <S.MainTop>

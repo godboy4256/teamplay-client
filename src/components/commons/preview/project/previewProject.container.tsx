@@ -36,12 +36,16 @@ export default function PreviewProject(props: IPropsPreviewProject) {
           projectId: String(props.detailId),
         },
       });
-
       router.push("/chatting");
-
       document.querySelector("#__next")?.classList.remove("projectdetalon");
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      if (error instanceof Error) {
+        if (error.message === "Unauthorized") {
+          alert("프로젝트 채팅에 참여하기 위해서는 로그인이 필요합니다.");
+        } else {
+          alert(error.message);
+        }
+      }
     }
   };
 

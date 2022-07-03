@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { createContext, MouseEvent, useState } from "react";
 import { IMutation } from "../../../../commons/types/generated/types";
+import useFetchUser from "../../hooks/useFetchUser";
 import useMoveToPage from "../../hooks/useMoveToPage";
 import HeaderUI from "./header.presenter";
 import { LOGOUT } from "./header.queries";
@@ -10,6 +11,7 @@ import { IHeaderContext } from "./header.types";
 export const HeaderContext = createContext<IHeaderContext>({});
 
 export default function Header() {
+  const user: any = useFetchUser();
   const {
     moveToLogin,
     moveToSignup,
@@ -66,6 +68,10 @@ export default function Header() {
   };
 
   const onCliclsetPosition = () => {
+    if (!user?.data?.fetchUser?.name) {
+      alert("마이 메뉴를 보려면 로그인이 필요합니다.");
+      return;
+    }
     setPosition((prev) => (prev === -80 ? 0 : -80));
     setIsView((prev) => !prev);
   };

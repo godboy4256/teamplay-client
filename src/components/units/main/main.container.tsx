@@ -6,5 +6,6 @@ export default function Main() {
   const onClickProjects = () => {
     router.push("project/list");
   };
+
   return <MainUI onClickProjects={onClickProjects} />;
 }
