@@ -17,7 +17,6 @@ https://teamplay.store/signup <br>
 
 ### 🛠 백엔드 API 서버
 https://backend.ljh305.shop/graphql <br>
-재배포 예정
 
 ### 📚 팀 노션
 https://complex-somersault-3fd.notion.site/3-000b279bc34741c7b4d3eb46fdff4d03
